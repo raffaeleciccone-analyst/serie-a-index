@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Serie A Scout Index — Data-driven Player Ranking Model</title>
+<style>
+:root{
+  --bg:#000;--bg2:#1c1c1e;
+  --sep:rgba(255,255,255,.10);--sep2:rgba(255,255,255,.18);
+  --lp:#fff;--ls:rgba(235,235,245,.62);--lt:rgba(235,235,245,.32);
+  --blue:#0a84ff;--green:#30d158;--orng:#ff9f0a;
+  --purp:#bf5af2;--teal:#5ac8fa;--indig:#5e5ce6;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
+  --mono:"SF Mono","Cascadia Code","Fira Code",monospace;
+  --gl-border:rgba(255,255,255,.16);--gl-edge:rgba(255,255,255,.28);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--lp);
+  min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%,rgba(10,132,255,.08),transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,rgba(191,90,242,.06),transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 50%,rgba(48,209,88,.03),transparent 70%);
+  z-index:0}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;height:52px;
+  background:rgba(0,0,0,.7);backdrop-filter:saturate(200%) blur(40px);
+  -webkit-backdrop-filter:saturate(200%) blur(40px);
+  border-bottom:1px solid var(--gl-border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;gap:12px}
+.nav-brand{font-size:15px;font-weight:700;letter-spacing:-.4px;
+  display:flex;align-items:center;gap:8px}
+.nav-dot{width:7px;height:7px;border-radius:50%;background:var(--orng);
+  box-shadow:0 0 8px rgba(255,159,10,.6)}
+.nav-badge{padding:3px 10px;border-radius:8px;font-size:10px;font-weight:700;
+  background:rgba(255,159,10,.1);border:1px solid rgba(255,159,10,.25);
+  color:var(--orng);text-transform:uppercase;letter-spacing:.5px}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:80px 24px 60px;text-align:center;
+  max-width:800px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;
+  background:rgba(10,132,255,.08);border:1px solid rgba(10,132,255,.2);
+  color:var(--blue);margin-bottom:20px}
+.hero-ttl{font-size:clamp(36px,6vw,68px);font-weight:800;
+  letter-spacing:-3px;line-height:1.05;margin-bottom:16px;
+  background:linear-gradient(135deg,#fff 30%,rgba(235,235,245,.55));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--ls);line-height:1.7;
+  max-width:580px;margin:0 auto 40px}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:48px}
+.hero-tag{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;
+  background:rgba(255,255,255,.05);border:1px solid var(--gl-border);color:var(--ls)}
+.hero-tag.blue{background:rgba(10,132,255,.08);border-color:rgba(10,132,255,.2);color:var(--blue)}
+.hero-tag.green{background:rgba(48,209,88,.08);border-color:rgba(48,209,88,.2);color:var(--green)}
+.hero-tag.purp{background:rgba(191,90,242,.08);border-color:rgba(191,90,242,.2);color:var(--purp)}
+.hero-tag.teal{background:rgba(90,200,250,.08);border-color:rgba(90,200,250,.2);color:var(--teal)}
+
+/* CTA BUTTONS — layout a 3 colonne con centrale più grande */
+.cta-group{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:12px;
+  justify-content:center;
+  margin-bottom:64px;
+  max-width:680px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.cta-group .btn-left{justify-self:end}
+.cta-group .btn-right{justify-self:start}
+
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:16px 36px;border-radius:16px;font-size:16px;font-weight:700;
+  font-family:var(--font);text-decoration:none;cursor:pointer;
+  background:linear-gradient(160deg,rgba(30,150,255,.95),rgba(10,132,255,.9));
+  border:1px solid rgba(10,132,255,.5);border-top-color:rgba(80,180,255,.6);
+  color:#fff;box-shadow:0 6px 28px rgba(10,132,255,.45),inset 0 1px 0 rgba(255,255,255,.2);
+  transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}
+.btn-primary:hover{transform:translateY(-2px);
+  box-shadow:0 10px 36px rgba(10,132,255,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 22px;border-radius:14px;font-size:14px;font-weight:700;
+  font-family:var(--font);text-decoration:none;cursor:pointer;
+  background:rgba(255,255,255,.07);
+  border:1px solid var(--gl-border);border-top-color:var(--gl-edge);
+  color:var(--ls);box-shadow:0 2px 12px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:all .2s cubic-bezier(.4,0,.2,1);white-space:nowrap}
+.btn-secondary:hover{background:rgba(255,255,255,.11);color:var(--lp);
+  transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.4)}
+
+.btn-purp{background:linear-gradient(160deg,rgba(191,90,242,.85),rgba(150,60,200,.8));
+  border-color:rgba(191,90,242,.45);border-top-color:rgba(220,120,255,.5);
+  color:#fff;box-shadow:0 4px 20px rgba(191,90,242,.3),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn-purp:hover{transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(191,90,242,.4)}
+
+/* CARDS SEZIONE */
+.section{position:relative;z-index:1;max-width:1000px;margin:0 auto;padding:0 24px 80px}
+.section-ttl{font-size:13px;font-weight:700;color:var(--lt);text-transform:uppercase;
+  letter-spacing:.8px;margin-bottom:24px;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid var(--gl-border);border-top-color:var(--gl-edge);
+  border-radius:18px;padding:24px;position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;
+  box-shadow:0 4px 20px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07)}
+.card:hover{transform:translateY(-3px);
+  box-shadow:0 12px 36px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+.card-accent{position:absolute;top:0;left:0;right:0;height:3px;border-radius:18px 18px 0 0}
+.card-icon{font-size:28px;margin-bottom:14px}
+.card-ttl{font-size:16px;font-weight:700;letter-spacing:-.3px;margin-bottom:8px}
+.card-body{font-size:13px;color:var(--lt);line-height:1.65;margin-bottom:18px}
+.card-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;
+  font-weight:700;text-decoration:none;transition:gap .15s}
+.card-link:hover{gap:8px}
+
+/* INDICI GRIGLIA */
+.indices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.idx{background:rgba(255,255,255,.03);border:1px solid var(--sep);
+  border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px}
+.idx-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.idx-ttl{font-size:13px;font-weight:600;margin-bottom:3px}
+.idx-sub{font-size:11px;color:var(--lt);line-height:1.5}
+
+/* TPI PRO BANNER */
+.pro-banner{background:linear-gradient(135deg,rgba(191,90,242,.1),rgba(94,92,230,.06));
+  border:1px solid rgba(191,90,242,.25);border-radius:16px;
+  padding:24px;margin:32px 0;position:relative;overflow:hidden}
+.pro-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--purp),var(--indig))}
+.pro-new{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;
+  border-radius:6px;font-size:10px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.5px;background:rgba(191,90,242,.15);
+  border:1px solid rgba(191,90,242,.3);color:var(--purp);margin-bottom:10px}
+.formula{font-family:var(--mono);font-size:12px;
+  background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:10px 14px;color:var(--teal);
+  margin-top:10px;line-height:1.7}
+
+/* FOOTER */
+.footer{position:relative;z-index:1;text-align:center;padding:32px 24px 48px;
+  border-top:1px solid var(--sep)}
+.footer-text{font-size:12px;color:var(--lt);line-height:1.8}
+.footer-text a{color:var(--blue);text-decoration:none}
+.footer-text a:hover{text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:720px){
+  .cards{grid-template-columns:1fr}
+  .indices{grid-template-columns:1fr}
+  .cta-group{
+    grid-template-columns:1fr;
+    max-width:320px;
+  }
+  .cta-group .btn-left,
+  .cta-group .btn-right{justify-self:stretch}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  .hero{padding:56px 16px 40px}
+}
+@media(max-width:480px){
+  .nav{padding:0 14px}
+  .section{padding:0 14px 56px}
+  .hero-ttl{letter-spacing:-2px}
+  .card{padding:18px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-dot"></div>
+    Serie A Scout Index
+  </div>
+  <span class="nav-badge">by Raffaele Ciccone</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">⚽ Football Analytics · Serie A 25/26</div>
+  <h1 class="hero-ttl">Serie A Scout Index</h1>
+  <p class="hero-sub" style="font-size:clamp(14px,1.8vw,17px);color:rgba(235,235,245,.5);
+    font-weight:600;letter-spacing:.2px;margin-bottom:10px">
+    Data-driven Player Ranking Model
+  </p>
+  <p class="hero-sub">
+    A model designed to evaluate and rank Serie A players using
+    independent performance metrics — corrected for opponent difficulty,
+    stabilized with Bayesian Shrinkage, validated against real outcomes.
+  </p>
+
+  <!-- 3 bullet recruiter-friendly -->
+  <div style="display:flex;flex-direction:column;gap:8px;max-width:520px;
+    margin:0 auto 32px;text-align:left">
+    <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ls)">
+      <span style="color:var(--blue);font-size:16px;flex-shrink:0">▸</span>
+      <span><strong style="color:var(--lp)">6 independent KPIs</strong> — Output, Centrality, Boost,
+        Consistency (IQR-based), Age Index (AII), Physical Reliability (PRI),
+        standardized with <strong style="color:var(--teal)">Winsorized z-scores</strong></span>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ls)">
+      <span style="color:var(--green);font-size:16px;flex-shrink:0">▸</span>
+      <span><strong style="color:var(--lp)">406 players · 21 matchdays · 5 contexts</strong> —
+        Total, Home, Away, vs Top 6, vs Strong Defenses</span>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ls)">
+      <span style="color:var(--purp);font-size:16px;flex-shrink:0">▸</span>
+      <span><strong style="color:var(--lp)">Statistically validated</strong> —
+        Predictive backtest Spearman ρ=0.70, Bootstrap 95% CI,
+        Kendall τ ranking stability, Cohen's d effect size</span>
+    </div>
+  </div>
+
+  <div class="hero-tags">
+    <span class="hero-tag blue">xG · xA · SOS-weighting</span>
+    <span class="hero-tag green">Bayesian Shrinkage</span>
+    <span class="hero-tag purp">✨ TPI Pro — AII + PRI</span>
+    <span class="hero-tag teal">Statistically Validated</span>
+  </div>
+
+  <!-- 3 pulsanti: secondario | PRIMARIO più grande | secondario -->
+  <div class="cta-group">
+    <a href="validazione.html" class="btn-secondary btn-left">
+      ✅ See Validation
+    </a>
+    <a href="dashboard_serie_a.html" class="btn-primary">
+      📊 Explore Dashboard
+    </a>
+    <a href="guida_completa.html" class="btn-purp btn-secondary btn-right">
+      📖 Methodology
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-ttl">What's inside</div>
+  <div class="cards">
+
+    <a href="dashboard_serie_a.html" class="card">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--blue),var(--indig))"></div>
+      <div class="card-icon">📊</div>
+      <div class="card-ttl">Scout Dashboard</div>
+      <div class="card-body">
+        Interactive player rankings across 7 metrics, squad filter,
+        head-to-head comparison up to 4 players, TPI radar and
+        differential analysis. Fully responsive.
+      </div>
+      <div class="card-link" style="color:var(--blue)">Explore dashboard →</div>
+    </a>
+
+    <a href="validazione.html" class="card">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
+      <div class="card-icon">✅</div>
+      <div class="card-ttl">Statistical Validation</div>
+      <div class="card-body">
+        5 independent tests: Pearson r vs Fantacalcio, Top 10 Overlap,
+        Predictive Backtest (r=0.70), AII/PRI validation
+        and TPI vs TPI Pro consistency check.
+      </div>
+      <div class="card-link" style="color:var(--green)">See validation →</div>
+    </a>
+
+    <a href="guida_completa.html" class="card">
+      <div class="card-accent" style="background:linear-gradient(90deg,var(--purp),var(--indig))"></div>
+      <div class="card-icon">📖</div>
+      <div class="card-ttl">Full Methodology</div>
+      <div class="card-body">
+        Every index explained with formulas, rationale and interactive charts.
+        From raw data pipeline to final TPI — all steps documented.
+        Password protected.
+      </div>
+      <div class="card-link" style="color:var(--purp)">Read methodology →</div>
+    </a>
+
+  </div>
+
+  <!-- Indici -->
+  <div style="margin-top:56px">
+    <div class="section-ttl">Gli indici del sistema</div>
+    <div class="indices">
+      <div class="idx">
+        <div class="idx-dot" style="background:var(--blue)"></div>
+        <div><div class="idx-ttl">Output Adj / 90'</div>
+          <div class="idx-sub">(xG+xA)/min×90 pesato per SOS — corregge per la forza degli avversari</div></div>
+      </div>
+      <div class="idx">
+        <div class="idx-dot" style="background:var(--green)"></div>
+        <div><div class="idx-ttl">Centralità Offensiva</div>
+          <div class="idx-sub">% produzione squadra che passa dal giocatore — con Bayesian Shrinkage</div></div>
+      </div>
+      <div class="idx">
+        <div class="idx-dot" style="background:var(--orng)"></div>
+        <div><div class="idx-ttl">Team Boost Ratio</div>
+          <div class="idx-sub">xG squadra CON / SENZA — quanto vale davvero per la squadra</div></div>
+      </div>
+      <div class="idx">
+        <div class="idx-dot" style="background:var(--purp)"></div>
+        <div><div class="idx-ttl">Consistenza (IQR-based)</div>
+          <div class="idx-sub">1 − IQR/mediana — robust to outlier matches, bounded [0,1]</div></div>
+      </div>
+      <div class="idx">
+        <div class="idx-dot" style="background:var(--teal)"></div>
+        <div><div class="idx-ttl">⭐ AII — Age Impact Index</div>
+          <div class="idx-sub">Curva gaussiana picco 27 anni — valore nel ciclo di carriera</div></div>
+      </div>
+      <div class="idx">
+        <div class="idx-dot" style="background:#ff6b9d"></div>
+        <div><div class="idx-ttl">💪 PRI — Physical Reliability</div>
+          <div class="idx-sub">Disponibilità + infortuni + gravità — affidabilità fisica storica</div></div>
+      </div>
+    </div>
+
+    <!-- TPI Pro banner -->
+    <div class="pro-banner">
+      <div class="pro-new">✨ Novità — TPI Pro</div>
+      <div style="font-size:17px;font-weight:700;letter-spacing:-.3px;margin-bottom:6px">
+        TPI Pro — 6 Dimensioni di Analisi
+      </div>
+      <div style="font-size:13px;color:var(--ls);line-height:1.65;max-width:560px">
+        Il TPI classico usa 4 dimensioni offensive. Il TPI Pro aggiunge
+        <strong style="color:var(--teal)">Età Index (AII)</strong> e
+        <strong style="color:var(--purp)">Affidabilità Fisica (PRI)</strong>
+        per uno scouting a lungo termine più accurato.
+      </div>
+      <div class="formula">
+        TPI Pro = media( z_output, z_centralità, z_boost, z_consistenza,
+        <span style="color:var(--teal)">z_AII</span>,
+        <span style="color:var(--purp)">z_PRI</span> )
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-text">
+    Raffaele Ciccone &nbsp;·&nbsp;
+    <a href="https://github.com/raffaeleciccone-analyst" target="_blank">GitHub</a>
+    &nbsp;·&nbsp; Serie A Scout Index &nbsp;·&nbsp; Stagione 2025/26<br>
+    <span style="color:rgba(235,235,245,.18)">
+      Dati: FBref (fonte Opta) · Transfermarkt · SosFanta · PazzidiFanta
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
