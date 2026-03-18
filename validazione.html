@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Model Validation — Serie A Scout Index</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+:root{
+  --bg:#000;--bg2:#1c1c1e;--bg3:#2c2c2e;
+  --sep:rgba(255,255,255,.10);--sep2:rgba(255,255,255,.18);
+  --lp:#fff;--ls:rgba(235,235,245,.62);--lt:rgba(235,235,245,.32);
+  --blue:#0a84ff;--green:#30d158;--orng:#ff9f0a;
+  --red:#ff453a;--purp:#bf5af2;--teal:#5ac8fa;--indig:#5e5ce6;
+  --r:16px;--rsm:12px;--rxs:8px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
+  --mono:"SF Mono","Cascadia Code","Fira Code",monospace;
+  --gl-border:rgba(255,255,255,.16);--gl-edge:rgba(255,255,255,.28);
+  --gl-blur:saturate(220%) blur(36px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--lp);
+  font-size:15px;line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:400;height:52px;
+  background:rgba(10,10,12,.72);backdrop-filter:var(--gl-blur);
+  -webkit-backdrop-filter:var(--gl-blur);border-bottom:1px solid var(--gl-border);
+  box-shadow:0 1px 0 var(--gl-edge);display:flex;align-items:center;gap:10px;padding:0 20px}
+.nav-brand{font-size:16px;font-weight:700;letter-spacing:-.5px;white-space:nowrap;flex-shrink:0}
+.nav-brand small{font-size:12px;font-weight:400;color:var(--lt);margin-left:6px}
+.nav-glass-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;background:rgba(255,255,255,.06);
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border:1px solid rgba(255,255,255,.14);border-top-color:rgba(255,255,255,.24);
+  border-radius:9px;font-size:14px;color:rgba(235,235,245,.62);cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:all .18s cubic-bezier(.4,0,.2,1);font-family:var(--font);text-decoration:none;flex-shrink:0}
+.nav-glass-btn:hover{background:rgba(255,255,255,.11);color:#fff;
+  border-top-color:rgba(255,255,255,.36);transform:translateY(-1px);
+  box-shadow:0 3px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.12)}
+.nav-glass-btn:active{transform:translateY(0);opacity:.8}
+.nav-glass-btn.home-btn{width:auto;padding:0 12px;gap:5px;font-size:12px;font-weight:600}
+.nav-switch-btn{
+  display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;
+  background:rgba(10,132,255,.08);
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border:1px solid rgba(10,132,255,.22);border-top-color:rgba(10,132,255,.35);
+  border-radius:9px;font:12px/1 var(--font);font-weight:600;color:var(--blue);
+  text-decoration:none;cursor:pointer;flex-shrink:0;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:all .18s cubic-bezier(.4,0,.2,1)}
+.nav-switch-btn:hover{background:rgba(10,132,255,.15);color:#4da3ff;transform:translateY(-1px)}
+.nav-switch-dot{width:5px;height:5px;border-radius:50%;background:var(--blue);
+  box-shadow:0 0 5px rgba(10,132,255,.7);flex-shrink:0}
+.nav-btn-group{display:flex;align-items:center;gap:5px;margin-left:8px}
+.nav-right-group{display:flex;align-items:center;gap:8px;margin-left:auto}
+
+/* Bottoni nav unificati — stesso stile della dashboard */
+.nav-home-btn{
+  display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 13px;
+  border-radius:9px;font:12px var(--font);font-weight:700;cursor:pointer;
+  background:rgba(10,132,255,.1);border:1px solid rgba(10,132,255,.3);
+  border-top-color:rgba(10,132,255,.45);color:var(--blue);
+  box-shadow:0 2px 8px rgba(10,132,255,.15),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:all .18s;white-space:nowrap;text-decoration:none;flex-shrink:0}
+.nav-home-btn:hover{background:rgba(10,132,255,.18);transform:translateY(-1px)}
+.nav-orng-btn{
+  display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 13px;
+  border-radius:9px;font:12px var(--font);font-weight:700;text-decoration:none;
+  background:rgba(255,159,10,.12);border:1px solid rgba(255,159,10,.35);
+  border-top-color:rgba(255,159,10,.5);color:var(--orng);
+  box-shadow:0 2px 8px rgba(255,159,10,.15),inset 0 1px 0 rgba(255,255,255,.07);
+  transition:all .18s;white-space:nowrap;flex-shrink:0}
+.nav-orng-btn:hover{background:rgba(255,159,10,.2);transform:translateY(-1px)}
+
+@media(max-width:768px){
+  .nav-brand{display:none}
+  .nav{justify-content:flex-start}
+  .nav-btn-group{margin-left:0}
+  .nav-right-group{margin-left:auto}
+  .hp-label,.home-lbl{display:none}
+  .nav-home-btn,.nav-orng-btn{padding:0 9px;gap:4px}
+}
+@media(max-width:480px){
+  .nav{height:46px;padding:0 8px;gap:5px}
+  .nav-glass-btn{width:28px;height:28px}
+  .nav-home-btn,.nav-orng-btn{height:28px;padding:0 8px}
+}
+
+/* Hero */
+.hero{padding:36px 20px 28px;
+  background:linear-gradient(180deg,rgba(10,132,255,.06) 0%,transparent 100%);
+  border-bottom:1px solid var(--sep)}
+.hero-ttl{font-size:clamp(22px,4vw,34px);font-weight:800;letter-spacing:-1.5px;margin-bottom:8px}
+.hero-sub{font-size:14px;color:var(--lt);max-width:640px;line-height:1.6;margin-bottom:16px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;
+  background:rgba(255,255,255,.05);border:1px solid var(--gl-border);color:var(--ls)}
+
+/* Card */
+.card{background:linear-gradient(160deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.03) 100%);
+  border-radius:var(--r);border:1px solid var(--gl-border);border-top-color:var(--gl-edge);
+  box-shadow:0 4px 20px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.08);padding:18px}
+.card-ttl{font-size:11px;font-weight:700;color:var(--lt);text-transform:uppercase;
+  letter-spacing:.7px;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+
+/* Layout */
+.main{max-width:1100px;margin:0 auto;padding:20px}
+.section{margin-bottom:48px}
+.section-hd{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.section-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0;margin-top:2px}
+.section-ttl{font-size:19px;font-weight:700;letter-spacing:-.4px}
+.section-sub{font-size:13px;color:var(--lt);margin-top:3px;line-height:1.5}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+
+/* Stat box */
+.stat-box{background:linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border-radius:var(--rsm);border:1px solid var(--gl-border);border-top-color:var(--gl-edge);
+  padding:16px;text-align:center;position:relative;overflow:hidden}
+.stat-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px}
+.sb-blue::before{background:linear-gradient(90deg,var(--blue),var(--indig))}
+.sb-green::before{background:linear-gradient(90deg,var(--green),var(--teal))}
+.sb-orng::before{background:linear-gradient(90deg,var(--orng),var(--red))}
+.sb-purp::before{background:linear-gradient(90deg,var(--purp),var(--indig))}
+.sb-teal::before{background:linear-gradient(90deg,var(--teal),var(--blue))}
+.stat-val{font-size:36px;font-weight:800;letter-spacing:-2px;line-height:1;font-family:var(--mono)}
+.stat-lbl{font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-top:6px}
+.stat-sub{font-size:11px;color:var(--ls);margin-top:3px;line-height:1.4}
+
+/* Help / Modal */
+.help{display:inline-flex;align-items:center;justify-content:center;
+  width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.09);
+  border:1px solid var(--sep);font-size:9px;color:var(--lt);cursor:pointer;
+  transition:all .15s;flex-shrink:0;vertical-align:middle;margin-left:4px}
+.help:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.mwrap{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.75);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  display:none;align-items:center;justify-content:center;padding:16px}
+.mwrap.open{display:flex}
+.mbox{background:rgba(22,22,24,.95);backdrop-filter:saturate(220%) blur(48px);
+  -webkit-backdrop-filter:saturate(220%) blur(48px);
+  border:1px solid var(--gl-border);border-top-color:var(--gl-edge);
+  box-shadow:0 32px 80px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.12);
+  border-radius:20px;padding:26px;max-width:520px;width:100%}
+.mbox-icon{font-size:26px;margin-bottom:10px}
+.mbox-ttl{font-size:19px;font-weight:700;letter-spacing:-.4px;margin-bottom:5px}
+.mbox-sub{font-size:12px;color:var(--lt);margin-bottom:14px;
+  font-family:var(--mono);background:rgba(255,255,255,.04);
+  border:1px solid var(--sep);border-radius:var(--rxs);padding:7px 11px}
+.mbox-body{font-size:13px;color:var(--ls);line-height:1.75;margin-bottom:10px}
+.mbox-ex{font-size:12px;color:var(--lt);border-left:3px solid var(--blue);
+  padding:8px 14px;line-height:1.6;background:rgba(10,132,255,.04);
+  border-radius:0 var(--rxs) var(--rxs) 0}
+.mbox-cls{margin-top:18px;width:100%;padding:12px;background:rgba(255,255,255,.07);
+  border:1px solid var(--sep);border-radius:var(--rsm);color:var(--lp);
+  font:14px var(--font);cursor:pointer;transition:background .15s}
+.mbox-cls:hover{background:rgba(255,255,255,.11)}
+
+/* Table */
+.interp{background:rgba(255,255,255,.03);border:1px solid var(--sep);
+  border-left:3px solid var(--blue);border-radius:0 var(--rsm) var(--rsm) 0;
+  padding:12px 16px;font-size:13px;color:var(--ls);line-height:1.65;margin-top:12px}
+.nota-warn{background:rgba(255,159,10,.06);border:1px solid rgba(255,159,10,.2);
+  border-radius:var(--rsm);padding:10px 14px;font-size:12px;color:var(--orng);
+  line-height:1.6;margin-bottom:14px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:320px}
+th{text-align:left;padding:8px 10px;font-size:10px;font-weight:700;color:var(--lt);
+  text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--sep);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--ls)}
+tr:hover td{background:rgba(255,255,255,.02)}
+.tv{font-family:var(--mono);font-weight:600;color:var(--lp)}
+.torng{color:var(--orng);font-weight:600;font-family:var(--mono)}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;
+  border-radius:7px;font-size:11px;font-weight:600}
+.badge-green{background:rgba(48,209,88,.1);color:var(--green);border:1px solid rgba(48,209,88,.25)}
+.badge-orng{background:rgba(255,159,10,.1);color:var(--orng);border:1px solid rgba(255,159,10,.25)}
+.badge-red{background:rgba(255,69,58,.08);color:var(--red);border:1px solid rgba(255,69,58,.2)}
+.badge-blue{background:rgba(10,132,255,.1);color:var(--blue);border:1px solid rgba(10,132,255,.25)}
+.badge-purp{background:rgba(191,90,242,.1);color:var(--purp);border:1px solid rgba(191,90,242,.25)}
+.badge-teal{background:rgba(90,200,250,.1);color:var(--teal);border:1px solid rgba(90,200,250,.25)}
+
+/* Accordion */
+.accordion{border:1px solid var(--gl-border);border-radius:var(--r);overflow:hidden;margin-bottom:28px}
+.acc-hd{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;background:rgba(255,255,255,.03);transition:background .15s}
+.acc-hd:hover{background:rgba(255,255,255,.05)}
+.acc-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.acc-chev{font-size:11px;color:var(--lt);transition:transform .2s;flex-shrink:0}
+.acc-body{display:none;padding:18px;border-top:1px solid var(--sep)}
+.acc-body.open{display:block}
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.guide-card{background:rgba(255,255,255,.03);border:1px solid var(--sep);
+  border-radius:var(--rsm);padding:13px}
+.guide-icon{font-size:18px;margin-bottom:7px}
+.guide-ttl{font-size:13px;font-weight:600;margin-bottom:5px}
+.guide-body{font-size:12px;color:var(--lt);line-height:1.65}
+
+/* Recap layout */
+.recap-outer{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-top:20px}
+.recap-left{flex:1;min-width:260px;
+  background:linear-gradient(135deg,rgba(10,132,255,.06),rgba(94,92,230,.03));
+  border:1px solid rgba(10,132,255,.18);border-radius:var(--r);padding:20px}
+.recap-right{width:260px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(191,90,242,.10),rgba(94,92,230,.06));
+  border:2px solid rgba(191,90,242,.35);border-radius:var(--r);padding:20px;
+  position:relative;overflow:hidden}
+.recap-right::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--purp),var(--indig))}
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rc-card{background:rgba(255,255,255,.03);border:1px solid var(--sep);
+  border-radius:var(--rsm);padding:11px 13px}
+.rc-lbl{font-size:11px;color:var(--lt);margin-bottom:7px;line-height:1.4}
+.rc-sub{font-size:11px;color:var(--ls);margin-top:5px}
+@media(max-width:720px){
+  .recap-outer{flex-direction:column}
+  .recap-right{width:100%}
+  .rc-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .rc-grid{grid-template-columns:1fr 1fr}
+}
+
+/* Mover rows */
+.mover-row{display:flex;align-items:center;gap:10px;padding:9px 12px;
+  border-radius:10px;margin-bottom:6px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.mover-delta{font-size:13px;font-weight:800;font-family:var(--mono);
+  width:44px;text-align:center;flex-shrink:0}
+.mover-info{flex:1;min-width:0}
+.mover-nm{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mover-sub{font-size:11px;color:var(--lt);margin-top:1px}
+.mover-scores{display:flex;gap:8px;flex-shrink:0}
+.mover-s{text-align:center;font-family:var(--mono);font-size:11px}
+.mover-s-lbl{font-size:9px;color:var(--lt);text-transform:uppercase;letter-spacing:.4px}
+
+/* Watermark */
+#wm{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:7px;padding:5px 14px 5px 10px;
+  background:rgba(255,255,255,.04);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border:1px solid rgba(255,255,255,.09);border-top-color:rgba(255,255,255,.14);
+  border-radius:20px;z-index:800;pointer-events:none}
+#wm-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);
+  box-shadow:0 0 6px rgba(10,132,255,.6);flex-shrink:0}
+#wm-text{font-size:10px;font-weight:500;letter-spacing:.3px;
+  color:rgba(235,235,245,.28);white-space:nowrap}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .g4{grid-template-columns:1fr 1fr}
+  .guide-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width: 720px) {
+  .nav{padding:0 12px;height:48px}
+  .nav-brand small{display:none}
+  .nav-right-group{gap:5px}
+  .nav-switch-btn span:not(.nav-switch-dot){display:none}
+  .nav-switch-btn{padding:0 8px}
+  .hero{padding:22px 14px 18px}
+  .hero-ttl{font-size:22px}
+  .hero-sub{font-size:13px}
+  .hero-pill{font-size:11px;padding:4px 9px}
+  .main{padding:14px}
+  .g2{grid-template-columns:1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .g4{grid-template-columns:1fr 1fr}
+  .guide-grid{grid-template-columns:1fr 1fr}
+  .stat-val{font-size:28px}
+  .section-ttl{font-size:17px}
+  .card{padding:14px}
+  .recap-card > .g3{grid-template-columns:1fr}
+  .mover-row{flex-wrap:wrap;gap:6px}
+  .mover-scores{width:100%;justify-content:flex-end}
+}
+@media (max-width: 480px) {
+  .nav{padding:0 10px;gap:5px;height:46px}
+  .nav-brand{font-size:13px}
+  .nav-glass-btn.home-btn{padding:0 8px}
+  .hero{padding:16px 12px 14px}
+  .hero-ttl{font-size:19px;letter-spacing:-1px}
+  .hero-pill{display:none}
+  .hero-pills .hero-pill:first-child{display:flex}
+  .main{padding:10px}
+  .section{margin-bottom:32px}
+  .section-hd{gap:10px}
+  .section-num{width:28px;height:28px;font-size:12px}
+  .section-ttl{font-size:16px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .guide-grid{grid-template-columns:1fr}
+  .stat-val{font-size:26px}
+  .stat-lbl{font-size:9px}
+  .acc-hd{padding:12px 14px}
+  .acc-title{font-size:13px}
+  .acc-body{padding:12px}
+  .card{padding:12px}
+  .card-ttl{font-size:10px}
+  table{font-size:12px}
+  th{padding:6px 8px;font-size:9px}
+  td{padding:7px 8px}
+  .mbox{padding:18px 14px;border-radius:16px}
+  .mbox-ttl{font-size:17px}
+  .mbox-body{font-size:12px}
+  .recap-card{padding:14px}
+  .mover-nm{font-size:12px}
+  .mover-delta{width:36px;font-size:12px}
+}
+/* Fix autozoom input iOS */
+@media (max-width: 768px){input,select,textarea{font-size:16px !important}}
+/* Resize Plotly */
+@media (max-width:480px){
+  .chart-h{height:240px !important}
+}
+</style>
+</head><body>
+
+<div class="mwrap" id="modal" onclick="closeM()">
+  <div class="mbox" onclick="event.stopPropagation()">
+    <div class="mbox-icon" id="m-icon"></div>
+    <div class="mbox-ttl" id="m-ttl"></div>
+    <div class="mbox-sub" id="m-sub"></div>
+    <div class="mbox-body" id="m-body"></div>
+    <div class="mbox-ex" id="m-ex"></div>
+    <button class="mbox-cls" onclick="closeM()">Chiudi</button>
+  </div>
+</div>
+
+<nav class="nav">
+  <div class="nav-brand">TPI Validation <small>Serie A 25/26</small></div>
+  <div class="nav-btn-group">
+    <a class="nav-home-btn" href="dashboard_serie_a.html" title="Torna alla classifica">
+      &#127942; <span class="home-lbl">Classifica</span>
+    </a>
+    <a class="nav-glass-btn" href="javascript:history.back()" title="Indietro">&#8592;</a>
+    <a class="nav-glass-btn" href="javascript:history.forward()" title="Avanti">&#8594;</a>
+  </div>
+  <div class="nav-right-group">
+    <a class="nav-orng-btn" href="homepage.html" title="Torna alla Homepage">
+      &#127968; <span class="hp-label">Homepage</span>
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-ttl">Model Validation</div>
+  <div style="font-size:11px;color:var(--purp);font-weight:600;letter-spacing:.3px;
+    text-transform:uppercase;margin-top:4px;margin-bottom:10px">
+    Serie A Scout Index · TPI System
+  </div>
+  <div class="hero-sub">
+    5 independent tests to verify that TPI measures real player quality —
+    not noise. Predictive backtest <strong style="color:var(--green)">r = 0.70</strong>,
+    Fantacalcio correlation <strong style="color:var(--blue)">r = 0.47</strong>.
+    Click <strong style="color:var(--lp)">?</strong> on each section for methodology details.
+  </div>
+  <div class="hero-pills">
+    <span class="hero-pill">&#127941; Pearson r vs Fantacalcio</span>
+    <span class="hero-pill">&#128200; Top 10 Overlap WhoScored</span>
+    <span class="hero-pill">&#128336; Predictive Backtest r=0.70</span>
+    <span class="hero-pill">&#129516; Age &amp; Physical Index</span>
+    <span class="hero-pill">&#10024; TPI Pro</span>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="accordion">
+  <div class="acc-hd" onclick="toggleAcc('acc1')">
+    <div class="acc-title">&#128214; Come leggere i risultati</div>
+    <span class="acc-chev" id="chev-acc1">&#9660;</span>
+  </div>
+  <div class="acc-body" id="acc1">
+    <div class="guide-grid">
+      <div class="guide-card"><div class="guide-icon">&#128202;</div><div class="guide-ttl">r di Pearson</div>
+        <div class="guide-body"><strong style="color:var(--green)">r&gt;0.6</strong> forte &middot; <strong style="color:var(--orng)">0.4–0.6</strong> moderata &middot; <strong style="color:var(--red)">&lt;0.4</strong> debole. Per sport r=0.5 con fonti esterne &egrave; ottimo.</div></div>
+      <div class="guide-card"><div class="guide-icon">&#128270;</div><div class="guide-ttl">p-value</div>
+        <div class="guide-body"><strong style="color:var(--green)">p&lt;0.05</strong> = significativo. Senza p basso anche r alto potrebbe essere fortuna.</div></div>
+      <div class="guide-card"><div class="guide-icon">&#127919;</div><div class="guide-ttl">Overlap basso = forza</div>
+        <div class="guide-body">Overlap basso = il TPI trova giocatori non valorizzati dalla stampa. 100% = non aggiunge nulla.</div></div>
+      <div class="guide-card"><div class="guide-icon">&#128336;</div><div class="guide-ttl">Backtest</div>
+        <div class="guide-body">Prima met&agrave; stagione predice la seconda? Un indice senza potere predittivo misura solo la fortuna del momento.</div></div>
+      <div class="guide-card"><div class="guide-icon">&#10024;</div><div class="guide-ttl">TPI Pro</div>
+        <div class="guide-body">Aggiunge AII (et&agrave;) e PRI (affidabilit&agrave; fisica) al TPI classico. r(TPI,TPI Pro) ideale = 0.80–0.95.</div></div>
+      <div class="guide-card"><div class="guide-icon">&#9888;</div><div class="guide-ttl">Limiti</div>
+        <div class="guide-body">Voti Fantacalcio e WhoScored sono inseriti manualmente. Backtest payload = Output Adj vs EWMA come proxy.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEZIONE A -->
+<div class="section">
+  <div class="section-hd">
+    <div class="section-num" style="background:var(--blue)">A</div>
+    <div>
+      <div class="section-ttl">TPI vs Fantacalcio Ratings <span class="help" onclick="openM('pearson')">?</span></div>
+      <div class="section-sub">Does TPI correlate with expert consensus? r=0.4–0.7 is ideal — high enough to confirm quality, low enough to add independent insight.</div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="stat-box sb-blue">
+      <div class="stat-val" style="color:var(--red)">0.354</div>
+      <div class="stat-lbl">Pearson r</div>
+      <div class="stat-sub">95% CI [0.076, 0.632]</div>
+    </div>
+    <div class="stat-box sb-green">
+      <div class="stat-val" style="color:var(--red)">0.323</div>
+      <div class="stat-lbl">Spearman &#961;</div>
+      <div class="stat-sub">robusto agli outlier &middot; p = 0.076 (non significativo)</div>
+    </div>
+    <div class="stat-box sb-orng">
+      <div class="stat-val" style="color:var(--orng)">0.84</div>
+      <div class="stat-lbl">Cohen&#x2019;s d</div>
+      <div class="stat-sub">effect size top vs bottom 25%</div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="card-ttl">Scatter TPI vs Fantacalcio <span class="help" onclick="openM('scatter')">?</span></div>
+      <div id="chart-a" class="chart-h" style="height:300px"></div></div>
+    <div class="card"><div class="card-ttl">Interpretazione</div>
+      <div style="font-size:13px;color:var(--ls);line-height:1.75">
+        <p style="margin-bottom:10px">I <strong style="color:var(--lp)">voti Fantacalcio</strong> rappresentano la percezione collettiva della qualit&agrave;.</p>
+        <p style="margin-bottom:10px">r=0.4–0.7 &egrave; il risultato ideale: il TPI conferma e arricchisce.</p>
+        <p>r&gt;0.9 = il TPI non aggiunge nulla. r&lt;0.3 = troppo distante dalla qualit&agrave; percepita.</p>
+      </div>
+      <div class="interp">&#128161; Correlazione debole (r=0.3–0.5) — il TPI identifica aspetti diversi dal voto Fantacalcio.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SEZIONE B -->
+<div class="section">
+  <div class="section-hd">
+    <div class="section-num" style="background:var(--orng)">B</div>
+    <div>
+      <div class="section-ttl">Top 10 TPI vs WhoScored Rankings <span class="help" onclick="openM('overlap')">?</span></div>
+      <div class="section-sub">Low overlap = independent insight. TPI identifies undervalued players that popular rankings miss.</div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="stat-box sb-orng"><div class="stat-val" style="color:var(--orng)">20%</div><div class="stat-lbl">Overlap Top 10</div><div class="stat-sub">in comune con WhoScored</div></div>
+    <div class="stat-box sb-green"><div class="stat-val" style="color:var(--green)">5</div><div class="stat-lbl">Sottovalutati</div><div class="stat-sub">TPI alto, WhoScored basso</div></div>
+    <div class="stat-box" style="border-color:rgba(255,69,58,.2)"><div class="stat-val" style="color:var(--red)">0</div><div class="stat-lbl">Sopravvalutati</div><div class="stat-sub">TPI basso, WhoScored alto</div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="card-ttl">Top 10 per TPI</div>
+      <div class="table-wrap"><table><tr><th>#</th><th>Giocatore</th><th>Sqd</th><th>TPI</th><th>WS</th></tr><tbody id="tb-tpi"></tbody></table></div></div>
+    <div class="card"><div class="card-ttl">Top 10 per WhoScored</div>
+      <div class="table-wrap"><table><tr><th>#</th><th>Giocatore</th><th>Sqd</th><th>WS</th><th>TPI</th></tr><tbody id="tb-ws"></tbody></table></div></div>
+  </div>
+  <div class="card"><div class="card-ttl">Divergenze notevoli <span class="help" onclick="openM('divergenze')">?</span></div>
+    <div id="div-content"></div>
+    <div class="interp">&#128270; Divergenze = insight, non errori. Identificano giocatori con impatto reale non riconosciuto.</div>
+  </div>
+</div>
+
+<!-- SEZIONE C -->
+<div class="section">
+  <div class="section-hd">
+    <div class="section-num" style="background:var(--green)">C</div>
+    <div>
+      <div class="section-ttl">Predictive Backtest — r = 0.70 <span class="help" onclick="openM('backtest')">?</span></div>
+      <div class="section-sub">Can early-season TPI predict late-season performance? gg 1-10 &rarr; gg 11-21</div>
+    </div>
+  </div>
+  
+  <div class="g3">
+    <div class="stat-box sb-green">
+      <div class="stat-val" style="color:var(--green)">0.704</div>
+      <div class="stat-lbl">Spearman &#961;</div>
+      <div class="stat-sub">95% CI [0.638, 0.765]</div>
+    </div>
+    <div class="stat-box sb-blue">
+      <div class="stat-val" style="color:var(--teal)">0.528</div>
+      <div class="stat-lbl">Kendall &#964;</div>
+      <div class="stat-sub">ranking stability &middot; p &lt; 0.001 &#10003;&#10003;&#10003;</div>
+    </div>
+    <div class="stat-box" style="border-color:rgba(48,209,88,.2)">
+      <div class="stat-val" style="color:var(--green);font-size:16px">0.2837</div>
+      <div class="stat-lbl">RMSE</div>
+      <div class="stat-sub">MAE = 0.1549</div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="card-ttl">Scatter prima &rarr; seconda fase <span class="help" onclick="openM('scatter_c')">?</span></div>
+      <div id="chart-c" class="chart-h" style="height:300px"></div></div>
+    <div class="card"><div class="card-ttl">Perch&eacute; &egrave; importante</div>
+      <div style="font-size:13px;color:var(--ls);line-height:1.75">
+        <p style="margin-bottom:10px">Un indice senza predittivit&agrave; misura solo la fortuna passata.</p>
+        <p style="margin-bottom:10px"><strong style="color:var(--green)">r&gt;0.5</strong> = qualit&agrave; stabile &middot; <strong style="color:var(--orng)">r=0.3–0.5</strong> = segnale parziale &middot; <strong style="color:var(--red)">r&lt;0.3</strong> = troppo volatile.</p>
+        <p><strong style="color:var(--lp)">Spearman</strong> &egrave; robusto agli outlier &mdash; ideale per dati sportivi.</p>
+      </div>
+      <div class="interp">&#128161; Forte stabilità predittiva (r≥0.65) — il TPI cattura qualità stabile oltre il rumore.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-hd">
+    <div class="section-num" style="background:var(--teal)">D</div>
+    <div>
+      <div class="section-ttl">Age Index &amp; Physical Reliability <span class="help" onclick="openM('v2')">?</span></div>
+      <div class="section-sub">Valida AII (Et&agrave; Index) e PRI (Physical Reliability Index).</div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="stat-box sb-teal"><div class="stat-val" style="color:var(--teal)">100</div><div class="stat-lbl">Giocatori con AII</div><div class="stat-sub">r(AII,TPI) = 0.159</div></div>
+    <div class="stat-box sb-purp"><div class="stat-val" style="color:var(--purp)">98</div><div class="stat-lbl">Giocatori con PRI</div><div class="stat-sub">r(TPI_ext,TPI) = 0.424</div></div>
+    <div class="stat-box sb-blue"><div class="stat-val" style="color:var(--teal)">27.3</div><div class="stat-lbl">Et&agrave; media lega</div><div class="stat-sub">anni ATT+CEN qualificati</div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="card-ttl">Top 5 Affidabilit&agrave; Fisica (PRI)</div>
+      <div class="table-wrap"><table><tr><th>Giocatore</th><th>Squadra</th><th>PRI</th><th>Infortuni</th></tr>
+      <tbody><tr><td style="color:var(--lp);font-weight:500">Keinan Davis</td><td style="color:var(--lt);font-size:12px">Udinese</td><td style="font-family:var(--mono);color:var(--green);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Gift Orban</td><td style="color:var(--lt);font-size:12px">Verona</td><td style="font-family:var(--mono);color:var(--green);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Jonathan Christian David</td><td style="color:var(--lt);font-size:12px">Juventus</td><td style="font-family:var(--mono);color:var(--green);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Federico Dimarco</td><td style="color:var(--lt);font-size:12px">Inter</td><td style="font-family:var(--mono);color:var(--green);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Nikola Krstovic</td><td style="color:var(--lt);font-size:12px">Atalanta</td><td style="font-family:var(--mono);color:var(--green);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr></tbody></table></div></div>
+    <div class="card"><div class="card-ttl">Bottom 5 &mdash; Pi&ugrave; Fragili</div>
+      <div class="table-wrap"><table><tr><th>Giocatore</th><th>Squadra</th><th>PRI</th><th>Infortuni</th></tr>
+      <tbody><tr><td style="color:var(--lp);font-weight:500">Dusan Vlahovic</td><td style="color:var(--lt);font-size:12px">Juventus</td><td style="font-family:var(--mono);color:var(--red);font-weight:700">0.59</td><td style="font-family:var(--mono);font-size:12px">1 inj &middot; 77gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Emil Holm</td><td style="color:var(--lt);font-size:12px">Bologna</td><td style="font-family:var(--mono);color:var(--red);font-weight:700">0.62</td><td style="font-family:var(--mono);font-size:12px">1 inj &middot; 44gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Paulo Dybala</td><td style="color:var(--lt);font-size:12px">Roma</td><td style="font-family:var(--mono);color:var(--red);font-weight:700">0.66</td><td style="font-family:var(--mono);font-size:12px">1 inj &middot; 102gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Kevin De Bruyne</td><td style="color:var(--lt);font-size:12px">Napoli</td><td style="font-family:var(--mono);color:var(--red);font-weight:700">0.71</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr><tr><td style="color:var(--lp);font-weight:500">Santiago Giménez</td><td style="color:var(--lt);font-size:12px">AC Milan</td><td style="font-family:var(--mono);color:var(--red);font-weight:700">0.71</td><td style="font-family:var(--mono);font-size:12px">0 inj &middot; 0gg</td></tr></tbody></table></div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="card-ttl">Top 5 Et&agrave; Index (AII)</div>
+      <div class="table-wrap"><table><tr><th>Giocatore</th><th>Squadra</th><th>AII</th><th>Et&agrave;</th><th>TPI</th></tr>
+      <tbody><tr><td style="color:var(--lp);font-weight:500">Kristian Thorstvedt</td><td style="color:var(--lt);font-size:12px">Sassuolo</td><td style="font-family:var(--mono);color:var(--teal);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">27.0aa</td><td style="font-family:var(--mono)">+0.47</td></tr><tr><td style="color:var(--lp);font-weight:500">Donyell Malen</td><td style="color:var(--lt);font-size:12px">Roma</td><td style="font-family:var(--mono);color:var(--teal);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">27.0aa</td><td style="font-family:var(--mono)">+1.37</td></tr><tr><td style="color:var(--lp);font-weight:500">Gianluca Scamacca</td><td style="color:var(--lt);font-size:12px">Atalanta</td><td style="font-family:var(--mono);color:var(--teal);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">27.0aa</td><td style="font-family:var(--mono)">+0.83</td></tr><tr><td style="color:var(--lp);font-weight:500">Armand Lauriente</td><td style="color:var(--lt);font-size:12px">Sassuolo</td><td style="font-family:var(--mono);color:var(--teal);font-weight:700">1.0</td><td style="font-family:var(--mono);font-size:12px">27.0aa</td><td style="font-family:var(--mono)">+0.48</td></tr><tr><td style="color:var(--lp);font-weight:500">Andrea Pinamonti</td><td style="color:var(--lt);font-size:12px">Sassuolo</td><td style="font-family:var(--mono);color:var(--teal);font-weight:700">0.99</td><td style="font-family:var(--mono);font-size:12px">26.0aa</td><td style="font-family:var(--mono)">+0.76</td></tr></tbody></table>
+      <div class="interp">&#128161; AII alto + TPI in crescita = profilo scout ideale per investimento a lungo termine.</div></div>
+    <div class="card"><div class="card-ttl">Scatter AII vs PRI <span class="help" onclick="openM('scatter_d')">?</span></div>
+      <div id="chart-d" class="chart-h" style="height:280px"></div></div>
+  </div>
+</div>
+
+
+<div class="section">
+  <div class="section-hd">
+    <div class="section-num" style="background:var(--purp)">E</div>
+    <div>
+      <div class="section-ttl">TPI Pro Validation — 6-Dimension Model <span class="help" onclick="openM('tpi_pro')">?</span></div>
+      <div class="section-sub">Confronto ranking TPI classico vs TPI Pro (6 dimensioni). Chi guadagna/perde posizioni?</div>
+    </div>
+  </div>
+  <div class="g4">
+    <div class="stat-box sb-purp"><div class="stat-val" style="color:var(--purp)">100</div><div class="stat-lbl">Giocatori TPI Pro</div><div class="stat-sub">con AII + PRI</div></div>
+    <div class="stat-box sb-blue"><div class="stat-val" style="color:var(--orng)">0.424</div><div class="stat-lbl">r(TPI,TPI Pro)</div><div class="stat-sub">p &lt; 0.001 &#10003;&#10003;&#10003;</div></div>
+    <div class="stat-box sb-green"><div class="stat-val" style="color:var(--green)">52</div><div class="stat-lbl">Salgono &gt;2 pos</div><div class="stat-sub">valorizzati da AII/PRI</div></div>
+    <div class="stat-box" style="border-color:rgba(255,69,58,.2)"><div class="stat-val" style="color:var(--red)">41</div><div class="stat-lbl">Scendono &gt;2 pos</div><div class="stat-sub">penalizzati da AII/PRI</div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><div class="card-ttl">Scatter TPI vs TPI Pro <span class="help" onclick="openM('scatter_e')">?</span></div>
+      <div id="chart-e" class="chart-h" style="height:300px"></div></div>
+    <div class="card"><div class="card-ttl">Interpretazione</div>
+      <div style="font-size:13px;color:var(--ls);line-height:1.75">
+        <p style="margin-bottom:10px">Un <strong style="color:var(--purp)">r elevato</strong> (es. 0.85+) indica che TPI Pro &egrave; coerente con TPI classico — aggiunge informazione senza stravolgere la classifica.</p>
+        <p style="margin-bottom:10px">Le <strong style="color:var(--green)">salite</strong> identificano giocatori giovani e fisicamente affidabili che il TPI classico sottovaluta.</p>
+        <p>Le <strong style="color:var(--red)">discese</strong> segnalano veterani o giocatori fragili che il TPI classico sovrastima.</p>
+      </div>
+      <div class="interp">&#128161; r(TPI,TPI Pro) ideale: 0.80&ndash;0.95. Troppo basso = AII/PRI distorcono. Troppo alto = non aggiungono nulla di nuovo.</div>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-ttl" style="color:var(--green)">&#9650; Chi sale con TPI Pro (top 8)</div>
+      <div id="movers-up"><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲74</div>
+              <div class="mover-info">
+                <div class="mover-nm">Riccardo Sottil</div>
+                <div class="mover-sub">Lecce &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.08</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.65</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.99</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲73</div>
+              <div class="mover-info">
+                <div class="mover-nm">Mehdi Leris</div>
+                <div class="mover-sub">Pisa &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.06</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.62</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.98</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲66</div>
+              <div class="mover-info">
+                <div class="mover-nm">Leo Østigard</div>
+                <div class="mover-sub">Genoa &middot; DIF</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.08</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.61</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.97</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲55</div>
+              <div class="mover-info">
+                <div class="mover-nm">Matteo Tramoni</div>
+                <div class="mover-sub">Pisa &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.12</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.6</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.97</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲51</div>
+              <div class="mover-info">
+                <div class="mover-nm">Gabriele Zappa</div>
+                <div class="mover-sub">Cagliari &middot; DIF</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.18</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.63</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.97</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲51</div>
+              <div class="mover-info">
+                <div class="mover-nm">Roberto Piccoli</div>
+                <div class="mover-sub">Fiorentina &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.11</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.46</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.9</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲50</div>
+              <div class="mover-info">
+                <div class="mover-nm">Lucas Da Cunha</div>
+                <div class="mover-sub">Como &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.08</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.39</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.88</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--green)">▲46</div>
+              <div class="mover-info">
+                <div class="mover-nm">Weston McKennie</div>
+                <div class="mover-sub">Juventus &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.29</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.72</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.99</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div></div>
+    </div>
+    <div class="card">
+      <div class="card-ttl" style="color:var(--red)">&#9660; Chi scende con TPI Pro (top 8)</div>
+      <div id="movers-dn"><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼83</div>
+              <div class="mover-info">
+                <div class="mover-nm">Paulo Dybala</div>
+                <div class="mover-sub">Roma &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.93</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-0.98</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.69</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">0.66</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼80</div>
+              <div class="mover-info">
+                <div class="mover-nm">Kevin De Bruyne</div>
+                <div class="mover-sub">Napoli &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.84</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-1.3</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.54</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">0.71</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼66</div>
+              <div class="mover-info">
+                <div class="mover-nm">Jesús Rodriguez</div>
+                <div class="mover-sub">Como &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+1.12</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-0.17</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.47</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼56</div>
+              <div class="mover-info">
+                <div class="mover-nm">Medon Berisha</div>
+                <div class="mover-sub">Lecce &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.5</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-0.93</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.66</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">0.76</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼55</div>
+              <div class="mover-info">
+                <div class="mover-nm">Valentín Castellanos</div>
+                <div class="mover-sub">Lazio &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.89</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-0.07</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.99</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">0.76</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼54</div>
+              <div class="mover-info">
+                <div class="mover-nm">Francesco Pio Esposito</div>
+                <div class="mover-sub">Inter &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.8</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-0.2</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.5</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">1.0</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼53</div>
+              <div class="mover-info">
+                <div class="mover-nm">Franco Vázquez</div>
+                <div class="mover-sub">Cremonese &middot; CEN</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+0.47</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">-1.04</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.44</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">0.86</div></div>
+              </div>
+            </div><div class="mover-row">
+              <div class="mover-delta" style="color:var(--red)">▼50</div>
+              <div class="mover-info">
+                <div class="mover-nm">Domenico Berardi</div>
+                <div class="mover-sub">Sassuolo &middot; ATT</div>
+              </div>
+              <div class="mover-scores">
+                <div class="mover-s"><div class="mover-s-lbl">TPI</div><div style="color:var(--orng);font-family:var(--mono);font-size:11px;font-weight:700">+1.13</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRO</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px;font-weight:700">+0.16</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">AII</div><div style="color:var(--teal);font-family:var(--mono);font-size:11px">0.75</div></div>
+                <div class="mover-s"><div class="mover-s-lbl">PRI</div><div style="color:var(--purp);font-family:var(--mono);font-size:11px">0.93</div></div>
+              </div>
+            </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RECAP -->
+
+<div class="recap-outer">
+  <!-- Colonna sinistra: A B C D -->
+  <div class="recap-left">
+    <div style="font-size:11px;font-weight:700;color:var(--lt);
+                text-transform:uppercase;letter-spacing:.7px;margin-bottom:14px">
+      Riepilogo Validazione
+    </div>
+    <div class="rc-grid"><div class="rc-card" style="">
+          <div class="rc-lbl">A &mdash; Correlazione Fantacalcio</div>
+          <div id="badge-a"><span class="badge badge-red">Basso</span></div>
+          <div class="rc-sub">r = 0.354 &middot; n = 31</div>
+        </div><div class="rc-card" style="">
+          <div class="rc-lbl">B &mdash; Overlap Top 10 WhoScored</div>
+          <div id="badge-b"><span class="badge badge-red">Basso</span></div>
+          <div class="rc-sub">20% coincidenza</div>
+        </div><div class="rc-card" style="">
+          <div class="rc-lbl">C &mdash; Backtest Predittivo</div>
+          <div id="badge-c"><span class="badge badge-green">Buono &#10003;</span></div>
+          <div class="rc-sub">r = 0.704 &middot; n = 360</div>
+        </div><div class="rc-card" style="border-left:3px solid var(--teal);">
+          <div class="rc-lbl">D &mdash; Et&agrave; &amp; Fisico</div>
+          <div id="badge-d"><span class="badge badge-red">Basso</span></div>
+          <div class="rc-sub">AII:100 &middot; PRI:98 &middot; r=0.159</div>
+        </div></div>
+  </div>
+
+  <!-- Colonna destra: E — TPI Pro in evidenza -->
+  <div class="recap-right">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <div style="font-size:11px;font-weight:700;color:var(--lt);
+                  text-transform:uppercase;letter-spacing:.7px">
+        E &mdash; TPI Pro
+      </div>
+      <span style="display:inline-flex;align-items:center;gap:4px;
+                   padding:3px 8px;border-radius:6px;font-size:10px;font-weight:700;
+                   background:rgba(191,90,242,.15);border:1px solid rgba(191,90,242,.35);
+                   color:var(--purp);text-transform:uppercase;letter-spacing:.5px">
+        &#10024; Nuovo indice
+      </span>
+    </div>
+    <div style="font-size:12px;color:var(--ls);line-height:1.6;margin-bottom:14px">
+      Aggiunge <strong style="color:var(--teal)">AII</strong> (et&agrave;)
+      e <strong style="color:var(--purp)">PRI</strong> (fisico) al TPI classico.
+      r ideale = 0.80&ndash;0.95.
+    </div>
+    
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span class="badge badge-red">Coerente</span>
+            <span style="font-size:11px;color:var(--lt)">r(TPI, TPI Pro)</span>
+          </div>
+          <div style="font-size:22px;font-weight:800;letter-spacing:-1px;
+                      font-family:var(--mono);color:var(--purp);line-height:1;margin-bottom:6px">
+            0.424
+          </div>
+          <div style="font-size:11px;color:var(--lt);margin-bottom:12px">
+            100 giocatori con AII+PRI
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="flex:1;min-width:60px;background:rgba(48,209,88,.06);
+                        border:1px solid rgba(48,209,88,.2);border-radius:8px;
+                        padding:7px 10px;text-align:center">
+              <div style="font-size:16px;font-weight:800;color:var(--green);
+                          font-family:var(--mono)">52</div>
+              <div style="font-size:9px;color:var(--lt);text-transform:uppercase;
+                          letter-spacing:.5px;margin-top:2px">Salgono</div>
+            </div>
+            <div style="flex:1;min-width:60px;background:rgba(255,69,58,.05);
+                        border:1px solid rgba(255,69,58,.18);border-radius:8px;
+                        padding:7px 10px;text-align:center">
+              <div style="font-size:16px;font-weight:800;color:var(--red);
+                          font-family:var(--mono)">41</div>
+              <div style="font-size:9px;color:var(--lt);text-transform:uppercase;
+                          letter-spacing:.5px;margin-top:2px">Scendono</div>
+            </div>
+          </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<div id="wm"><span id="wm-dot"></span>
+  <span id="wm-text">Raffaele Ciccone &thinsp;&middot;&thinsp; Serie A Scout Index &thinsp;&middot;&thinsp; Validazione TPI</span>
+</div>
+
+<script>
+const SCATTER_A=[{"nome": "Keinan Davis", "squadra": "Udinese", "ruolo": "ATT", "tpi": 1.7271, "voto": 6.71}, {"nome": "Gift Orban", "squadra": "Verona", "ruolo": "ATT", "tpi": 1.6245, "voto": 6.58}, {"nome": "Lautaro Mart\u00ednez", "squadra": "Inter", "ruolo": "ATT", "tpi": 1.4249, "voto": 7.12}, {"nome": "Federico Dimarco", "squadra": "Inter", "ruolo": "DIF", "tpi": 1.3748, "voto": 6.91}, {"nome": "Donyell Malen", "squadra": "Roma", "ruolo": "ATT", "tpi": 1.3683, "voto": 6.72}, {"nome": "Giacomo Raspadori", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 1.2986, "voto": 6.68}, {"nome": "Moise Kean", "squadra": "Fiorentina", "ruolo": "ATT", "tpi": 1.1903, "voto": 6.82}, {"nome": "Nikola Krstovic", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 1.1875, "voto": 6.54}, {"nome": "Kenan Yildiz", "squadra": "Juventus", "ruolo": "ATT", "tpi": 1.0738, "voto": 6.74}, {"nome": "Christian Pulisic", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 1.066, "voto": 6.91}, {"nome": "Paulo Dybala", "squadra": "Roma", "ruolo": "ATT", "tpi": 0.931, "voto": 6.95}, {"nome": "Gianluca Scamacca", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 0.8318, "voto": 6.59}, {"nome": "Nico Paz", "squadra": "Como", "ruolo": "ATT", "tpi": 0.7824, "voto": 6.62}, {"nome": "Charles De Ketelaere", "squadra": "Atalanta", "ruolo": "CEN", "tpi": 0.7654, "voto": 6.81}, {"nome": "Rafael Le\u00e3o", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 0.756, "voto": 6.88}, {"nome": "Marcus Thuram", "squadra": "Inter", "ruolo": "ATT", "tpi": 0.7435, "voto": 6.98}, {"nome": "Ademola Lookman", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 0.7349, "voto": 6.89}, {"nome": "Thijs Dallinga", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.6542, "voto": 6.49}, {"nome": "Riccardo Orsolini", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.491, "voto": 6.61}, {"nome": "David Neres", "squadra": "Napoli", "ruolo": "ATT", "tpi": 0.3679, "voto": 6.71}, {"nome": "Mattia Zaccagni", "squadra": "Lazio", "ruolo": "ATT", "tpi": 0.3502, "voto": 6.72}, {"nome": "Lorenzo Pellegrini", "squadra": "Roma", "ruolo": "CEN", "tpi": 0.3454, "voto": 6.52}, {"nome": "Dusan Vlahovic", "squadra": "Juventus", "ruolo": "ATT", "tpi": 0.3173, "voto": 6.61}, {"nome": "Mario Pasalic", "squadra": "Atalanta", "ruolo": "CEN", "tpi": 0.3092, "voto": 6.63}, {"nome": "Weston McKennie", "squadra": "Juventus", "ruolo": "CEN", "tpi": 0.2895, "voto": 6.44}, {"nome": "Nikola Vlasic", "squadra": "Torino", "ruolo": "CEN", "tpi": 0.2126, "voto": 6.49}, {"nome": "Albert Gudmundsson", "squadra": "Fiorentina", "ruolo": "ATT", "tpi": 0.1902, "voto": 6.65}, {"nome": "Scott McTominay", "squadra": "Napoli", "ruolo": "CEN", "tpi": 0.1899, "voto": 6.69}, {"nome": "Henrikh Mkhitaryan", "squadra": "Inter", "ruolo": "CEN", "tpi": 0.1471, "voto": 6.55}, {"nome": "Santiago Gim\u00e9nez", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 0.1246, "voto": 6.78}, {"nome": "Hakan Calhanoglu", "squadra": "Inter", "ruolo": "CEN", "tpi": 0.0959, "voto": 6.78}];const SCATTER_C=[{"nome": "Adrien Rabiot", "squadra": "AC Milan", "ruolo": "ATT", "early": 0.09, "late": 0.4048}, {"nome": "Alexis Saelemaekers", "squadra": "AC Milan", "ruolo": "CEN", "early": 0.2416, "late": 0.2919}, {"nome": "Christian Pulisic", "squadra": "AC Milan", "ruolo": "ATT", "early": 1.1593, "late": 0.761}, {"nome": "Christopher Nkunku", "squadra": "AC Milan", "ruolo": "ATT", "early": 0.4921, "late": 0.9926}, {"nome": "Davide Bartesaghi", "squadra": "AC Milan", "ruolo": "CEN", "early": 0.2701, "late": 0.1747}, {"nome": "Pervis Estupi\u00f1\u00e1n", "squadra": "AC Milan", "ruolo": "CEN", "early": 0.244, "late": 0.1723}, {"nome": "Fikayo Tomori", "squadra": "AC Milan", "ruolo": "DIF", "early": 0.1243, "late": 0.0306}, {"nome": "Koni de Winter", "squadra": "AC Milan", "ruolo": "DIF", "early": 0.0392, "late": 0.107}, {"nome": "Luka Modric", "squadra": "AC Milan", "ruolo": "CEN", "early": 0.148, "late": 0.2388}, {"nome": "Matteo Gabbia", "squadra": "AC Milan", "ruolo": "DIF", "early": 0.0408, "late": 0.1052}, {"nome": "Mike Maignan", "squadra": "AC Milan", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Rafael Le\u00e3o", "squadra": "AC Milan", "ruolo": "ATT", "early": 0.9171, "late": 0.5771}, {"nome": "Ruben Loftus-Cheek", "squadra": "AC Milan", "ruolo": "ATT", "early": 0.431, "late": 0.471}, {"nome": "Samuele Ricci", "squadra": "AC Milan", "ruolo": "CEN", "early": 0.2536, "late": 0.4867}, {"nome": "Strahinja Pavlovic", "squadra": "AC Milan", "ruolo": "DIF", "early": 0.1815, "late": 0.1014}, {"nome": "Youssouf Fofana", "squadra": "AC Milan", "ruolo": "CEN", "early": 0.3346, "late": 0.4892}, {"nome": "Yunus Musah", "squadra": "AC Milan", "ruolo": "DIF", "early": 0.5096, "late": 0.1623}, {"nome": "Zachary Athekame", "squadra": "AC Milan", "ruolo": "ATT", "early": 0.0356, "late": 0.3522}, {"nome": "Berat Gjimshiti", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.0715, "late": 0.0253}, {"nome": "Charles De Ketelaere", "squadra": "Atalanta", "ruolo": "CEN", "early": 0.5281, "late": 0.8545}, {"nome": "Daniel Maldini", "squadra": "Atalanta", "ruolo": "CEN", "early": 0.3443, "late": 0.4227}, {"nome": "Davide Zappacosta", "squadra": "Atalanta", "ruolo": "CEN", "early": 0.2247, "late": 0.3333}, {"nome": "Gianluca Scamacca", "squadra": "Atalanta", "ruolo": "ATT", "early": 0.7393, "late": 0.7907}, {"nome": "Giorgio Scalvini", "squadra": "Atalanta", "ruolo": "ATT", "early": 0.1552, "late": 0.3679}, {"nome": "Honest Ahanor", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.1855, "late": 0.1976}, {"nome": "Isak Hien", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.0522, "late": 0.0709}, {"nome": "Kamaldeen Sulemana", "squadra": "Atalanta", "ruolo": "ATT", "early": 0.3852, "late": 0.3712}, {"nome": "Lazar Samardzic", "squadra": "Atalanta", "ruolo": "ATT", "early": 0.3241, "late": 0.7473}, {"nome": "Lorenzo Bernasconi", "squadra": "Atalanta", "ruolo": "CEN", "early": 0.2837, "late": 0.1794}, {"nome": "Marco Brescianini", "squadra": "Atalanta", "ruolo": "ATT", "early": 0.1676, "late": 0.5048}, {"nome": "Marco Carnesecchi", "squadra": "Atalanta", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Mario Pasalic", "squadra": "Atalanta", "ruolo": "CEN", "early": 0.355, "late": 0.6724}, {"nome": "Marten de Roon", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.0887, "late": 0.1019}, {"nome": "Nicola Zalewski", "squadra": "Atalanta", "ruolo": "CEN", "early": 0.2566, "late": 0.6109}, {"nome": "Nikola Krstovic", "squadra": "Atalanta", "ruolo": "ATT", "early": 0.7714, "late": 1.3443}, {"nome": "Odilon Kossounou", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.0265, "late": 0.1051}, {"nome": "Raoul Bellanova", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.1575, "late": 0.0934}, {"nome": " \u00c9derson", "squadra": "Atalanta", "ruolo": "DIF", "early": 0.0894, "late": 0.4617}, {"nome": "Benjam\u00edn Dom\u00ednguez", "squadra": "Bologna", "ruolo": "CEN", "early": 0.1607, "late": 0.1712}, {"nome": "Charalampos Lykogiannis", "squadra": "Bologna", "ruolo": "CEN", "early": 0.1907, "late": 0.3198}, {"nome": "Emil Holm", "squadra": "Bologna", "ruolo": "CEN", "early": 0.5195, "late": 0.1315}, {"nome": "Federico Bernardeschi", "squadra": "Bologna", "ruolo": "ATT", "early": 0.6218, "late": 0.6757}, {"nome": "Federico Ravaglia", "squadra": "Bologna", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Giovanni Fabbian", "squadra": "Bologna", "ruolo": "ATT", "early": 0.2162, "late": 0.5101}, {"nome": "Jens Odgaard", "squadra": "Bologna", "ruolo": "ATT", "early": 0.3512, "late": 0.1123}, {"nome": "Jhon Lucum\u00ed", "squadra": "Bologna", "ruolo": "DIF", "early": 0.1328, "late": 0.0078}, {"nome": "Jonathan Rowe", "squadra": "Bologna", "ruolo": "ATT", "early": 0.6518, "late": 0.3425}, {"nome": "Jo\u00e3o M\u00e1rio", "squadra": "Bologna", "ruolo": "DIF", "early": 0.1061, "late": 0.0452}, {"nome": "Juan Miranda", "squadra": "Bologna", "ruolo": "CEN", "early": 0.1887, "late": 0.1884}, {"nome": "Lewis Ferguson", "squadra": "Bologna", "ruolo": "DIF", "early": 0.1839, "late": 0.1188}, {"nome": "Lukasz Skorupski", "squadra": "Bologna", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Martin Vit\u00edk", "squadra": "Bologna", "ruolo": "DIF", "early": 0.0526, "late": 0.086}, {"nome": "Nadir Zortea", "squadra": "Bologna", "ruolo": "DIF", "early": 0.1918, "late": 0.1502}, {"nome": "Nicol\u00f2 Cambiaghi", "squadra": "Bologna", "ruolo": "ATT", "early": 0.5082, "late": 0.2814}, {"nome": "Nicol\u00f2 Casale", "squadra": "Bologna", "ruolo": "DIF", "early": 0.039, "late": 0.0436}, {"nome": "Nikola Moro", "squadra": "Bologna", "ruolo": "DIF", "early": 0.081, "late": 0.1612}, {"nome": "Remo Freuler", "squadra": "Bologna", "ruolo": "DIF", "early": 0.0299, "late": 0.068}, {"nome": "Riccardo Orsolini", "squadra": "Bologna", "ruolo": "ATT", "early": 0.5903, "late": 0.2655}, {"nome": "Santiago Castro", "squadra": "Bologna", "ruolo": "ATT", "early": 0.4324, "late": 0.4977}, {"nome": "Simon Sohm", "squadra": "Bologna", "ruolo": "CEN", "early": 0.2687, "late": 0.1376}, {"nome": "Thijs Dallinga", "squadra": "Bologna", "ruolo": "ATT", "early": 0.5458, "late": 0.5981}, {"nome": "Tommaso Pobega", "squadra": "Bologna", "ruolo": "DIF", "early": 0.2689, "late": 0.0922}, {"nome": "Torbj\u00f8rn Heggem", "squadra": "Bologna", "ruolo": "DIF", "early": 0.062, "late": 0.0376}, {"nome": "Adam Obert", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.184, "late": 0.1225}, {"nome": "Elia Caprile", "squadra": "Cagliari", "ruolo": "POR", "early": 0.0086, "late": 0.0}, {"nome": "Gabriele Zappa", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.0836, "late": 0.2366}, {"nome": "Gennaro Borrelli", "squadra": "Cagliari", "ruolo": "ATT", "early": 0.3815, "late": 0.1973}, {"nome": "Gianluca Gaetano", "squadra": "Cagliari", "ruolo": "CEN", "early": 0.3261, "late": 0.1857}, {"nome": "Leonardo Pavoletti", "squadra": "Cagliari", "ruolo": "ATT", "early": 1.2971, "late": 0.4186}, {"nome": "Luca Mazzitelli", "squadra": "Cagliari", "ruolo": "ATT", "early": 0.1125, "late": 0.2284}, {"nome": "Marco Palestra", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.2329, "late": 0.1353}, {"nome": "Matteo Prati", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.1722, "late": 0.1529}, {"nome": "Michael Folorunsho", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.1543, "late": 0.2341}, {"nome": "Ndary Adopo", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.1383, "late": 0.1403}, {"nome": "Riyad Idrissi", "squadra": "Cagliari", "ruolo": "ATT", "early": 0.1564, "late": 0.1083}, {"nome": "Sebastiano Esposito", "squadra": "Cagliari", "ruolo": "CEN", "early": 0.3159, "late": 0.395}, {"nome": "Sebastiano Luperto", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.0418, "late": 0.0939}, {"nome": "Semih Kili\u00e7soy", "squadra": "Cagliari", "ruolo": "ATT", "early": 0.2288, "late": 0.2487}, {"nome": "Yerry Mina", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.0791, "late": 0.0293}, {"nome": "Z\u00e9 Pedro", "squadra": "Cagliari", "ruolo": "DIF", "early": 0.0, "late": 0.0268}, {"nome": "Diego Carlos", "squadra": "Como", "ruolo": "DIF", "early": 0.0057, "late": 0.1467}, {"nome": "Ivan Smolcic", "squadra": "Como", "ruolo": "DIF", "early": 0.2459, "late": 0.0365}, {"nome": "Jacobo Ram\u00f3n", "squadra": "Como", "ruolo": "DIF", "early": 0.1262, "late": 0.2369}, {"nome": "Jean Butez", "squadra": "Como", "ruolo": "POR", "early": 0.0, "late": 0.0071}, {"nome": "Jes\u00fas Rodriguez", "squadra": "Como", "ruolo": "CEN", "early": 0.5227, "late": 0.5728}, {"nome": "Lucas Da Cunha", "squadra": "Como", "ruolo": "CEN", "early": 0.196, "late": 0.5277}, {"nome": "Marc-Oliver Kempf", "squadra": "Como", "ruolo": "ATT", "early": 0.1694, "late": 0.2653}, {"nome": "Martin Baturina", "squadra": "Como", "ruolo": "ATT", "early": 0.2555, "late": 0.6087}, {"nome": "Maxence Caqueret", "squadra": "Como", "ruolo": "CEN", "early": 0.2557, "late": 0.2749}, {"nome": "Mergim Vojvoda", "squadra": "Como", "ruolo": "CEN", "early": 0.2049, "late": 0.2914}, {"nome": "M\u00e1ximo Perrone", "squadra": "Como", "ruolo": "CEN", "early": 0.149, "late": 0.1866}, {"nome": "Nico Paz", "squadra": "Como", "ruolo": "ATT", "early": 0.4652, "late": 0.5867}, {"nome": "Nicolas K\u00fchn", "squadra": "Como", "ruolo": "DIF", "early": 0.2856, "late": 0.1875}, {"nome": "Sergi Roberto", "squadra": "Como", "ruolo": "DIF", "early": 0.2866, "late": 0.3264}, {"nome": "Stefan Posch", "squadra": "Como", "ruolo": "ATT", "early": 0.2201, "late": 0.3886}, {"nome": "Tasos Douvikas", "squadra": "Como", "ruolo": "ATT", "early": 0.5251, "late": 0.8575}, {"nome": "\u00c1lex Valle", "squadra": "Como", "ruolo": "DIF", "early": 0.0709, "late": 0.09}, {"nome": "\u00c1lvaro Morata", "squadra": "Como", "ruolo": "ATT", "early": 0.6201, "late": 0.603}, {"nome": "Alberto Grassi", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.013, "late": 0.0579}, {"nome": "Alessio Zerbin", "squadra": "Cremonese", "ruolo": "CEN", "early": 0.3307, "late": 0.2529}, {"nome": "Antonio Sanabria", "squadra": "Cremonese", "ruolo": "ATT", "early": 0.7314, "late": 0.4744}, {"nome": "Dennis Johnsen", "squadra": "Cremonese", "ruolo": "ATT", "early": 0.3185, "late": 0.3081}, {"nome": "Emil Audero", "squadra": "Cremonese", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Federico Baschirotto", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.06, "late": 0.0318}, {"nome": "Federico Bonazzoli", "squadra": "Cremonese", "ruolo": "ATT", "early": 0.4287, "late": 0.2422}, {"nome": "Filippo Terracciano", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.1887, "late": 0.0324}, {"nome": "Francesco Folino", "squadra": "Cremonese", "ruolo": "DIF", "early": 1.3696, "late": 0.0033}, {"nome": "Giuseppe Pezzella", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.035, "late": 0.0914}, {"nome": "Jamie Vardy", "squadra": "Cremonese", "ruolo": "ATT", "early": 0.3669, "late": 0.3494}, {"nome": "Jari Vandeputte", "squadra": "Cremonese", "ruolo": "CEN", "early": 0.3864, "late": 0.3502}, {"nome": "Mart\u00edn Payero", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.1233, "late": 0.1225}, {"nome": "Matteo Bianchetti", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.0548, "late": 0.0228}, {"nome": "Milan Djuric", "squadra": "Cremonese", "ruolo": "CEN", "early": 0.2, "late": 0.3918}, {"nome": "Morten Thorsby", "squadra": "Cremonese", "ruolo": "ATT", "early": 0.3698, "late": 0.2042}, {"nome": "Romano Floriani", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.1864, "late": 0.0909}, {"nome": "Tommaso Barbieri", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.2527, "late": 0.0458}, {"nome": "Warren Bondo", "squadra": "Cremonese", "ruolo": "DIF", "early": 0.0232, "late": 0.0101}, {"nome": "Albert Gudmundsson", "squadra": "Fiorentina", "ruolo": "ATT", "early": 0.2774, "late": 0.4101}, {"nome": "Cher Ndour", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.0358, "late": 0.1599}, {"nome": "David de Gea", "squadra": "Fiorentina", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": " Dod\u00f4", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.1362, "late": 0.226}, {"nome": "Fabiano Parisi", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.0665, "late": 0.2437}, {"nome": "Hans Nicolussi Caviglia", "squadra": "Fiorentina", "ruolo": "CEN", "early": 0.1531, "late": 0.3375}, {"nome": "Jacopo Fazzini", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.2028, "late": 2.1536}, {"nome": "Luca Ranieri", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.1493, "late": 0.1657}, {"nome": "Marin Pongracic", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.0792, "late": 0.0193}, {"nome": "Moise Kean", "squadra": "Fiorentina", "ruolo": "ATT", "early": 0.5538, "late": 0.9736}, {"nome": "Niccol\u00f2 Fortini", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.1254, "late": 0.1328}, {"nome": "Nicolo Fagioli", "squadra": "Fiorentina", "ruolo": "CEN", "early": 0.1128, "late": 0.3694}, {"nome": "Pietro Comuzzo", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.0353, "late": 0.0606}, {"nome": "Roberto Piccoli", "squadra": "Fiorentina", "ruolo": "ATT", "early": 0.4411, "late": 0.5897}, {"nome": "Robin Gosens", "squadra": "Fiorentina", "ruolo": "DIF", "early": 0.2173, "late": 0.1571}, {"nome": "Rolando Mandragora", "squadra": "Fiorentina", "ruolo": "ATT", "early": 0.3437, "late": 0.2847}, {"nome": "Aar\u00f3n Mart\u00edn", "squadra": "Genoa", "ruolo": "CEN", "early": 0.3747, "late": 0.2496}, {"nome": "Alessandro Marcandalli", "squadra": "Genoa", "ruolo": "DIF", "early": 0.0195, "late": 0.0374}, {"nome": "Brooke Norton-Cuffy", "squadra": "Genoa", "ruolo": "DIF", "early": 0.15, "late": 0.1795}, {"nome": "Caleb Ekuban", "squadra": "Genoa", "ruolo": "ATT", "early": 0.7238, "late": 0.4176}, {"nome": "Jeff Ekhator", "squadra": "Genoa", "ruolo": "ATT", "early": 0.6372, "late": 0.1862}, {"nome": "Johan Vasquez V\u00e1squez", "squadra": "Genoa", "ruolo": "DIF", "early": 0.0746, "late": 0.0452}, {"nome": "Leo \u00d8stigard", "squadra": "Genoa", "ruolo": "DIF", "early": 0.2205, "late": 0.1003}, {"nome": "Lorenzo Colombo", "squadra": "Genoa", "ruolo": "ATT", "early": 0.5125, "late": 0.3152}, {"nome": "Mikael Ellertsson", "squadra": "Genoa", "ruolo": "DIF", "early": 0.2529, "late": 0.1424}, {"nome": "Morten Frendrup", "squadra": "Genoa", "ruolo": "DIF", "early": 0.0785, "late": 0.0356}, {"nome": "Nicola Leali", "squadra": "Genoa", "ruolo": "POR", "early": 0.0069, "late": 0.0183}, {"nome": "Patrizio Masini", "squadra": "Genoa", "ruolo": "DIF", "early": 0.1362, "late": 0.3278}, {"nome": "Ruslan Malinovskiy", "squadra": "Genoa", "ruolo": "ATT", "early": 0.2753, "late": 0.4161}, {"nome": "Stefano Sabelli", "squadra": "Genoa", "ruolo": "DIF", "early": 0.0372, "late": 0.0831}, {"nome": "Tommaso Baldanzi", "squadra": "Genoa", "ruolo": "DIF", "early": 0.2741, "late": 0.5011}, {"nome": " Vitinha", "squadra": "Genoa", "ruolo": "ATT", "early": 0.3286, "late": 0.4009}, {"nome": "Alessandro Bastoni", "squadra": "Inter", "ruolo": "DIF", "early": 0.1881, "late": 0.2326}, {"nome": "Andy Diouf", "squadra": "Inter", "ruolo": "CEN", "early": 1.2115, "late": 0.5192}, {"nome": "Ange-Yoan Bonny", "squadra": "Inter", "ruolo": "ATT", "early": 0.7932, "late": 0.4954}, {"nome": "Carlos Augusto", "squadra": "Inter", "ruolo": "DIF", "early": 0.3081, "late": 0.1632}, {"nome": "Davide Frattesi", "squadra": "Inter", "ruolo": "ATT", "early": 0.7386, "late": 0.3318}, {"nome": "Federico Dimarco", "squadra": "Inter", "ruolo": "ATT", "early": 0.6817, "late": 0.9035}, {"nome": "Francesco Pio Esposito", "squadra": "Inter", "ruolo": "ATT", "early": 0.7878, "late": 0.8717}, {"nome": "Hakan Calhanoglu", "squadra": "Inter", "ruolo": "ATT", "early": 0.4292, "late": 0.8364}, {"nome": "Henrikh Mkhitaryan", "squadra": "Inter", "ruolo": "ATT", "early": 0.3456, "late": 0.5668}, {"nome": "Lautaro Mart\u00ednez", "squadra": "Inter", "ruolo": "ATT", "early": 0.9938, "late": 0.8472}, {"nome": "Luis Henrique", "squadra": "Inter", "ruolo": "DIF", "early": 0.2669, "late": 0.1767}, {"nome": "Manuel Akanji", "squadra": "Inter", "ruolo": "DIF", "early": 0.035, "late": 0.1422}, {"nome": "Marcus Thuram", "squadra": "Inter", "ruolo": "ATT", "early": 0.7052, "late": 0.7738}, {"nome": "Nicol\u00f2 Barella", "squadra": "Inter", "ruolo": "CEN", "early": 0.4243, "late": 0.4878}, {"nome": "Petar Sucic", "squadra": "Inter", "ruolo": "CEN", "early": 0.3089, "late": 0.3755}, {"nome": "Piotr Zielinski", "squadra": "Inter", "ruolo": "ATT", "early": 0.1132, "late": 0.4102}, {"nome": "Yann Bisseck", "squadra": "Inter", "ruolo": "DIF", "early": 0.0801, "late": 0.2155}, {"nome": "Yann Sommer", "squadra": "Inter", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Andrea Cambiaso", "squadra": "Juventus", "ruolo": "CEN", "early": 0.2345, "late": 0.3549}, {"nome": " Bremer", "squadra": "Juventus", "ruolo": "CEN", "early": 0.0593, "late": 0.1707}, {"nome": "Edon Zhegrova", "squadra": "Juventus", "ruolo": "CEN", "early": 0.8534, "late": 0.4322}, {"nome": "Federico Gatti", "squadra": "Juventus", "ruolo": "DIF", "early": 0.0975, "late": 0.4752}, {"nome": "Filip Kostic", "squadra": "Juventus", "ruolo": "ATT", "early": 0.279, "late": 0.2333}, {"nome": "Francisco Concei\u00e7\u00e3o", "squadra": "Juventus", "ruolo": "ATT", "early": 0.3072, "late": 0.6598}, {"nome": "Jonathan Christian David", "squadra": "Juventus", "ruolo": "ATT", "early": 0.6596, "late": 1.0851}, {"nome": "Juan Cabal", "squadra": "Juventus", "ruolo": "ATT", "early": 0.4989, "late": 0.6406}, {"nome": "Kenan Yildiz", "squadra": "Juventus", "ruolo": "ATT", "early": 0.5089, "late": 0.698}, {"nome": "Kephren Thuram", "squadra": "Juventus", "ruolo": "DIF", "early": 0.151, "late": 0.2265}, {"nome": "Lloyd Kelly", "squadra": "Juventus", "ruolo": "DIF", "early": 0.035, "late": 0.0431}, {"nome": "Lo\u00efs Openda", "squadra": "Juventus", "ruolo": "ATT", "early": 0.2856, "late": 0.9227}, {"nome": "Manuel Locatelli", "squadra": "Juventus", "ruolo": "DIF", "early": 0.1098, "late": 0.2271}, {"nome": "Michele Di Gregorio", "squadra": "Juventus", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Pierre Kalulu Kyatengwa", "squadra": "Juventus", "ruolo": "CEN", "early": 0.1529, "late": 0.2625}, {"nome": "Teun Koopmeiners", "squadra": "Juventus", "ruolo": "DIF", "early": 0.134, "late": 0.0719}, {"nome": "Vasilije Adzic", "squadra": "Juventus", "ruolo": "ATT", "early": 0.2898, "late": 0.1125}, {"nome": "Weston McKennie", "squadra": "Juventus", "ruolo": "ATT", "early": 0.3405, "late": 0.5267}, {"nome": "Adam Marusic", "squadra": "Lazio", "ruolo": "DIF", "early": 0.0663, "late": 0.1208}, {"nome": "Alessio Romagnoli", "squadra": "Lazio", "ruolo": "DIF", "early": 0.007, "late": 0.1335}, {"nome": "Boulaye Dia", "squadra": "Lazio", "ruolo": "ATT", "early": 0.2609, "late": 0.4867}, {"nome": "Danilo Cataldi", "squadra": "Lazio", "ruolo": "CEN", "early": 0.1529, "late": 0.3009}, {"nome": "Fisayo Dele-Bashiru", "squadra": "Lazio", "ruolo": "DIF", "early": 0.0353, "late": 0.1424}, {"nome": "Gustav Isaksen", "squadra": "Lazio", "ruolo": "ATT", "early": 0.3393, "late": 0.3174}, {"nome": "Ivan Provedel", "squadra": "Lazio", "ruolo": "POR", "early": 0.0164, "late": 0.0}, {"nome": "Luca Pellegrini", "squadra": "Lazio", "ruolo": "DIF", "early": 0.1309, "late": 0.0681}, {"nome": "Manuel Lazzari", "squadra": "Lazio", "ruolo": "DIF", "early": 0.0283, "late": 0.0073}, {"nome": "Mario Gila", "squadra": "Lazio", "ruolo": "DIF", "early": 0.0533, "late": 0.1104}, {"nome": "Matteo Cancellieri", "squadra": "Lazio", "ruolo": "ATT", "early": 0.581, "late": 0.2039}, {"nome": "Matteo Guendouzi", "squadra": "Lazio", "ruolo": "DIF", "early": 0.1525, "late": 0.1025}, {"nome": "Mattia Zaccagni", "squadra": "Lazio", "ruolo": "DIF", "early": 0.4187, "late": 0.2073}, {"nome": "Mat\u00edas Vecino", "squadra": "Lazio", "ruolo": "CEN", "early": 0.0529, "late": 0.1698}, {"nome": "Nicolo Rovella", "squadra": "Lazio", "ruolo": "CEN", "early": 0.6176, "late": 0.0533}, {"nome": "Nuno Tavares", "squadra": "Lazio", "ruolo": "DIF", "early": 0.0737, "late": 0.1953}, {"nome": "Oliver Provstgaard", "squadra": "Lazio", "ruolo": "DIF", "early": 0.1886, "late": 0.0811}, {"nome": " Pedro", "squadra": "Lazio", "ruolo": "ATT", "early": 0.2006, "late": 0.9607}, {"nome": "Reda Belahyane", "squadra": "Lazio", "ruolo": "CEN", "early": 0.552, "late": 0.0625}, {"nome": "Tijjani Noslin", "squadra": "Lazio", "ruolo": "ATT", "early": 0.77, "late": 0.4178}, {"nome": "Toma Basic", "squadra": "Lazio", "ruolo": "DIF", "early": 0.2095, "late": 0.1918}, {"nome": "Antonino Gallo", "squadra": "Lecce", "ruolo": "DIF", "early": 0.0878, "late": 0.068}, {"nome": "Corrie Ndaba", "squadra": "Lecce", "ruolo": "DIF", "early": 0.0, "late": 0.0447}, {"nome": "Danilo Veiga", "squadra": "Lecce", "ruolo": "DIF", "early": 0.0402, "late": 0.0245}, {"nome": "Francesco Camarda", "squadra": "Lecce", "ruolo": "ATT", "early": 0.4522, "late": 0.2906}, {"nome": "Kialonda Gaspar", "squadra": "Lecce", "ruolo": "DIF", "early": 0.0543, "late": 0.0032}, {"nome": "Konan N\u2019Dri", "squadra": "Lecce", "ruolo": "ATT", "early": 0.1662, "late": 0.5887}, {"nome": "Lameck Banda", "squadra": "Lecce", "ruolo": "ATT", "early": 0.2203, "late": 0.328}, {"nome": "Lassana Coulibaly", "squadra": "Lecce", "ruolo": "DIF", "early": 0.1052, "late": 0.1768}, {"nome": "Mohamed Kaba", "squadra": "Lecce", "ruolo": "DIF", "early": 0.1465, "late": 0.0794}, {"nome": "Nikola Stulic", "squadra": "Lecce", "ruolo": "ATT", "early": 0.1963, "late": 0.655}, {"nome": "Riccardo Sottil", "squadra": "Lecce", "ruolo": "CEN", "early": 0.3211, "late": 0.4241}, {"nome": "Santiago Pierotti", "squadra": "Lecce", "ruolo": "DIF", "early": 0.1733, "late": 0.1707}, {"nome": "Tete Morente", "squadra": "Lecce", "ruolo": "DIF", "early": 0.1918, "late": 0.1212}, {"nome": "Tiago Gabriel", "squadra": "Lecce", "ruolo": "DIF", "early": 0.0885, "late": 0.1015}, {"nome": "Walid Cheddira", "squadra": "Lecce", "ruolo": "ATT", "early": 0.8259, "late": 0.2378}, {"nome": "Wladimiro Falcone", "squadra": "Lecce", "ruolo": "POR", "early": 0.0, "late": 0.0029}, {"nome": "Ylber Ramadani", "squadra": "Lecce", "ruolo": "DIF", "early": 0.0563, "late": 0.0765}, {"nome": "Alessandro Buongiorno", "squadra": "Napoli", "ruolo": "DIF", "early": 0.0992, "late": 0.0788}, {"nome": "Alex Meret", "squadra": "Napoli", "ruolo": "DIF", "early": 0.0, "late": 0.0675}, {"nome": "Amir Rrahmani", "squadra": "Napoli", "ruolo": "DIF", "early": 0.0417, "late": 0.0567}, {"nome": "David Neres", "squadra": "Napoli", "ruolo": "ATT", "early": 0.5756, "late": 0.348}, {"nome": "Eljif Elmas", "squadra": "Napoli", "ruolo": "DIF", "early": 0.1895, "late": 0.2958}, {"nome": " Giovane", "squadra": "Napoli", "ruolo": "CEN", "early": 0.5197, "late": 0.2717}, {"nome": "Giovanni Di Lorenzo", "squadra": "Napoli", "ruolo": "DIF", "early": 0.18, "late": 0.2427}, {"nome": "Juan Jesus", "squadra": "Napoli", "ruolo": "DIF", "early": 0.013, "late": 0.0403}, {"nome": "Leonardo Spinazzola", "squadra": "Napoli", "ruolo": "CEN", "early": 0.2016, "late": 0.1888}, {"nome": "Lorenzo Lucca", "squadra": "Napoli", "ruolo": "ATT", "early": 0.4438, "late": 3.9}, {"nome": "Math\u00edas Olivera", "squadra": "Napoli", "ruolo": "DIF", "early": 0.1855, "late": 0.2956}, {"nome": "Matteo Politano", "squadra": "Napoli", "ruolo": "CEN", "early": 0.3634, "late": 0.324}, {"nome": "Miguel Guti\u00e9rrez", "squadra": "Napoli", "ruolo": "DIF", "early": 0.0955, "late": 0.1618}, {"nome": "Noa Lang", "squadra": "Napoli", "ruolo": "CEN", "early": 0.4228, "late": 0.5189}, {"nome": "Rasmus H\u00f8jlund", "squadra": "Napoli", "ruolo": "ATT", "early": 0.5143, "late": 0.6105}, {"nome": "Sam Beukema", "squadra": "Napoli", "ruolo": "DIF", "early": 0.1754, "late": 0.1178}, {"nome": "Scott McTominay", "squadra": "Napoli", "ruolo": "ATT", "early": 0.3292, "late": 0.4059}, {"nome": "Stanislav Lobotka", "squadra": "Napoli", "ruolo": "DIF", "early": 0.0297, "late": 0.0601}, {"nome": "Vanja Milinkovic-Savic", "squadra": "Napoli", "ruolo": "POR", "early": 0.006, "late": 0.013}, {"nome": "Adrian Benedyczak", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "early": 0.9413, "late": 0.45}, {"nome": "Adri\u00e1n Bernab\u00e9", "squadra": "Parma Calcio 1913", "ruolo": "CEN", "early": 0.2385, "late": 0.3319}, {"nome": "Alessandro Circati", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.0593, "late": 0.02}, {"nome": "Christian Ord\u00f3\u00f1ez", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.0779, "late": 0.0238}, {"nome": "Emanuele Valeri", "squadra": "Parma Calcio 1913", "ruolo": "CEN", "early": 0.1738, "late": 0.175}, {"nome": "Enrico Del Prato", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.1508, "late": 0.0388}, {"nome": "Gaetano Oristanio", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "early": 0.5185, "late": 0.3}, {"nome": "Lautaro Valenti", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.0902, "late": 0.0759}, {"nome": "Mandela Keita", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.0115, "late": 0.0275}, {"nome": "Mariano Troilo", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.0318, "late": 0.1681}, {"nome": "Mateo Pellegrino", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "early": 0.3287, "late": 0.4785}, {"nome": "Nahuel Est\u00e9vez", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.3395, "late": 0.0498}, {"nome": "Oliver S\u00f8rensen", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.1661, "late": 0.0872}, {"nome": "Sascha Britschgi", "squadra": "Parma Calcio 1913", "ruolo": "DIF", "early": 0.146, "late": 0.1027}, {"nome": "Adrian Semper", "squadra": "Pisa", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Antonio Caracciolo", "squadra": "Pisa", "ruolo": "DIF", "early": 0.0323, "late": 0.0533}, {"nome": "Arturo Calabresi", "squadra": "Pisa", "ruolo": "DIF", "early": 0.0224, "late": 0.029}, {"nome": "Ebenezer Akinsanmiro", "squadra": "Pisa", "ruolo": "DIF", "early": 0.1778, "late": 0.3733}, {"nome": "Gabriele Piccinini", "squadra": "Pisa", "ruolo": "ATT", "early": 0.4541, "late": 0.5202}, {"nome": "Henrik Meister", "squadra": "Pisa", "ruolo": "ATT", "early": 0.4165, "late": 0.3706}, {"nome": "Idrissa Tour\u00e9", "squadra": "Pisa", "ruolo": "DIF", "early": 0.3043, "late": 0.1808}, {"nome": "M'Bala Nzola", "squadra": "Pisa", "ruolo": "ATT", "early": 0.415, "late": 0.69}, {"nome": "Marius Marin", "squadra": "Pisa", "ruolo": "DIF", "early": 0.0, "late": 0.0142}, {"nome": "Matteo Tramoni", "squadra": "Pisa", "ruolo": "CEN", "early": 0.3035, "late": 0.4822}, {"nome": "Mehdi Leris", "squadra": "Pisa", "ruolo": "CEN", "early": 0.2428, "late": 0.3586}, {"nome": "Michel Aebischer", "squadra": "Pisa", "ruolo": "DIF", "early": 0.0813, "late": 0.1481}, {"nome": "Samuele Angori", "squadra": "Pisa", "ruolo": "DIF", "early": 0.2104, "late": 0.1434}, {"nome": "Simone Canestrelli", "squadra": "Pisa", "ruolo": "DIF", "early": 0.0338, "late": 0.0741}, {"nome": "Stefano Moreo", "squadra": "Pisa", "ruolo": "ATT", "early": 0.5787, "late": 0.2107}, {"nome": "Bryan Cristante", "squadra": "Roma", "ruolo": "DIF", "early": 0.1444, "late": 0.1399}, {"nome": "Devyne Rensch", "squadra": "Roma", "ruolo": "DIF", "early": 0.2294, "late": 0.1506}, {"nome": "Evan Ferguson", "squadra": "Roma", "ruolo": "ATT", "early": 0.553, "late": 0.648}, {"nome": "Evan Ndicka", "squadra": "Roma", "ruolo": "DIF", "early": 0.0774, "late": 0.1811}, {"nome": "Gianluca Mancini", "squadra": "Roma", "ruolo": "DIF", "early": 0.0865, "late": 0.1798}, {"nome": "Jan Zi\u00f3lkowski", "squadra": "Roma", "ruolo": "POR", "early": 0.0, "late": 0.0109}, {"nome": "Konstantinos Tsimikas", "squadra": "Roma", "ruolo": "DIF", "early": 0.0303, "late": 0.1727}, {"nome": "Kouadio Kone", "squadra": "Roma", "ruolo": "DIF", "early": 0.1629, "late": 0.1959}, {"nome": "Lorenzo Pellegrini", "squadra": "Roma", "ruolo": "ATT", "early": 0.5192, "late": 0.5469}, {"nome": "Mario Hermoso", "squadra": "Roma", "ruolo": "DIF", "early": 0.0746, "late": 0.109}, {"nome": "Mat\u00ecas Soul\u00e8 M Malvano", "squadra": "Roma", "ruolo": "ATT", "early": 0.3254, "late": 0.4053}, {"nome": "Mehmet Zeki \u00c7elik", "squadra": "Roma", "ruolo": "DIF", "early": 0.1591, "late": 0.1403}, {"nome": "Mile Svilar", "squadra": "Roma", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Neil El Aynaoui", "squadra": "Roma", "ruolo": "DIF", "early": 0.1713, "late": 0.0413}, {"nome": "Paulo Dybala", "squadra": "Roma", "ruolo": "ATT", "early": 0.7509, "late": 0.7768}, {"nome": "Stephan El Shaarawy", "squadra": "Roma", "ruolo": "ATT", "early": 0.5659, "late": 0.7011}, {"nome": " Wesley", "squadra": "Roma", "ruolo": "CEN", "early": 0.3073, "late": 0.2901}, {"nome": "Alieu Fadera", "squadra": "Sassuolo", "ruolo": "CEN", "early": 0.417, "late": 0.2283}, {"nome": "Andrea Pinamonti", "squadra": "Sassuolo", "ruolo": "ATT", "early": 0.481, "late": 0.4149}, {"nome": "Arijanet Muric", "squadra": "Sassuolo", "ruolo": "POR", "early": 0.0, "late": 0.0021}, {"nome": "Armand Lauriente", "squadra": "Sassuolo", "ruolo": "ATT", "early": 0.3139, "late": 0.4984}, {"nome": "Aster Vranckx", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.0139, "late": 0.0616}, {"nome": "Cristian Volpato", "squadra": "Sassuolo", "ruolo": "CEN", "early": 0.6142, "late": 0.1536}, {"nome": "Domenico Berardi", "squadra": "Sassuolo", "ruolo": "ATT", "early": 0.494, "late": 0.7503}, {"nome": "Edoardo Iannoni", "squadra": "Sassuolo", "ruolo": "ATT", "early": 1.0429, "late": 0.0121}, {"nome": "Fali Cand\u00e9", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.0433, "late": 0.0}, {"nome": "Isma\u00ebl Kon\u00e9", "squadra": "Sassuolo", "ruolo": "ATT", "early": 0.1888, "late": 0.2571}, {"nome": "Jay Idzes", "squadra": "Sassuolo", "ruolo": "POR", "early": 0.0015, "late": 0.0393}, {"nome": "Josh Doig", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.1068, "late": 0.1103}, {"nome": "Kristian Thorstvedt", "squadra": "Sassuolo", "ruolo": "CEN", "early": 0.4606, "late": 0.2173}, {"nome": "Luca Moro", "squadra": "Sassuolo", "ruolo": "ATT", "early": 1.35, "late": 0.3486}, {"nome": "Nemanja Matic", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.0503, "late": 0.0452}, {"nome": "Nicholas Pierini", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.375, "late": 0.2659}, {"nome": "Sebastian Walukiewicz", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.0755, "late": 0.0687}, {"nome": "Tarik Muharemovic", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.1782, "late": 0.0862}, {"nome": "Woyo Coulibaly", "squadra": "Sassuolo", "ruolo": "DIF", "early": 0.0724, "late": 0.0065}, {"nome": "Adrien Tameze", "squadra": "Torino", "ruolo": "DIF", "early": 0.043, "late": 0.0366}, {"nome": "Alberto Paleari", "squadra": "Torino", "ruolo": "POR", "early": 0.0, "late": 0.0}, {"nome": "Ardian Ismajli", "squadra": "Torino", "ruolo": "DIF", "early": 0.0337, "late": 0.1099}, {"nome": "Cesare Casadei", "squadra": "Torino", "ruolo": "ATT", "early": 0.2455, "late": 0.3645}, {"nome": "Che Adams", "squadra": "Torino", "ruolo": "ATT", "early": 0.4612, "late": 0.451}, {"nome": "Cyril Ngonge", "squadra": "Torino", "ruolo": "ATT", "early": 0.2329, "late": 0.5096}, {"nome": "Duv\u00e1n Zapata", "squadra": "Torino", "ruolo": "ATT", "early": 0.6594, "late": 0.5092}, {"nome": "Faustino Anjorin", "squadra": "Torino", "ruolo": "DIF", "early": 0.126, "late": 0.3051}, {"nome": "Giovanni Simeone", "squadra": "Torino", "ruolo": "ATT", "early": 0.5537, "late": 0.3828}, {"nome": "Guillermo Marip\u00e1n", "squadra": "Torino", "ruolo": "DIF", "early": 0.13, "late": 0.1166}, {"nome": "Gvidas Gineitis", "squadra": "Torino", "ruolo": "CEN", "early": 0.1142, "late": 0.2326}, {"nome": "Kristjan Asllani", "squadra": "Torino", "ruolo": "DIF", "early": 0.2055, "late": 0.119}, {"nome": "Marcus Pedersen", "squadra": "Torino", "ruolo": "DIF", "early": 0.2003, "late": 0.0879}, {"nome": "Nikola Vlasic", "squadra": "Torino", "ruolo": "ATT", "early": 0.2173, "late": 0.3986}, {"nome": "Sa\u00fal Coco", "squadra": "Torino", "ruolo": "DIF", "early": 0.0808, "late": 0.0477}, {"nome": "Valentino Lazaro", "squadra": "Torino", "ruolo": "DIF", "early": 0.1009, "late": 0.1342}, {"nome": "Zakaria Aboukhlal", "squadra": "Torino", "ruolo": "DIF", "early": 0.102, "late": 0.2186}, {"nome": "Adam Buksa", "squadra": "Udinese", "ruolo": "ATT", "early": 0.4009, "late": 0.2316}, {"nome": "Alessandro Zanoli", "squadra": "Udinese", "ruolo": "DIF", "early": 0.1151, "late": 0.1137}, {"nome": "Arthur Atta", "squadra": "Udinese", "ruolo": "CEN", "early": 0.2665, "late": 0.2858}, {"nome": "Christian Kabasele", "squadra": "Udinese", "ruolo": "DIF", "early": 0.0892, "late": 0.1028}, {"nome": "Hassane Kamara", "squadra": "Udinese", "ruolo": "DIF", "early": 0.1841, "late": 0.0604}, {"nome": "Iker Bravo", "squadra": "Udinese", "ruolo": "ATT", "early": 0.3222, "late": 0.1565}, {"nome": "Jakub Piotrowski", "squadra": "Udinese", "ruolo": "DIF", "early": 0.1594, "late": 0.2291}, {"nome": "Jesper Karlstrom Karlstr\u00f6m", "squadra": "Udinese", "ruolo": "DIF", "early": 0.0864, "late": 0.0223}, {"nome": "Jordan Zemura", "squadra": "Udinese", "ruolo": "DIF", "early": 0.214, "late": 0.077}, {"nome": "Jurgen Ekkelenkamp", "squadra": "Udinese", "ruolo": "DIF", "early": 0.1618, "late": 0.2922}, {"nome": "Keinan Davis", "squadra": "Udinese", "ruolo": "ATT", "early": 0.6956, "late": 0.5667}, {"nome": "Kingsley Ehizibue", "squadra": "Udinese", "ruolo": "DIF", "early": 0.0539, "late": 0.0315}, {"nome": "Lennon Miller", "squadra": "Udinese", "ruolo": "DIF", "early": 0.2286, "late": 0.0898}, {"nome": "Maduka Okoye", "squadra": "Udinese", "ruolo": "POR", "early": 0.0, "late": 0.0017}, {"nome": "Nicolo Zaniolo", "squadra": "Udinese", "ruolo": "ATT", "early": 0.401, "late": 0.5058}, {"nome": "Nicol\u00f2 Bertola", "squadra": "Udinese", "ruolo": "DIF", "early": 0.1387, "late": 0.0921}, {"nome": "Oier Zarraga", "squadra": "Udinese", "ruolo": "DIF", "early": 0.0209, "late": 0.509}, {"nome": "Oumar Solet", "squadra": "Udinese", "ruolo": "DIF", "early": 0.1363, "late": 0.2023}, {"nome": "Thomas Thiesson Kristensen", "squadra": "Udinese", "ruolo": "DIF", "early": 0.162, "late": 0.0517}, {"nome": "Vakoun Bayo", "squadra": "Udinese", "ruolo": "ATT", "early": 0.64, "late": 0.0065}, {"nome": "Abdou Harroui", "squadra": "Verona", "ruolo": "DIF", "early": 0.123, "late": 0.278}, {"nome": "Al Musrati", "squadra": "Verona", "ruolo": "DIF", "early": 0.0814, "late": 0.0413}, {"nome": "Amin Sarr", "squadra": "Verona", "ruolo": "DIF", "early": 0.2186, "late": 0.3133}, {"nome": "Antoine Bernede", "squadra": "Verona", "ruolo": "DIF", "early": 0.0697, "late": 0.1502}, {"nome": "Armel Bella Kotchap", "squadra": "Verona", "ruolo": "DIF", "early": 0.0137, "late": 0.0053}, {"nome": "Cheikh Niasse", "squadra": "Verona", "ruolo": "DIF", "early": 0.0802, "late": 0.0685}, {"nome": "Daniel Mosquera", "squadra": "Verona", "ruolo": "CEN", "early": 0.574, "late": 0.1465}, {"nome": "Domagoj Bradaric", "squadra": "Verona", "ruolo": "DIF", "early": 0.1556, "late": 0.1335}, {"nome": "Gift Orban", "squadra": "Verona", "ruolo": "ATT", "early": 0.8851, "late": 0.5477}, {"nome": "Lorenzo Montip\u00f2", "squadra": "Verona", "ruolo": "POR", "early": 0.0021, "late": 0.01}, {"nome": "Martin Frese", "squadra": "Verona", "ruolo": "DIF", "early": 0.2178, "late": 0.0616}, {"nome": "Nicol\u00e1s Valentini", "squadra": "Verona", "ruolo": "DIF", "early": 0.1289, "late": 0.018}, {"nome": "Roberto Gagliardini", "squadra": "Verona", "ruolo": "DIF", "early": 0.0321, "late": 0.1272}, {"nome": "Suat Serdar", "squadra": "Verona", "ruolo": "DIF", "early": 0.4693, "late": 0.0163}, {"nome": "Unai N\u00fa\u00f1ez", "squadra": "Verona", "ruolo": "DIF", "early": 0.0384, "late": 0.0193}, {"nome": "Victor Nelsson", "squadra": "Verona", "ruolo": "DIF", "early": 0.0051, "late": 0.0252}];
+const TOP10_TPI=[{"nome": "Keinan Davis", "squadra": "Udinese", "ruolo": "ATT", "tpi": 1.727, "ws": 7.19}, {"nome": "Gift Orban", "squadra": "Verona", "ruolo": "ATT", "tpi": 1.625, "ws": 7.09}, {"nome": "Jonathan Christian David", "squadra": "Juventus", "ruolo": "ATT", "tpi": 1.575, "ws": null}, {"nome": "Lautaro Mart\u00ednez", "squadra": "Inter", "ruolo": "ATT", "tpi": 1.425, "ws": 7.82}, {"nome": "Federico Dimarco", "squadra": "Inter", "ruolo": "DIF", "tpi": 1.375, "ws": 7.38}, {"nome": "Donyell Malen", "squadra": "Roma", "ruolo": "ATT", "tpi": 1.368, "ws": 7.28}, {"nome": "Giacomo Raspadori", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 1.299, "ws": 7.14}, {"nome": "Moise Kean", "squadra": "Fiorentina", "ruolo": "ATT", "tpi": 1.19, "ws": 7.35}, {"nome": "Nikola Krstovic", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 1.188, "ws": 7.05}, {"nome": "Domenico Berardi", "squadra": "Sassuolo", "ruolo": "ATT", "tpi": 1.133, "ws": null}];const TOP10_WS=[{"nome": "Lautaro Mart\u00ednez", "squadra": "Inter", "ruolo": "ATT", "ws": 7.82, "tpi": 1.4249}, {"nome": "Paulo Dybala", "squadra": "Roma", "ruolo": "ATT", "ws": 7.71, "tpi": 0.931}, {"nome": "Christian Pulisic", "squadra": "AC Milan", "ruolo": "ATT", "ws": 7.68, "tpi": 1.066}, {"nome": "Marcus Thuram", "squadra": "Inter", "ruolo": "ATT", "ws": 7.61, "tpi": 0.7435}, {"nome": "Ademola Lookman", "squadra": "Atalanta", "ruolo": "ATT", "ws": 7.58, "tpi": 0.7349}, {"nome": "Charles De Ketelaere", "squadra": "Atalanta", "ruolo": "CEN", "ws": 7.55, "tpi": 0.7654}, {"nome": "Rafael Le\u00e3o", "squadra": "AC Milan", "ruolo": "ATT", "ws": 7.52, "tpi": 0.756}, {"nome": "Hakan Calhanoglu", "squadra": "Inter", "ruolo": "CEN", "ws": 7.44, "tpi": 0.0959}, {"nome": "Federico Dimarco", "squadra": "Inter", "ruolo": "DIF", "ws": 7.38, "tpi": 1.3748}, {"nome": "Kenan Yildiz", "squadra": "Juventus", "ruolo": "ATT", "ws": 7.38, "tpi": 1.0738}];
+const DIV_POS=[{"nome": "Keinan Davis", "squadra": "Udinese", "tpi_rank": 1, "ws_rank": 19, "tpi": 1.727, "ws": 7.19}, {"nome": "Gift Orban", "squadra": "Verona", "tpi_rank": 2, "ws_rank": 24, "tpi": 1.625, "ws": 7.09}, {"nome": "Federico Dimarco", "squadra": "Inter", "tpi_rank": 5, "ws_rank": 9, "tpi": 1.375, "ws": 7.38}, {"nome": "Donyell Malen", "squadra": "Roma", "tpi_rank": 6, "ws_rank": 15, "tpi": 1.368, "ws": 7.28}, {"nome": "Giacomo Raspadori", "squadra": "Atalanta", "tpi_rank": 7, "ws_rank": 22, "tpi": 1.299, "ws": 7.14}];const DIV_NEG=[];
+const SCATTER_D=[{"nome": "Keinan Davis", "squadra": "Udinese", "ruolo": "ATT", "aii": 0.9746, "pri": 1.0, "tpi": 1.7271}, {"nome": "Gift Orban", "squadra": "Verona", "ruolo": "ATT", "aii": 0.7803, "pri": 1.0, "tpi": 1.6245}, {"nome": "Jonathan Christian David", "squadra": "Juventus", "ruolo": "ATT", "aii": 0.9667, "pri": 1.0, "tpi": 1.5749}, {"nome": "Lautaro Mart\u00ednez", "squadra": "Inter", "ruolo": "ATT", "aii": 0.9548, "pri": 0.9261, "tpi": 1.4249}, {"nome": "Federico Dimarco", "squadra": "Inter", "ruolo": "DIF", "aii": 0.9645, "pri": 1.0, "tpi": 1.3748}, {"nome": "Moise Kean", "squadra": "Fiorentina", "ruolo": "ATT", "aii": 0.9605, "pri": 0.9394, "tpi": 1.1903}, {"nome": "Nikola Krstovic", "squadra": "Atalanta", "ruolo": "ATT", "aii": 0.9551, "pri": 1.0, "tpi": 1.1875}, {"nome": "Domenico Berardi", "squadra": "Sassuolo", "ruolo": "ATT", "aii": 0.7482, "pri": 0.9286, "tpi": 1.1325}, {"nome": "Jes\u00fas Rodriguez", "squadra": "Como", "ruolo": "CEN", "aii": 0.4657, "pri": 1.0, "tpi": 1.1235}, {"nome": "Kenan Yildiz", "squadra": "Juventus", "ruolo": "ATT", "aii": 0.6329, "pri": 1.0, "tpi": 1.0738}, {"nome": "Christian Pulisic", "squadra": "AC Milan", "ruolo": "ATT", "aii": 0.9919, "pri": 1.0, "tpi": 1.066}, {"nome": "Tasos Douvikas", "squadra": "Como", "ruolo": "ATT", "aii": 0.9872, "pri": 1.0, "tpi": 1.0632}, {"nome": "Paulo Dybala", "squadra": "Roma", "ruolo": "ATT", "aii": 0.6939, "pri": 0.6598, "tpi": 0.931}, {"nome": "Mateo Pellegrino", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "aii": 0.8451, "pri": 1.0, "tpi": 0.9106}, {"nome": "Valent\u00edn Castellanos", "squadra": "Lazio", "ruolo": "ATT", "aii": 0.9928, "pri": 0.7619, "tpi": 0.8857}, {"nome": "Federico Bernardeschi", "squadra": "Bologna", "ruolo": "ATT", "aii": 0.7136, "pri": 0.9762, "tpi": 0.8663}, {"nome": "Niclas F\u00fcllkrug", "squadra": "AC Milan", "ruolo": "ATT", "aii": 0.6385, "pri": 1.0, "tpi": 0.8443}, {"nome": "Kevin De Bruyne", "squadra": "Napoli", "ruolo": "CEN", "aii": 0.5376, "pri": 0.7143, "tpi": 0.8363}, {"nome": "Gianluca Scamacca", "squadra": "Atalanta", "ruolo": "ATT", "aii": 0.9974, "pri": 0.9524, "tpi": 0.8318}, {"nome": "M'Bala Nzola", "squadra": "Pisa", "ruolo": "ATT", "aii": 0.8984, "pri": 0.881, "tpi": 0.8148}, {"nome": "Christopher Nkunku", "squadra": "AC Milan", "ruolo": "ATT", "aii": 0.9649, "pri": 1.0, "tpi": 0.8121}, {"nome": "Francesco Pio Esposito", "squadra": "Inter", "ruolo": "ATT", "aii": 0.5013, "pri": 1.0, "tpi": 0.8013}, {"nome": "Nico Paz", "squadra": "Como", "ruolo": "ATT", "aii": 0.5738, "pri": 1.0, "tpi": 0.7824}, {"nome": "Rasmus H\u00f8jlund", "squadra": "Napoli", "ruolo": "ATT", "aii": 0.7284, "pri": 1.0, "tpi": 0.7817}, {"nome": "Charles De Ketelaere", "squadra": "Atalanta", "ruolo": "CEN", "aii": 0.8945, "pri": 0.955, "tpi": 0.7654}, {"nome": "Jari Vandeputte", "squadra": "Cremonese", "ruolo": "CEN", "aii": 0.8641, "pri": 1.0, "tpi": 0.7636}, {"nome": "Andrea Pinamonti", "squadra": "Sassuolo", "ruolo": "ATT", "aii": 0.9945, "pri": 1.0, "tpi": 0.7601}, {"nome": "Rafael Le\u00e3o", "squadra": "AC Milan", "ruolo": "ATT", "aii": 0.9924, "pri": 1.0, "tpi": 0.756}, {"nome": "Marcus Thuram", "squadra": "Inter", "ruolo": "ATT", "aii": 0.9529, "pri": 1.0, "tpi": 0.7435}, {"nome": "Ademola Lookman", "squadra": "Atalanta", "ruolo": "ATT", "aii": 0.9619, "pri": 0.7857, "tpi": 0.7349}, {"nome": "Che Adams", "squadra": "Torino", "ruolo": "ATT", "aii": 0.8919, "pri": 1.0, "tpi": 0.6578}, {"nome": "Adrian Benedyczak", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "aii": 0.9153, "pri": 0.8333, "tpi": 0.6545}, {"nome": "Thijs Dallinga", "squadra": "Bologna", "ruolo": "ATT", "aii": 0.9356, "pri": 0.9524, "tpi": 0.6542}, {"nome": "Wesley", "squadra": "Roma", "ruolo": "ATT", "aii": 0.9111, "pri": 1.0, "tpi": 0.6535}, {"nome": "Henrik Meister", "squadra": "Pisa", "ruolo": "ATT", "aii": 0.6527, "pri": 1.0, "tpi": 0.5855}, {"nome": "Antonio Sanabria", "squadra": "Cremonese", "ruolo": "ATT", "aii": 0.8676, "pri": 0.9762, "tpi": 0.5511}, {"nome": "Duv\u00e1n Zapata", "squadra": "Torino", "ruolo": "ATT", "aii": 0.525, "pri": 1.0, "tpi": 0.5388}, {"nome": "Rafik Belghali", "squadra": "Verona", "ruolo": "DIF", "aii": 0.7905, "pri": 0.881, "tpi": 0.5229}, {"nome": "Medon Berisha", "squadra": "Lecce", "ruolo": "ATT", "aii": 0.6595, "pri": 0.7645, "tpi": 0.5025}, {"nome": "Riccardo Orsolini", "squadra": "Bologna", "ruolo": "ATT", "aii": 0.9251, "pri": 1.0, "tpi": 0.491}, {"nome": "Nicolo Zaniolo", "squadra": "Udinese", "ruolo": "ATT", "aii": 0.9903, "pri": 1.0, "tpi": 0.4906}, {"nome": "Sebastiano Esposito", "squadra": "Cagliari", "ruolo": "ATT", "aii": 0.784, "pri": 1.0, "tpi": 0.4899}, {"nome": "Armand Lauriente", "squadra": "Sassuolo", "ruolo": "ATT", "aii": 0.9961, "pri": 1.0, "tpi": 0.4839}, {"nome": "Franco V\u00e1zquez", "squadra": "Cremonese", "ruolo": "CEN", "aii": 0.4402, "pri": 0.8571, "tpi": 0.4716}, {"nome": "Kristian Thorstvedt", "squadra": "Sassuolo", "ruolo": "CEN", "aii": 0.9999, "pri": 1.0, "tpi": 0.4695}, {"nome": "Alieu Fadera", "squadra": "Sassuolo", "ruolo": "ATT", "aii": 0.8426, "pri": 0.955, "tpi": 0.4688}, {"nome": "Matteo Cancellieri", "squadra": "Lazio", "ruolo": "ATT", "aii": 0.8184, "pri": 1.0, "tpi": 0.4447}, {"nome": "David Neres", "squadra": "Napoli", "ruolo": "ATT", "aii": 0.9308, "pri": 0.836, "tpi": 0.3679}, {"nome": "Mattia Zaccagni", "squadra": "Lazio", "ruolo": "ATT", "aii": 0.8158, "pri": 1.0, "tpi": 0.3502}, {"nome": "Lorenzo Pellegrini", "squadra": "Roma", "ruolo": "CEN", "aii": 0.888, "pri": 0.9762, "tpi": 0.3454}, {"nome": "Gabriele Piccinini", "squadra": "Pisa", "ruolo": "ATT", "aii": 0.8892, "pri": 0.9048, "tpi": 0.3388}, {"nome": "Juan Miranda", "squadra": "Bologna", "ruolo": "DIF", "aii": 0.9662, "pri": 0.8528, "tpi": 0.329}, {"nome": "Pedro", "squadra": "Lazio", "ruolo": "ATT", "aii": 0.4012, "pri": 0.9762, "tpi": 0.326}, {"nome": "Giovanni Simeone", "squadra": "Torino", "ruolo": "ATT", "aii": 0.8196, "pri": 1.0, "tpi": 0.3184}, {"nome": "Dusan Vlahovic", "squadra": "Juventus", "ruolo": "ATT", "aii": 0.9652, "pri": 0.5934, "tpi": 0.3173}, {"nome": "Lassana Coulibaly", "squadra": "Lecce", "ruolo": "CEN", "aii": 0.8745, "pri": 0.955, "tpi": 0.3121}, {"nome": "Mario Pasalic", "squadra": "Atalanta", "ruolo": "CEN", "aii": 0.7891, "pri": 1.0, "tpi": 0.3092}, {"nome": "Nikola Stulic", "squadra": "Lecce", "ruolo": "ATT", "aii": 0.8552, "pri": 1.0, "tpi": 0.3034}, {"nome": "Caleb Ekuban", "squadra": "Genoa", "ruolo": "ATT", "aii": 0.7205, "pri": 1.0, "tpi": 0.3002}, {"nome": "Weston McKennie", "squadra": "Juventus", "ruolo": "CEN", "aii": 0.9908, "pri": 1.0, "tpi": 0.2895}, {"nome": "Nicola Zalewski", "squadra": "Atalanta", "ruolo": "CEN", "aii": 0.8236, "pri": 1.0, "tpi": 0.2887}, {"nome": "Evan Ferguson", "squadra": "Roma", "ruolo": "ATT", "aii": 0.5634, "pri": 0.836, "tpi": 0.2551}, {"nome": "Lorenzo Colombo", "squadra": "Genoa", "ruolo": "ATT", "aii": 0.813, "pri": 1.0, "tpi": 0.2385}, {"nome": "Nicolo Fagioli", "squadra": "Fiorentina", "ruolo": "CEN", "aii": 0.8996, "pri": 1.0, "tpi": 0.2148}, {"nome": "Nikola Vlasic", "squadra": "Torino", "ruolo": "CEN", "aii": 0.9602, "pri": 1.0, "tpi": 0.2126}, {"nome": "Vitinha", "squadra": "Genoa", "ruolo": "ATT", "aii": 0.9626, "pri": 1.0, "tpi": 0.211}, {"nome": "Nicol\u00f2 Cambiaghi", "squadra": "Bologna", "ruolo": "ATT", "aii": 0.909, "pri": 1.0, "tpi": 0.2089}, {"nome": "Jonathan Rowe", "squadra": "Bologna", "ruolo": "ATT", "aii": 0.7052, "pri": 0.9524, "tpi": 0.2057}, {"nome": "Giorgio Scalvini", "squadra": "Atalanta", "ruolo": "DIF", "aii": 0.6459, "pri": 0.8333, "tpi": 0.1988}, {"nome": "Albert Gudmundsson", "squadra": "Fiorentina", "ruolo": "ATT", "aii": 0.9456, "pri": 1.0, "tpi": 0.1902}, {"nome": "Scott McTominay", "squadra": "Napoli", "ruolo": "CEN", "aii": 0.9176, "pri": 0.8617, "tpi": 0.1899}, {"nome": "Jamie Vardy", "squadra": "Cremonese", "ruolo": "ATT", "aii": 0.391, "pri": 0.955, "tpi": 0.1868}, {"nome": "Gabriele Zappa", "squadra": "Cagliari", "ruolo": "DIF", "aii": 0.9701, "pri": 1.0, "tpi": 0.1839}, {"nome": "Adri\u00e1n Bernab\u00e9", "squadra": "Parma Calcio 1913", "ruolo": "CEN", "aii": 0.8785, "pri": 0.955, "tpi": 0.1837}, {"nome": "Ruslan Malinovskiy", "squadra": "Genoa", "ruolo": "CEN", "aii": 0.6548, "pri": 0.955, "tpi": 0.1789}, {"nome": "Cristian Volpato", "squadra": "Sassuolo", "ruolo": "CEN", "aii": 0.6527, "pri": 0.8333, "tpi": 0.1779}, {"nome": "Mart\u00edn Payero", "squadra": "Cremonese", "ruolo": "CEN", "aii": 0.9915, "pri": 0.9524, "tpi": 0.1655}, {"nome": "Ange-Yoan Bonny", "squadra": "Inter", "ruolo": "ATT", "aii": 0.6585, "pri": 1.0, "tpi": 0.1553}, {"nome": "Patrick Cutrone", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "aii": 0.9705, "pri": 0.8571, "tpi": 0.1501}, {"nome": "Guillermo Marip\u00e1n", "squadra": "Torino", "ruolo": "DIF", "aii": 0.7297, "pri": 1.0, "tpi": 0.149}, {"nome": "Henrikh Mkhitaryan", "squadra": "Inter", "ruolo": "CEN", "aii": 0.4378, "pri": 0.955, "tpi": 0.1471}, {"nome": "Santiago Gim\u00e9nez", "squadra": "AC Milan", "ruolo": "ATT", "aii": 0.8862, "pri": 0.7143, "tpi": 0.1246}, {"nome": "Matteo Tramoni", "squadra": "Pisa", "ruolo": "CEN", "aii": 0.9662, "pri": 1.0, "tpi": 0.119}, {"nome": "Emil Holm", "squadra": "Bologna", "ruolo": "DIF", "aii": 0.9494, "pri": 0.6191, "tpi": 0.1176}, {"nome": "Gaetano Oristanio", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "aii": 0.7617, "pri": 0.9048, "tpi": 0.1143}, {"nome": "\u00c1lvaro Morata", "squadra": "Como", "ruolo": "ATT", "aii": 0.6179, "pri": 0.9286, "tpi": 0.1112}, {"nome": "Santiago Castro", "squadra": "Bologna", "ruolo": "ATT", "aii": 0.571, "pri": 1.0, "tpi": 0.111}, {"nome": "Roberto Piccoli", "squadra": "Fiorentina", "ruolo": "ATT", "aii": 0.9033, "pri": 1.0, "tpi": 0.1099}, {"nome": "Martin Baturina", "squadra": "Como", "ruolo": "CEN", "aii": 0.7245, "pri": 0.8296, "tpi": 0.0967}, {"nome": "Hakan Calhanoglu", "squadra": "Inter", "ruolo": "CEN", "aii": 0.7121, "pri": 0.8436, "tpi": 0.0959}, {"nome": "Lucas Da Cunha", "squadra": "Como", "ruolo": "CEN", "aii": 0.8753, "pri": 1.0, "tpi": 0.0842}, {"nome": "Giovanni Fabbian", "squadra": "Bologna", "ruolo": "CEN", "aii": 0.7332, "pri": 0.8333, "tpi": 0.0823}, {"nome": "Leo \u00d8stigard", "squadra": "Genoa", "ruolo": "DIF", "aii": 0.973, "pri": 1.0, "tpi": 0.0808}, {"nome": "Riccardo Sottil", "squadra": "Lecce", "ruolo": "ATT", "aii": 0.9932, "pri": 1.0, "tpi": 0.0789}, {"nome": "Luis Henrique", "squadra": "Inter", "ruolo": "ATT", "aii": 0.8332, "pri": 1.0, "tpi": 0.0743}, {"nome": "Mergim Vojvoda", "squadra": "Como", "ruolo": "CEN", "aii": 0.7876, "pri": 1.0, "tpi": 0.068}, {"nome": "Mehdi Leris", "squadra": "Pisa", "ruolo": "CEN", "aii": 0.9836, "pri": 1.0, "tpi": 0.0644}, {"nome": "Jacobo Ram\u00f3n", "squadra": "Como", "ruolo": "DIF", "aii": 0.543, "pri": 1.0, "tpi": 0.064}];
+const SCATTER_E=[{"nome": "Keinan Davis", "squadra": "Udinese", "ruolo": "ATT", "tpi": 1.7271, "pro": 1.1588}, {"nome": "Gift Orban", "squadra": "Verona", "ruolo": "ATT", "tpi": 1.6245, "pro": 0.692}, {"nome": "Jonathan Christian David", "squadra": "Juventus", "ruolo": "ATT", "tpi": 1.5749, "pro": 1.0904}, {"nome": "Lautaro Mart\u00ednez", "squadra": "Inter", "ruolo": "ATT", "tpi": 1.4249, "pro": 0.707}, {"nome": "Federico Dimarco", "squadra": "Inter", "ruolo": "DIF", "tpi": 1.3748, "pro": 1.0188}, {"nome": "Donyell Malen", "squadra": "Roma", "ruolo": "ATT", "tpi": 1.3683, "pro": 1.2648}, {"nome": "Giacomo Raspadori", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 1.2986, "pro": 1.1098}, {"nome": "Moise Kean", "squadra": "Fiorentina", "ruolo": "ATT", "tpi": 1.1903, "pro": 0.6967}, {"nome": "Nikola Krstovic", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 1.1875, "pro": 0.9355}, {"nome": "Domenico Berardi", "squadra": "Sassuolo", "ruolo": "ATT", "tpi": 1.1325, "pro": 0.1599}, {"nome": "Jes\u00fas Rodriguez", "squadra": "Como", "ruolo": "CEN", "tpi": 1.1235, "pro": -0.1755}, {"nome": "Kenan Yildiz", "squadra": "Juventus", "ruolo": "ATT", "tpi": 1.0738, "pro": 0.1802}, {"nome": "Christian Pulisic", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 1.066, "pro": 0.9769}, {"nome": "Tasos Douvikas", "squadra": "Como", "ruolo": "ATT", "tpi": 1.0632, "pro": 0.9655}, {"nome": "Paulo Dybala", "squadra": "Roma", "ruolo": "ATT", "tpi": 0.931, "pro": -0.9798}, {"nome": "Mateo Pellegrino", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "tpi": 0.9106, "pro": 0.5982}, {"nome": "Valent\u00edn Castellanos", "squadra": "Lazio", "ruolo": "ATT", "tpi": 0.8857, "pro": -0.0702}, {"nome": "Federico Bernardeschi", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.8663, "pro": 0.1919}, {"nome": "Niclas F\u00fcllkrug", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 0.8443, "pro": 0.1162}, {"nome": "Kevin De Bruyne", "squadra": "Napoli", "ruolo": "CEN", "tpi": 0.8363, "pro": -1.2978}, {"nome": "Gianluca Scamacca", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 0.8318, "pro": 0.7134}, {"nome": "M'Bala Nzola", "squadra": "Pisa", "ruolo": "ATT", "tpi": 0.8148, "pro": 0.1907}, {"nome": "Christopher Nkunku", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 0.8121, "pro": 0.8321}, {"nome": "Francesco Pio Esposito", "squadra": "Inter", "ruolo": "ATT", "tpi": 0.8013, "pro": -0.2036}, {"nome": "Nico Paz", "squadra": "Como", "ruolo": "ATT", "tpi": 0.7824, "pro": -0.0485}, {"nome": "Rasmus H\u00f8jlund", "squadra": "Napoli", "ruolo": "ATT", "tpi": 0.7817, "pro": 0.2955}, {"nome": "Charles De Ketelaere", "squadra": "Atalanta", "ruolo": "CEN", "tpi": 0.7654, "pro": 0.4729}, {"nome": "Jari Vandeputte", "squadra": "Cremonese", "ruolo": "CEN", "tpi": 0.7636, "pro": 0.5915}, {"nome": "Andrea Pinamonti", "squadra": "Sassuolo", "ruolo": "ATT", "tpi": 0.7601, "pro": 0.8807}, {"nome": "Rafael Le\u00e3o", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 0.756, "pro": 0.8747}, {"nome": "Marcus Thuram", "squadra": "Inter", "ruolo": "ATT", "tpi": 0.7435, "pro": 0.7826}, {"nome": "Ademola Lookman", "squadra": "Atalanta", "ruolo": "ATT", "tpi": 0.7349, "pro": -0.0904}, {"nome": "Che Adams", "squadra": "Torino", "ruolo": "ATT", "tpi": 0.6578, "pro": 0.6182}, {"nome": "Adrian Benedyczak", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "tpi": 0.6545, "pro": -0.0232}, {"nome": "Thijs Dallinga", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.6542, "pro": 0.5166}, {"nome": "Wesley", "squadra": "Roma", "ruolo": "ATT", "tpi": 0.6535, "pro": 0.6595}, {"nome": "Henrik Meister", "squadra": "Pisa", "ruolo": "ATT", "tpi": 0.5855, "pro": 0.0615}, {"nome": "Antonio Sanabria", "squadra": "Cremonese", "ruolo": "ATT", "tpi": 0.5511, "pro": 0.4296}, {"nome": "Duv\u00e1n Zapata", "squadra": "Torino", "ruolo": "ATT", "tpi": 0.5388, "pro": -0.2384}, {"nome": "Rafik Belghali", "squadra": "Verona", "ruolo": "DIF", "tpi": 0.5229, "pro": -0.1468}, {"nome": "Medon Berisha", "squadra": "Lecce", "ruolo": "ATT", "tpi": 0.5025, "pro": -0.9292}, {"nome": "Riccardo Orsolini", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.491, "pro": 0.6365}, {"nome": "Nicolo Zaniolo", "squadra": "Udinese", "ruolo": "ATT", "tpi": 0.4906, "pro": 0.7815}, {"nome": "Sebastiano Esposito", "squadra": "Cagliari", "ruolo": "ATT", "tpi": 0.4899, "pro": 0.322}, {"nome": "Armand Lauriente", "squadra": "Sassuolo", "ruolo": "ATT", "tpi": 0.4839, "pro": 0.7922}, {"nome": "Franco V\u00e1zquez", "squadra": "Cremonese", "ruolo": "CEN", "tpi": 0.4716, "pro": -1.0431}, {"nome": "Kristian Thorstvedt", "squadra": "Sassuolo", "ruolo": "CEN", "tpi": 0.4695, "pro": 0.7959}, {"nome": "Alieu Fadera", "squadra": "Sassuolo", "ruolo": "ATT", "tpi": 0.4688, "pro": 0.2585}, {"nome": "Matteo Cancellieri", "squadra": "Lazio", "ruolo": "ATT", "tpi": 0.4447, "pro": 0.3835}, {"nome": "David Neres", "squadra": "Napoli", "ruolo": "ATT", "tpi": 0.3679, "pro": -0.073}, {"nome": "Mattia Zaccagni", "squadra": "Lazio", "ruolo": "ATT", "tpi": 0.3502, "pro": 0.3462}, {"nome": "Lorenzo Pellegrini", "squadra": "Roma", "ruolo": "CEN", "tpi": 0.3454, "pro": 0.4065}, {"nome": "Gabriele Piccinini", "squadra": "Pisa", "ruolo": "ATT", "tpi": 0.3388, "pro": 0.1104}, {"nome": "Juan Miranda", "squadra": "Bologna", "ruolo": "DIF", "tpi": 0.329, "pro": 0.0626}, {"nome": "Pedro", "squadra": "Lazio", "ruolo": "ATT", "tpi": 0.326, "pro": -0.6838}, {"nome": "Giovanni Simeone", "squadra": "Torino", "ruolo": "ATT", "tpi": 0.3184, "pro": 0.3441}, {"nome": "Dusan Vlahovic", "squadra": "Juventus", "ruolo": "ATT", "tpi": 0.3173, "pro": -0.5804}, {"nome": "Lassana Coulibaly", "squadra": "Lecce", "ruolo": "CEN", "tpi": 0.3121, "pro": 0.2773}, {"nome": "Mario Pasalic", "squadra": "Atalanta", "ruolo": "CEN", "tpi": 0.3092, "pro": 0.2731}, {"nome": "Nikola Stulic", "squadra": "Lecce", "ruolo": "ATT", "tpi": 0.3034, "pro": 0.4183}, {"nome": "Caleb Ekuban", "squadra": "Genoa", "ruolo": "ATT", "tpi": 0.3002, "pro": 0.1174}, {"nome": "Weston McKennie", "squadra": "Juventus", "ruolo": "CEN", "tpi": 0.2895, "pro": 0.7156}, {"nome": "Nicola Zalewski", "squadra": "Atalanta", "ruolo": "CEN", "tpi": 0.2887, "pro": 0.3431}, {"nome": "Evan Ferguson", "squadra": "Roma", "ruolo": "ATT", "tpi": 0.2551, "pro": -0.9286}, {"nome": "Lorenzo Colombo", "squadra": "Genoa", "ruolo": "ATT", "tpi": 0.2385, "pro": 0.3028}, {"nome": "Nicolo Fagioli", "squadra": "Fiorentina", "ruolo": "CEN", "tpi": 0.2148, "pro": 0.4877}, {"nome": "Nikola Vlasic", "squadra": "Torino", "ruolo": "CEN", "tpi": 0.2126, "pro": 0.6219}, {"nome": "Vitinha", "squadra": "Genoa", "ruolo": "ATT", "tpi": 0.211, "pro": 0.6267}, {"nome": "Nicol\u00f2 Cambiaghi", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.2089, "pro": 0.5066}, {"nome": "Jonathan Rowe", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.2057, "pro": -0.1459}, {"nome": "Giorgio Scalvini", "squadra": "Atalanta", "ruolo": "DIF", "tpi": 0.1988, "pro": -0.7749}, {"nome": "Albert Gudmundsson", "squadra": "Fiorentina", "ruolo": "ATT", "tpi": 0.1902, "pro": 0.5819}, {"nome": "Scott McTominay", "squadra": "Napoli", "ruolo": "CEN", "tpi": 0.1899, "pro": -0.055}, {"nome": "Jamie Vardy", "squadra": "Cremonese", "ruolo": "ATT", "tpi": 0.1868, "pro": -0.8409}, {"nome": "Gabriele Zappa", "squadra": "Cagliari", "ruolo": "DIF", "tpi": 0.1839, "pro": 0.6343}, {"nome": "Adri\u00e1n Bernab\u00e9", "squadra": "Parma Calcio 1913", "ruolo": "CEN", "tpi": 0.1837, "pro": 0.2434}, {"nome": "Ruslan Malinovskiy", "squadra": "Genoa", "ruolo": "CEN", "tpi": 0.1789, "pro": -0.2562}, {"nome": "Cristian Volpato", "squadra": "Sassuolo", "ruolo": "CEN", "tpi": 0.1779, "pro": -0.7667}, {"nome": "Mart\u00edn Payero", "squadra": "Cremonese", "ruolo": "CEN", "tpi": 0.1655, "pro": 0.4781}, {"nome": "Ange-Yoan Bonny", "squadra": "Inter", "ruolo": "ATT", "tpi": 0.1553, "pro": -0.0689}, {"nome": "Patrick Cutrone", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "tpi": 0.1501, "pro": 0.0304}, {"nome": "Guillermo Marip\u00e1n", "squadra": "Torino", "ruolo": "DIF", "tpi": 0.149, "pro": 0.0875}, {"nome": "Henrikh Mkhitaryan", "squadra": "Inter", "ruolo": "CEN", "tpi": 0.1471, "pro": -0.7499}, {"nome": "Santiago Gim\u00e9nez", "squadra": "AC Milan", "ruolo": "ATT", "tpi": 0.1246, "pro": -0.7589}, {"nome": "Matteo Tramoni", "squadra": "Pisa", "ruolo": "CEN", "tpi": 0.119, "pro": 0.604}, {"nome": "Emil Holm", "squadra": "Bologna", "ruolo": "DIF", "tpi": 0.1176, "pro": -0.6821}, {"nome": "Gaetano Oristanio", "squadra": "Parma Calcio 1913", "ruolo": "ATT", "tpi": 0.1143, "pro": -0.2483}, {"nome": "\u00c1lvaro Morata", "squadra": "Como", "ruolo": "ATT", "tpi": 0.1112, "pro": -0.4706}, {"nome": "Santiago Castro", "squadra": "Bologna", "ruolo": "ATT", "tpi": 0.111, "pro": -0.2785}, {"nome": "Roberto Piccoli", "squadra": "Fiorentina", "ruolo": "ATT", "tpi": 0.1099, "pro": 0.4609}, {"nome": "Martin Baturina", "squadra": "Como", "ruolo": "CEN", "tpi": 0.0967, "pro": -0.6493}, {"nome": "Hakan Calhanoglu", "squadra": "Inter", "ruolo": "CEN", "tpi": 0.0959, "pro": -0.619}, {"nome": "Lucas Da Cunha", "squadra": "Como", "ruolo": "CEN", "tpi": 0.0842, "pro": 0.39}, {"nome": "Giovanni Fabbian", "squadra": "Bologna", "ruolo": "CEN", "tpi": 0.0823, "pro": -0.6194}, {"nome": "Leo \u00d8stigard", "squadra": "Genoa", "ruolo": "DIF", "tpi": 0.0808, "pro": 0.6064}, {"nome": "Riccardo Sottil", "squadra": "Lecce", "ruolo": "ATT", "tpi": 0.0789, "pro": 0.6507}, {"nome": "Luis Henrique", "squadra": "Inter", "ruolo": "ATT", "tpi": 0.0743, "pro": 0.293}, {"nome": "Mergim Vojvoda", "squadra": "Como", "ruolo": "CEN", "tpi": 0.068, "pro": 0.1894}, {"nome": "Mehdi Leris", "squadra": "Pisa", "ruolo": "CEN", "tpi": 0.0644, "pro": 0.6245}, {"nome": "Jacobo Ram\u00f3n", "squadra": "Como", "ruolo": "DIF", "tpi": 0.064, "pro": -0.3565}];
+const SL_A=0.1191;const IC_A=6.6253;
+const SL_C=0.5717;const IC_C=0.1213;
+const R_A=0.3543;const R_C=0.7044;const OV=20;
+
+const PL={responsive:true,displayModeBar:false};
+const BL={paper_bgcolor:"transparent",plot_bgcolor:"transparent",
+  font:{color:"rgba(235,235,245,.28)",family:"-apple-system,sans-serif"},
+  xaxis:{gridcolor:"rgba(255,255,255,.05)",color:"rgba(235,235,245,.28)",
+    tickfont:{size:10},zeroline:false},
+  yaxis:{gridcolor:"rgba(255,255,255,.05)",color:"rgba(235,235,245,.28)",
+    tickfont:{size:10},zeroline:false}};
+const RC_MAP={"ATT":"#ff9f0a","CEN":"#30d158","DIF":"#0a84ff","":"#48484a"};
+const rcf=r=>RC_MAP[r]||"#636366";
+
+const SPIEG={
+  pearson:{icon:"📊",ttl:"Correlazione di Pearson",
+    sub:"r = Σ[(xi−x̄)(yi−ȳ)] / [n·σx·σy]",
+    body:"Misura la relazione lineare (–1 a +1).\nr=+1: diretta perfetta.\nr=0: nessuna relazione.\nr=–1: inversa.\n\nr=0.4–0.7 è ideale: conferma qualità reale con punto di vista diverso.",
+    ex:"r=0.53, p=0.004 → moderata, significativa. R²=0.28."},
+  scatter:{icon:"🔵",ttl:"Come leggere lo Scatter",
+    sub:"X = TPI | Y = Voto Fantacalcio",
+    body:"Ogni punto = un giocatore. Colore = ruolo.\n\nLontano dalla retta = sottovalutato o sopravvalutato.",
+    ex:"Alto a sx: voto alto ma TPI basso → sopravvalutato. Basso a dx: TPI alto, voto basso → da valorizzare."},
+  overlap:{icon:"🎯",ttl:"Overlap Top 10",
+    sub:"% giocatori in entrambe le classifiche",
+    body:"Overlap basso non è negativo: il TPI trova talenti che i sistemi tradizionali ignorano.",
+    ex:"Overlap 30% = 3/10 in comune. I 7 diversi nella lista TPI sono potenziali 'hidden gems'."},
+  divergenze:{icon:"🔍",ttl:"Divergenze TPI vs WhoScored",
+    sub:"Gap ≥4 posizioni tra i due sistemi",
+    body:"Sottovalutati: TPI rank >> WhoScored → impatto offensivo non catturato.\n\nSopravvalutati: WhoScored >> TPI → percezione influenzata da aspetti non offensivi.",
+    ex:"TPI #3, WhoScored #12: impatto offensivo reale non visibile nei voti generali."},
+  backtest:{icon:"⏱️",ttl:"Backtest Predittivo",
+    sub:"Spearman r tra prima e seconda fase",
+    body:"Verifica se la classifica della prima fase predice quella della seconda.\n\nSpearman (rank-based) è robusto agli outlier.",
+    ex:"r=0.58: chi era top10 nella prima fase tende a restare top10."},
+  scatter_c:{icon:"📈",ttl:"Scatter Backtest",
+    sub:"X = prima fase | Y = seconda fase",
+    body:"Sopra la diagonale: migliorati. Sotto: peggiorati. Vicino alla retta: coerenti.",
+    ex:"Alto a destra = qualità stabile confermata. Alto a sx = giocatore in crescita stagionale."},
+  
+  v2: {icon:"🧬",ttl:"Età Index & Affidabilità Fisica",sub:"AII e PRI — indici v2 del sistema",
+    body:"AII (Age Impact Index) misura il valore nel ciclo di carriera: picco a 27 anni (gaussiana σ=4.5). Un 22enne ha AII basso ma potenziale massimo.\n\nPRI (Physical Reliability Index) misura l'affidabilità fisica storica: disponibilità, numero infortuni, gravità.",
+    ex:"AII 0.90 + TPI +1.5 = giocatore al picco con qualità reale. AII 0.45 + TPI +1.2 = giovane di prospettiva (scouting a 3 anni)."},
+  scatter_d: {icon:"🔵",ttl:"Scatter AII vs PRI",sub:"X = AII (età), Y = PRI (fisico)",
+    body:"Ogni punto è un giocatore. Colore = ruolo.\n\nIn alto a destra: giocatore al picco dell'età E affidabile fisicamente = profilo ideale.\nIn basso a sinistra: giovane e fragile = alto potenziale, alto rischio.",
+    ex:"AII 0.85, PRI 0.90: veterano affidabile in picco. AII 0.42, PRI 0.88: giovane sano — scouting top."},
+  tpi_pro: {icon:"✨",ttl:"TPI Pro — 6 Dimensioni",sub:"TPI = 4 dim. TPI Pro = 4 + AII + PRI",
+    body:"Il TPI Pro aggiunge z(AII) e z(PRI) alla media dei 4 z-score classici.\n\nChi sale: giovani in picco con buona affidabilità fisica.\nChi scende: veterani fragili che il TPI classico sopravvaluta.\n\nr(TPI,TPI Pro) ideale = 0.80–0.95.",
+    ex:"r=0.88: TPI Pro è coerente ma aggiunge informazione reale. 15 giocatori salgono >2 posizioni grazie ad AII alto."},
+  scatter_e: {icon:"📈",ttl:"Scatter TPI vs TPI Pro",sub:"X = TPI classico | Y = TPI Pro",
+    body:"Punti sopra la diagonale: guadagnano con TPI Pro (AII/PRI alti).\nPunti sotto: perdono.\n\nLa retta tratteggiata viola = regressione. Grigia = y=x (nessuna variazione).",
+    ex:"Punto molto sopra la diagonale: giovane affidabile che il TPI classico sottovalutava."},
+};
+
+function openM(k){
+  const s=SPIEG[k];if(!s)return;
+  document.getElementById("m-icon").textContent=s.icon;
+  document.getElementById("m-ttl").textContent=s.ttl;
+  document.getElementById("m-sub").textContent=s.sub;
+  document.getElementById("m-body").innerHTML=s.body.replace(/\n/g,"<br>");
+  document.getElementById("m-ex").textContent="Esempio: "+s.ex;
+  document.getElementById("modal").classList.add("open");
+}
+function closeM(){document.getElementById("modal").classList.remove("open");}
+
+function toggleAcc(id){
+  const b=document.getElementById(id),c=document.getElementById("chev-"+id);
+  const o=b.classList.toggle("open");
+  if(c)c.style.transform=o?"rotate(180deg)":"";
+}
+
+/* ── Chart A ── */
+(function(){
+  if(!SCATTER_A||!SCATTER_A.length){
+    document.getElementById("chart-a").innerHTML=
+      '<div style="color:var(--lt);padding:32px;text-align:center;font-size:13px">Aggiorna FANTA_VOTI con i voti reali</div>';
+    return;
+  }
+  var xv=SCATTER_A.map(d=>d.tpi),yv=SCATTER_A.map(d=>d.voto);
+  var xmn=Math.min(...xv),xmx=Math.max(...xv);
+  Plotly.newPlot("chart-a",[
+    {type:"scatter",mode:"markers",x:xv,y:yv,
+      text:SCATTER_A.map(d=>d.nome+"<br>"+d.squadra),
+      hovertemplate:"%{text}<br>TPI: %{x:.3f}<br>Fanta: %{y:.2f}<extra></extra>",
+      marker:{color:SCATTER_A.map(d=>rcf(d.ruolo)),size:9,opacity:.85,
+        line:{color:"rgba(255,255,255,.15)",width:1}}},
+    {type:"scatter",mode:"lines",x:[xmn,xmx],
+      y:[SL_A===null?0:SL_A*xmn+(IC_A||0),SL_A===null?0:SL_A*xmx+(IC_A||0)],
+      line:{color:"rgba(10,132,255,.5)",width:2,dash:"dot"},hoverinfo:"skip"},
+  ],{...BL,xaxis:{...BL.xaxis,title:"TPI Totale"},
+    yaxis:{...BL.yaxis,title:"Voto Fantacalcio"},
+    margin:{t:8,b:46,l:50,r:8},height:300,showlegend:false,
+    annotations:[{x:.02,y:.97,xref:"paper",yref:"paper",
+      text:"r = "+(R_A!==null?R_A.toFixed(3):"—"),showarrow:false,
+      font:{color:"rgba(235,235,245,.6)",size:13},align:"left"}]},PL);
+})();
+
+/* ── Table B ── */
+(function(){
+  var tbT=document.getElementById("tb-tpi");
+  TOP10_TPI.forEach((r,i)=>{
+    var ws=r.ws!=null?r.ws.toFixed(2):"—";
+    var inWs=TOP10_WS.some(w=>w.nome===r.nome);
+    tbT.innerHTML+=`<tr><td class="tv">${i+1}</td>
+      <td style="font-weight:500">${r.nome}${inWs?' <span style="color:var(--green);font-size:10px">&#10003;</span>':""}</td>
+      <td style="color:var(--lt);font-size:11px">${r.squadra}</td>
+      <td class="torng">${r.tpi>=0?"+":""}${r.tpi.toFixed(2)}</td>
+      <td class="tv">${ws}</td></tr>`;
+  });
+  var tbW=document.getElementById("tb-ws");
+  TOP10_WS.forEach((r,i)=>{
+    var tpi=r.tpi!=null?(r.tpi>=0?"+":"")+r.tpi.toFixed(2):"—";
+    var inT=TOP10_TPI.some(t=>t.nome===r.nome);
+    tbW.innerHTML+=`<tr><td class="tv">${i+1}</td>
+      <td style="font-weight:500">${r.nome}${inT?' <span style="color:var(--green);font-size:10px">&#10003;</span>':""}</td>
+      <td style="color:var(--lt);font-size:11px">${r.squadra}</td>
+      <td class="torng">${r.ws.toFixed(2)}</td>
+      <td class="tv">${tpi}</td></tr>`;
+  });
+  var dc=document.getElementById("div-content");
+  if(!DIV_POS.length&&!DIV_NEG.length){
+    dc.innerHTML='<p style="color:var(--lt);font-size:13px;padding:8px 0">Nessuna divergenza ≥4 posizioni rilevata.</p>';return;}
+  var h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">';
+  if(DIV_POS.length){h+='<div><div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px">&#128200; Sottovalutati</div>';
+    DIV_POS.forEach(d=>{h+=`<div style="padding:10px;background:rgba(48,209,88,.05);border:1px solid rgba(48,209,88,.15);border-radius:10px;margin-bottom:6px">
+      <div style="font-weight:600;font-size:13px">${d.nome} <span style="color:var(--lt);font-weight:400;font-size:11px">${d.squadra}</span></div>
+      <div style="font-size:12px;color:var(--lt);margin-top:3px">TPI: <span style="color:var(--green);font-family:var(--mono)">#${d.tpi_rank}</span> vs WS: <span style="font-family:var(--mono)">#${d.ws_rank}</span></div>
+    </div>`;});h+='</div>';}
+  if(DIV_NEG.length){h+='<div><div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:8px">&#9888; Sopravvalutati</div>';
+    DIV_NEG.forEach(d=>{h+=`<div style="padding:10px;background:rgba(255,69,58,.05);border:1px solid rgba(255,69,58,.15);border-radius:10px;margin-bottom:6px">
+      <div style="font-weight:600;font-size:13px">${d.nome} <span style="color:var(--lt);font-weight:400;font-size:11px">${d.squadra}</span></div>
+      <div style="font-size:12px;color:var(--lt);margin-top:3px">TPI: <span style="color:var(--red);font-family:var(--mono)">#${d.tpi_rank}</span> vs WS: <span style="font-family:var(--mono)">#${d.ws_rank}</span></div>
+    </div>`;});h+='</div>';}
+  dc.innerHTML=h+'</div>';
+})();
+
+/* ── Chart C ── */
+(function(){
+  if(!SCATTER_C||!SCATTER_C.length){
+    document.getElementById("chart-c").innerHTML=
+      '<div style="color:var(--lt);padding:32px;text-align:center;font-size:13px">Avvia MySQL per il backtest completo</div>';
+    return;
+  }
+  var xv=SCATTER_C.map(d=>d.early),yv=SCATTER_C.map(d=>d.late);
+  var xmn=Math.min(...xv),xmx=Math.max(...xv);
+  Plotly.newPlot("chart-c",[
+    {type:"scatter",mode:"markers",x:xv,y:yv,
+      text:SCATTER_C.map(d=>d.nome+"<br>"+d.squadra),
+      hovertemplate:"%{text}<br>Prima: %{x:.3f}<br>Seconda: %{y:.3f}<extra></extra>",
+      marker:{color:SCATTER_C.map(d=>rcf(d.ruolo)),size:7,opacity:.8,
+        line:{color:"rgba(255,255,255,.12)",width:1}}},
+    {type:"scatter",mode:"lines",x:[xmn,xmx],
+      y:[SL_C===null?0:SL_C*xmn+(IC_C||0),SL_C===null?0:SL_C*xmx+(IC_C||0)],
+      line:{color:"rgba(48,209,88,.5)",width:2,dash:"dot"},hoverinfo:"skip"},
+    {type:"scatter",mode:"lines",
+      x:[Math.min(xmn,Math.min(...yv)),Math.max(xmx,Math.max(...yv))],
+      y:[Math.min(xmn,Math.min(...yv)),Math.max(xmx,Math.max(...yv))],
+      line:{color:"rgba(255,255,255,.07)",width:1,dash:"dot"},hoverinfo:"skip"},
+  ],{...BL,xaxis:{...BL.xaxis,title:"Output/90 — Prima fase"},
+    yaxis:{...BL.yaxis,title:"Output/90 — Seconda fase"},
+    margin:{t:8,b:46,l:54,r:8},height:300,showlegend:false,
+    annotations:[{x:.02,y:.97,xref:"paper",yref:"paper",
+      text:"Spearman r = "+(R_C!==null?R_C.toFixed(3):"—"),showarrow:false,
+      font:{color:"rgba(235,235,245,.6)",size:13},align:"left"}]},PL);
+})();
+
+/* ── Chart D — AII vs PRI ── */
+(function(){
+  var el=document.getElementById("chart-d");if(!el)return;
+  if(!SCATTER_D||!SCATTER_D.length){
+    el.innerHTML='<div style="color:var(--lt);padding:32px;text-align:center;font-size:13px">Dati AII/PRI non disponibili</div>';return;}
+  Plotly.newPlot("chart-d",[{
+    type:"scatter",mode:"markers",
+    x:SCATTER_D.map(d=>d.aii),y:SCATTER_D.map(d=>d.pri),
+    text:SCATTER_D.map(d=>d.nome+"<br>"+d.squadra),
+    hovertemplate:"%{text}<br>AII: %{x:.3f}<br>PRI: %{y:.3f}<extra></extra>",
+    marker:{color:SCATTER_D.map(d=>rcf(d.ruolo)),size:8,opacity:.82,
+      line:{color:"rgba(255,255,255,.12)",width:1}}
+  }],{...BL,
+    xaxis:{...BL.xaxis,title:"AII — Età Index"},
+    yaxis:{...BL.yaxis,title:"PRI — Affidabilità Fisica"},
+    margin:{t:8,b:46,l:54,r:8},height:280,showlegend:false},PL);
+})();
+
+
+(function(){
+  var sc=SCATTER_E,sl=0.5923,ic=-0.11;
+  if(!sc||!sc.length){document.getElementById("chart-e").innerHTML='<div style="color:var(--lt);padding:32px;text-align:center;font-size:13px">Nessun dato TPI Pro</div>';return;}
+  var xv=sc.map(d=>d.tpi),yv=sc.map(d=>d.pro);
+  var xmin=Math.min(...xv),xmax=Math.max(...xv);
+  var rc={"ATT":"#ff9f0a","CEN":"#30d158","DIF":"#0a84ff","":"#48484a"};
+  Plotly.newPlot("chart-e",[
+    {type:"scatter",mode:"markers",x:xv,y:yv,
+      text:sc.map(d=>d.nome+"<br>"+d.squadra),
+      hovertemplate:"%{text}<br>TPI: %{x:.3f}<br>TPI Pro: %{y:.3f}<extra></extra>",
+      marker:{color:sc.map(d=>rc[d.ruolo]||"#636366"),size:8,opacity:.82,
+        line:{color:"rgba(255,255,255,.12)",width:1}}},
+    {type:"scatter",mode:"lines",
+      x:[xmin,xmax],y:[sl*xmin+ic,sl*xmax+ic],
+      line:{color:"rgba(191,90,242,.55)",width:2,dash:"dot"},hoverinfo:"skip"},
+    {type:"scatter",mode:"lines",
+      x:[Math.min(xmin,Math.min(...yv)),Math.max(xmax,Math.max(...yv))],
+      y:[Math.min(xmin,Math.min(...yv)),Math.max(xmax,Math.max(...yv))],
+      line:{color:"rgba(255,255,255,.07)",width:1,dash:"dot"},hoverinfo:"skip"},
+  ],{...BL,
+    xaxis:{...BL.xaxis,title:"TPI Classico (4 dim)"},
+    yaxis:{...BL.yaxis,title:"TPI Pro (6 dim)"},
+    margin:{t:8,b:46,l:54,r:8},height:300,showlegend:false,
+    annotations:[{x:.02,y:.97,xref:"paper",yref:"paper",
+      text:"r = 0.424",showarrow:false,
+      font:{color:"rgba(235,235,245,.6)",size:13},align:"left"}]},PL);
+})();
+
+/* ── Badge dinamici (colore calcolato lato JS con valori reali) ── */
+(function(){
+  function setBadge(id, val, hi, mid){
+    var el=document.getElementById(id); if(!el) return;
+    var cls,lbl;
+    if(val===null||val===undefined||isNaN(val)){cls="badge-blue";lbl="N/D";}
+    else if(Math.abs(val)>=hi){cls="badge-green";lbl="Buono ✓";}
+    else if(Math.abs(val)>=mid){cls="badge-orng";lbl="Moderato";}
+    else{cls="badge-red";lbl="Basso";}
+    el.innerHTML='<span class="badge '+cls+'">'+lbl+'</span>';
+  }
+  setBadge("badge-a", R_A, 0.6, 0.4);
+  setBadge("badge-b", OV/100, 0.7, 0.5);
+  setBadge("badge-c", R_C, 0.5, 0.3);
+  // badge-d e badge-e sono già generati lato Python con valori statici
+})();
+
+/* ── Resize Plotly al cambio orientamento ── */
+var _rt;
+window.addEventListener("resize",()=>{clearTimeout(_rt);_rt=setTimeout(()=>{
+  document.querySelectorAll(".js-plotly-plot").forEach(el=>{try{Plotly.Plots.resize(el);}catch(e){}}
+  );
+},250);});
+window.addEventListener("orientationchange",()=>{setTimeout(()=>{
+  document.querySelectorAll(".js-plotly-plot").forEach(el=>{try{Plotly.Plots.resize(el);}catch(e){}}
+  );
+},450);});
+</script>
+</body>
+</html>
