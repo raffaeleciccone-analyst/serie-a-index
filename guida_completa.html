@@ -175,22 +175,23 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   <div class="nav-left">
     <div class="nav-dot"></div>
     <div>
-      <span class="nav-title">Gli Indici del TPI</span>
-      <span class="nav-sub">— Guida Completa</span>
+      <span class="nav-title">Serie A Scout Index</span>
+      <span class="nav-sub" data-i18n="guide_title">— Guida Completa</span>
     </div>
   </div>
-  <a href="homepage.html" style="display:inline-flex;align-items:center;gap:6px;
+  <span style="margin-left:auto;margin-right:10px" data-i18n-switcher></span>
+  <a href="homepage.html" data-i18n-title="nav_back_homepage" title="Torna alla Homepage" style="display:inline-flex;align-items:center;gap:6px;
     height:30px;padding:0 13px;border-radius:9px;font-size:12px;font-weight:700;
     background:rgba(255,159,10,.12);border:1px solid rgba(255,159,10,.35);
     border-top-color:rgba(255,159,10,.5);color:#ff9f0a;
-    text-decoration:none;margin-left:auto;margin-right:8px;
+    text-decoration:none;margin-right:8px;
     box-shadow:0 2px 8px rgba(255,159,10,.15),inset 0 1px 0 rgba(255,255,255,.07);
     transition:all .18s;white-space:nowrap"
     onmouseover="this.style.background='rgba(255,159,10,.2)';this.style.transform='translateY(-1px)'"
     onmouseout="this.style.background='rgba(255,159,10,.12)';this.style.transform='translateY(0)'">
-    &#127968; Homepage
+    &#127968; <span data-i18n="nav_home">Homepage</span>
   </a>
-  <span class="nav-badge">Uso Privato</span>
+  <span class="nav-badge" data-i18n="footer_private">Uso Privato</span>
 </nav>
 
 <div class="layout">
@@ -1167,5 +1168,6 @@ const observer=new IntersectionObserver(entries=>{
 },{rootMargin:"-56px 0px -60% 0px"});
 chapters.forEach(c=>observer.observe(c));
 </script>
+<script src="i18n.js"></script>
 </body>
 </html>
