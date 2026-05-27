@@ -337,37 +337,36 @@ tr:hover td{background:rgba(255,255,255,.02)}
     <div class="mbox-sub" id="m-sub"></div>
     <div class="mbox-body" id="m-body"></div>
     <div class="mbox-ex" id="m-ex"></div>
-    <button class="mbox-cls" onclick="closeM()">Chiudi</button>
+    <button class="mbox-cls" onclick="closeM()" data-i18n="btn_close">Chiudi</button>
   </div>
 </div>
 
 <nav class="nav">
   <div class="nav-brand">TPI Validation <small>Serie A 25/26</small></div>
   <div class="nav-btn-group">
-    <a class="nav-home-btn" href="dashboard_serie_a.html" title="Torna alla classifica">
-      &#127942; <span class="home-lbl">Classifica</span>
+    <a class="nav-home-btn" href="dashboard_serie_a.html" data-i18n-title="nav_back_ranking" title="Torna alla classifica">
+      &#127942; <span class="home-lbl" data-i18n="term_ranking">Classifica</span>
     </a>
-    <a class="nav-glass-btn" href="javascript:history.back()" title="Indietro">&#8592;</a>
-    <a class="nav-glass-btn" href="javascript:history.forward()" title="Avanti">&#8594;</a>
+    <a class="nav-glass-btn" href="javascript:history.back()" data-i18n-title="nav_back" title="Indietro" data-i18n-aria-label="nav_back">&#8592;</a>
+    <a class="nav-glass-btn" href="javascript:history.forward()" data-i18n-title="nav_forward" title="Avanti" data-i18n-aria-label="nav_forward">&#8594;</a>
   </div>
-  <div class="nav-right-group">
-    <a class="nav-orng-btn" href="homepage.html" title="Torna alla Homepage">
-      &#127968; <span class="hp-label">Homepage</span>
+  <div class="nav-right-group" style="display:flex;align-items:center;gap:10px">
+    <span data-i18n-switcher></span>
+    <a class="nav-orng-btn" href="homepage.html" data-i18n-title="nav_back_homepage" title="Torna alla Homepage">
+      &#127968; <span class="hp-label" data-i18n="nav_home">Homepage</span>
     </a>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-ttl">Model Validation</div>
+  <div class="hero-ttl" data-i18n="val_title">Model Validation</div>
   <div style="font-size:11px;color:var(--purp);font-weight:600;letter-spacing:.3px;
     text-transform:uppercase;margin-top:4px;margin-bottom:10px">
     Serie A Scout Index · TPI System
   </div>
-  <div class="hero-sub">
+  <div class="hero-sub" data-i18n="val_subtitle">
     5 independent tests to verify that TPI measures real player quality —
-    not noise. Predictive backtest <strong style="color:var(--green)">r = 0.70</strong>,
-    Fantacalcio correlation <strong style="color:var(--blue)">r = 0.47</strong>.
-    Click <strong style="color:var(--lp)">?</strong> on each section for methodology details.
+    not noise. Predictive backtest r = 0.70, Fantacalcio correlation r = 0.47.
   </div>
   <div class="hero-pills">
     <span class="hero-pill">&#127941; Pearson r vs Fantacalcio</span>
@@ -1106,5 +1105,6 @@ window.addEventListener("orientationchange",()=>{setTimeout(()=>{
   );
 },450);});
 </script>
+<script src="i18n.js"></script>
 </body>
 </html>
