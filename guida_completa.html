@@ -2,6 +2,9 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Guida Completa — Serie A Scout Index</title>
 <style>
@@ -25,22 +28,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(10,132,255,.05) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(191,90,242,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
 
 /* ── Password Screen ── */
-#lock-screen{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .4s ease,visibility .4s ease}
-#lock-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.lock-card{width:360px;max-width:90vw;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.16);border-top-color:rgba(255,255,255,.28);border-radius:24px;padding:40px 36px 36px;box-shadow:0 24px 80px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.1);text-align:center}
-.lock-icon{width:56px;height:56px;border-radius:16px;background:rgba(255,159,10,.12);border:1px solid rgba(255,159,10,.25);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 20px}
-.lock-title{font-size:20px;font-weight:700;letter-spacing:-.5px;margin-bottom:6px}
-.lock-sub{font-size:13px;color:var(--lt);line-height:1.6;margin-bottom:28px}
-.lock-input-wrap{position:relative;margin-bottom:14px}
-.lock-input{width:100%;padding:14px 44px 14px 16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;font-size:16px;font-family:var(--mono);color:var(--lp);letter-spacing:2px;outline:none;transition:border-color .2s}
-.lock-input:focus{border-color:rgba(255,159,10,.5)}
-.lock-input.error{border-color:rgba(255,69,58,.6);animation:shake .3s ease}
-.lock-toggle{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--lt);font-size:16px;padding:4px;transition:color .15s}
-.lock-toggle:hover{color:var(--ls)}
-.lock-btn{width:100%;padding:14px;border-radius:12px;border:none;background:rgba(255,159,10,.9);color:#000;font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;transition:all .2s}
-.lock-btn:hover{background:rgba(255,159,10,1);transform:translateY(-1px)}
-.lock-err{font-size:12px;color:var(--red);margin-top:10px;min-height:18px}
-.lock-footer{font-size:10px;color:rgba(235,235,245,.15);margin-top:24px;text-transform:uppercase;letter-spacing:.5px}
+/* Lock-screen client-side rimosso (V1) — non offriva sicurezza reale: tutto il contenuto era servito in chiaro nel medesimo HTML. Per access control reale serve auth server-side. */
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
 /* ── Nav ── */
@@ -181,21 +169,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 </head>
 <body>
 
-<!-- ── PASSWORD LOCK ── -->
-<div id="lock-screen">
-  <div class="lock-card">
-    <div class="lock-icon">🔐</div>
-    <div class="lock-title">Accesso Riservato</div>
-    <div class="lock-sub">Guida interna al sistema TPI<br><strong style="color:var(--lp)">Serie A Scout Index</strong></div>
-    <div class="lock-input-wrap">
-      <input class="lock-input" id="pwd-input" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')unlock()">
-      <button class="lock-toggle" onclick="togglePwd()">👁</button>
-    </div>
-    <button class="lock-btn" onclick="unlock()">Accedi →</button>
-    <div class="lock-err" id="lock-err"></div>
-    <div class="lock-footer">Raffaele Ciccone · Uso privato</div>
-  </div>
-</div>
+<!-- Password-lock client-side rimosso (V1): forniva solo teatro di sicurezza, il contenuto era comunque servito in chiaro a chiunque. -->
 
 <nav class="nav" style="position:relative;z-index:1">
   <div class="nav-left">
@@ -1171,37 +1145,9 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
 <div id="wm"><span id="wm-dot"></span><span id="wm-text">Raffaele Ciccone &thinsp;&middot;&thinsp; Serie A Scout Index &thinsp;&middot;&thinsp; Uso Privato</span></div>
 
 <script>
-// Hash SHA-256 della password — la password originale non è presente nel codice
-const CORRECT_HASH = "REDACTED_SHA256_HASH_OLD_LOCK_SCREEN";
-
-async function sha256(msg){
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(msg));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
-}
-
-if(sessionStorage.getItem("tpi_auth")==="1"){
-  document.getElementById("lock-screen").classList.add("hidden");
-}
-
-async function unlock(){
-  const input = document.getElementById("pwd-input");
-  const err   = document.getElementById("lock-err");
-  const inputHash = await sha256(input.value.trim());
-  if(inputHash === CORRECT_HASH){
-    sessionStorage.setItem("tpi_auth","1");
-    document.getElementById("lock-screen").classList.add("hidden");
-    err.textContent="";
-  } else {
-    input.classList.add("error");
-    err.textContent="Password errata — riprova.";
-    input.value="";
-    setTimeout(()=>input.classList.remove("error"),600);
-  }
-}
-function togglePwd(){
-  const inp=document.getElementById("pwd-input");
-  inp.type=inp.type==="password"?"text":"password";
-}
+// V1 fix: lock-screen client-side rimosso. SHA-256(password) singolo, senza salt né
+// rate-limit, era bruteforce-able offline e bypassabile rimuovendo il div in DevTools.
+// Per access control reale serve auth server-side (es. Cloudflare Access davanti a GH Pages).
 
 // ── Sidebar active on scroll ──────────────────────────────────
 function setActive(el){
