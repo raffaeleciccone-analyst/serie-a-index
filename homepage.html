@@ -208,15 +208,15 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;
     margin:0 auto 32px;text-align:left">
     <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ls)">
       <span style="color:var(--blue);font-size:16px;flex-shrink:0">▸</span>
-      <span data-i18n-html="hp_bullet_1"></span>
+      <span data-i18n-html="hp_bullet_1"><strong style="color:var(--lp)">6 KPI indipendenti</strong> — Output, Centralità, Boost, Consistenza (basata su IQR), Indice Età (AII), Affidabilità Fisica (PRI), standardizzati con <strong style="color:var(--teal)">z-score winsorizzati</strong></span>
     </div>
     <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ls)">
       <span style="color:var(--green);font-size:16px;flex-shrink:0">▸</span>
-      <span data-i18n-html="hp_bullet_2"></span>
+      <span data-i18n-html="hp_bullet_2"><strong style="color:var(--lp)">406 giocatori · 21 giornate · 5 contesti</strong> — Totale, Casa, Trasferta, vs Top 6, vs Difese Solide</span>
     </div>
     <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ls)">
       <span style="color:var(--purp);font-size:16px;flex-shrink:0">▸</span>
-      <span data-i18n-html="hp_bullet_3"></span>
+      <span data-i18n-html="hp_bullet_3"><strong style="color:var(--lp)">Validato statisticamente</strong> — Backtest predittivo Spearman ρ=0.70, intervalli di confidenza bootstrap al 95%, stabilità ranking Kendall τ, effect size Cohen's d</span>
     </div>
   </div>
 
@@ -325,6 +325,10 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;
         TPI Pro — 6 Dimensioni di Analisi
       </div>
       <div style="font-size:13px;color:var(--ls);line-height:1.65;max-width:560px" data-i18n-html="hp_pro_body">
+        Il TPI classico usa 4 dimensioni offensive. Il TPI Pro aggiunge
+        <strong style="color:var(--teal)">Età Index (AII)</strong> e
+        <strong style="color:var(--purp)">Affidabilità Fisica (PRI)</strong>
+        per uno scouting a lungo termine più accurato.
       </div>
       <div class="formula">
         TPI Pro = avg( z_output, z_centrality, z_boost, z_consistency,
