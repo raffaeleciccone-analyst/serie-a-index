@@ -185,6 +185,39 @@
       dash_z_explain:      "Valori in z-score (σ dalla media lega).",
       dash_winter_signing: "Acquisto invernale",
 
+      /* dashboard — chip filtro metriche */
+      dash_chip_tpi:       "TPI",
+      dash_chip_prospect:  "Giovani ★",
+      dash_chip_output:    "Output",
+      dash_chip_cen:       "Centralità",
+      dash_chip_boo:       "Boost",
+      dash_chip_con:       "Consistenza",
+      dash_chip_conv:      "G/xG",
+      dash_btn_compare:    "Confronta",
+      dash_search_np:      "Nome, squadra o ruolo…",
+      dash_filter_by_team: "Filtra per squadra",
+      /* dashboard — titoli metrica (heading leaderboard) */
+      dash_m_tpi:          "TPI Totale",
+      dash_m_prospect:     "Giovani ★ — Prospect Score",
+      dash_m_out:          "Output Offensivo Adj / 90'",
+      dash_m_cen:          "Centralità Offensiva",
+      dash_m_boo:          "Team Boost Ratio",
+      dash_m_con:          "Consistenza",
+      dash_m_conv:         "G / xG — Conversion",
+      /* dashboard — righe leaderboard / stati */
+      dash_btn_profile:    "Profilo",
+      dash_btn_diff:       "Scarto",
+      dash_no_filter_data: "Nessun dato disponibile per questo filtro",
+      dash_roster_note:    "giocatori (minuti insufficienti per TPI)",
+      dash_off_profile:    "Profilo offensivo",
+      dash_pro_badge:      "✨ Novità — TPI Pro",
+      dash_pro_ttl:        "TPI Pro: 6 Dimensioni di Analisi",
+      dash_pro_body:       "Il <strong>TPI classico</strong> usa 4 dimensioni offensive (output, centralità, boost, consistenza). Il <strong>TPI Pro</strong> aggiunge <span style=\"color:var(--teal)\">Età Index (AII)</span> e <span style=\"color:var(--purp)\">Affidabilità Fisica (PRI)</span> — due indici indipendenti che cambiano la valutazione per scouting a lungo termine.",
+      dash_role_full_POR:  "Portiere",
+      dash_role_full_DIF:  "Difensore",
+      dash_role_full_CEN:  "Centrocampista",
+      dash_role_full_ATT:  "Attaccante",
+
       /* footer condiviso */
       footer_private:      "Uso Privato"
     },
@@ -354,6 +387,39 @@
       dash_disadvantage:   "disadvantage",
       dash_z_explain:      "Values in z-score (σ from league mean).",
       dash_winter_signing: "Winter signing",
+
+      /* dashboard — metric filter chips */
+      dash_chip_tpi:       "TPI",
+      dash_chip_prospect:  "Young ★",
+      dash_chip_output:    "Output",
+      dash_chip_cen:       "Centrality",
+      dash_chip_boo:       "Boost",
+      dash_chip_con:       "Consistency",
+      dash_chip_conv:      "G/xG",
+      dash_btn_compare:    "Compare",
+      dash_search_np:      "Name, team or role…",
+      dash_filter_by_team: "Filter by team",
+      /* dashboard — metric titles (leaderboard heading) */
+      dash_m_tpi:          "Total TPI",
+      dash_m_prospect:     "Young ★ — Prospect Score",
+      dash_m_out:          "Adj Offensive Output / 90'",
+      dash_m_cen:          "Offensive Centrality",
+      dash_m_boo:          "Team Boost Ratio",
+      dash_m_con:          "Consistency",
+      dash_m_conv:         "G / xG — Conversion",
+      /* dashboard — leaderboard rows / states */
+      dash_btn_profile:    "Profile",
+      dash_btn_diff:       "Gap",
+      dash_no_filter_data: "No data available for this filter",
+      dash_roster_note:    "players (insufficient minutes for TPI)",
+      dash_off_profile:    "Offensive profile",
+      dash_pro_badge:      "✨ New — TPI Pro",
+      dash_pro_ttl:        "TPI Pro: 6 Analysis Dimensions",
+      dash_pro_body:       "The <strong>classic TPI</strong> uses 4 offensive dimensions (output, centrality, boost, consistency). <strong>TPI Pro</strong> adds <span style=\"color:var(--teal)\">Age Index (AII)</span> and <span style=\"color:var(--purp)\">Physical Reliability (PRI)</span> — two independent indices that reshape long-term scouting evaluation.",
+      dash_role_full_POR:  "Goalkeeper",
+      dash_role_full_DIF:  "Defender",
+      dash_role_full_CEN:  "Midfielder",
+      dash_role_full_ATT:  "Forward",
 
       /* footer condiviso */
       footer_private:      "Private use"
