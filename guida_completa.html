@@ -196,52 +196,52 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
 <div class="layout">
   <nav class="sidebar">
-    <div class="sidebar-section">Introduzione</div>
-    <a class="slink active" href="#intro" onclick="setActive(this)"><span class="slink-dot"></span>Panoramica</a>
-    <a class="slink" href="#pipeline" onclick="setActive(this)"><span class="slink-dot"></span>Pipeline TPI</a>
-    <div class="sidebar-section">Dati Base</div>
+    <div class="sidebar-section" data-it="Introduzione" data-en="Introduction">Introduzione</div>
+    <a class="slink active" href="#intro" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Panoramica" data-en="Overview">Panoramica</span></a>
+    <a class="slink" href="#pipeline" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Pipeline TPI" data-en="TPI Pipeline">Pipeline TPI</span></a>
+    <div class="sidebar-section" data-it="Dati Base" data-en="Base Data">Dati Base</div>
     <a class="slink" href="#xg" onclick="setActive(this)"><span class="slink-dot"></span>xG — Expected Goals</a>
     <a class="slink" href="#xa" onclick="setActive(this)"><span class="slink-dot"></span>xA — Expected Assists</a>
-    <a class="slink" href="#sos" onclick="setActive(this)"><span class="slink-dot"></span>SOS — Difficoltà</a>
-    <div class="sidebar-section">4 Dimensioni TPI</div>
+    <a class="slink" href="#sos" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="SOS — Difficoltà" data-en="SOS — Difficulty">SOS — Difficoltà</span></a>
+    <div class="sidebar-section" data-it="4 Dimensioni TPI" data-en="4 TPI Dimensions">4 Dimensioni TPI</div>
     <a class="slink" href="#output" onclick="setActive(this)"><span class="slink-dot"></span>Output Adj/90</a>
-    <a class="slink" href="#centralita" onclick="setActive(this)"><span class="slink-dot"></span>Centralità</a>
+    <a class="slink" href="#centralita" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Centralità" data-en="Centrality">Centralità</span></a>
     <a class="slink" href="#boost" onclick="setActive(this)"><span class="slink-dot"></span>Team Boost</a>
-    <a class="slink" href="#consistenza" onclick="setActive(this)"><span class="slink-dot"></span>Consistenza</a>
-    <div class="sidebar-section">Nuovi Indici</div>
-    <a class="slink" href="#eta" onclick="setActive(this)"><span class="slink-dot"></span>Età Index</a>
-    <a class="slink" href="#fisica" onclick="setActive(this)"><span class="slink-dot"></span>Affidabilità Fisica</a>
-    <div class="sidebar-section">Matematica</div>
+    <a class="slink" href="#consistenza" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Consistenza" data-en="Consistency">Consistenza</span></a>
+    <div class="sidebar-section" data-it="Nuovi Indici" data-en="New Indices">Nuovi Indici</div>
+    <a class="slink" href="#eta" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Età Index" data-en="Age Index">Età Index</span></a>
+    <a class="slink" href="#fisica" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Affidabilità Fisica" data-en="Physical Reliability">Affidabilità Fisica</span></a>
+    <div class="sidebar-section" data-it="Matematica" data-en="Mathematics">Matematica</div>
     <a class="slink" href="#zscore" onclick="setActive(this)"><span class="slink-dot"></span>Winsorized z-score</a>
     <a class="slink" href="#tpi" onclick="setActive(this)"><span class="slink-dot"></span>TPI &amp; TPI Pro</a>
-    <div class="sidebar-section">Metriche Extra</div>
+    <div class="sidebar-section" data-it="Metriche Extra" data-en="Extra Metrics">Metriche Extra</div>
     <a class="slink" href="#ewma" onclick="setActive(this)"><span class="slink-dot"></span>Form EWMA</a>
     <a class="slink" href="#gxg" onclick="setActive(this)"><span class="slink-dot"></span>G/xG Conversion</a>
-    <div class="sidebar-section">Validazione</div>
-    <a class="slink" href="#pearson" onclick="setActive(this)"><span class="slink-dot"></span>Test A — Pearson + Bootstrap</a>
-    <a class="slink" href="#overlap" onclick="setActive(this)"><span class="slink-dot"></span>Test B — Top 10 Overlap</a>
-    <a class="slink" href="#spearman" onclick="setActive(this)"><span class="slink-dot"></span>Test C — Spearman + Kendall τ</a>
+    <div class="sidebar-section" data-it="Validazione" data-en="Validation">Validazione</div>
+    <a class="slink" href="#pearson" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Test A — Pearson + Bootstrap" data-en="Test A — Pearson + Bootstrap">Test A — Pearson + Bootstrap</span></a>
+    <a class="slink" href="#overlap" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Test B — Top 10 Overlap" data-en="Test B — Top 10 Overlap">Test B — Top 10 Overlap</span></a>
+    <a class="slink" href="#spearman" onclick="setActive(this)"><span class="slink-dot"></span><span data-it="Test C — Spearman + Kendall τ" data-en="Test C — Spearman + Kendall τ">Test C — Spearman + Kendall τ</span></a>
   </nav>
 
   <main class="content">
 
     <!-- ── INTRO ── -->
     <div class="chapter" id="intro">
-      <div class="chapter-num">Introduction</div>
-      <h1 class="chapter-ttl">Serie A Scout Index<br><span style="font-size:clamp(18px,2.5vw,28px);color:rgba(235,235,245,.5);font-weight:600">Complete Methodology Guide</span></h1>
-      <p class="chapter-desc">
+      <div class="chapter-num" data-it="Introduzione" data-en="Introduction">Introduction</div>
+      <h1 class="chapter-ttl">Serie A Scout Index<br><span style="font-size:clamp(18px,2.5vw,28px);color:rgba(235,235,245,.5);font-weight:600" data-it="Guida Completa alla Metodologia" data-en="Complete Methodology Guide">Complete Methodology Guide</span></h1>
+      <p class="chapter-desc" data-it="Un modello data-driven per valutare i giocatori della Serie A con metriche di performance indipendenti — corrette per la difficoltà degli avversari, stabilizzate con Bayesian Shrinkage, standardizzate con <strong style=&quot;color:var(--teal)&quot;>z-score winsorizzati</strong> e validate con <strong style=&quot;color:var(--green)&quot;>intervalli di confidenza bootstrap</strong>." data-en="A data-driven model for evaluating Serie A players using independent performance metrics — corrected for opponent difficulty, stabilized with Bayesian Shrinkage, standardized with <strong style=&quot;color:var(--teal)&quot;>Winsorized z-scores</strong> and validated with <strong style=&quot;color:var(--green)&quot;>Bootstrap confidence intervals</strong>.">
         A data-driven model for evaluating Serie A players using independent performance metrics —
         corrected for opponent difficulty, stabilized with Bayesian Shrinkage,
         standardized with <strong style="color:var(--teal)">Winsorized z-scores</strong>
         and validated with <strong style="color:var(--green)">Bootstrap confidence intervals</strong>.
       </p>
       <div class="stat-row">
-        <div class="stat-item"><div class="stat-val" style="color:var(--orng)">6</div><div class="stat-lbl">Independent KPIs</div></div>
-        <div class="stat-item"><div class="stat-val" style="color:var(--blue)">406</div><div class="stat-lbl">Players ranked</div></div>
-        <div class="stat-item"><div class="stat-val" style="color:var(--green)">0.70</div><div class="stat-lbl">Predictive r</div></div>
-        <div class="stat-item"><div class="stat-val" style="color:var(--purp)">5</div><div class="stat-lbl">Contexts</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--orng)">6</div><div class="stat-lbl" data-it="KPI indipendenti" data-en="Independent KPIs">Independent KPIs</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--blue)">406</div><div class="stat-lbl" data-it="Giocatori ordinati" data-en="Players ranked">Players ranked</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--green)">0.70</div><div class="stat-lbl" data-it="r predittiva" data-en="Predictive r">Predictive r</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--purp)">5</div><div class="stat-lbl" data-it="Contesti" data-en="Contexts">Contexts</div></div>
       </div>
-      <div class="ex" style="margin-top:16px">
+      <div class="ex" style="margin-top:16px" data-it="<strong style=&quot;color:var(--lp)&quot;>Perché questo modello è diverso:</strong> La maggior parte dei sistemi di ranking usa conteggi grezzi di goal/assist — molto influenzati da fortuna e qualità della squadra. Il TPI misura il <em>processo</em>, non il risultato: valore atteso creato per 90 minuti, pesato per la forza degli avversari, stabilizzato per la dimensione campionaria e validato contro il rendimento futuro." data-en="<strong style=&quot;color:var(--lp)&quot;>Why this model is different:</strong> Most ranking systems use raw goal/assist counts — heavily influenced by luck and team quality. TPI measures the <em>process</em>, not the outcome: expected value created per 90 minutes, weighted by opponent strength, stabilized for sample size, and validated against future performance.">
         <strong style="color:var(--lp)">Why this model is different:</strong>
         Most ranking systems use raw goal/assist counts — heavily influenced by luck and team quality.
         TPI measures the <em>process</em>, not the outcome: expected value created per 90 minutes,
@@ -251,18 +251,18 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
     <!-- ── PIPELINE ── -->
     <div class="chapter" id="pipeline">
-      <div class="chapter-num"><span>1</span>Overview</div>
-      <h2 class="chapter-ttl">The TPI Pipeline</h2>
-      <p class="chapter-desc">From raw FBref data to final TPI — 8 steps, each statistically justified.</p>
+      <div class="chapter-num"><span>1</span><span data-it="Panoramica" data-en="Overview">Overview</span></div>
+      <h2 class="chapter-ttl" data-it="La Pipeline del TPI" data-en="The TPI Pipeline">The TPI Pipeline</h2>
+      <p class="chapter-desc" data-it="Dai dati grezzi di FBref al TPI finale — 8 passi, ciascuno giustificato statisticamente." data-en="From raw FBref data to final TPI — 8 steps, each statistically justified.">From raw FBref data to final TPI — 8 steps, each statistically justified.</p>
       <div class="pipeline">
-        <div class="pipe-step"><div class="pipe-n">1</div><div class="pipe-body"><div class="pipe-title">FBref data (Opta source)</div><div class="pipe-desc">xG, xA, goals, minutes per match. Opta — the most reliable public data source for professional football.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n">2</div><div class="pipe-body"><div class="pipe-title">SOS — Strength of Schedule</div><div class="pipe-desc">Mean xG conceded by each opponent. Players who faced stronger defenses get a bonus multiplier — fairness across fixtures.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n">3</div><div class="pipe-body"><div class="pipe-title">SOS-weighted averages</div><div class="pipe-desc">All offensive metrics weighted by 1/SOS. One goal against Napoli counts more than one against the bottom team.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n">4</div><div class="pipe-body"><div class="pipe-title">4 core dimensions + Bayesian Shrinkage</div><div class="pipe-desc">Output Adj/90, Centrality, Team Boost, Consistency — across 5 contexts. Adaptive K shrinks estimates for low-sample players.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n" style="background:rgba(10,132,255,.25);color:var(--blue)">5</div><div class="pipe-body"><div class="pipe-title" style="color:var(--blue)">Winsorized z-score standardization</div><div class="pipe-desc">Top/bottom 5% of values trimmed <em>before</em> computing μ and σ. Prevents one extreme outlier from distorting the entire league distribution.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n" style="background:rgba(48,209,88,.2);color:var(--green)">6</div><div class="pipe-body"><div class="pipe-title" style="color:var(--green)">TPI = mean of 4 z-scores</div><div class="pipe-desc">All dimensions equally weighted after standardization. Missing Boost handled gracefully — mean of 3 remaining dimensions used.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n" style="background:rgba(90,200,250,.2);color:var(--teal)">7</div><div class="pipe-body"><div class="pipe-title" style="color:var(--teal)">AII + PRI (TPI Pro)</div><div class="pipe-desc">Optional. Age Impact Index and Physical Reliability Index added as z-scores — TPI Pro = mean of 6 dimensions.</div></div></div>
-        <div class="pipe-step"><div class="pipe-n" style="background:rgba(191,90,242,.2);color:var(--purp)">8</div><div class="pipe-body"><div class="pipe-title" style="color:var(--purp)">Confidence Score</div><div class="pipe-desc">Geometric mean of minutes played ratio and dimension completeness. Tells you how much to trust each player's TPI estimate.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n">1</div><div class="pipe-body"><div class="pipe-title" data-it="Dati FBref (fonte Opta)" data-en="FBref data (Opta source)">FBref data (Opta source)</div><div class="pipe-desc" data-it="xG, xA, goal, minuti per partita. Opta — la fonte dati pubblica più affidabile per il calcio professionistico." data-en="xG, xA, goals, minutes per match. Opta — the most reliable public data source for professional football.">xG, xA, goals, minutes per match. Opta — the most reliable public data source for professional football.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n">2</div><div class="pipe-body"><div class="pipe-title" data-it="SOS — Strength of Schedule" data-en="SOS — Strength of Schedule">SOS — Strength of Schedule</div><div class="pipe-desc" data-it="xG medi concessi da ogni avversario. Chi ha affrontato difese più forti riceve un moltiplicatore bonus — equità tra i calendari." data-en="Mean xG conceded by each opponent. Players who faced stronger defenses get a bonus multiplier — fairness across fixtures.">Mean xG conceded by each opponent. Players who faced stronger defenses get a bonus multiplier — fairness across fixtures.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n">3</div><div class="pipe-body"><div class="pipe-title" data-it="Medie pesate per SOS" data-en="SOS-weighted averages">SOS-weighted averages</div><div class="pipe-desc" data-it="Tutte le metriche offensive pesate per 1/SOS. Un goal contro il Napoli vale più di uno contro l'ultima in classifica." data-en="All offensive metrics weighted by 1/SOS. One goal against Napoli counts more than one against the bottom team.">All offensive metrics weighted by 1/SOS. One goal against Napoli counts more than one against the bottom team.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n">4</div><div class="pipe-body"><div class="pipe-title" data-it="4 dimensioni base + Bayesian Shrinkage" data-en="4 core dimensions + Bayesian Shrinkage">4 core dimensions + Bayesian Shrinkage</div><div class="pipe-desc" data-it="Output Adj/90, Centralità, Team Boost, Consistenza — su 5 contesti. La K adattiva regredisce le stime dei giocatori con pochi dati." data-en="Output Adj/90, Centrality, Team Boost, Consistency — across 5 contexts. Adaptive K shrinks estimates for low-sample players.">Output Adj/90, Centrality, Team Boost, Consistency — across 5 contexts. Adaptive K shrinks estimates for low-sample players.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n" style="background:rgba(10,132,255,.25);color:var(--blue)">5</div><div class="pipe-body"><div class="pipe-title" style="color:var(--blue)" data-it="Standardizzazione z-score winsorizzata" data-en="Winsorized z-score standardization">Winsorized z-score standardization</div><div class="pipe-desc" data-it="Il 5% superiore/inferiore dei valori viene tagliato <em>prima</em> di calcolare μ e σ. Evita che un singolo outlier estremo distorca l'intera distribuzione di lega." data-en="Top/bottom 5% of values trimmed <em>before</em> computing μ and σ. Prevents one extreme outlier from distorting the entire league distribution.">Top/bottom 5% of values trimmed <em>before</em> computing μ and σ. Prevents one extreme outlier from distorting the entire league distribution.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n" style="background:rgba(48,209,88,.2);color:var(--green)">6</div><div class="pipe-body"><div class="pipe-title" style="color:var(--green)" data-it="TPI = media di 4 z-score" data-en="TPI = mean of 4 z-scores">TPI = mean of 4 z-scores</div><div class="pipe-desc" data-it="Tutte le dimensioni pesate ugualmente dopo la standardizzazione. Il Boost mancante è gestito con grazia — si usa la media delle 3 dimensioni restanti." data-en="All dimensions equally weighted after standardization. Missing Boost handled gracefully — mean of 3 remaining dimensions used.">All dimensions equally weighted after standardization. Missing Boost handled gracefully — mean of 3 remaining dimensions used.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n" style="background:rgba(90,200,250,.2);color:var(--teal)">7</div><div class="pipe-body"><div class="pipe-title" style="color:var(--teal)" data-it="AII + PRI (TPI Pro)" data-en="AII + PRI (TPI Pro)">AII + PRI (TPI Pro)</div><div class="pipe-desc" data-it="Opzionale. Age Impact Index e Physical Reliability Index aggiunti come z-score — TPI Pro = media di 6 dimensioni." data-en="Optional. Age Impact Index and Physical Reliability Index added as z-scores — TPI Pro = mean of 6 dimensions.">Optional. Age Impact Index and Physical Reliability Index added as z-scores — TPI Pro = mean of 6 dimensions.</div></div></div>
+        <div class="pipe-step"><div class="pipe-n" style="background:rgba(191,90,242,.2);color:var(--purp)">8</div><div class="pipe-body"><div class="pipe-title" style="color:var(--purp)" data-it="Confidence Score" data-en="Confidence Score">Confidence Score</div><div class="pipe-desc" data-it="Media geometrica del rapporto minuti giocati e della completezza delle dimensioni. Indica quanto fidarsi della stima TPI di ogni giocatore." data-en="Geometric mean of minutes played ratio and dimension completeness. Tells you how much to trust each player's TPI estimate.">Geometric mean of minutes played ratio and dimension completeness. Tells you how much to trust each player's TPI estimate.</div></div></div>
       </div>
     </div>
 
@@ -270,50 +270,50 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
     <!-- ── XG ── -->
     <div class="chapter" id="xg">
-      <div class="chapter-num"><span>2</span>Dati Base</div>
+      <div class="chapter-num"><span>2</span><span data-it="Dati Base" data-en="Base Data">Dati Base</span></div>
       <h2 class="chapter-ttl">xG — Expected Goals</h2>
-      <p class="chapter-desc">La probabilità che un tiro diventi goal, calcolata da Opta su milioni di tiri storici.</p>
+      <p class="chapter-desc" data-it="La probabilità che un tiro diventi goal, calcolata da Opta su milioni di tiri storici." data-en="The probability that a shot becomes a goal, computed by Opta on millions of historical shots.">La probabilità che un tiro diventi goal, calcolata da Opta su milioni di tiri storici.</p>
       <div class="section">
-        <h3 class="section-ttl">Come viene calcolato</h3>
-        <div class="body">Opta costruisce un modello ML addestrato su ogni tiro della storia del calcio professionistico:<ul><li><strong>Distanza e angolo</strong> dalla porta</li><li><strong>Tipo di tiro</strong> — piede destro, sinistro, testa</li><li><strong>Tipo di azione</strong> — cross, corner, calco piazzato, contropiede</li><li><strong>Pressione</strong> dei difensori al momento del tiro</li></ul></div>
+        <h3 class="section-ttl" data-it="Come viene calcolato" data-en="How it is calculated">Come viene calcolato</h3>
+        <div class="body" data-it="Opta costruisce un modello ML addestrato su ogni tiro della storia del calcio professionistico:<ul><li><strong>Distanza e angolo</strong> dalla porta</li><li><strong>Tipo di tiro</strong> — piede destro, sinistro, testa</li><li><strong>Tipo di azione</strong> — cross, corner, calcio piazzato, contropiede</li><li><strong>Pressione</strong> dei difensori al momento del tiro</li></ul>" data-en="Opta builds an ML model trained on every shot in the history of professional football:<ul><li><strong>Distance and angle</strong> from goal</li><li><strong>Shot type</strong> — right foot, left foot, header</li><li><strong>Play type</strong> — cross, corner, set piece, counter-attack</li><li><strong>Pressure</strong> from defenders at the moment of the shot</li></ul>">Opta costruisce un modello ML addestrato su ogni tiro della storia del calcio professionistico:<ul><li><strong>Distanza e angolo</strong> dalla porta</li><li><strong>Tipo di tiro</strong> — piede destro, sinistro, testa</li><li><strong>Tipo di azione</strong> — cross, corner, calco piazzato, contropiede</li><li><strong>Pressione</strong> dei difensori al momento del tiro</li></ul></div>
         <div class="css-chart">
           <div class="bar-chart">
-            <div class="bar-row"><span class="bar-label">Rigore</span><div class="bar-track"><div class="bar-fill" style="width:78%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">0.78</span></div>
-            <div class="bar-row"><span class="bar-label">Centro area solo</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:rgba(48,209,88,.6)"></div></div><span class="bar-val" style="color:var(--green)">0.65</span></div>
-            <div class="bar-row"><span class="bar-label">Prima del palo</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:rgba(48,209,88,.5)"></div></div><span class="bar-val" style="color:var(--green)">0.45</span></div>
-            <div class="bar-row"><span class="bar-label">Tiro al volo</span><div class="bar-track"><div class="bar-fill" style="width:12%;background:rgba(255,159,10,.7)"></div></div><span class="bar-val" style="color:var(--orng)">0.12</span></div>
-            <div class="bar-row"><span class="bar-label">Bordo area</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:rgba(255,69,58,.6)"></div></div><span class="bar-val" style="color:var(--red)">0.05</span></div>
-            <div class="bar-row"><span class="bar-label">Tiro da 30m</span><div class="bar-track"><div class="bar-fill" style="width:2%;background:rgba(255,69,58,.5)"></div></div><span class="bar-val" style="color:var(--red)">0.02</span></div>
+            <div class="bar-row"><span class="bar-label" data-it="Rigore" data-en="Penalty">Rigore</span><div class="bar-track"><div class="bar-fill" style="width:78%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">0.78</span></div>
+            <div class="bar-row"><span class="bar-label" data-it="Centro area solo" data-en="Inside box, unmarked">Centro area solo</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:rgba(48,209,88,.6)"></div></div><span class="bar-val" style="color:var(--green)">0.65</span></div>
+            <div class="bar-row"><span class="bar-label" data-it="Prima del palo" data-en="Near post">Prima del palo</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:rgba(48,209,88,.5)"></div></div><span class="bar-val" style="color:var(--green)">0.45</span></div>
+            <div class="bar-row"><span class="bar-label" data-it="Tiro al volo" data-en="Volley">Tiro al volo</span><div class="bar-track"><div class="bar-fill" style="width:12%;background:rgba(255,159,10,.7)"></div></div><span class="bar-val" style="color:var(--orng)">0.12</span></div>
+            <div class="bar-row"><span class="bar-label" data-it="Bordo area" data-en="Box edge">Bordo area</span><div class="bar-track"><div class="bar-fill" style="width:5%;background:rgba(255,69,58,.6)"></div></div><span class="bar-val" style="color:var(--red)">0.05</span></div>
+            <div class="bar-row"><span class="bar-label" data-it="Tiro da 30m" data-en="30m shot">Tiro da 30m</span><div class="bar-track"><div class="bar-fill" style="width:2%;background:rgba(255,69,58,.5)"></div></div><span class="bar-val" style="color:var(--red)">0.02</span></div>
           </div>
         </div>
-        <div class="ex"><strong>Perché è superiore ai goal:</strong> I goal sono rari e soggetti a varianza altissima. xG misura la qualità del processo — nel lungo periodo goal ≈ xG per la maggior parte dei giocatori.</div>
+        <div class="ex" data-it="<strong>Perché è superiore ai goal:</strong> I goal sono rari e soggetti a varianza altissima. xG misura la qualità del processo — nel lungo periodo goal ≈ xG per la maggior parte dei giocatori." data-en="<strong>Why it beats goals:</strong> Goals are rare and subject to very high variance. xG measures process quality — over the long run goals ≈ xG for most players."><strong>Perché è superiore ai goal:</strong> I goal sono rari e soggetti a varianza altissima. xG misura la qualità del processo — nel lungo periodo goal ≈ xG per la maggior parte dei giocatori.</div>
       </div>
     </div>
 
     <!-- ── XA ── -->
     <div class="chapter" id="xa">
       <h2 class="chapter-ttl">xA — Expected Assists</h2>
-      <p class="chapter-desc">La stessa logica di xG applicata ai passaggi che precedono un tiro.</p>
-      <div class="formula">xA di un passaggio = xG del tiro che ne è seguito</div>
+      <p class="chapter-desc" data-it="La stessa logica di xG applicata ai passaggi che precedono un tiro." data-en="The same logic as xG applied to the passes that precede a shot.">La stessa logica di xG applicata ai passaggi che precedono un tiro.</p>
+      <div class="formula" data-it="xA di un passaggio = xG del tiro che ne è seguito" data-en="xA of a pass = xG of the shot that followed it">xA di un passaggio = xG del tiro che ne è seguito</div>
       <div class="g2">
-        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div><div class="card-ttl">xA conta anche se...</div><div class="body" style="font-size:13px"><ul><li>Il compagno manca la porta</li><li>Il portiere para brillantemente</li><li>C'è un rimbalzo intermedio</li></ul></div></div>
-        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--red),var(--orng))"></div><div class="card-ttl">Assist ufficiale conta solo se...</div><div class="body" style="font-size:13px"><ul><li>Il goal viene segnato</li><li>Nessun rimbalzo tra passaggio e tiro</li><li>L'ultimo tocco prima del tiro è tuo</li></ul></div></div>
+        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div><div class="card-ttl" data-it="xA conta anche se..." data-en="xA counts even if...">xA conta anche se...</div><div class="body" style="font-size:13px" data-it="<ul><li>Il compagno manca la porta</li><li>Il portiere para brillantemente</li><li>C'è un rimbalzo intermedio</li></ul>" data-en="<ul><li>The teammate misses the goal</li><li>The keeper makes a brilliant save</li><li>There is an intermediate deflection</li></ul>"><ul><li>Il compagno manca la porta</li><li>Il portiere para brillantemente</li><li>C'è un rimbalzo intermedio</li></ul></div></div>
+        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--red),var(--orng))"></div><div class="card-ttl" data-it="Assist ufficiale conta solo se..." data-en="Official assist counts only if...">Assist ufficiale conta solo se...</div><div class="body" style="font-size:13px" data-it="<ul><li>Il goal viene segnato</li><li>Nessun rimbalzo tra passaggio e tiro</li><li>L'ultimo tocco prima del tiro è tuo</li></ul>" data-en="<ul><li>The goal is scored</li><li>No deflection between pass and shot</li><li>The last touch before the shot is yours</li></ul>"><ul><li>Il goal viene segnato</li><li>Nessun rimbalzo tra passaggio e tiro</li><li>L'ultimo tocco prima del tiro è tuo</li></ul></div></div>
       </div>
-      <div class="ex"><strong>Caso classico Dimarco:</strong> cross perfetto dalla sinistra, Lautaro colpisce di testa, portiere para. Assist ufficiale = 0. xA Dimarco = 0.58. Il sistema riconosce il contributo reale.</div>
+      <div class="ex" data-it="<strong>Caso classico Dimarco:</strong> cross perfetto dalla sinistra, Lautaro colpisce di testa, portiere para. Assist ufficiale = 0. xA Dimarco = 0.58. Il sistema riconosce il contributo reale." data-en="<strong>Classic Dimarco case:</strong> perfect cross from the left, Lautaro heads it, the keeper saves. Official assist = 0. Dimarco's xA = 0.58. The system recognizes the real contribution."><strong>Caso classico Dimarco:</strong> cross perfetto dalla sinistra, Lautaro colpisce di testa, portiere para. Assist ufficiale = 0. xA Dimarco = 0.58. Il sistema riconosce il contributo reale.</div>
     </div>
 
     <!-- ── SOS ── -->
     <div class="chapter" id="sos">
       <h2 class="chapter-ttl">SOS — Strength of Schedule</h2>
-      <p class="chapter-desc">La difficoltà media degli avversari affrontati, che normalizza il contesto competitivo.</p>
-      <div class="formula">SOS_giocatore = media degli xG_subiti_medi di ogni avversario affrontato<br><span class="comment">// normalizzato: SOS lega media = 1.0</span></div>
+      <p class="chapter-desc" data-it="La difficoltà media degli avversari affrontati, che normalizza il contesto competitivo." data-en="The average difficulty of the opponents faced, normalizing the competitive context.">La difficoltà media degli avversari affrontati, che normalizza il contesto competitivo.</p>
+      <div class="formula" data-it="SOS_giocatore = media degli xG_subiti_medi di ogni avversario affrontato<br><span class=&quot;comment&quot;>// normalizzato: SOS lega media = 1.0</span>" data-en="SOS_player = mean of the avg xG_conceded of every opponent faced<br><span class=&quot;comment&quot;>// normalized: league mean SOS = 1.0</span>">SOS_giocatore = media degli xG_subiti_medi di ogni avversario affrontato<br><span class="comment">// normalizzato: SOS lega media = 1.0</span></div>
       <div class="g2">
-        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div><div class="stat-val" style="color:var(--green);font-family:var(--mono);font-size:28px;font-weight:800;margin-bottom:8px">SOS &lt; 1.0</div><div class="body" style="font-size:13px">Ha affrontato difese più <strong>forti</strong> della media → output <strong style="color:var(--green)">valorizzato</strong></div></div>
-        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--red),var(--orng))"></div><div class="stat-val" style="color:var(--red);font-family:var(--mono);font-size:28px;font-weight:800;margin-bottom:8px">SOS &gt; 1.0</div><div class="body" style="font-size:13px">Ha affrontato difese più <strong>deboli</strong> della media → output <strong style="color:var(--red)">deflazionato</strong></div></div>
+        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div><div class="stat-val" style="color:var(--green);font-family:var(--mono);font-size:28px;font-weight:800;margin-bottom:8px">SOS &lt; 1.0</div><div class="body" style="font-size:13px" data-it="Ha affrontato difese più <strong>forti</strong> della media → output <strong style=&quot;color:var(--green)&quot;>valorizzato</strong>" data-en="Faced <strong>stronger</strong>-than-average defenses → output <strong style=&quot;color:var(--green)&quot;>boosted</strong>">Ha affrontato difese più <strong>forti</strong> della media → output <strong style="color:var(--green)">valorizzato</strong></div></div>
+        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--red),var(--orng))"></div><div class="stat-val" style="color:var(--red);font-family:var(--mono);font-size:28px;font-weight:800;margin-bottom:8px">SOS &gt; 1.0</div><div class="body" style="font-size:13px" data-it="Ha affrontato difese più <strong>deboli</strong> della media → output <strong style=&quot;color:var(--red)&quot;>deflazionato</strong>" data-en="Faced <strong>weaker</strong>-than-average defenses → output <strong style=&quot;color:var(--red)&quot;>deflated</strong>">Ha affrontato difese più <strong>deboli</strong> della media → output <strong style="color:var(--red)">deflazionato</strong></div></div>
       </div>
       <div class="css-chart">
         <div class="bar-chart">
-          <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">SOS squadre Serie A — esempio</div>
+          <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px" data-it="SOS squadre Serie A — esempio" data-en="SOS Serie A teams — example">SOS squadre Serie A — esempio</div>
           <div class="bar-row"><span class="bar-label">Inter</span><div class="bar-track"><div class="bar-fill" style="width:62%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">0.78</span></div>
           <div class="bar-row"><span class="bar-label">Napoli</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:rgba(48,209,88,.6)"></div></div><span class="bar-val" style="color:var(--green)">0.82</span></div>
           <div class="bar-row"><span class="bar-label">Fiorentina</span><div class="bar-track"><div class="bar-fill" style="width:77%;background:rgba(255,255,255,.25)"></div></div><span class="bar-val">0.97</span></div>
@@ -328,12 +328,12 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
     <!-- ── OUTPUT ── -->
     <div class="chapter" id="output">
-      <div class="chapter-num"><span>3</span>Dimensione 1</div>
+      <div class="chapter-num"><span>3</span><span data-it="Dimensione 1" data-en="Dimension 1">Dimensione 1</span></div>
       <h2 class="chapter-ttl">Output Offensivo Adj/90</h2>
-      <p class="chapter-desc">La produzione offensiva per 90 minuti, corretta per la difficoltà degli avversari.</p>
-      <div class="formula">Output Adj/90 = (xG + xA) / minuti × 90 / SOS</div>
-      <div class="body"><strong>Passo 1:</strong> Somma xG + xA di tutte le partite nel contesto.<br><strong>Passo 2:</strong> Normalizza per 90 minuti → confrontabile tra minutaggi diversi.<br><strong>Passo 3:</strong> Dividi per SOS → correggi per la difficoltà degli avversari.</div>
-      <div class="ex"><strong>Stesso output grezzo, valore diverso:</strong><br>
+      <p class="chapter-desc" data-it="La produzione offensiva per 90 minuti, corretta per la difficoltà degli avversari." data-en="Offensive production per 90 minutes, corrected for opponent difficulty.">La produzione offensiva per 90 minuti, corretta per la difficoltà degli avversari.</p>
+      <div class="formula" data-it="Output Adj/90 = (xG + xA) / minuti × 90 / SOS" data-en="Output Adj/90 = (xG + xA) / minutes × 90 / SOS">Output Adj/90 = (xG + xA) / minuti × 90 / SOS</div>
+      <div class="body" data-it="<strong>Passo 1:</strong> Somma xG + xA di tutte le partite nel contesto.<br><strong>Passo 2:</strong> Normalizza per 90 minuti → confrontabile tra minutaggi diversi.<br><strong>Passo 3:</strong> Dividi per SOS → correggi per la difficoltà degli avversari." data-en="<strong>Step 1:</strong> Sum xG + xA across all matches in the context.<br><strong>Step 2:</strong> Normalize to 90 minutes → comparable across different minutes played.<br><strong>Step 3:</strong> Divide by SOS → correct for opponent difficulty."><strong>Passo 1:</strong> Somma xG + xA di tutte le partite nel contesto.<br><strong>Passo 2:</strong> Normalizza per 90 minuti → confrontabile tra minutaggi diversi.<br><strong>Passo 3:</strong> Dividi per SOS → correggi per la difficoltà degli avversari.</div>
+      <div class="ex" data-it="<strong>Stesso output grezzo, valore diverso:</strong><br>Giocatore A: (xG+xA)/90 = 0.45, SOS = 0.85 → Output Adj = <strong style=&quot;color:var(--green)&quot;>0.53</strong><br>Giocatore B: (xG+xA)/90 = 0.45, SOS = 1.20 → Output Adj = <strong style=&quot;color:var(--red)&quot;>0.38</strong><br>Stesso dato grezzo, ma B ha giocato contro difese più deboli — il TPI lo riconosce." data-en="<strong>Same raw output, different value:</strong><br>Player A: (xG+xA)/90 = 0.45, SOS = 0.85 → Output Adj = <strong style=&quot;color:var(--green)&quot;>0.53</strong><br>Player B: (xG+xA)/90 = 0.45, SOS = 1.20 → Output Adj = <strong style=&quot;color:var(--red)&quot;>0.38</strong><br>Same raw figure, but B played weaker defenses — the TPI recognizes it."><strong>Stesso output grezzo, valore diverso:</strong><br>
       Giocatore A: (xG+xA)/90 = 0.45, SOS = 0.85 → Output Adj = <strong style="color:var(--green)">0.53</strong><br>
       Giocatore B: (xG+xA)/90 = 0.45, SOS = 1.20 → Output Adj = <strong style="color:var(--red)">0.38</strong><br>
       Stesso dato grezzo, ma B ha giocato contro difese più deboli — il TPI lo riconosce.</div>
@@ -341,17 +341,17 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
     <!-- ── CENTRALITÀ ── -->
     <div class="chapter" id="centralita">
-      <div class="chapter-num"><span>4</span>Dimensione 2</div>
-      <h2 class="chapter-ttl">Centralità Offensiva</h2>
-      <p class="chapter-desc">Quanta parte della produzione offensiva della squadra passa per questo giocatore — stabilizzata con Bayesian shrinkage.</p>
-      <div class="formula">Centralità = (xG_ind + xA_ind + K × prior) / (xG_squadra + K) × 100<br><span class="comment">// prior ≈ 20% (media ATT+CEN lega) · K = 12 (peso del prior)</span><br><span class="comment">// K_ctx = K_base × (n_tot / n_ctx) per contesti con pochi dati</span></div>
+      <div class="chapter-num"><span>4</span><span data-it="Dimensione 2" data-en="Dimension 2">Dimensione 2</span></div>
+      <h2 class="chapter-ttl" data-it="Centralità Offensiva" data-en="Offensive Centrality">Centralità Offensiva</h2>
+      <p class="chapter-desc" data-it="Quanta parte della produzione offensiva della squadra passa per questo giocatore — stabilizzata con Bayesian shrinkage." data-en="How much of the team's offensive production runs through this player — stabilized with Bayesian shrinkage.">Quanta parte della produzione offensiva della squadra passa per questo giocatore — stabilizzata con Bayesian shrinkage.</p>
+      <div class="formula" data-it="Centralità = (xG_ind + xA_ind + K × prior) / (xG_squadra + K) × 100<br><span class=&quot;comment&quot;>// prior ≈ 20% (media ATT+CEN lega) · K = 12 (peso del prior)</span><br><span class=&quot;comment&quot;>// K_ctx = K_base × (n_tot / n_ctx) per contesti con pochi dati</span>" data-en="Centrality = (xG_ind + xA_ind + K × prior) / (team_xG + K) × 100<br><span class=&quot;comment&quot;>// prior ≈ 20% (league FWD+MID mean) · K = 12 (prior weight)</span><br><span class=&quot;comment&quot;>// K_ctx = K_base × (n_tot / n_ctx) for low-data contexts</span>">Centralità = (xG_ind + xA_ind + K × prior) / (xG_squadra + K) × 100<br><span class="comment">// prior ≈ 20% (media ATT+CEN lega) · K = 12 (peso del prior)</span><br><span class="comment">// K_ctx = K_base × (n_tot / n_ctx) per contesti con pochi dati</span></div>
       <div class="section">
-        <h3 class="section-ttl">Effetto Bayesian Shrinkage — convergenza</h3>
-        <div class="body">Con pochi dati la stima bayesiana è vicina al prior (20%). Con molte partite converge verso il valore osservato reale (45%).</div>
+        <h3 class="section-ttl" data-it="Effetto Bayesian Shrinkage — convergenza" data-en="Bayesian Shrinkage effect — convergence">Effetto Bayesian Shrinkage — convergenza</h3>
+        <div class="body" data-it="Con pochi dati la stima bayesiana è vicina al prior (20%). Con molte partite converge verso il valore osservato reale (45%)." data-en="With little data the Bayesian estimate is close to the prior (20%). With many matches it converges toward the real observed value (45%).">Con pochi dati la stima bayesiana è vicina al prior (20%). Con molte partite converge verso il valore osservato reale (45%).</div>
 
         <!-- SVG line chart — convergenza bayesiana -->
         <div style="padding:20px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0">
-          <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:16px">Convergenza bayesiana — osservato=45%, prior=20%, K=12</div>
+          <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:16px" data-it="Convergenza bayesiana — osservato=45%, prior=20%, K=12" data-en="Bayesian convergence — observed=45%, prior=20%, K=12">Convergenza bayesiana — osservato=45%, prior=20%, K=12</div>
           <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
             <!-- Gridlines -->
             <line x1="60" y1="20"  x2="540" y2="20"  stroke="rgba(255,255,255,.04)" stroke-width="1"/>
@@ -410,26 +410,26 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
           </svg>
           <!-- Legend -->
           <div style="display:flex;gap:20px;margin-top:8px;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:20px;height:2px;background:rgba(48,209,88,.9);border-radius:1px"></div>Stima Bayesiana</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:20px;height:1px;background:rgba(255,69,58,.5);border-top:2px dashed rgba(255,69,58,.5)"></div>Osservato 45%</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:20px;height:1px;background:rgba(255,255,255,.25);border-top:1px dashed rgba(255,255,255,.25)"></div>Prior lega 20%</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:#ff9f0a"></div>K=12 soglia</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:20px;height:2px;background:rgba(48,209,88,.9);border-radius:1px"></div><span data-it="Stima Bayesiana" data-en="Bayesian estimate">Stima Bayesiana</span></div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:20px;height:1px;background:rgba(255,69,58,.5);border-top:2px dashed rgba(255,69,58,.5)"></div><span data-it="Osservato 45%" data-en="Observed 45%">Osservato 45%</span></div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:20px;height:1px;background:rgba(255,255,255,.25);border-top:1px dashed rgba(255,255,255,.25)"></div><span data-it="Prior lega 20%" data-en="League prior 20%">Prior lega 20%</span></div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:#ff9f0a"></div><span data-it="K=12 soglia" data-en="K=12 threshold">K=12 soglia</span></div>
           </div>
         </div>
 
-        <div class="note"><strong>Perché K = 12?</strong> Corrisponde a circa 12 partite — il punto in cui le stime calcistiche diventano statisticamente affidabili. Con K troppo basso: instabile (2 partite eccezionali → 80%). Con K troppo alto: tutti convergono al prior. Per acquisti invernali: K × 1.8.</div>
+        <div class="note" data-it="<strong>Perché K = 12?</strong> Corrisponde a circa 12 partite — il punto in cui le stime calcistiche diventano statisticamente affidabili. Con K troppo basso: instabile (2 partite eccezionali → 80%). Con K troppo alto: tutti convergono al prior. Per acquisti invernali: K × 1.8." data-en="<strong>Why K = 12?</strong> It corresponds to about 12 matches — the point where football estimates become statistically reliable. Too low a K: unstable (2 exceptional games → 80%). Too high a K: everyone converges to the prior. For winter signings: K × 1.8."><strong>Perché K = 12?</strong> Corrisponde a circa 12 partite — il punto in cui le stime calcistiche diventano statisticamente affidabili. Con K troppo basso: instabile (2 partite eccezionali → 80%). Con K troppo alto: tutti convergono al prior. Per acquisti invernali: K × 1.8.</div>
       </div>
     </div>
 
     <!-- ── BOOST ── -->
     <div class="chapter" id="boost">
-      <div class="chapter-num"><span>5</span>Dimensione 3</div>
+      <div class="chapter-num"><span>5</span><span data-it="Dimensione 3" data-en="Dimension 3">Dimensione 3</span></div>
       <h2 class="chapter-ttl">Team Boost Ratio</h2>
-      <p class="chapter-desc">Quanto crea di più la squadra quando il giocatore è in campo.</p>
-      <div class="formula">Boost = xG_squadra_CON / xG_squadra_SENZA<br><span class="comment">// entrambe le medie ponderate per 1/SOS · richiede ≥3 partite senza</span></div>
+      <p class="chapter-desc" data-it="Quanto crea di più la squadra quando il giocatore è in campo." data-en="How much more the team creates when the player is on the pitch.">Quanto crea di più la squadra quando il giocatore è in campo.</p>
+      <div class="formula" data-it="Boost = xG_squadra_CON / xG_squadra_SENZA<br><span class=&quot;comment&quot;>// entrambe le medie ponderate per 1/SOS · richiede ≥3 partite senza</span>" data-en="Boost = team_xG_WITH / team_xG_WITHOUT<br><span class=&quot;comment&quot;>// both means weighted by 1/SOS · requires ≥3 matches without</span>">Boost = xG_squadra_CON / xG_squadra_SENZA<br><span class="comment">// entrambe le medie ponderate per 1/SOS · richiede ≥3 partite senza</span></div>
       <div class="css-chart">
         <div class="bar-chart">
-          <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Team Boost top giocatori — esempio</div>
+          <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px" data-it="Team Boost top giocatori — esempio" data-en="Team Boost top players — example">Team Boost top giocatori — esempio</div>
           <div class="bar-row"><span class="bar-label">Barella</span><div class="bar-track"><div class="bar-fill" style="width:92%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">1.28</span></div>
           <div class="bar-row"><span class="bar-label">Lautaro</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:rgba(48,209,88,.65)"></div></div><span class="bar-val" style="color:var(--green)">1.22</span></div>
           <div class="bar-row"><span class="bar-label">Dimarco</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:rgba(48,209,88,.6)"></div></div><span class="bar-val" style="color:var(--green)">1.18</span></div>
@@ -437,31 +437,31 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
           <div class="bar-row"><span class="bar-label">Vlahovic</span><div class="bar-track"><div class="bar-fill" style="width:67%;background:rgba(255,69,58,.5)"></div></div><span class="bar-val" style="color:var(--red)">0.94</span></div>
         </div>
       </div>
-      <div class="note"><strong>Perché il SOS-weighting?</strong> Le partite con/senza potrebbero capitare per caso contro avversari di difficoltà diversa. Il SOS-weighting neutralizza questo bias — le partite difficili pesano di più in entrambe le medie.</div>
+      <div class="note" data-it="<strong>Perché il SOS-weighting?</strong> Le partite con/senza potrebbero capitare per caso contro avversari di difficoltà diversa. Il SOS-weighting neutralizza questo bias — le partite difficili pesano di più in entrambe le medie." data-en="<strong>Why SOS-weighting?</strong> The with/without matches might happen by chance against opponents of different difficulty. SOS-weighting neutralizes this bias — harder matches weigh more in both means."><strong>Perché il SOS-weighting?</strong> Le partite con/senza potrebbero capitare per caso contro avversari di difficoltà diversa. Il SOS-weighting neutralizza questo bias — le partite difficili pesano di più in entrambe le medie.</div>
     </div>
 
     <!-- ── CONSISTENZA ── -->
     <div class="chapter" id="consistenza">
-      <div class="chapter-num"><span>6</span>Dimensione 4</div>
-      <h2 class="chapter-ttl">Consistenza</h2>
-      <p class="chapter-desc">L'affidabilità del giocatore partita dopo partita — misurata tramite il Coefficiente di Variazione.</p>
-      <div class="formula">Consistenza = 1 − CV &nbsp;&nbsp; dove &nbsp;&nbsp; CV = σ / μ<br><span class="comment">// σ = std output/90 per partita · μ = media output/90</span></div>
+      <div class="chapter-num"><span>6</span><span data-it="Dimensione 4" data-en="Dimension 4">Dimensione 4</span></div>
+      <h2 class="chapter-ttl" data-it="Consistenza" data-en="Consistency">Consistenza</h2>
+      <p class="chapter-desc" data-it="L'affidabilità del giocatore partita dopo partita — misurata tramite il Coefficiente di Variazione." data-en="The player's reliability match after match — measured via the Coefficient of Variation.">L'affidabilità del giocatore partita dopo partita — misurata tramite il Coefficiente di Variazione.</p>
+      <div class="formula" data-it="Consistenza = 1 − CV &nbsp;&nbsp; dove &nbsp;&nbsp; CV = σ / μ<br><span class=&quot;comment&quot;>// σ = std output/90 per partita · μ = media output/90</span>" data-en="Consistency = 1 − CV &nbsp;&nbsp; where &nbsp;&nbsp; CV = σ / μ<br><span class=&quot;comment&quot;>// σ = std of output/90 per match · μ = mean output/90</span>">Consistenza = 1 − CV &nbsp;&nbsp; dove &nbsp;&nbsp; CV = σ / μ<br><span class="comment">// σ = std output/90 per partita · μ = media output/90</span></div>
       <div class="g2">
-        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div><div class="card-ttl">Giocatore Consistente</div>
+        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div><div class="card-ttl" data-it="Giocatore Consistente" data-en="Consistent Player">Giocatore Consistente</div>
           <div style="display:flex;flex-direction:column;gap:4px;margin:8px 0">
             <div class="bar-row" style="gap:8px"><span style="font-size:11px;color:var(--lt);width:25px">G1</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:rgba(48,209,88,.6)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--green)">0.40</span></div>
             <div class="bar-row" style="gap:8px"><span style="font-size:11px;color:var(--lt);width:25px">G2</span><div class="bar-track"><div class="bar-fill" style="width:76%;background:rgba(48,209,88,.6)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--green)">0.38</span></div>
             <div class="bar-row" style="gap:8px"><span style="font-size:11px;color:var(--lt);width:25px">G3</span><div class="bar-track"><div class="bar-fill" style="width:84%;background:rgba(48,209,88,.6)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--green)">0.42</span></div>
           </div>
-          <div style="font-size:13px;color:var(--green);font-family:var(--mono);font-weight:700">Consistenza: 0.86</div>
+          <div style="font-size:13px;color:var(--green);font-family:var(--mono);font-weight:700" data-it="Consistenza: 0.86" data-en="Consistency: 0.86">Consistenza: 0.86</div>
         </div>
-        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--orng),var(--red))"></div><div class="card-ttl">Giocatore On/Off</div>
+        <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--orng),var(--red))"></div><div class="card-ttl" data-it="Giocatore On/Off" data-en="On/Off Player">Giocatore On/Off</div>
           <div style="display:flex;flex-direction:column;gap:4px;margin:8px 0">
             <div class="bar-row" style="gap:8px"><span style="font-size:11px;color:var(--lt);width:25px">G1</span><div class="bar-track"><div class="bar-fill" style="width:0%;background:rgba(255,159,10,.5)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--lt)">0.00</span></div>
             <div class="bar-row" style="gap:8px"><span style="font-size:11px;color:var(--lt);width:25px">G2</span><div class="bar-track"><div class="bar-fill" style="width:100%;background:rgba(255,159,10,.7)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--orng)">1.20</span></div>
             <div class="bar-row" style="gap:8px"><span style="font-size:11px;color:var(--lt);width:25px">G3</span><div class="bar-track"><div class="bar-fill" style="width:0%;background:rgba(255,159,10,.5)"></div></div><span style="font-size:10px;font-family:var(--mono);color:var(--lt)">0.00</span></div>
           </div>
-          <div style="font-size:13px;color:var(--red);font-family:var(--mono);font-weight:700">Consistenza: 0.14</div>
+          <div style="font-size:13px;color:var(--red);font-family:var(--mono);font-weight:700" data-it="Consistenza: 0.14" data-en="Consistency: 0.14">Consistenza: 0.14</div>
         </div>
       </div>
     </div>
@@ -475,40 +475,40 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     <!-- ── ETA INDEX ── -->
     <div class="chapter" id="eta">
       <div class="chapter-num" style="color:var(--teal)"><span style="background:rgba(90,200,250,.15);border-color:rgba(90,200,250,.3)">★</span></div>
-      <h2 class="chapter-ttl">Età Index <span class="tag tag-teal" style="font-size:14px;vertical-align:middle;margin-left:6px">AII</span></h2>
-      <p class="chapter-desc">Indice composito che misura il valore del giocatore considerando il ciclo di carriera — picco prestativo, esperienza accumulata e freschezza fisica. Usato nel <strong style="color:var(--teal)">TPI Pro</strong> come dimensione opzionale.</p>
+      <h2 class="chapter-ttl"><span data-it="Età Index" data-en="Age Index">Età Index</span> <span class="tag tag-teal" style="font-size:14px;vertical-align:middle;margin-left:6px">AII</span></h2>
+      <p class="chapter-desc" data-it="Indice composito che misura il valore del giocatore considerando il ciclo di carriera — picco prestativo, esperienza accumulata e freschezza fisica. Usato nel <strong style=&quot;color:var(--teal)&quot;>TPI Pro</strong> come dimensione opzionale." data-en="A composite index measuring a player's value across the career cycle — performance peak, accumulated experience and physical freshness. Used in <strong style=&quot;color:var(--teal)&quot;>TPI Pro</strong> as an optional dimension.">Indice composito che misura il valore del giocatore considerando il ciclo di carriera — picco prestativo, esperienza accumulata e freschezza fisica. Usato nel <strong style="color:var(--teal)">TPI Pro</strong> come dimensione opzionale.</p>
 
       <div class="section">
-        <h3 class="section-ttl">Componenti della formula</h3>
-        <div class="formula">AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>
+        <h3 class="section-ttl" data-it="Componenti della formula" data-en="Formula components">Componenti della formula</h3>
+        <div class="formula" data-it="AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>PeakProximity = exp(−0.5 × ((età − 27) / 4.5)²)   <span class=&quot;comment&quot;>// Gaussiana, picco a 27 anni</span><br>ExperienceFactor = min(1.0, (età − 17) / 10.0)      <span class=&quot;comment&quot;>// satura dopo ~10 anni di carriera</span><br>Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span class=&quot;comment&quot;>// −5%/anno</span>" data-en="AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>PeakProximity = exp(−0.5 × ((age − 27) / 4.5)²)   <span class=&quot;comment&quot;>// Gaussian, peak at 27</span><br>ExperienceFactor = min(1.0, (age − 17) / 10.0)      <span class=&quot;comment&quot;>// saturates after ~10 years of career</span><br>Freshness = 1.0 if age ≤ 27, else max(0, 1 − (age−27)×0.05) <span class=&quot;comment&quot;>// −5%/year</span>">AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>
 PeakProximity = exp(−0.5 × ((età − 27) / 4.5)²)   <span class="comment">// Gaussiana, picco a 27 anni</span><br>
 ExperienceFactor = min(1.0, (età − 17) / 10.0)      <span class="comment">// satura dopo ~10 anni di carriera</span><br>
 Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span class="comment">// −5%/anno</span></div>
 
         <div class="section">
-          <h3 class="section-ttl">Curva AII per età</h3>
+          <h3 class="section-ttl" data-it="Curva AII per età" data-en="AII curve by age">Curva AII per età</h3>
           <div class="age-curve">
-            <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px">Age Impact Index per fascia d'età</div>
+            <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px" data-it="Age Impact Index per fascia d'età" data-en="Age Impact Index by age band">Age Impact Index per fascia d'età</div>
             <div class="bar-chart" style="border:none;padding:0;background:none">
-              <div class="bar-row"><span class="bar-label">18 anni</span><div class="bar-track"><div class="bar-fill" style="width:42%;background:rgba(90,200,250,.5)"></div></div><span class="bar-val" style="color:var(--teal)">0.42</span></div>
-              <div class="bar-row"><span class="bar-label">21 anni</span><div class="bar-track"><div class="bar-fill" style="width:61%;background:rgba(90,200,250,.6)"></div></div><span class="bar-val" style="color:var(--teal)">0.61</span></div>
-              <div class="bar-row"><span class="bar-label">24 anni</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:rgba(48,209,88,.65)"></div></div><span class="bar-val" style="color:var(--green)">0.79</span></div>
-              <div class="bar-row"><span class="bar-label">27 anni <span style="color:var(--orng)">★</span></span><div class="bar-track"><div class="bar-fill" style="width:90%;background:rgba(48,209,88,.9);outline:1.5px solid var(--orng)"></div></div><span class="bar-val" style="color:var(--green)">0.90</span></div>
-              <div class="bar-row"><span class="bar-label">29 anni</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">0.83</span></div>
-              <div class="bar-row"><span class="bar-label">32 anni</span><div class="bar-track"><div class="bar-fill" style="width:68%;background:rgba(255,159,10,.6)"></div></div><span class="bar-val" style="color:var(--orng)">0.68</span></div>
-              <div class="bar-row"><span class="bar-label">35 anni</span><div class="bar-track"><div class="bar-fill" style="width:46%;background:rgba(255,69,58,.5)"></div></div><span class="bar-val" style="color:var(--red)">0.46</span></div>
+              <div class="bar-row"><span class="bar-label" data-it="18 anni" data-en="18 yrs">18 anni</span><div class="bar-track"><div class="bar-fill" style="width:42%;background:rgba(90,200,250,.5)"></div></div><span class="bar-val" style="color:var(--teal)">0.42</span></div>
+              <div class="bar-row"><span class="bar-label" data-it="21 anni" data-en="21 yrs">21 anni</span><div class="bar-track"><div class="bar-fill" style="width:61%;background:rgba(90,200,250,.6)"></div></div><span class="bar-val" style="color:var(--teal)">0.61</span></div>
+              <div class="bar-row"><span class="bar-label" data-it="24 anni" data-en="24 yrs">24 anni</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:rgba(48,209,88,.65)"></div></div><span class="bar-val" style="color:var(--green)">0.79</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="27 anni" data-en="27 yrs">27 anni</span> <span style="color:var(--orng)">★</span></span><div class="bar-track"><div class="bar-fill" style="width:90%;background:rgba(48,209,88,.9);outline:1.5px solid var(--orng)"></div></div><span class="bar-val" style="color:var(--green)">0.90</span></div>
+              <div class="bar-row"><span class="bar-label" data-it="29 anni" data-en="29 yrs">29 anni</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">0.83</span></div>
+              <div class="bar-row"><span class="bar-label" data-it="32 anni" data-en="32 yrs">32 anni</span><div class="bar-track"><div class="bar-fill" style="width:68%;background:rgba(255,159,10,.6)"></div></div><span class="bar-val" style="color:var(--orng)">0.68</span></div>
+              <div class="bar-row"><span class="bar-label" data-it="35 anni" data-en="35 yrs">35 anni</span><div class="bar-track"><div class="bar-fill" style="width:46%;background:rgba(255,69,58,.5)"></div></div><span class="bar-val" style="color:var(--red)">0.46</span></div>
             </div>
           </div>
         </div>
 
         <div class="g2">
-          <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--teal),var(--blue))"></div><div class="card-ttl">Alto AII = alta rilevanza scout</div><div class="body" style="font-size:13px">Un giocatore di 24 anni con TPI Pro alto ha <strong style="color:var(--teal)">potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo.</div></div>
-          <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--orng),var(--red))"></div><div class="card-ttl">Basso AII ≠ cattivo giocatore</div><div class="body" style="font-size:13px">Un 34enne con TPI classico alto resta eccellente. L'AII basso indica solo che il <strong style="color:var(--orng)">ciclo è avanzato</strong> — rilevante per decisioni di acquisto a lungo termine.</div></div>
+          <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--teal),var(--blue))"></div><div class="card-ttl" data-it="Alto AII = alta rilevanza scout" data-en="High AII = high scouting relevance">Alto AII = alta rilevanza scout</div><div class="body" style="font-size:13px" data-it="Un giocatore di 24 anni con TPI Pro alto ha <strong style=&quot;color:var(--teal)&quot;>potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo." data-en="A 24-year-old with a high TPI Pro has <strong style=&quot;color:var(--teal)&quot;>huge potential</strong> — expected value over the next 5 years is maximal.">Un giocatore di 24 anni con TPI Pro alto ha <strong style="color:var(--teal)">potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo.</div></div>
+          <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--orng),var(--red))"></div><div class="card-ttl" data-it="Basso AII ≠ cattivo giocatore" data-en="Low AII ≠ bad player">Basso AII ≠ cattivo giocatore</div><div class="body" style="font-size:13px" data-it="Un 34enne con TPI classico alto resta eccellente. L'AII basso indica solo che il <strong style=&quot;color:var(--orng)&quot;>ciclo è avanzato</strong> — rilevante per decisioni di acquisto a lungo termine." data-en="A 34-year-old with a high classic TPI is still excellent. A low AII only indicates the <strong style=&quot;color:var(--orng)&quot;>cycle is advanced</strong> — relevant for long-term signing decisions.">Un 34enne con TPI classico alto resta eccellente. L'AII basso indica solo che il <strong style="color:var(--orng)">ciclo è avanzato</strong> — rilevante per decisioni di acquisto a lungo termine.</div></div>
         </div>
 
-        
 
-        <div class="ex"><strong>Esempio pratico:</strong><br>
+
+        <div class="ex" data-it="<strong>Esempio pratico:</strong><br>Lautaro (29 anni) TPI = +1.75, AII = 0.83 → TPI Pro alto, ciclo avanzato<br>Yildiz (19 anni) TPI = +1.20, AII = 0.42 → TPI Pro moderato, <strong style=&quot;color:var(--teal)&quot;>potenziale enorme</strong><br>Per uno scouting a 3 anni → Yildiz è la scelta migliore nonostante TPI inferiore." data-en="<strong>Practical example:</strong><br>Lautaro (29 yrs) TPI = +1.75, AII = 0.83 → high TPI Pro, advanced cycle<br>Yildiz (19 yrs) TPI = +1.20, AII = 0.42 → moderate TPI Pro, <strong style=&quot;color:var(--teal)&quot;>huge potential</strong><br>For a 3-year scouting horizon → Yildiz is the better pick despite a lower TPI."><strong>Esempio pratico:</strong><br>
         Lautaro (29 anni) TPI = +1.75, AII = 0.83 → TPI Pro alto, ciclo avanzato<br>
         Yildiz (19 anni) TPI = +1.20, AII = 0.42 → TPI Pro moderato, <strong style="color:var(--teal)">potenziale enorme</strong><br>
         Per uno scouting a 3 anni → Yildiz è la scelta migliore nonostante TPI inferiore.</div>
@@ -518,25 +518,25 @@ Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span
     <!-- ── AFFIDABILITÀ FISICA ── -->
     <div class="chapter" id="fisica">
       <div class="chapter-num" style="color:var(--purp)"><span style="background:rgba(191,90,242,.15);border-color:rgba(191,90,242,.3)">★</span></div>
-      <h2 class="chapter-ttl">Affidabilità Fisica <span class="tag tag-purp" style="font-size:14px;vertical-align:middle;margin-left:6px">PRI</span></h2>
-      <p class="chapter-desc">Misura quanto un giocatore è fisicamente presente e affidabile — basato su disponibilità reale, frequenza degli infortuni e gravità delle assenze. Richiede la tabella <code style="font-family:var(--mono);font-size:13px;color:var(--purp)">t_infortuni</code> nel DB.</p>
+      <h2 class="chapter-ttl"><span data-it="Affidabilità Fisica" data-en="Physical Reliability">Affidabilità Fisica</span> <span class="tag tag-purp" style="font-size:14px;vertical-align:middle;margin-left:6px">PRI</span></h2>
+      <p class="chapter-desc" data-it="Misura quanto un giocatore è fisicamente presente e affidabile — basato su disponibilità reale, frequenza degli infortuni e gravità delle assenze. Richiede la tabella <code style=&quot;font-family:var(--mono);font-size:13px;color:var(--purp)&quot;>t_infortuni</code> nel DB." data-en="Measures how physically present and reliable a player is — based on real availability, injury frequency and absence severity. Requires the <code style=&quot;font-family:var(--mono);font-size:13px;color:var(--purp)&quot;>t_infortuni</code> table in the DB.">Misura quanto un giocatore è fisicamente presente e affidabile — basato su disponibilità reale, frequenza degli infortuni e gravità delle assenze. Richiede la tabella <code style="font-family:var(--mono);font-size:13px;color:var(--purp)">t_infortuni</code> nel DB.</p>
 
       <div class="section">
         <h3 class="section-ttl">Formula</h3>
-        <div class="formula">PRI = 0.50 × Disponibilità + 0.30 × InjuryFree + 0.20 × SeverityOk<br><br>
+        <div class="formula" data-it="PRI = 0.50 × Disponibilità + 0.30 × InjuryFree + 0.20 × SeverityOk<br><br>Disponibilità = partite_giocate / partite_disponibili_stagione<br>InjuryFree = max(0, 1 − n_infortuni × 0.15)   <span class=&quot;comment&quot;>// −15% per ogni infortunio</span><br>SeverityOk = max(0, 1 − giorni_out / 90)       <span class=&quot;comment&quot;>// −1.1%/giorno fuori (cap a 90 gg)</span>" data-en="PRI = 0.50 × Availability + 0.30 × InjuryFree + 0.20 × SeverityOk<br><br>Availability = matches_played / available_matches_season<br>InjuryFree = max(0, 1 − n_injuries × 0.15)   <span class=&quot;comment&quot;>// −15% per injury</span><br>SeverityOk = max(0, 1 − days_out / 90)       <span class=&quot;comment&quot;>// −1.1%/day out (cap at 90 days)</span>">PRI = 0.50 × Disponibilità + 0.30 × InjuryFree + 0.20 × SeverityOk<br><br>
 Disponibilità = partite_giocate / partite_disponibili_stagione<br>
 InjuryFree = max(0, 1 − n_infortuni × 0.15)   <span class="comment">// −15% per ogni infortunio</span><br>
 SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1%/giorno fuori (cap a 90 gg)</span></div>
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">Esempio visivo — stagione tipo</h3>
+        <h3 class="section-ttl" data-it="Esempio visivo — stagione tipo" data-en="Visual example — typical season">Esempio visivo — stagione tipo</h3>
         <div class="card" style="padding:20px">
-          <div class="card-ttl">Disponibilità partita per partita — 3 profili</div>
+          <div class="card-ttl" data-it="Disponibilità partita per partita — 3 profili" data-en="Match-by-match availability — 3 profiles">Disponibilità partita per partita — 3 profili</div>
           <div style="display:flex;flex-direction:column;gap:20px;margin-top:8px">
             <!-- Giocatore affidabile -->
             <div>
-              <div style="font-size:12px;font-weight:600;color:var(--green);margin-bottom:6px">Giocatore Affidabile — PRI 0.88</div>
+              <div style="font-size:12px;font-weight:600;color:var(--green);margin-bottom:6px" data-it="Giocatore Affidabile — PRI 0.88" data-en="Reliable Player — PRI 0.88">Giocatore Affidabile — PRI 0.88</div>
               <div class="reliability-grid">
                 <div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div>
                 <div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div>
@@ -546,7 +546,7 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
             </div>
             <!-- Giocatore con infortuni -->
             <div>
-              <div style="font-size:12px;font-weight:600;color:var(--orng);margin-bottom:6px">Giocatore Fragile — PRI 0.54</div>
+              <div style="font-size:12px;font-weight:600;color:var(--orng);margin-bottom:6px" data-it="Giocatore Fragile — PRI 0.54" data-en="Fragile Player — PRI 0.54">Giocatore Fragile — PRI 0.54</div>
               <div class="reliability-grid">
                 <div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-inj">✗</div><div class="rel-cell rel-inj">✗</div><div class="rel-cell rel-inj">✗</div>
                 <div class="rel-cell rel-inj">✗</div><div class="rel-cell rel-inj">✗</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div><div class="rel-cell rel-ok">✓</div>
@@ -556,19 +556,19 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
             </div>
           </div>
           <div class="rel-legend">
-            <div class="rel-leg"><div class="rel-swatch" style="background:rgba(48,209,88,.25);border:1px solid rgba(48,209,88,.4)"></div>Partita giocata</div>
-            <div class="rel-leg"><div class="rel-swatch" style="background:rgba(255,69,58,.2);border:1px solid rgba(255,69,58,.35)"></div>Infortunio / assente</div>
-            <div class="rel-leg"><div class="rel-swatch" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15)"></div>Gestione / panchina</div>
+            <div class="rel-leg"><div class="rel-swatch" style="background:rgba(48,209,88,.25);border:1px solid rgba(48,209,88,.4)"></div><span data-it="Partita giocata" data-en="Match played">Partita giocata</span></div>
+            <div class="rel-leg"><div class="rel-swatch" style="background:rgba(255,69,58,.2);border:1px solid rgba(255,69,58,.35)"></div><span data-it="Infortunio / assente" data-en="Injury / absent">Infortunio / assente</span></div>
+            <div class="rel-leg"><div class="rel-swatch" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.15)"></div><span data-it="Gestione / panchina" data-en="Rotation / bench">Gestione / panchina</span></div>
           </div>
         </div>
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">Come popolare i dati</h3>
-        <div class="body">Gli infortuni si inseriscono manualmente nel file <code style="font-family:var(--mono);color:var(--purp)">infortuni_2024_25.sql</code> già compilato con i dati reali della stagione. Fonti: Transfermarkt, SosFanta, comunicati ufficiali club.</div>
+        <h3 class="section-ttl" data-it="Come popolare i dati" data-en="How to populate the data">Come popolare i dati</h3>
+        <div class="body" data-it="Gli infortuni si inseriscono manualmente nel file <code style=&quot;font-family:var(--mono);color:var(--purp)&quot;>infortuni_2024_25.sql</code> già compilato con i dati reali della stagione. Fonti: Transfermarkt, SosFanta, comunicati ufficiali club." data-en="Injuries are entered manually in the <code style=&quot;font-family:var(--mono);color:var(--purp)&quot;>infortuni_2024_25.sql</code> file, already filled with the season's real data. Sources: Transfermarkt, SosFanta, official club statements.">Gli infortuni si inseriscono manualmente nel file <code style="font-family:var(--mono);color:var(--purp)">infortuni_2024_25.sql</code> già compilato con i dati reali della stagione. Fonti: Transfermarkt, SosFanta, comunicati ufficiali club.</div>
       </div>
 
-      <div class="ex"><strong>Caso pratico:</strong><br>
+      <div class="ex" data-it="<strong>Caso pratico:</strong><br>Scamacca: 2 infortuni gravi, 45 gg out → PRI = <span style=&quot;color:var(--red)&quot;>0.41</span> — altissimo rischio fisico nonostante talento offensivo<br>Calhanoglu: 0 infortuni, 1 sola assenza → PRI = <span style=&quot;color:var(--green)&quot;>0.92</span> — massima affidabilità" data-en="<strong>Practical case:</strong><br>Scamacca: 2 serious injuries, 45 days out → PRI = <span style=&quot;color:var(--red)&quot;>0.41</span> — very high physical risk despite offensive talent<br>Calhanoglu: 0 injuries, 1 absence only → PRI = <span style=&quot;color:var(--green)&quot;>0.92</span> — maximum reliability"><strong>Caso pratico:</strong><br>
       Scamacca: 2 infortuni gravi, 45 gg out → PRI = <span style="color:var(--red)">0.41</span> — altissimo rischio fisico nonostante talento offensivo<br>
       Calhanoglu: 0 infortuni, 1 sola assenza → PRI = <span style="color:var(--green)">0.92</span> — massima affidabilità</div>
     </div>
@@ -577,11 +577,11 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
 
     <!-- ── Z-SCORE ── -->
     <div class="chapter" id="zscore">
-      <div class="chapter-num"><span>7</span>Statistics</div>
+      <div class="chapter-num"><span>7</span><span data-it="Statistica" data-en="Statistics">Statistics</span></div>
       <h2 class="chapter-ttl">Winsorized z-score</h2>
-      <p class="chapter-desc">The transformation that lets us combine metrics with completely different scales — made robust against outliers.</p>
+      <p class="chapter-desc" data-it="La trasformazione che permette di combinare metriche con scale completamente diverse — resa robusta agli outlier." data-en="The transformation that lets us combine metrics with completely different scales — made robust against outliers.">The transformation that lets us combine metrics with completely different scales — made robust against outliers.</p>
 
-      <div class="formula">
+      <div class="formula" data-it="Passo 1: Winsorize → taglia i valori a [p5, p95] prima di calcolare μ e σ<br>Passo 2: z = (valore − μ_winsorizzata) / σ_winsorizzata<br>Passo 3: taglia z a [−3, +3]<br><span class=&quot;comment&quot;>// Popolazione di riferimento: ATT + CEN qualificati (≥ minuti soglia)</span>" data-en="Step 1: Winsorize → clip values to [p5, p95] before computing μ and σ<br>Step 2: z = (value − μ_winsorized) / σ_winsorized<br>Step 3: clip z to [−3, +3]<br><span class=&quot;comment&quot;>// Reference population: qualified FWD + MID (≥ minutes threshold)</span>">
         Step 1: Winsorize → clip values to [p5, p95] before computing μ and σ<br>
         Step 2: z = (value − μ_winsorized) / σ_winsorized<br>
         Step 3: clip z to [−3, +3]<br>
@@ -591,16 +591,16 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
       <div class="g2" style="margin-top:16px">
         <div class="card">
           <div class="card-accent" style="background:linear-gradient(90deg,var(--red),var(--orng))"></div>
-          <div class="card-ttl" style="color:var(--red)">❌ Standard z-score (old)</div>
-          <div class="body" style="font-size:13px;margin-top:8px">
+          <div class="card-ttl" style="color:var(--red)" data-it="❌ z-score standard (vecchio)" data-en="❌ Standard z-score (old)">❌ Standard z-score (old)</div>
+          <div class="body" style="font-size:13px;margin-top:8px" data-it="Un giocatore con 1.2 xG/90 in 2 partite gonfia la σ dell'intera lega. Risultato: lo z-score di tutti gli altri viene compresso — classifiche distorte." data-en="A player with 1.2 xG/90 in 2 matches inflates σ for the entire league. Result: everyone else's z-score is compressed — rankings distorted.">
             A player with 1.2 xG/90 in 2 matches inflates σ for the entire league.
             Result: everyone else's z-score is compressed — rankings distorted.
           </div>
         </div>
         <div class="card">
           <div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
-          <div class="card-ttl" style="color:var(--green)">✅ Winsorized z-score (new)</div>
-          <div class="body" style="font-size:13px;margin-top:8px">
+          <div class="card-ttl" style="color:var(--green)" data-it="✅ z-score winsorizzato (nuovo)" data-en="✅ Winsorized z-score (new)">✅ Winsorized z-score (new)</div>
+          <div class="body" style="font-size:13px;margin-top:8px" data-it="Il 5% superiore/inferiore viene tagliato prima di calcolare μ e σ. L'outlier segna comunque +3.0, ma non distorce la distribuzione per tutti gli altri." data-en="Top/bottom 5% trimmed before computing μ and σ. Outlier still scores +3.0, but doesn't distort the distribution for everyone else.">
             Top/bottom 5% trimmed before computing μ and σ.
             Outlier still scores +3.0, but doesn't distort the distribution for everyone else.
           </div>
@@ -642,27 +642,27 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
         </div>
       </div>
       <div class="g2">
-        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--green)">+2.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px">Top 2.5% of league</div></div>
-        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--green)">+1.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px">Top 16% of league</div></div>
-        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--lt)">0.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px">Exactly at league average</div></div>
-        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--red)">−1.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px">Below 84% of league</div></div>
+        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--green)">+2.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px" data-it="Top 2.5% della lega" data-en="Top 2.5% of league">Top 2.5% of league</div></div>
+        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--green)">+1.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px" data-it="Top 16% della lega" data-en="Top 16% of league">Top 16% of league</div></div>
+        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--lt)">0.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px" data-it="Esattamente nella media lega" data-en="Exactly at league average">Exactly at league average</div></div>
+        <div class="card"><div style="font-family:var(--mono);font-size:32px;font-weight:800;color:var(--red)">−1.0</div><div style="font-size:12px;color:var(--lt);margin-top:4px" data-it="Sotto l'84% della lega" data-en="Below 84% of league">Below 84% of league</div></div>
       </div>
 
       <!-- Bootstrap CI spiegato -->
       <div class="section" style="margin-top:24px">
-        <h3 class="section-ttl">Bootstrap Confidence Intervals</h3>
-        <div class="body">
+        <h3 class="section-ttl" data-it="Intervalli di Confidenza Bootstrap" data-en="Bootstrap Confidence Intervals">Bootstrap Confidence Intervals</h3>
+        <div class="body" data-it="Ogni correlazione riportata nella validazione (Pearson r, Spearman ρ) include un <strong style=&quot;color:var(--blue)&quot;>IC bootstrap al 95%</strong> calcolato con 1000 ricampionamenti (seed=42). Indica l'intervallo plausibile della vera correlazione — non solo la stima puntuale." data-en="Every correlation reported in the validation (Pearson r, Spearman ρ) includes a <strong style=&quot;color:var(--blue)&quot;>95% Bootstrap CI</strong> computed with 1000 resamples (seed=42). This tells you the plausible range of the true correlation — not just the point estimate.">
           Every correlation reported in the validation (Pearson r, Spearman ρ) includes a
           <strong style="color:var(--blue)">95% Bootstrap CI</strong> computed with 1000 resamples (seed=42).
           This tells you the plausible range of the true correlation — not just the point estimate.
         </div>
-        <div class="formula" style="margin-top:12px">
+        <div class="formula" style="margin-top:12px" data-it="Per ognuna delle 1000 iterazioni:<br>&nbsp;&nbsp;→ campiona n giocatori con reinserimento<br>&nbsp;&nbsp;→ calcola la correlazione r*<br>IC = [percentile(r*, 2.5%), percentile(r*, 97.5%)]" data-en="For each of 1000 iterations:<br>&nbsp;&nbsp;→ sample n players with replacement<br>&nbsp;&nbsp;→ compute correlation r*<br>CI = [percentile(r*, 2.5%), percentile(r*, 97.5%)]">
           For each of 1000 iterations:<br>
           &nbsp;&nbsp;→ sample n players with replacement<br>
           &nbsp;&nbsp;→ compute correlation r*<br>
           CI = [percentile(r*, 2.5%), percentile(r*, 97.5%)]
         </div>
-        <div class="ex" style="margin-top:12px">
+        <div class="ex" style="margin-top:12px" data-it="<strong>Esempio:</strong> Pearson r = 0.47 con IC 95% [0.31, 0.61] significa che siamo sicuri al 95% che la vera correlazione sia tra 0.31 e 0.61 — anche raccogliendo dati diversi. Un IC ampio segnala campione piccolo; un IC stretto segnala stabilità." data-en="<strong>Example:</strong> Pearson r = 0.47 with 95% CI [0.31, 0.61] means we're 95% confident the true correlation is between 0.31 and 0.61 — even if we collected different data. A wide CI signals small sample; a narrow CI signals stability.">
           <strong>Example:</strong> Pearson r = 0.47 with 95% CI [0.31, 0.61] means we're 95% confident
           the true correlation is between 0.31 and 0.61 — even if we collected different data.
           A wide CI signals small sample; a narrow CI signals stability.
@@ -673,8 +673,8 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
     <!-- ── TPI FINALE ── -->
     <div class="chapter" id="tpi">
       <h2 class="chapter-ttl">TPI &amp; TPI Pro</h2>
-      <p class="chapter-desc">The final index. TPI Classic uses 4 dimensions. TPI Pro extends to 6 when age and injury data are available.</p>
-      <div class="formula">
+      <p class="chapter-desc" data-it="L'indice finale. Il TPI Classic usa 4 dimensioni. Il TPI Pro arriva a 6 quando sono disponibili i dati di età e infortuni." data-en="The final index. TPI Classic uses 4 dimensions. TPI Pro extends to 6 when age and injury data are available.">The final index. TPI Classic uses 4 dimensions. TPI Pro extends to 6 when age and injury data are available.</p>
+      <div class="formula" data-it="TPI = media(z_output_adj, z_centralità, z_boost, z_consistenza)<br><span class=&quot;comment&quot;>// se Boost N/D → media dei 3 restanti · calcolato per 5 contesti</span><br><br>TPI Pro = media(z_output_adj, z_centralità, z_boost, z_consistenza, z_aii, z_pri)<br><span class=&quot;comment&quot;>// z_aii e z_pri opzionali — esclusi se mancano i dati</span>" data-en="TPI = mean(z_output_adj, z_centrality, z_boost, z_consistency)<br><span class=&quot;comment&quot;>// if Boost N/A → mean of 3 remaining · computed for 5 contexts</span><br><br>TPI Pro = mean(z_output_adj, z_centrality, z_boost, z_consistency, z_aii, z_pri)<br><span class=&quot;comment&quot;>// z_aii and z_pri optional — excluded if missing data</span>">
         TPI = mean(z_output_adj, z_centralità, z_boost, z_consistenza)<br>
         <span class="comment">// if Boost N/A → mean of 3 remaining · computed for 5 contexts</span><br><br>
         TPI Pro = mean(z_output_adj, z_centralità, z_boost, z_consistenza, z_aii, z_pri)<br>
@@ -682,26 +682,26 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">IQR-based Consistency (upgraded)</h3>
-        <div class="body">
+        <h3 class="section-ttl" data-it="Consistenza basata su IQR (potenziata)" data-en="IQR-based Consistency (upgraded)">IQR-based Consistency (upgraded)</h3>
+        <div class="body" data-it="La formula CV classica (1 − σ/μ) si rompe quando μ → 0 e amplifica i valori estremi. L'abbiamo sostituita con una <strong style=&quot;color:var(--teal)&quot;>consistenza robusta basata su IQR</strong>:" data-en="The classic CV formula (1 − σ/μ) breaks when μ → 0 and amplifies extreme values. We replaced it with an <strong style=&quot;color:var(--teal)&quot;>IQR-based robust consistency</strong>:">
           The classic CV formula (1 − σ/μ) breaks when μ → 0 and amplifies extreme values.
           We replaced it with an <strong style="color:var(--teal)">IQR-based robust consistency</strong>:
         </div>
-        <div class="formula" style="margin-top:10px">
+        <div class="formula" style="margin-top:10px" data-it="Consistenza = 1 − IQR / (mediana + ε)<br><span class=&quot;comment&quot;>// IQR = Q75 − Q25 · più resistente agli outlier di σ/μ</span>" data-en="Consistency = 1 − IQR / (median + ε)<br><span class=&quot;comment&quot;>// IQR = Q75 − Q25 · more resistant to outliers than σ/μ</span>">
           Consistency = 1 − IQR / (median + ε)<br>
           <span class="comment">// IQR = Q75 − Q25 · more resistant to outliers than σ/μ</span>
         </div>
         <div class="g2" style="margin-top:12px">
           <div class="card">
             <div class="card-ttl" style="color:var(--red)">❌ Old: CV = σ/μ</div>
-            <div class="body" style="font-size:13px;margin-top:8px">
+            <div class="body" style="font-size:13px;margin-top:8px" data-it="Se μ = 0.05 e σ = 0.04 → CV = 0.80 → Consistenza = 0.20<br>Ma se μ = 0.05 e σ = 0.051 → Consistenza = −0.02 → negativa!" data-en="If μ = 0.05 and σ = 0.04 → CV = 0.80 → Consistency = 0.20<br>But if μ = 0.05 and σ = 0.051 → Consistency = −0.02 → negative!">
               If μ = 0.05 and σ = 0.04 → CV = 0.80 → Consistency = 0.20<br>
               But if μ = 0.05 and σ = 0.051 → Consistency = −0.02 → negative!
             </div>
           </div>
           <div class="card">
             <div class="card-ttl" style="color:var(--green)">✅ New: IQR-based</div>
-            <div class="body" style="font-size:13px;margin-top:8px">
+            <div class="body" style="font-size:13px;margin-top:8px" data-it="Sempre limitata a [0, 1]. Robusta a una singola partita outlier. Un giocatore con 8 partite costanti e 1 exploit è valutato più coerentemente che con il CV." data-en="Always bounded [0, 1]. Robust to a single outlier match. A player with 8 steady games and 1 explosion is rated more consistently than with CV.">
               Always bounded [0, 1]. Robust to a single outlier match.
               A player with 8 steady games and 1 explosion is rated more consistently than with CV.
             </div>
@@ -710,15 +710,15 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">TPI Confidence Score</h3>
-        <div class="body">
+        <h3 class="section-ttl" data-it="TPI Confidence Score" data-en="TPI Confidence Score">TPI Confidence Score</h3>
+        <div class="body" data-it="Un nuovo punteggio 0–1 che indica <strong>quanto fidarsi</strong> della stima TPI di ogni giocatore." data-en="A new 0–1 score that tells you <strong>how much to trust</strong> each player's TPI estimate.">
           A new 0–1 score that tells you <strong>how much to trust</strong> each player's TPI estimate.
         </div>
-        <div class="formula" style="margin-top:10px">
+        <div class="formula" style="margin-top:10px" data-it="Confidence = √(rapporto_minuti × completezza_dimensioni)<br><span class=&quot;comment&quot;>// media geometrica — entrambi i fattori devono essere alti per alta confidence</span>" data-en="Confidence = √(minutes_ratio × dimension_completeness)<br><span class=&quot;comment&quot;>// geometric mean — both factors must be high for high confidence</span>">
           Confidence = √(minutes_ratio × dimension_completeness)<br>
           <span class="comment">// geometric mean — both factors must be high for high confidence</span>
         </div>
-        <div class="ex" style="margin-top:10px">
+        <div class="ex" style="margin-top:10px" data-it="<strong>Esempio:</strong> Un giocatore con 1800 minuti e tutte e 4 le dimensioni = Confidence 0.91. Un giocatore con 400 minuti = Confidence ≤ 0.55 per quanto buono sembri il TPI. Usa la confidence per filtrare il rumore nelle classifiche di inizio stagione." data-en="<strong>Example:</strong> A player with 1800 minutes and all 4 dimensions = Confidence 0.91. A player with 400 minutes = Confidence ≤ 0.55 regardless of how good the TPI looks. Use confidence to filter out noise in early-season rankings.">
           <strong>Example:</strong> A player with 1800 minutes and all 4 dimensions = Confidence 0.91.
           A player with 400 minutes = Confidence ≤ 0.55 regardless of how good the TPI looks.
           Use confidence to filter out noise in early-season rankings.
@@ -728,28 +728,28 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
       <div class="section">
         <h3 class="section-ttl">TPI PRO</h3>
         <div class="card">
-          <div class="card-ttl">Confronto profili (esempio)</div>
+          <div class="card-ttl" data-it="Confronto profili (esempio)" data-en="Profile comparison (example)">Confronto profili (esempio)</div>
           <div class="radar-grid">
             <div class="radar-dim"><div class="radar-dim-lbl">Output Adj</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:85%;background:var(--blue)"></div></div></div>
-            <div class="radar-dim"><div class="radar-dim-lbl">Centralità</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:70%;background:var(--green)"></div></div></div>
+            <div class="radar-dim"><div class="radar-dim-lbl" data-it="Centralità" data-en="Centrality">Centralità</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:70%;background:var(--green)"></div></div></div>
             <div class="radar-dim"><div class="radar-dim-lbl">Team Boost</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:90%;background:var(--orng)"></div></div></div>
-            <div class="radar-dim"><div class="radar-dim-lbl">Consistenza</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:75%;background:var(--purp)"></div></div></div>
-            <div class="radar-dim" style="border-color:rgba(90,200,250,.3)"><div class="radar-dim-lbl" style="color:var(--teal)">Età Index ✦</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:60%;background:var(--teal)"></div></div></div>
-            <div class="radar-dim" style="border-color:rgba(191,90,242,.3)"><div class="radar-dim-lbl" style="color:var(--purp)">Affidabilità ✦</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:88%;background:var(--purp)"></div></div></div>
+            <div class="radar-dim"><div class="radar-dim-lbl" data-it="Consistenza" data-en="Consistency">Consistenza</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:75%;background:var(--purp)"></div></div></div>
+            <div class="radar-dim" style="border-color:rgba(90,200,250,.3)"><div class="radar-dim-lbl" style="color:var(--teal)" data-it="Età Index ✦" data-en="Age Index ✦">Età Index ✦</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:60%;background:var(--teal)"></div></div></div>
+            <div class="radar-dim" style="border-color:rgba(191,90,242,.3)"><div class="radar-dim-lbl" style="color:var(--purp)" data-it="Affidabilità ✦" data-en="Reliability ✦">Affidabilità ✦</div><div class="radar-dim-bar"><div class="radar-dim-fill" style="width:88%;background:var(--purp)"></div></div></div>
           </div>
-          <div style="font-size:11px;color:var(--lt);margin-top:8px">✦ = incluse solo nel TPI Pro (richiedono dati aggiuntivi nel DB)</div>
+          <div style="font-size:11px;color:var(--lt);margin-top:8px" data-it="✦ = incluse solo nel TPI Pro (richiedono dati aggiuntivi nel DB)" data-en="✦ = included only in TPI Pro (require extra data in the DB)">✦ = incluse solo nel TPI Pro (richiedono dati aggiuntivi nel DB)</div>
         </div>
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">I 5 contesti di analisi</h3>
+        <h3 class="section-ttl" data-it="I 5 contesti di analisi" data-en="The 5 analysis contexts">I 5 contesti di analisi</h3>
         <div class="css-chart">
           <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">📊</div><div style="font-size:11px;font-weight:700">Totale</div><div style="font-size:10px;color:var(--lt);margin-top:2px">Tutta la stagione</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">🏠</div><div style="font-size:11px;font-weight:700">Casa</div><div style="font-size:10px;color:var(--lt);margin-top:2px">Solo in casa</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">✈️</div><div style="font-size:11px;font-weight:700">Trasferta</div><div style="font-size:10px;color:var(--lt);margin-top:2px">Solo fuori</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">⭐</div><div style="font-size:11px;font-weight:700">vs Top 6</div><div style="font-size:10px;color:var(--lt);margin-top:2px">Big match</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">🛡</div><div style="font-size:11px;font-weight:700">vs Difese</div><div style="font-size:10px;color:var(--lt);margin-top:2px">Top 6 difese</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">📊</div><div style="font-size:11px;font-weight:700" data-it="Totale" data-en="Total">Totale</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Tutta la stagione" data-en="Whole season">Tutta la stagione</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">🏠</div><div style="font-size:11px;font-weight:700" data-it="Casa" data-en="Home">Casa</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Solo in casa" data-en="Home only">Solo in casa</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">✈️</div><div style="font-size:11px;font-weight:700" data-it="Trasferta" data-en="Away">Trasferta</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Solo fuori" data-en="Away only">Solo fuori</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">⭐</div><div style="font-size:11px;font-weight:700">vs Top 6</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Big match" data-en="Big match">Big match</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">🛡</div><div style="font-size:11px;font-weight:700" data-it="vs Difese" data-en="vs Defenses">vs Difese</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Top 6 difese" data-en="Top 6 defenses">Top 6 difese</div></div>
           </div>
         </div>
       </div>
@@ -759,54 +759,54 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
 
     <!-- ── EWMA ── -->
     <div class="chapter" id="ewma">
-      <div class="chapter-num"><span>8</span>Metriche Extra</div>
-      <h2 class="chapter-ttl">Form EWMA — Forma Recente</h2>
-      <p class="chapter-desc">La media mobile esponenzialmente pesata con α = 0.30.</p>
-      <div class="formula">form_t = α × output_t + (1 − α) × form_{t-1}<br><span class="comment">// α = 0.30 → 30% peso alla partita recente, 70% allo storico</span><br><br>
+      <div class="chapter-num"><span>8</span><span data-it="Metriche Extra" data-en="Extra Metrics">Metriche Extra</span></div>
+      <h2 class="chapter-ttl"><span data-it="Form EWMA — Forma Recente" data-en="Form EWMA — Recent Form">Form EWMA — Forma Recente</span></h2>
+      <p class="chapter-desc" data-it="La media mobile esponenzialmente pesata con α = 0.30." data-en="The exponentially weighted moving average with α = 0.30.">La media mobile esponenzialmente pesata con α = 0.30.</p>
+      <div class="formula" data-it="form_t = α × output_t + (1 − α) × form_{t-1}<br><span class=&quot;comment&quot;>// α = 0.30 → 30% peso alla partita recente, 70% allo storico</span><br><br>Form Trend = (EWMA_ultima / media_stagionale) − 1" data-en="form_t = α × output_t + (1 − α) × form_{t-1}<br><span class=&quot;comment&quot;>// α = 0.30 → 30% weight to the recent match, 70% to history</span><br><br>Form Trend = (last_EWMA / season_mean) − 1">form_t = α × output_t + (1 − α) × form_{t-1}<br><span class="comment">// α = 0.30 → 30% peso alla partita recente, 70% allo storico</span><br><br>
 Form Trend = (EWMA_ultima / media_stagionale) − 1</div>
-      <div class="note"><strong>Perché α = 0.30?</strong> α=0.50 reagisce troppo ai singoli picchi — segnale rumoroso. α=0.10 troppo lento — non cattura i veri cambi di forma. α=0.30 è il compromesso standard in letteratura sportiva (usato da FBref e StatsBomb).</div>
+      <div class="note" data-it="<strong>Perché α = 0.30?</strong> α=0.50 reagisce troppo ai singoli picchi — segnale rumoroso. α=0.10 troppo lento — non cattura i veri cambi di forma. α=0.30 è il compromesso standard in letteratura sportiva (usato da FBref e StatsBomb)." data-en="<strong>Why α = 0.30?</strong> α=0.50 reacts too much to single spikes — noisy signal. α=0.10 too slow — misses real form changes. α=0.30 is the standard compromise in sports literature (used by FBref and StatsBomb)."><strong>Perché α = 0.30?</strong> α=0.50 reagisce troppo ai singoli picchi — segnale rumoroso. α=0.10 troppo lento — non cattura i veri cambi di forma. α=0.30 è il compromesso standard in letteratura sportiva (usato da FBref e StatsBomb).</div>
     </div>
 
     <!-- ── G/XG ── -->
     <div class="chapter" id="gxg">
-      <div class="chapter-num"><span>8</span>Metriche Extra</div>
+      <div class="chapter-num"><span>8</span><span data-it="Metriche Extra" data-en="Extra Metrics">Metriche Extra</span></div>
       <h2 class="chapter-ttl">G/xG — Conversion Ratio</h2>
-      <p class="chapter-desc">L'efficienza realizzativa — ortogonale al TPI.</p>
-      <div class="formula">G/xG = Goal segnati / xG accumulato &nbsp;&nbsp; (min xG 0.5)<br><br>
+      <p class="chapter-desc" data-it="L'efficienza realizzativa — ortogonale al TPI." data-en="Finishing efficiency — orthogonal to the TPI.">L'efficienza realizzativa — ortogonale al TPI.</p>
+      <div class="formula" data-it="G/xG = Goal segnati / xG accumulato &nbsp;&nbsp; (min xG 0.5)<br><br>Finishing Quality = (Goal − xG) / √xG<br><span class=&quot;comment&quot;>// versione scalata — più robusta con volumi bassi</span>" data-en="G/xG = Goals scored / xG accumulated &nbsp;&nbsp; (min xG 0.5)<br><br>Finishing Quality = (Goals − xG) / √xG<br><span class=&quot;comment&quot;>// scaled version — more robust at low volumes</span>">G/xG = Goal segnati / xG accumulato &nbsp;&nbsp; (min xG 0.5)<br><br>
 Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione scalata — più robusta con volumi bassi</span></div>
 
       <!-- Tabella G/xG più leggibile — no barre -->
       <div style="margin:16px 0;border:1px solid var(--sep);border-radius:var(--rsm);overflow:hidden">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(255,255,255,.03);border-bottom:1px solid var(--sep);padding:8px 0">
-          <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 16px">Fascia</div>
-          <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 16px">Significato</div>
-          <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 16px">Lettura</div>
+          <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 16px" data-it="Fascia" data-en="Band">Fascia</div>
+          <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 16px" data-it="Significato" data-en="Meaning">Significato</div>
+          <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 16px" data-it="Lettura" data-en="Reading">Lettura</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)">
           <div style="padding:0 16px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--orng)">G/xG &gt; 1.30</div>
-          <div style="padding:0 16px;font-size:13px;color:var(--ls)">Sopra le aspettative</div>
-          <div style="padding:0 16px;font-size:12px;color:var(--orng)">Probabile regressione alla media</div>
+          <div style="padding:0 16px;font-size:13px;color:var(--ls)" data-it="Sopra le aspettative" data-en="Above expectations">Sopra le aspettative</div>
+          <div style="padding:0 16px;font-size:12px;color:var(--orng)" data-it="Probabile regressione alla media" data-en="Likely regression to the mean">Probabile regressione alla media</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(48,209,88,.04)">
           <div style="padding:0 16px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--green)">1.15 – 1.30</div>
-          <div style="padding:0 16px;font-size:13px;color:var(--ls)">Finalizzatore sopra media</div>
-          <div style="padding:0 16px;font-size:12px;color:var(--green)">Ottimo — abilità realizzativa reale</div>
+          <div style="padding:0 16px;font-size:13px;color:var(--ls)" data-it="Finalizzatore sopra media" data-en="Above-average finisher">Finalizzatore sopra media</div>
+          <div style="padding:0 16px;font-size:12px;color:var(--green)" data-it="Ottimo — abilità realizzativa reale" data-en="Excellent — real finishing skill">Ottimo — abilità realizzativa reale</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04)">
           <div style="padding:0 16px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ls)">0.85 – 1.15</div>
-          <div style="padding:0 16px;font-size:13px;color:var(--ls)">In linea con le aspettative</div>
-          <div style="padding:0 16px;font-size:12px;color:var(--lt)">Nella norma</div>
+          <div style="padding:0 16px;font-size:13px;color:var(--ls)" data-it="In linea con le aspettative" data-en="In line with expectations">In linea con le aspettative</div>
+          <div style="padding:0 16px;font-size:12px;color:var(--lt)" data-it="Nella norma" data-en="Within the norm">Nella norma</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 0">
           <div style="padding:0 16px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--red)">G/xG &lt; 0.85</div>
-          <div style="padding:0 16px;font-size:13px;color:var(--ls)">Sotto le aspettative</div>
-          <div style="padding:0 16px;font-size:12px;color:var(--red)">Spreca le occasioni</div>
+          <div style="padding:0 16px;font-size:13px;color:var(--ls)" data-it="Sotto le aspettative" data-en="Below expectations">Sotto le aspettative</div>
+          <div style="padding:0 16px;font-size:12px;color:var(--red)" data-it="Spreca le occasioni" data-en="Wastes chances">Spreca le occasioni</div>
         </div>
       </div>
 
       <!-- Scatter SVG: TPI vs G/xG ortogonalità -->
       <div style="margin:16px 0">
-        <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">TPI vs G/xG — ortogonalità delle due metriche (esempio)</div>
+        <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px" data-it="TPI vs G/xG — ortogonalità delle due metriche (esempio)" data-en="TPI vs G/xG — orthogonality of the two metrics (example)">TPI vs G/xG — ortogonalità delle due metriche (esempio)</div>
         <div style="padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm)">
           <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
             <!-- Grid -->
@@ -862,25 +862,25 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
             <text x="398" y="25" fill="rgba(235,235,245,.5)" font-size="9" font-family="-apple-system,sans-serif">Orban</text>
           </svg>
           <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:rgba(48,209,88,.8)"></div>G/xG alto + TPI alto</div>
-            <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:rgba(10,132,255,.8)"></div>TPI alto, G/xG basso</div>
-            <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,69,58,.7)"></div>G/xG alto, TPI basso</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:rgba(48,209,88,.8)"></div><span data-it="G/xG alto + TPI alto" data-en="high G/xG + high TPI">G/xG alto + TPI alto</span></div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:rgba(10,132,255,.8)"></div><span data-it="TPI alto, G/xG basso" data-en="high TPI, low G/xG">TPI alto, G/xG basso</span></div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)"><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,69,58,.7)"></div><span data-it="G/xG alto, TPI basso" data-en="high G/xG, low TPI">G/xG alto, TPI basso</span></div>
           </div>
         </div>
       </div>
 
-      <div class="note"><strong>Perché è ortogonale al TPI?</strong> Il TPI usa xG+xA (creazione di occasioni), non i goal effettivi. Un giocatore può avere TPI alto e G/xG basso — crea moltissimo ma non finalizza. Un altro TPI basso ma G/xG 1.40 — crea poco ma trasforma tutto. Sono dimensioni indipendenti che si completano.</div>
+      <div class="note" data-it="<strong>Perché è ortogonale al TPI?</strong> Il TPI usa xG+xA (creazione di occasioni), non i goal effettivi. Un giocatore può avere TPI alto e G/xG basso — crea moltissimo ma non finalizza. Un altro TPI basso ma G/xG 1.40 — crea poco ma trasforma tutto. Sono dimensioni indipendenti che si completano." data-en="<strong>Why is it orthogonal to the TPI?</strong> The TPI uses xG+xA (chance creation), not actual goals. A player can have a high TPI and low G/xG — creates a lot but doesn't finish. Another with low TPI but G/xG 1.40 — creates little but converts everything. They are independent, complementary dimensions."><strong>Perché è ortogonale al TPI?</strong> Il TPI usa xG+xA (creazione di occasioni), non i goal effettivi. Un giocatore può avere TPI alto e G/xG basso — crea moltissimo ma non finalizza. Un altro TPI basso ma G/xG 1.40 — crea poco ma trasforma tutto. Sono dimensioni indipendenti che si completano.</div>
     </div>
 
     <div class="divider"></div>
 
     <!-- ── PEARSON ── -->
     <div class="chapter" id="pearson">
-      <div class="chapter-num"><span>A</span>Validation</div>
+      <div class="chapter-num"><span>A</span><span data-it="Validazione" data-en="Validation">Validation</span></div>
       <h2 class="chapter-ttl">Test A — Pearson r + Spearman ρ + Bootstrap CI</h2>
-      <p class="chapter-desc">Three complementary statistics to measure how well TPI correlates with Fantacalcio expert ratings.</p>
+      <p class="chapter-desc" data-it="Tre statistiche complementari per misurare quanto bene il TPI correla con i voti degli esperti del Fantacalcio." data-en="Three complementary statistics to measure how well TPI correlates with Fantacalcio expert ratings.">Three complementary statistics to measure how well TPI correlates with Fantacalcio expert ratings.</p>
 
-      <div class="formula">
+      <div class="formula" data-it="Pearson r = Σ[(xi−x̄)(yi−ȳ)] / [n·σx·σy]<br><span class=&quot;comment&quot;>// correlazione lineare · sensibile agli outlier</span><br><br>Spearman ρ = Pearson r applicato ai ranghi<br><span class=&quot;comment&quot;>// correlazione di rango · robusta agli outlier · migliore per i dati sportivi</span><br><br>IC bootstrap 95%: ricampiona 1000× → [p2.5, p97.5] di r*<br><span class=&quot;comment&quot;>// indica l'intervallo plausibile, non solo la stima puntuale</span>" data-en="Pearson r = Σ[(xi−x̄)(yi−ȳ)] / [n·σx·σy]<br><span class=&quot;comment&quot;>// linear correlation · sensitive to outliers</span><br><br>Spearman ρ = Pearson r applied to ranks<br><span class=&quot;comment&quot;>// rank correlation · robust to outliers · better for sports data</span><br><br>Bootstrap 95% CI: resample 1000× → [p2.5, p97.5] of r*<br><span class=&quot;comment&quot;>// tells you the plausible range, not just the point estimate</span>">
         Pearson r = Σ[(xi−x̄)(yi−ȳ)] / [n·σx·σy]<br>
         <span class="comment">// linear correlation · sensitive to outliers</span><br><br>
         Spearman ρ = Pearson r applied to ranks<br>
@@ -891,8 +891,8 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
 
       <div class="g2" style="margin-top:16px">
         <div class="card">
-          <div class="card-ttl" style="color:var(--blue)">Why both Pearson and Spearman?</div>
-          <div class="body" style="font-size:13px;margin-top:8px">
+          <div class="card-ttl" style="color:var(--blue)" data-it="Perché sia Pearson sia Spearman?" data-en="Why both Pearson and Spearman?">Why both Pearson and Spearman?</div>
+          <div class="body" style="font-size:13px;margin-top:8px" data-it="Pearson assume normalità e linearità. Spearman richiede solo una relazione monotòna. Quando sono vicini (es. r=0.47 vs ρ=0.45), la relazione è davvero lineare — più affidabile. Quando divergono, sono gli outlier a guidare il risultato di Pearson." data-en="Pearson assumes normality and linearity. Spearman only requires a monotonic relationship. When they're close (e.g. r=0.47 vs ρ=0.45), the relationship is genuinely linear — more reliable. When they diverge, outliers are driving the Pearson result.">
             Pearson assumes normality and linearity. Spearman only requires monotonic relationship.
             When they're close (e.g. r=0.47 vs ρ=0.45), the relationship is genuinely linear — more reliable.
             When they diverge, outliers are driving the Pearson result.
@@ -900,7 +900,7 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
         </div>
         <div class="card">
           <div class="card-ttl" style="color:var(--green)">Cohen's d — Effect Size</div>
-          <div class="body" style="font-size:13px;margin-top:8px">
+          <div class="body" style="font-size:13px;margin-top:8px" data-it="Confronta i voti Fantacalcio tra il 25% top e il 25% bottom per TPI. d &gt; 0.8 = effetto grande. d = 0.5 = medio. d &lt; 0.2 = trascurabile. Indica se la separazione del TPI si traduce davvero in differenze di voto." data-en="Compares Fantacalcio ratings between top 25% and bottom 25% TPI players. d &gt; 0.8 = large effect. d = 0.5 = medium. d &lt; 0.2 = negligible. This tells you if TPI separation actually translates into rating differences.">
             Compares Fantacalcio ratings between top 25% and bottom 25% TPI players.
             d &gt; 0.8 = large effect. d = 0.5 = medium. d &lt; 0.2 = negligible.
             This tells you if TPI separation actually translates into rating differences.
@@ -909,33 +909,33 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">How to interpret r</h3>
+        <h3 class="section-ttl" data-it="Come interpretare r" data-en="How to interpret r">How to interpret r</h3>
         <div style="margin:16px 0;border:1px solid var(--sep);border-radius:var(--rsm);overflow:hidden">
           <div style="display:grid;grid-template-columns:100px 1fr 1fr;background:rgba(255,255,255,.03);border-bottom:1px solid var(--sep);padding:8px 0">
             <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 14px">r</div>
-            <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 14px">Strength</div>
-            <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 14px">For TPI</div>
+            <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 14px" data-it="Forza" data-en="Strength">Strength</div>
+            <div style="font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;padding:0 14px" data-it="Per il TPI" data-en="For TPI">For TPI</div>
           </div>
           <div style="display:grid;grid-template-columns:100px 1fr 1fr;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">
             <div style="padding:0 14px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--red)">r &gt; 0.70</div>
-            <div style="padding:0 14px;font-size:13px;color:var(--ls)">Strong</div>
-            <div style="padding:0 14px;font-size:12px;color:var(--lt)">TPI measures the same thing — adds no independent information</div>
+            <div style="padding:0 14px;font-size:13px;color:var(--ls)" data-it="Forte" data-en="Strong">Strong</div>
+            <div style="padding:0 14px;font-size:12px;color:var(--lt)" data-it="Il TPI misura la stessa cosa — non aggiunge informazione indipendente" data-en="TPI measures the same thing — adds no independent information">TPI measures the same thing — adds no independent information</div>
           </div>
           <div style="display:grid;grid-template-columns:100px 1fr 1fr;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(48,209,88,.04)">
             <div style="padding:0 14px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--orng)">0.40–0.70</div>
-            <div style="padding:0 14px;font-size:13px;color:var(--ls)">Moderate</div>
-            <div style="padding:0 14px;font-size:12px;color:var(--green)">Ideal — confirms quality while adding independent insight</div>
+            <div style="padding:0 14px;font-size:13px;color:var(--ls)" data-it="Moderata" data-en="Moderate">Moderate</div>
+            <div style="padding:0 14px;font-size:12px;color:var(--green)" data-it="Ideale — conferma la qualità aggiungendo insight indipendente" data-en="Ideal — confirms quality while adding independent insight">Ideal — confirms quality while adding independent insight</div>
           </div>
           <div style="display:grid;grid-template-columns:100px 1fr 1fr;padding:10px 0">
             <div style="padding:0 14px;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--red)">r &lt; 0.40</div>
-            <div style="padding:0 14px;font-size:13px;color:var(--ls)">Weak</div>
-            <div style="padding:0 14px;font-size:12px;color:var(--lt)">Too far from expert consensus</div>
+            <div style="padding:0 14px;font-size:13px;color:var(--ls)" data-it="Debole" data-en="Weak">Weak</div>
+            <div style="padding:0 14px;font-size:12px;color:var(--lt)" data-it="Troppo distante dal consenso degli esperti" data-en="Too far from expert consensus">Too far from expert consensus</div>
           </div>
         </div>
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">Scatter TPI vs Fantacalcio — Test A</h3>
+        <h3 class="section-ttl" data-it="Scatter TPI vs Fantacalcio — Test A" data-en="Scatter TPI vs Fantacalcio — Test A">Scatter TPI vs Fantacalcio — Test A</h3>
         <div style="padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0">
           <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
             <line x1="60" y1="235" x2="500" y2="235" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
@@ -979,7 +979,7 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
         </div>
       </div>
 
-      <div class="ex"><strong>Risultati stagione 24/25:</strong> r = 0.532, p = 0.004, n = 27.<br>
+      <div class="ex" data-it="<strong>Risultati stagione 24/25:</strong> r = 0.532, p = 0.004, n = 27.<br>R² = 0.28 → il TPI spiega il 28% della varianza dei voti.<br>p = 0.004 → probabilità 0.4% che il risultato sia casuale → statisticamente significativo.<br>r = 0.532 è il risultato ideale: se fosse 0.95, il TPI non aggiungerebbe nulla di nuovo rispetto al Fantacalcio." data-en="<strong>Season 24/25 results:</strong> r = 0.532, p = 0.004, n = 27.<br>R² = 0.28 → TPI explains 28% of the variance in ratings.<br>p = 0.004 → 0.4% probability the result is by chance → statistically significant.<br>r = 0.532 is the ideal result: if it were 0.95, TPI would add nothing new over Fantacalcio."><strong>Risultati stagione 24/25:</strong> r = 0.532, p = 0.004, n = 27.<br>
       R² = 0.28 → il TPI spiega il 28% della varianza dei voti.<br>
       p = 0.004 → probabilità 0.4% che il risultato sia casuale → statisticamente significativo.<br>
       r = 0.532 è il risultato ideale: se fosse 0.95, il TPI non aggiungerebbe nulla di nuovo rispetto al Fantacalcio.</div>
@@ -988,14 +988,14 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
     <!-- ── TEST B: TOP 10 OVERLAP ── -->
     <div class="chapter" id="overlap">
       <h2 class="chapter-ttl">Test B — Overlap Top 10 vs WhoScored</h2>
-      <p class="chapter-desc">Confronta i 10 giocatori con TPI più alto con i 10 migliori secondo WhoScored. Un overlap basso non è un problema — è un vantaggio.</p>
+      <p class="chapter-desc" data-it="Confronta i 10 giocatori con TPI più alto con i 10 migliori secondo WhoScored. Un overlap basso non è un problema — è un vantaggio." data-en="Compares the 10 highest-TPI players with WhoScored's top 10. A low overlap is not a problem — it's an advantage.">Confronta i 10 giocatori con TPI più alto con i 10 migliori secondo WhoScored. Un overlap basso non è un problema — è un vantaggio.</p>
 
       <div class="section">
-        <div class="body">I giocatori <strong>nel TPI ma non in WhoScored</strong> sono quelli che il sistema riconosce come eccellenti ma che la stampa non valorizza — potenziali scout opportunities. I giocatori <strong>in WhoScored ma non nel TPI</strong> hanno qualità difensive/atletiche che il TPI (offensivo) non cattura.</div>
+        <div class="body" data-it="I giocatori <strong>nel TPI ma non in WhoScored</strong> sono quelli che il sistema riconosce come eccellenti ma che la stampa non valorizza — potenziali scout opportunities. I giocatori <strong>in WhoScored ma non nel TPI</strong> hanno qualità difensive/atletiche che il TPI (offensivo) non cattura." data-en="Players <strong>in the TPI but not in WhoScored</strong> are the ones the system recognizes as excellent but the press undervalues — potential scouting opportunities. Players <strong>in WhoScored but not in the TPI</strong> have defensive/athletic qualities the (offensive) TPI doesn't capture.">I giocatori <strong>nel TPI ma non in WhoScored</strong> sono quelli che il sistema riconosce come eccellenti ma che la stampa non valorizza — potenziali scout opportunities. I giocatori <strong>in WhoScored ma non nel TPI</strong> hanno qualità difensive/atletiche che il TPI (offensivo) non cattura.</div>
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">Confronto Top 10 — esempio stagione 24/25</h3>
+        <h3 class="section-ttl" data-it="Confronto Top 10 — esempio stagione 24/25" data-en="Top 10 comparison — 24/25 season example">Confronto Top 10 — esempio stagione 24/25</h3>
 
         <!-- Visual overlap chart -->
         <div style="margin:16px 0;padding:20px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm)">
@@ -1048,23 +1048,23 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
 
           <!-- Legend -->
           <div style="display:flex;gap:20px;margin-top:16px;padding-top:12px;border-top:1px solid var(--sep);flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><span style="color:var(--green);font-size:12px">✓</span>Presenti in entrambe le liste (overlap)</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><span style="color:var(--blue);font-size:12px">★</span>Solo nel TPI — sottovalutati dalla stampa</div>
-            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><span style="color:var(--orng);font-size:12px">≠</span>Solo in WhoScored — qualità non offensive</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><span style="color:var(--green);font-size:12px">✓</span><span data-it="Presenti in entrambe le liste (overlap)" data-en="In both lists (overlap)">Presenti in entrambe le liste (overlap)</span></div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><span style="color:var(--blue);font-size:12px">★</span><span data-it="Solo nel TPI — sottovalutati dalla stampa" data-en="TPI only — undervalued by the press">Solo nel TPI — sottovalutati dalla stampa</span></div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)"><span style="color:var(--orng);font-size:12px">≠</span><span data-it="Solo in WhoScored — qualità non offensive" data-en="WhoScored only — non-offensive qualities">Solo in WhoScored — qualità non offensive</span></div>
           </div>
         </div>
       </div>
 
-      <div class="note"><strong>Overlap basso = punto di forza, non debolezza.</strong> 40% di overlap significa che il TPI identifica 6 giocatori che WhoScored non valorizza. Questi sono le potenziali opportunità di mercato — giocatori con alto impatto offensivo non percepito dalla stampa tradizionale.</div>
+      <div class="note" data-it="<strong>Overlap basso = punto di forza, non debolezza.</strong> 40% di overlap significa che il TPI identifica 6 giocatori che WhoScored non valorizza. Questi sono le potenziali opportunità di mercato — giocatori con alto impatto offensivo non percepito dalla stampa tradizionale." data-en="<strong>Low overlap = a strength, not a weakness.</strong> 40% overlap means the TPI identifies 6 players WhoScored doesn't value. These are the potential market opportunities — players with high offensive impact unnoticed by the traditional press."><strong>Overlap basso = punto di forza, non debolezza.</strong> 40% di overlap significa che il TPI identifica 6 giocatori che WhoScored non valorizza. Questi sono le potenziali opportunità di mercato — giocatori con alto impatto offensivo non percepito dalla stampa tradizionale.</div>
     </div>
 
     <!-- ── SPEARMAN ── -->
     <div class="chapter" id="spearman">
-      <div class="chapter-num"><span>C</span>Validation</div>
+      <div class="chapter-num"><span>C</span><span data-it="Validazione" data-en="Validation">Validation</span></div>
       <h2 class="chapter-ttl">Test C — Spearman ρ + Kendall τ + RMSE</h2>
-      <p class="chapter-desc">Three metrics for the predictive backtest. Each captures a different aspect of predictive stability.</p>
+      <p class="chapter-desc" data-it="Tre metriche per il backtest predittivo. Ognuna cattura un aspetto diverso della stabilità predittiva." data-en="Three metrics for the predictive backtest. Each captures a different aspect of predictive stability.">Three metrics for the predictive backtest. Each captures a different aspect of predictive stability.</p>
 
-      <div class="formula">
+      <div class="formula" data-it="Spearman ρ = Pearson r sui ranghi<br><span class=&quot;comment&quot;>// robusta agli outlier · il ranking iniziale predice quello finale?</span><br><br>Kendall τ = (coppie concordanti − discordanti) / coppie totali<br><span class=&quot;comment&quot;>// più conservativa di Spearman · migliore con n piccolo · preferita in letteratura accademica</span><br><br>RMSE = √media((previsto − reale)²)<br>MAE  = media(|previsto − reale|)<br><span class=&quot;comment&quot;>// errore assoluto nelle unità originali · indica quanto sbaglia il modello in pratica</span>" data-en="Spearman ρ = Pearson r on ranks<br><span class=&quot;comment&quot;>// robust to outliers · does early ranking predict late ranking?</span><br><br>Kendall τ = (concordant − discordant pairs) / total pairs<br><span class=&quot;comment&quot;>// more conservative than Spearman · better with small n · preferred in academic literature</span><br><br>RMSE = √mean((predicted − actual)²)<br>MAE  = mean(|predicted − actual|)<br><span class=&quot;comment&quot;>// absolute error in original units · tells you how wrong the model is in practice</span>">
         Spearman ρ = Pearson r on ranks<br>
         <span class="comment">// robust to outliers · does early ranking predict late ranking?</span><br><br>
         Kendall τ = (concordant − discordant pairs) / total pairs<br>
@@ -1077,7 +1077,7 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
       <div class="g2" style="margin-top:16px">
         <div class="card">
           <div class="card-ttl" style="color:var(--teal)">Kendall τ vs Spearman ρ</div>
-          <div class="body" style="font-size:13px;margin-top:8px">
+          <div class="body" style="font-size:13px;margin-top:8px" data-it="Spearman è più semplice da calcolare ma più sensibile ai ranghi pari. Kendall τ è più conservativa — conta quante coppie di giocatori mantengono lo stesso ordine relativo in entrambe le metà di stagione. Se τ = 0.55, il 77.5% delle coppie ha mantenuto l'ordine di qualità relativo." data-en="Spearman is easier to compute but more sensitive to tied ranks. Kendall τ is more conservative — it counts how many pairs of players have the same relative order in both halves of the season. If τ = 0.55, 77.5% of player pairs maintained their relative quality order.">
             Spearman is easier to compute but more sensitive to tied ranks.
             Kendall τ is more conservative — it counts how many pairs of players have
             the same relative order in both halves of the season.
@@ -1085,8 +1085,8 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
           </div>
         </div>
         <div class="card">
-          <div class="card-ttl" style="color:var(--green)">Why RMSE + MAE matter</div>
-          <div class="body" style="font-size:13px;margin-top:8px">
+          <div class="card-ttl" style="color:var(--green)" data-it="Perché RMSE + MAE contano" data-en="Why RMSE + MAE matter">Why RMSE + MAE matter</div>
+          <div class="body" style="font-size:13px;margin-top:8px" data-it="Una correlazione di 0.70 indica la direzione, non l'ampiezza dell'errore. RMSE e MAE traducono il potere predittivo in termini pratici: se RMSE = 0.08 xG/90, è l'errore medio di previsione in unità reali. MAE è più interpretabile; RMSE penalizza di più gli errori grandi." data-en="A correlation of 0.70 tells you direction, not magnitude of error. RMSE and MAE translate predictive power into practical terms: if RMSE = 0.08 xG/90, that's the average prediction error in real units. MAE is more interpretable; RMSE penalizes large errors more.">
             A correlation of 0.70 tells you direction, not magnitude of error.
             RMSE and MAE translate predictive power into practical terms:
             if RMSE = 0.08 xG/90, that's the average prediction error in real units.
@@ -1096,7 +1096,7 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
       </div>
 
       <div class="section">
-        <h3 class="section-ttl">Backtest — First half → Second half of season</h3>
+        <h3 class="section-ttl" data-it="Backtest — Prima metà → Seconda metà di stagione" data-en="Backtest — First half → Second half of season">Backtest — First half → Second half of season</h3>
         <div style="padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0">
           <svg viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block">
             <line x1="60" y1="235" x2="500" y2="235" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
@@ -1127,13 +1127,13 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
         </div>
       </div>
 
-      <div class="note">
+      <div class="note" data-it="<strong>Guida all'interpretazione:</strong> Spearman ρ ≥ 0.65 = forte stabilità predittiva. Kendall τ ≥ 0.45 = la maggior parte delle coppie di giocatori mantiene l'ordine relativo. RMSE / MAE nel contesto: confronta con la deviazione standard di output/90 nella lega — se RMSE &lt; 0.5×SD, il modello ha reale valore predittivo." data-en="<strong>Interpretation guide:</strong> Spearman ρ ≥ 0.65 = strong predictive stability. Kendall τ ≥ 0.45 = most player pairs maintain relative order. RMSE / MAE in context: compare to the standard deviation of output/90 in the league — if RMSE &lt; 0.5×SD, the model has real predictive value.">
         <strong>Interpretation guide:</strong>
         Spearman ρ ≥ 0.65 = strong predictive stability.
         Kendall τ ≥ 0.45 = most player pairs maintain relative order.
         RMSE / MAE in context: compare to the standard deviation of output/90 in the league — if RMSE &lt; 0.5×SD, the model has real predictive value.
       </div>
-      <div class="ex">
+      <div class="ex" data-it="<strong>In sintesi:</strong> Un modello che riesce a predire la qualità della seconda metà dal TPI della prima sta catturando qualità reale e stabile del giocatore — non solo rumore o periodi di forma. È il test di validazione più importante per le applicazioni di scouting." data-en="<strong>Bottom line:</strong> A model that can predict second-half quality from first-half TPI is capturing real, stable player quality — not just noise or hot streaks. This is the most important validation test for scouting applications.">
         <strong>Bottom line:</strong> A model that can predict second-half quality from first-half TPI
         is capturing real, stable player quality — not just noise or hot streaks.
         This is the most important validation test for scouting applications.
@@ -1143,7 +1143,7 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
   </main>
 </div>
 
-<div id="wm"><span id="wm-dot"></span><span id="wm-text">Raffaele Ciccone &thinsp;&middot;&thinsp; Serie A Scout Index &thinsp;&middot;&thinsp; Uso Privato</span></div>
+<div id="wm"><span id="wm-dot"></span><span id="wm-text">Raffaele Ciccone &thinsp;&middot;&thinsp; Serie A Scout Index &thinsp;&middot;&thinsp; <span data-it="Uso Privato" data-en="Private use">Uso Privato</span></span></div>
 
 <script>
 // V1 fix: lock-screen client-side rimosso. SHA-256(password) singolo, senza salt né
