@@ -90,7 +90,49 @@ Crea un file `.dev.vars` (già in `.gitignore`) con dentro una riga
 npx wrangler dev
 ```
 
-Punta `WORKER_URL` in `ai_chat.js` a `http://localhost:8787` mentre provi.
+Prova prima il Worker da solo, senza browser — isola quasi tutti i problemi:
+
+```bash
+curl -N -X POST http://localhost:8787/chat \
+  -H "Content-Type: application/json" \
+  -H "Origin: https://raffaeleciccone-analyst.github.io" \
+  -d '{"messages":[{"role":"user","content":"Chi è primo nel TPI e perché?"}],"lang":"it"}'
+```
+
+L'header `Origin` serve: senza, rispondo 403 perché `ALLOWED_ORIGINS` è valorizzato.
+
+Poi il widget: punta `WORKER_URL` in `ai_chat.js` a `http://localhost:8787` e
+aggiungi **temporaneamente** `http://localhost:8787` alla `connect-src` della
+pagina che stai provando — la CSP permette solo `https://*.workers.dev`, quindi
+in locale il browser blocca la fetch. Servi le pagine con un server vero
+(`python -m http.server 8000`), non da `file://`.
+
+### Con un modello locale (Ollama, LM Studio)
+
+Per provare end-to-end senza consumare credito, togli il commento a
+`LOCAL_MODEL_URL` e `LOCAL_MODEL` in `wrangler.toml`. Il Worker passa a chiamare
+la tua IA locale in formato OpenAI; `/health` ti dice quale backend è attivo:
+
+```bash
+curl http://localhost:8787/health     # → {"backend":"local", ...}
+```
+
+Tre cose da sapere:
+
+- **Vale solo con `wrangler dev`.** Un Worker distribuito sull'edge di Cloudflare
+  non raggiunge il tuo `localhost`, e i visitatori nemmeno. Ricommenta le due var
+  prima di `wrangler deploy`, o il Worker pubblico chiamerà un indirizzo morto.
+- **Il contesto è il vincolo vero.** Il dataset intero è ~20k token; Ollama di
+  default ne accetta 2048 e taglia il resto *senza dire niente*, quindi otterresti
+  risposte inventate su dati che il modello non ha mai visto. Per questo in
+  modalità locale il dataset viene ridotto ai primi `LOCAL_MAX_PLAYERS` giocatori
+  (25 di default). Se il tuo modello regge di più, alza il valore e con Ollama
+  alza anche la finestra: `/set parameter num_ctx 32768`, oppure un `Modelfile`
+  con `PARAMETER num_ctx 32768`.
+- **Serve a provare il giro, non la qualità.** Un modello locale piccolo sbaglia
+  i numeri e ignora le istruzioni molto più spesso. Usalo per verificare che
+  streaming, CORS, rate limit e widget funzionino; per giudicare le risposte
+  passa alla chiave vera.
 
 ## Note
 
