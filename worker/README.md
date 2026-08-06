@@ -109,30 +109,40 @@ in locale il browser blocca la fetch. Servi le pagine con un server vero
 
 ### Con un modello locale (Ollama, LM Studio)
 
-Per provare end-to-end senza consumare credito, togli il commento a
-`LOCAL_MODEL_URL` e `LOCAL_MODEL` in `wrangler.toml`. Il Worker passa a chiamare
-la tua IA locale in formato OpenAI; `/health` ti dice quale backend è attivo:
+Per provare il giro senza consumare credito, passa le var da riga di comando —
+così non resta niente da ricommentare prima del deploy:
 
 ```bash
+npx wrangler dev \
+  --var LOCAL_MODEL_URL:http://localhost:11434/v1 \
+  --var LOCAL_MODEL:qwen3:14b
+
 curl http://localhost:8787/health     # → {"backend":"local", ...}
 ```
 
-Tre cose da sapere:
+Tre cose da sapere, tutte e tre misurate su questo progetto:
 
 - **Vale solo con `wrangler dev`.** Un Worker distribuito sull'edge di Cloudflare
-  non raggiunge il tuo `localhost`, e i visitatori nemmeno. Ricommenta le due var
-  prima di `wrangler deploy`, o il Worker pubblico chiamerà un indirizzo morto.
-- **Il contesto è il vincolo vero.** Il dataset intero è ~20k token; Ollama di
-  default ne accetta 2048 e taglia il resto *senza dire niente*, quindi otterresti
-  risposte inventate su dati che il modello non ha mai visto. Per questo in
-  modalità locale il dataset viene ridotto ai primi `LOCAL_MAX_PLAYERS` giocatori
-  (25 di default). Se il tuo modello regge di più, alza il valore e con Ollama
-  alza anche la finestra: `/set parameter num_ctx 32768`, oppure un `Modelfile`
-  con `PARAMETER num_ctx 32768`.
-- **Serve a provare il giro, non la qualità.** Un modello locale piccolo sbaglia
-  i numeri e ignora le istruzioni molto più spesso. Usalo per verificare che
-  streaming, CORS, rate limit e widget funzionino; per giudicare le risposte
-  passa alla chiave vera.
+  non raggiunge il tuo `localhost`, e i visitatori nemmeno.
+
+- **Il contesto è il vincolo vero, e fallisce in silenzio.** Ollama gira di
+  default con `num_ctx=4096` e ci riserva dentro anche lo spazio per l'output.
+  Quando il totale sfora, taglia il prompt **dall'inizio**: spariscono le
+  istruzioni e i primi giocatori, e il modello risponde pescando dalla coda
+  rimasta. Non vedi nessun errore, vedi una risposta plausibile e sbagliata.
+  Misurato: con 10 giocatori e `max_tokens` 2000 usciva il 4° in classifica al
+  posto del 1°; riducendo l'output a 700 il prompt ci sta e la risposta torna
+  esatta (Lautaro, Inter, TPI 1.8, rank 1). Da qui i default: 10 giocatori,
+  output 700 token. Per alzarli serve alzare prima la finestra di Ollama:
+  `OLLAMA_CONTEXT_LENGTH=16384` e riavvio del servizio.
+
+- **Serve a provare il giro, non la qualità.** Anche con il dataset interamente
+  nel contesto, `qwen3:14b` alla domanda "chi è primo nel TPI" ha risposto Lukaku
+  una volta e Calhanoglu quella dopo, inventando i punteggi — mentre alla domanda
+  "qual è il TPI di Donnarumma" rispondeva correttamente che non è nel dataset,
+  elencando i nomi giusti. Un modello piccolo legge la tabella ma poi risponde
+  dal proprio pregiudizio. Usalo per verificare streaming, CORS, rate limit,
+  validazione e widget; per giudicare le risposte serve la chiave vera.
 
 ## Note
 
