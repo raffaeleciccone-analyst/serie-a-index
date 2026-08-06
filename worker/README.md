@@ -107,42 +107,73 @@ pagina che stai provando — la CSP permette solo `https://*.workers.dev`, quind
 in locale il browser blocca la fetch. Servi le pagine con un server vero
 (`python -m http.server 8000`), non da `file://`.
 
-### Con un modello locale (Ollama, LM Studio)
+## Usare un altro fornitore
 
-Per provare il giro senza consumare credito, passa le var da riga di comando —
-così non resta niente da ricommentare prima del deploy:
+Il Worker ha un secondo percorso che parla **formato OpenAI**
+(`POST /chat/completions`). Non è legato a un fornitore: lo parlano OpenAI,
+Mistral, Groq, DeepSeek, Together, OpenRouter, xAI, l'endpoint compatibile di
+Gemini, e in locale Ollama e LM Studio.
+
+Si attiva valorizzando `COMPAT_API_URL`. Passalo da riga di comando invece di
+scriverlo in `wrangler.toml`, così non resta niente da rimettere a posto:
 
 ```bash
 npx wrangler dev \
-  --var LOCAL_MODEL_URL:http://localhost:11434/v1 \
-  --var LOCAL_MODEL:qwen3:14b
+  --var COMPAT_API_URL:https://api.mistral.ai/v1 \
+  --var COMPAT_MODEL:mistral-large-latest \
+  --var COMPAT_API_KEY:...
 
-curl http://localhost:8787/health     # → {"backend":"local", ...}
+curl http://localhost:8787/health     # → {"backend":"openai-compat", ...}
 ```
 
-Tre cose da sapere, tutte e tre misurate su questo progetto:
+Su un fornitore vero la chiave va in `wrangler secret put COMPAT_API_KEY`, non
+in `--var` e mai in `wrangler.toml`.
 
-- **Vale solo con `wrangler dev`.** Un Worker distribuito sull'edge di Cloudflare
-  non raggiunge il tuo `localhost`, e i visitatori nemmeno.
+Due differenze rispetto al percorso Anthropic, entrambe di costo:
 
-- **Il contesto è il vincolo vero, e fallisce in silenzio.** Ollama gira di
-  default con `num_ctx=4096` e ci riserva dentro anche lo spazio per l'output.
-  Quando il totale sfora, taglia il prompt **dall'inizio**: spariscono le
-  istruzioni e i primi giocatori, e il modello risponde pescando dalla coda
-  rimasta. Non vedi nessun errore, vedi una risposta plausibile e sbagliata.
-  Misurato: con 10 giocatori e `max_tokens` 2000 usciva il 4° in classifica al
-  posto del 1°; riducendo l'output a 700 il prompt ci sta e la risposta torna
-  esatta (Lautaro, Inter, TPI 1.8, rank 1). Da qui i default: 10 giocatori,
-  output 700 token. Per alzarli serve alzare prima la finestra di Ollama:
-  `OLLAMA_CONTEXT_LENGTH=16384` e riavvio del servizio.
+- Lì marco esplicitamente il dataset come cacheable (`cache_control`), ed è da lì
+  che viene il grosso del risparmio. OpenAI e Gemini fanno caching automatico su
+  prefissi identici, quindi qualcosa recuperi gratis, ma non è la stessa cosa.
+- `effort` e i fallback server-side non esistono su questo percorso; il codice
+  già non li manda.
 
-- **Serve a provare il giro, non la qualità.** Anche con il dataset interamente
-  nel contesto, `qwen3:14b` alla domanda "chi è primo nel TPI" ha risposto Lukaku
-  una volta e Calhanoglu quella dopo, inventando i punteggi — mentre alla domanda
-  "qual è il TPI di Donnarumma" rispondeva correttamente che non è nel dataset,
-  elencando i nomi giusti. Un modello piccolo legge la tabella ma poi risponde
-  dal proprio pregiudizio. Usalo per verificare streaming, CORS, rate limit,
-  validazione e widget; per giudicare le risposte serve la chiave vera.
+### Modelli a contesto piccolo (Ollama, LM Studio)
+
+Stesso percorso, più due parametri. Per il mio Ollama con `num_ctx=4096`:
+
+```bash
+npx wrangler dev \
+  --var COMPAT_API_URL:http://localhost:11434/v1 --var COMPAT_MODEL:qwen3:14b \
+  --var COMPAT_MAX_PLAYERS:10 --var COMPAT_MAX_TOKENS:700
+```
+
+Tre cose da sapere, tutte misurate su questo progetto:
+
+- **In locale vale solo con `wrangler dev`.** Un Worker distribuito sull'edge di
+  Cloudflare non raggiunge il tuo `localhost`, e i visitatori nemmeno.
+
+- **Il contesto fallisce in silenzio.** Ollama gira di default con `num_ctx=4096`
+  e ci riserva dentro anche lo spazio per l'output. Quando il totale sfora, taglia
+  il prompt **dall'inizio**: spariscono le istruzioni e i primi giocatori, e il
+  modello risponde pescando dalla coda rimasta. Nessun errore, solo una risposta
+  plausibile e sbagliata. Misurato: con 10 giocatori e `max_tokens` 2000 usciva il
+  4° in classifica al posto del 1°; riducendo l'output a 700 il prompt ci sta e la
+  risposta torna esatta (Lautaro, Inter, TPI 1.8, rank 1). Per alzare i valori
+  serve prima alzare la finestra: `OLLAMA_CONTEXT_LENGTH=16384` e riavvio.
+  **`COMPAT_MAX_PLAYERS` è spento di default**: con un fornitore cloud lascialo
+  spento, o l'assistente risponderà "non è nel dataset" su giocatori che ci sono.
+
+- **Serve a provare il giro, non la qualità — e il difetto non è nemmeno
+  riproducibile.** Anche con il dataset interamente nel contesto, `qwen3:14b`
+  alla domanda "chi è primo nel TPI" ha risposto Lukaku una volta e Calhanoglu
+  quella dopo, inventando i punteggi. Alla domanda "qual è il TPI di Donnarumma"
+  (che nel dataset non c'è) ha prima risposto correttamente che non è presente,
+  elencando i nomi giusti, e a una prova successiva ha inventato **1.227**.
+  Stesso modello, stessa domanda, stessa configurazione: esito opposto. Un
+  modello piccolo legge la tabella ma poi risponde dal proprio pregiudizio, e
+  non lo fa in modo abbastanza costante da poterci nemmeno mettere una pezza nel
+  prompt. Usalo per verificare streaming, CORS, rate limit, validazione e
+  widget; per giudicare le risposte serve un modello serio.
 
 ## Note
 

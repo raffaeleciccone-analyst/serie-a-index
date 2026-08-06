@@ -29,22 +29,36 @@ EFFORT = "medium"
 # QUOTA qui sotto. E' questo che protegge il credito, non il rate limit per IP.
 DAILY_LIMIT = "300"
 
-# --- SOLO SVILUPPO: modello locale (Ollama, LM Studio) -----------------------
-# Queste var restano COMMENTATE apposta: se finiscono in `wrangler deploy` il
-# Worker pubblico chiama un indirizzo irraggiungibile e ogni risposta e' un
-# errore. Per una sessione di prova passale da riga di comando, cosi' non c'e'
-# niente da ricordarsi di rimettere a posto:
+# --- BACKEND ALTERNATIVO (formato OpenAI) ------------------------------------
+# Valorizzando COMPAT_API_URL il Worker smette di usare l'API Anthropic e parla
+# `POST /chat/completions`. Non e' legato a un fornitore: lo parlano OpenAI,
+# Mistral, Groq, DeepSeek, Together, OpenRouter, xAI, l'endpoint compatibile di
+# Gemini, e in locale Ollama e LM Studio.
+#
+# Resta COMMENTATO: se finisce in `wrangler deploy` il Worker pubblico chiama
+# quell'indirizzo invece di quello configurato sopra. Per una prova passalo da
+# riga di comando, cosi' non c'e' niente da ricordarsi di rimettere a posto:
 #
 #   npx wrangler dev \
-#     --var LOCAL_MODEL_URL:http://localhost:11434/v1 \
-#     --var LOCAL_MODEL:qwen3:14b
+#     --var COMPAT_API_URL:https://api.mistral.ai/v1 \
+#     --var COMPAT_MODEL:mistral-large-latest \
+#     --var COMPAT_API_KEY:...
 #
-# Ollama:     http://localhost:11434/v1   LM Studio: http://localhost:1234/v1
+# COMPAT_API_URL   endpoint, senza /chat/completions in fondo
+# COMPAT_MODEL     nome del modello
+# COMPAT_API_KEY   inviata come `Authorization: Bearer`. Omettila in locale.
+#                  Su un fornitore vero usa `wrangler secret put`, non questo file.
+# COMPAT_MAX_TOKENS   tetto di output (default: come il percorso Anthropic)
+# COMPAT_TOKEN_PARAM  "max_tokens" (default) oppure "max_completion_tokens", che
+#                  e' quello che vogliono i modelli di ragionamento OpenAI recenti
+# COMPAT_MAX_PLAYERS  riduce il dataset ai primi N giocatori. SPENTO di default.
+#                  Serve solo con modelli a contesto piccolo: con un fornitore
+#                  cloud lascialo spento, o l'assistente rispondera' "non e' nel
+#                  dataset" su giocatori che invece ci sono.
 #
-# I default nel codice (10 giocatori, output 700 token) sono tarati su un Ollama
-# con num_ctx=4096. Alzando OLLAMA_CONTEXT_LENGTH puoi alzare anche questi:
-# LOCAL_MAX_PLAYERS = "25"
-# LOCAL_MAX_TOKENS = "1200"
+# Per il tuo Ollama (num_ctx=4096) i valori misurati sono questi:
+#   --var COMPAT_API_URL:http://localhost:11434/v1 --var COMPAT_MODEL:qwen3:14b \
+#   --var COMPAT_MAX_PLAYERS:10 --var COMPAT_MAX_TOKENS:700
 
 # Rate limit per IP: 8 richieste ogni 60 secondi.
 # period accetta solo 10 o 60.
