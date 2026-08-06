@@ -1,0 +1,17 @@
+{
+  "name": "serie-a-scout-ai-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proxy Cloudflare Worker fra la dashboard Serie A Scout e la Claude API",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

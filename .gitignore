@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+
+# Worker: dipendenze e stato locale di wrangler.
+# La chiave API vive in `wrangler secret`, mai in un file.
+worker/node_modules/
+worker/.wrangler/
+worker/.dev.vars
