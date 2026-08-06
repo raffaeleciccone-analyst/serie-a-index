@@ -24,6 +24,23 @@ EFFORT = "medium"
 # QUOTA qui sotto. E' questo che protegge il credito, non il rate limit per IP.
 DAILY_LIMIT = "300"
 
+# --- SOLO SVILUPPO: modello locale (Ollama, LM Studio) -----------------------
+# Togli il commento a LOCAL_MODEL_URL e il Worker chiama la tua IA locale invece
+# dell'API remota, a costo zero. Funziona solo con `wrangler dev`: un Worker
+# distribuito sull'edge non raggiunge il tuo localhost.
+#
+# Ollama:     http://localhost:11434/v1   (modello: es. "llama3.1")
+# LM Studio:  http://localhost:1234/v1    (nome del modello caricato)
+#
+# LASCIALO COMMENTATO PRIMA DI `wrangler deploy`, altrimenti il Worker pubblico
+# prova a chiamare un indirizzo che non esiste e ogni risposta e' un errore.
+# LOCAL_MODEL_URL = "http://localhost:11434/v1"
+# LOCAL_MODEL = "llama3.1"
+# Quanti giocatori tenere nel dataset in modalita' locale (default 25). Il
+# dataset intero e' ~20k token: con la finestra di contesto di un modello locale
+# verrebbe troncato in silenzio e le risposte sarebbero inventate.
+# LOCAL_MAX_PLAYERS = "25"
+
 # Rate limit per IP: 8 richieste ogni 60 secondi.
 # period accetta solo 10 o 60.
 [[unsafe.bindings]]

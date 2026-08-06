@@ -14,6 +14,13 @@ const DEFAULT_MODEL = "claude-opus-5";
 const DEFAULT_EFFORT = "medium";
 const MAX_TOKENS = 2000;
 
+// Modalita' sviluppo con un modello locale (Ollama, LM Studio): quelli parlano
+// il formato OpenAI, non questo, quindi hanno un percorso separato. Serve solo
+// sotto `wrangler dev` — un Worker sull'edge non raggiunge il tuo localhost.
+// Il dataset intero e' ~20k token e Ollama di default ne accetta 2048: lo
+// taglierebbe senza dire niente e otterresti risposte inventate. Qui lo riduco.
+const DEFAULT_LOCAL_MAX_PLAYERS = 25;
+
 // Limiti sul payload in ingresso. Non sono paranoia: il costo per richiesta
 // scala con quel che accettiamo qui.
 const MAX_TURNS = 16;
@@ -217,6 +224,88 @@ async function pump(writable, client, params) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Backend locale (formato OpenAI): solo per sviluppo                  */
+/* ------------------------------------------------------------------ */
+
+function trimDatasetForLocal(text, env) {
+  const n = parseInt(env.LOCAL_MAX_PLAYERS || DEFAULT_LOCAL_MAX_PLAYERS, 10);
+  try {
+    const data = JSON.parse(text);
+    if (Array.isArray(data.giocatori) && data.giocatori.length > n) {
+      data.giocatori = data.giocatori.slice(0, n);
+      data.nota_dataset =
+        `Modalita' sviluppo: sono presenti solo i primi ${n} giocatori per TPI.`;
+    }
+    return JSON.stringify(data);
+  } catch (err) {
+    // Se il taglio non riesce meglio il dataset intero di niente: al massimo
+    // il modello locale lo tronca, ed e' comunque un ambiente di prova.
+    console.warn("trim dataset fallito, uso quello intero", err);
+    return text;
+  }
+}
+
+async function pumpLocal(writable, env, systemText, messages) {
+  const writer = writable.getWriter();
+  try {
+    const base = env.LOCAL_MODEL_URL.replace(/\/+$/, "");
+    const headers = { "Content-Type": "application/json" };
+    if (env.LOCAL_MODEL_KEY) headers.Authorization = `Bearer ${env.LOCAL_MODEL_KEY}`;
+
+    const res = await fetch(`${base}/chat/completions`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({
+        model: env.LOCAL_MODEL || "llama3.1",
+        stream: true,
+        max_tokens: MAX_TOKENS,
+        messages: [{ role: "system", content: systemText }, ...messages],
+      }),
+    });
+
+    if (!res.ok) {
+      const detail = await res.text();
+      console.error("modello locale", res.status, detail.slice(0, 300));
+      await writer.write(sse({ type: "error", message: "local_model" }));
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    while (true) {
+      const chunk = await reader.read();
+      if (chunk.done) break;
+      buffer += decoder.decode(chunk.value, { stream: true });
+
+      const parts = buffer.split("\n\n");
+      buffer = parts.pop();
+
+      for (const part of parts) {
+        const line = part.trim();
+        if (!line.startsWith("data:")) continue;
+        const payload = line.slice(5).trim();
+        if (payload === "[DONE]") continue;
+        try {
+          const delta = JSON.parse(payload).choices?.[0]?.delta?.content;
+          if (delta) await writer.write(sse({ type: "text", text: delta }));
+        } catch (err) {
+          // Riga malformata: la salto invece di far cadere tutta la risposta.
+        }
+      }
+    }
+
+    await writer.write(sse({ type: "done" }));
+  } catch (err) {
+    console.error("local stream error", err);
+    await writer.write(sse({ type: "error", message: "local_model" }));
+  } finally {
+    await writer.close();
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Handler                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -228,9 +317,17 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
 
+    const useLocal = Boolean(env.LOCAL_MODEL_URL);
+
     const url = new URL(request.url);
     if (url.pathname === "/health") {
-      return json({ ok: true, model: env.MODEL || DEFAULT_MODEL }, 200, cors);
+      return json(
+        useLocal
+          ? { ok: true, backend: "local", model: env.LOCAL_MODEL || "llama3.1" }
+          : { ok: true, backend: "remote", model: env.MODEL || DEFAULT_MODEL },
+        200,
+        cors,
+      );
     }
     if (request.method !== "POST" || url.pathname !== "/chat") {
       return json({ error: "not_found" }, 404, cors);
@@ -238,7 +335,7 @@ export default {
     if (!isOriginAllowed(request, env)) {
       return json({ error: "origin_not_allowed" }, 403, cors);
     }
-    if (!env.ANTHROPIC_API_KEY) {
+    if (!useLocal && !env.ANTHROPIC_API_KEY) {
       return json({ error: "server_misconfigured" }, 500, cors);
     }
 
@@ -271,6 +368,24 @@ export default {
         ? "Reply in English."
         : "Rispondi in italiano.";
 
+    const systemText = `${SYSTEM_INSTRUCTIONS}\n\n<dataset>\n${
+      useLocal ? trimDatasetForLocal(dataset, env) : dataset
+    }\n</dataset>`;
+
+    const { readable, writable } = new TransformStream();
+
+    if (useLocal) {
+      ctx.waitUntil(pumpLocal(writable, env, `${systemText}\n\n${langLine}`, messages));
+      return new Response(readable, {
+        headers: {
+          "Content-Type": "text/event-stream; charset=utf-8",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
+          ...cors,
+        },
+      });
+    }
+
     const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
 
     const params = {
@@ -286,17 +401,12 @@ export default {
         // Un solo blocco stabile: istruzioni + dataset, con il breakpoint di cache
         // in fondo. Tutto cio' che varia (lingua, domanda) sta dopo, nei messages,
         // altrimenti invaliderebbe la cache a ogni richiesta.
-        {
-          type: "text",
-          text: `${SYSTEM_INSTRUCTIONS}\n\n<dataset>\n${dataset}\n</dataset>`,
-          cache_control: { type: "ephemeral" },
-        },
+        { type: "text", text: systemText, cache_control: { type: "ephemeral" } },
         { type: "text", text: langLine },
       ],
       messages,
     };
 
-    const { readable, writable } = new TransformStream();
     ctx.waitUntil(pump(writable, client, params));
 
     return new Response(readable, {
