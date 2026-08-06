@@ -11,13 +11,18 @@ ALLOWED_ORIGINS = "https://raffaeleciccone-analyst.github.io"
 # e il prompt caching funziona. Rigenera con build_ai_dataset.py e ripusha.
 DATASET_URL = "https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/ai_dataset.json"
 
-# Modello. claude-opus-5 e' il default; per abbattere il costo di una demo ad
-# alto traffico puoi passare a claude-sonnet-5 o claude-haiku-4-5.
-MODEL = "claude-opus-5"
+# Modello. Il lavoro qui e' leggere una tabella e citarne i numeri senza
+# inventarli: sonnet-5 lo fa bene a circa meta' del costo di opus-5, che resta
+# l'upgrade se lo vedi sbagliare i confronti fra giocatori. haiku-4-5 costa
+# ancora meno ma e' il piu' esposto al fallire "in bello": risposta scorrevole
+# con il numero sbagliato, che su una demo di rigore statistico e' il peggior
+# tipo di errore. Il codice adatta i parametri al modello, quindi cambiare questa
+# riga e basta.
+MODEL = "claude-sonnet-5"
 
 # Profondita di ragionamento: low | medium | high | xhigh | max.
 # "medium" e' il compromesso giusto per una chat; alza a "high" se le risposte
-# analitiche ti sembrano superficiali.
+# analitiche ti sembrano superficiali. Ignorato su haiku, che non lo supporta.
 EFFORT = "medium"
 
 # Tetto giornaliero globale di richieste. Attivo solo se esiste il binding KV
