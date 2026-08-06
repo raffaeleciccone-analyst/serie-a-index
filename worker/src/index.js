@@ -14,20 +14,15 @@ const DEFAULT_MODEL = "claude-opus-5";
 const DEFAULT_EFFORT = "medium";
 const MAX_TOKENS = 2000;
 
-// Modalita' sviluppo con un modello locale (Ollama, LM Studio): quelli parlano
-// il formato OpenAI, non questo, quindi hanno un percorso separato. Serve solo
-// sotto `wrangler dev` — un Worker sull'edge non raggiunge il tuo localhost.
+// Percorso alternativo, formato OpenAI (`POST /chat/completions`). Non e' legato
+// a un fornitore: lo parlano OpenAI, Mistral, Groq, DeepSeek, Together,
+// OpenRouter, xAI, l'endpoint compatibile di Gemini, e in locale Ollama e
+// LM Studio. Basta cambiare COMPAT_API_URL.
 //
-// Questi due valori escono da una misura, non da un'intuizione. Ollama gira di
-// default con num_ctx=4096 e ci riserva dentro anche lo spazio per l'output;
-// quando il totale sfora, taglia il prompt DALL'INIZIO. Il risultato non e' un
-// errore ma una risposta plausibile e sbagliata: spariscono le istruzioni e i
-// primi giocatori, e il modello risponde pescando dalla coda rimasta. Misurato:
-// con 10 giocatori (~2100 token) e max_tokens 2000 il taglio scattava e usciva
-// il 4o in classifica al posto del 1o; con l'output ridotto a 700 ci sta e la
-// risposta torna esatta. Se alzi num_ctx lato Ollama, alza anche questi.
-const DEFAULT_LOCAL_MAX_PLAYERS = 10;
-const DEFAULT_LOCAL_MAX_TOKENS = 700;
+// Nome del campo per il tetto di output: quasi tutti vogliono "max_tokens", i
+// modelli di ragionamento OpenAI piu' recenti vogliono "max_completion_tokens"
+// e rifiutano l'altro. Configurabile invece che indovinato.
+const DEFAULT_COMPAT_TOKEN_PARAM = "max_tokens";
 
 // Limiti sul payload in ingresso. Non sono paranoia: il costo per richiesta
 // scala con quel che accettiamo qui.
@@ -232,49 +227,69 @@ async function pump(writable, client, params) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Backend locale (formato OpenAI): solo per sviluppo                  */
+/* Percorso compatibile OpenAI                                         */
 /* ------------------------------------------------------------------ */
 
-function trimDatasetForLocal(text, env) {
-  const n = parseInt(env.LOCAL_MAX_PLAYERS || DEFAULT_LOCAL_MAX_PLAYERS, 10);
+// Riduce il dataset ai primi N giocatori. NON e' attivo di default: serve solo
+// quando il modello ha una finestra di contesto piccola. Misurato su Ollama con
+// num_ctx=4096: Ollama ci riserva dentro anche lo spazio per l'output e, quando
+// il totale sfora, taglia il prompt DALL'INIZIO. Non da' errore — spariscono le
+// istruzioni e i primi giocatori, e il modello risponde pescando dalla coda,
+// tirando fuori il 4o in classifica al posto del 1o. Con un fornitore cloud
+// lascialo spento, altrimenti l'assistente dira' "non e' nel dataset" su
+// giocatori che ci sono.
+function trimDataset(text, env) {
+  const raw = env.COMPAT_MAX_PLAYERS;
+  if (!raw) return text;
+  const n = parseInt(raw, 10);
+  if (!Number.isFinite(n) || n <= 0) return text;
   try {
     const data = JSON.parse(text);
     if (Array.isArray(data.giocatori) && data.giocatori.length > n) {
       data.giocatori = data.giocatori.slice(0, n);
-      data.nota_dataset =
-        `Modalita' sviluppo: sono presenti solo i primi ${n} giocatori per TPI.`;
+      data.nota_dataset = `Sono presenti solo i primi ${n} giocatori per TPI.`;
     }
     return JSON.stringify(data);
   } catch (err) {
-    // Se il taglio non riesce meglio il dataset intero di niente: al massimo
-    // il modello locale lo tronca, ed e' comunque un ambiente di prova.
     console.warn("trim dataset fallito, uso quello intero", err);
     return text;
   }
 }
 
-async function pumpLocal(writable, env, systemText, messages) {
+async function pumpCompat(writable, env, systemText, messages) {
   const writer = writable.getWriter();
   try {
-    const base = env.LOCAL_MODEL_URL.replace(/\/+$/, "");
+    const base = env.COMPAT_API_URL.replace(/\/+$/, "");
     const headers = { "Content-Type": "application/json" };
-    if (env.LOCAL_MODEL_KEY) headers.Authorization = `Bearer ${env.LOCAL_MODEL_KEY}`;
+    if (env.COMPAT_API_KEY) headers.Authorization = `Bearer ${env.COMPAT_API_KEY}`;
+
+    const body = {
+      model: env.COMPAT_MODEL,
+      stream: true,
+      messages: [{ role: "system", content: systemText }, ...messages],
+    };
+    body[env.COMPAT_TOKEN_PARAM || DEFAULT_COMPAT_TOKEN_PARAM] = parseInt(
+      env.COMPAT_MAX_TOKENS || MAX_TOKENS,
+      10,
+    );
 
     const res = await fetch(`${base}/chat/completions`, {
       method: "POST",
       headers,
-      body: JSON.stringify({
-        model: env.LOCAL_MODEL || "llama3.1",
-        stream: true,
-        max_tokens: parseInt(env.LOCAL_MAX_TOKENS || DEFAULT_LOCAL_MAX_TOKENS, 10),
-        messages: [{ role: "system", content: systemText }, ...messages],
-      }),
+      body: JSON.stringify(body),
     });
 
     if (!res.ok) {
       const detail = await res.text();
-      console.error("modello locale", res.status, detail.slice(0, 300));
-      await writer.write(sse({ type: "error", message: "local_model" }));
+      console.error("backend compatibile", res.status, detail.slice(0, 300));
+      // Errore ricorrente e poco leggibile: lo traduco in un'istruzione.
+      if (detail.includes("max_completion_tokens")) {
+        console.error(
+          "  → questo modello vuole max_completion_tokens: imposta " +
+            'COMPAT_TOKEN_PARAM = "max_completion_tokens"',
+        );
+      }
+      await writer.write(sse({ type: "error", message: "compat_backend" }));
       return;
     }
 
@@ -306,8 +321,8 @@ async function pumpLocal(writable, env, systemText, messages) {
 
     await writer.write(sse({ type: "done" }));
   } catch (err) {
-    console.error("local stream error", err);
-    await writer.write(sse({ type: "error", message: "local_model" }));
+    console.error("compat stream error", err);
+    await writer.write(sse({ type: "error", message: "compat_backend" }));
   } finally {
     await writer.close();
   }
@@ -325,13 +340,13 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
 
-    const useLocal = Boolean(env.LOCAL_MODEL_URL);
+    const useCompat = Boolean(env.COMPAT_API_URL);
 
     const url = new URL(request.url);
     if (url.pathname === "/health") {
       return json(
-        useLocal
-          ? { ok: true, backend: "local", model: env.LOCAL_MODEL || "llama3.1" }
+        useCompat
+          ? { ok: true, backend: "openai-compat", model: env.COMPAT_MODEL }
           : { ok: true, backend: "remote", model: env.MODEL || DEFAULT_MODEL },
         200,
         cors,
@@ -343,7 +358,7 @@ export default {
     if (!isOriginAllowed(request, env)) {
       return json({ error: "origin_not_allowed" }, 403, cors);
     }
-    if (!useLocal && !env.ANTHROPIC_API_KEY) {
+    if (!useCompat && !env.ANTHROPIC_API_KEY) {
       return json({ error: "server_misconfigured" }, 500, cors);
     }
 
@@ -377,13 +392,13 @@ export default {
         : "Rispondi in italiano.";
 
     const systemText = `${SYSTEM_INSTRUCTIONS}\n\n<dataset>\n${
-      useLocal ? trimDatasetForLocal(dataset, env) : dataset
+      useCompat ? trimDataset(dataset, env) : dataset
     }\n</dataset>`;
 
     const { readable, writable } = new TransformStream();
 
-    if (useLocal) {
-      ctx.waitUntil(pumpLocal(writable, env, `${systemText}\n\n${langLine}`, messages));
+    if (useCompat) {
+      ctx.waitUntil(pumpCompat(writable, env, `${systemText}\n\n${langLine}`, messages));
       return new Response(readable, {
         headers: {
           "Content-Type": "text/event-stream; charset=utf-8",
