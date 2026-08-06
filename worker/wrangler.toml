@@ -1,0 +1,40 @@
+name = "serie-a-scout-ai"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Origini autorizzate a chiamare il Worker. Lista vuota = tutti (solo in locale).
+ALLOWED_ORIGINS = "https://raffaeleciccone-analyst.github.io"
+
+# Il Worker scarica lui il dataset, cosi' il prompt e' identico a ogni richiesta
+# e il prompt caching funziona. Rigenera con build_ai_dataset.py e ripusha.
+DATASET_URL = "https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/ai_dataset.json"
+
+# Modello. claude-opus-5 e' il default; per abbattere il costo di una demo ad
+# alto traffico puoi passare a claude-sonnet-5 o claude-haiku-4-5.
+MODEL = "claude-opus-5"
+
+# Profondita di ragionamento: low | medium | high | xhigh | max.
+# "medium" e' il compromesso giusto per una chat; alza a "high" se le risposte
+# analitiche ti sembrano superficiali.
+EFFORT = "medium"
+
+# Tetto giornaliero globale di richieste. Attivo solo se esiste il binding KV
+# QUOTA qui sotto. E' questo che protegge il credito, non il rate limit per IP.
+DAILY_LIMIT = "300"
+
+# Rate limit per IP: 8 richieste ogni 60 secondi.
+# period accetta solo 10 o 60.
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 8, period = 60 }
+
+# Contatore giornaliero. Facoltativo: crea il namespace con
+#   npx wrangler kv namespace create QUOTA
+# e incolla l'id qui sotto, poi togli il commento.
+# [[kv_namespaces]]
+# binding = "QUOTA"
+# id = "<incolla-qui-l-id>"
