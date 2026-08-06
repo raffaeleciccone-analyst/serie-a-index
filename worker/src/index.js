@@ -17,9 +17,17 @@ const MAX_TOKENS = 2000;
 // Modalita' sviluppo con un modello locale (Ollama, LM Studio): quelli parlano
 // il formato OpenAI, non questo, quindi hanno un percorso separato. Serve solo
 // sotto `wrangler dev` — un Worker sull'edge non raggiunge il tuo localhost.
-// Il dataset intero e' ~20k token e Ollama di default ne accetta 2048: lo
-// taglierebbe senza dire niente e otterresti risposte inventate. Qui lo riduco.
-const DEFAULT_LOCAL_MAX_PLAYERS = 25;
+//
+// Questi due valori escono da una misura, non da un'intuizione. Ollama gira di
+// default con num_ctx=4096 e ci riserva dentro anche lo spazio per l'output;
+// quando il totale sfora, taglia il prompt DALL'INIZIO. Il risultato non e' un
+// errore ma una risposta plausibile e sbagliata: spariscono le istruzioni e i
+// primi giocatori, e il modello risponde pescando dalla coda rimasta. Misurato:
+// con 10 giocatori (~2100 token) e max_tokens 2000 il taglio scattava e usciva
+// il 4o in classifica al posto del 1o; con l'output ridotto a 700 ci sta e la
+// risposta torna esatta. Se alzi num_ctx lato Ollama, alza anche questi.
+const DEFAULT_LOCAL_MAX_PLAYERS = 10;
+const DEFAULT_LOCAL_MAX_TOKENS = 700;
 
 // Limiti sul payload in ingresso. Non sono paranoia: il costo per richiesta
 // scala con quel che accettiamo qui.
@@ -258,7 +266,7 @@ async function pumpLocal(writable, env, systemText, messages) {
       body: JSON.stringify({
         model: env.LOCAL_MODEL || "llama3.1",
         stream: true,
-        max_tokens: MAX_TOKENS,
+        max_tokens: parseInt(env.LOCAL_MAX_TOKENS || DEFAULT_LOCAL_MAX_TOKENS, 10),
         messages: [{ role: "system", content: systemText }, ...messages],
       }),
     });
