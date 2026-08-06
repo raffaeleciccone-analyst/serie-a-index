@@ -395,16 +395,11 @@ export default {
     }
 
     const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+    const model = env.MODEL || DEFAULT_MODEL;
 
     const params = {
-      model: env.MODEL || DEFAULT_MODEL,
+      model,
       max_tokens: MAX_TOKENS,
-      output_config: { effort: env.EFFORT || DEFAULT_EFFORT },
-      // Il classificatore di sicurezza puo' rifiutare per falso positivo; con
-      // "default" la richiesta viene rigiocata server-side sul modello di ripiego
-      // dentro la stessa chiamata, invece di tornare vuota all'utente.
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
       system: [
         // Un solo blocco stabile: istruzioni + dataset, con il breakpoint di cache
         // in fondo. Tutto cio' che varia (lingua, domanda) sta dopo, nei messages,
@@ -414,6 +409,21 @@ export default {
       ],
       messages,
     };
+
+    // Due parametri non esistono ovunque, e mandarli dove non esistono e' un 400,
+    // non un'ignorata gentile. Li aggiungo solo dove sono supportati, altrimenti
+    // cambiare MODEL qui sotto smetterebbe di essere una modifica sicura.
+    if (!/haiku/.test(model)) {
+      // Haiku 4.5 rifiuta output_config.effort.
+      params.output_config = { effort: env.EFFORT || DEFAULT_EFFORT };
+    }
+    if (/opus-5|opus-4-8|fable-5|mythos-5/.test(model)) {
+      // Il classificatore di sicurezza puo' rifiutare per falso positivo; con
+      // "default" la richiesta viene rigiocata server-side sul modello di ripiego
+      // dentro la stessa chiamata, invece di tornare vuota all'utente.
+      params.betas = ["server-side-fallback-2026-07-01"];
+      params.fallbacks = "default";
+    }
 
     ctx.waitUntil(pump(writable, client, params));
 
