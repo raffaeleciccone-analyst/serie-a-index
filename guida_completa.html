@@ -673,12 +673,12 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
     <!-- ── TPI FINALE ── -->
     <div class="chapter" id="tpi">
       <h2 class="chapter-ttl">TPI &amp; TPI Pro</h2>
-      <p class="chapter-desc" data-it="L'indice finale. Il TPI Classic usa 4 dimensioni. Il TPI Pro arriva a 6 quando sono disponibili i dati di età e infortuni." data-en="The final index. TPI Classic uses 4 dimensions. TPI Pro extends to 6 when age and injury data are available.">The final index. TPI Classic uses 4 dimensions. TPI Pro extends to 6 when age and injury data are available.</p>
-      <div class="formula" data-it="TPI = media(z_output_adj, z_centralità, z_boost, z_consistenza)<br><span class=&quot;comment&quot;>// se Boost N/D → media dei 3 restanti · calcolato per 5 contesti</span><br><br>TPI Pro = media(z_output_adj, z_centralità, z_boost, z_consistenza, z_aii, z_pri)<br><span class=&quot;comment&quot;>// z_aii e z_pri opzionali — esclusi se mancano i dati</span>" data-en="TPI = mean(z_output_adj, z_centrality, z_boost, z_consistency)<br><span class=&quot;comment&quot;>// if Boost N/A → mean of 3 remaining · computed for 5 contexts</span><br><br>TPI Pro = mean(z_output_adj, z_centrality, z_boost, z_consistency, z_aii, z_pri)<br><span class=&quot;comment&quot;>// z_aii and z_pri optional — excluded if missing data</span>">
-        TPI = mean(z_output_adj, z_centralità, z_boost, z_consistenza)<br>
-        <span class="comment">// if Boost N/A → mean of 3 remaining · computed for 5 contexts</span><br><br>
-        TPI Pro = mean(z_output_adj, z_centralità, z_boost, z_consistenza, z_aii, z_pri)<br>
-        <span class="comment">// z_aii and z_pri optional — excluded if missing data</span>
+      <p class="chapter-desc" data-it="L'indice finale. Il TPI Classic usa 7 dimensioni offensive (media pesata). Il TPI Pro aggiunge 4 modulatori scout (AII scout con picco a 23 anni, PRI, stabilità cross-contesto, trend forma), con TPI base dominante al 70%." data-en="The final index. TPI Classic uses 7 offensive dimensions (weighted mean). TPI Pro adds 4 scout modulators (scout AII peaking at 23, PRI, cross-context stability, form trend), with base TPI dominant at 70%.">The final index. TPI Classic uses 7 offensive dimensions (weighted mean). TPI Pro adds 4 scout modulators (scout AII peaking at 23, PRI, cross-context stability, form trend), with base TPI dominant at 70%.</p>
+      <div class="formula" data-it="TPI = media_pesata(0.32·z_output_adj, 0.10·z_buildup, 0.18·z_centralità, 0.02·z_boost, 0.07·z_consistenza, 0.20·z_finishing, 0.11·z_forma)<br><span class=&quot;comment&quot;>// centralità raddoppiata (era 0.09): quota produzione squadra · boost ridotto su ablation</span><br><br>TPI Pro = 0.65·TPI + 0.10·z_aii_scout + 0.07·z_pri + 0.07·z_ctx_stability + 0.05·z_form_trend + 0.06·z_emi<br><span class=&quot;comment&quot;>// AII scout: picco a 23 · EMI: residuo TPI vs aspettativa-età (discrimina prospetti)</span>" data-en="TPI = weighted_mean(0.32·z_output_adj, 0.10·z_buildup, 0.18·z_centrality, 0.02·z_boost, 0.07·z_consistency, 0.20·z_finishing, 0.11·z_form)<br><span class=&quot;comment&quot;>// centrality doubled (was 0.09): team production share · boost reduced after ablation</span><br><br>TPI Pro = 0.65·TPI + 0.10·z_aii_scout + 0.07·z_pri + 0.07·z_ctx_stability + 0.05·z_form_trend + 0.06·z_emi<br><span class=&quot;comment&quot;>// scout AII: peak at 23 · EMI: TPI residual vs age expectation (separates prospects)</span>">
+        TPI = weighted_mean(0.32·z_output_adj, 0.10·z_buildup, 0.18·z_centrality, 0.02·z_boost, 0.07·z_consistency, 0.20·z_finishing, 0.11·z_form)<br>
+        <span class="comment">// centrality doubled (was 0.09): team production share · boost reduced after ablation</span><br><br>
+        TPI Pro = 0.65·TPI + 0.10·z_aii_scout + 0.07·z_pri + 0.07·z_ctx_stability + 0.05·z_form_trend + 0.06·z_emi<br>
+        <span class="comment">// scout AII: peak at 23 · EMI: TPI residual vs age expectation (separates prospects)</span>
       </div>
 
       <div class="section">
@@ -710,18 +710,36 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
       </div>
 
       <div class="section">
-        <h3 class="section-ttl" data-it="TPI Confidence Score" data-en="TPI Confidence Score">TPI Confidence Score</h3>
-        <div class="body" data-it="Un nuovo punteggio 0–1 che indica <strong>quanto fidarsi</strong> della stima TPI di ogni giocatore." data-en="A new 0–1 score that tells you <strong>how much to trust</strong> each player's TPI estimate.">
-          A new 0–1 score that tells you <strong>how much to trust</strong> each player's TPI estimate.
+        <h3 class="section-ttl" data-it="TPI Confidence Score v2 (4 fattori)" data-en="TPI Confidence Score v2 (4 factors)">TPI Confidence Score v2 (4 factors)</h3>
+        <div class="body" data-it="Punteggio 0–1 che indica <strong>quanto fidarsi</strong> della stima TPI. v2 (2026-06) sostituisce la formula a 2 fattori con una a 4 fattori per gestire esplicitamente i giocatori sotto-campionati (poche partite, subentranti)." data-en="A 0–1 score telling you <strong>how much to trust</strong> each TPI estimate. v2 (2026-06) replaces the 2-factor formula with a 4-factor one to handle explicitly under-sampled players (few games, substitutes).">
+          A 0–1 score telling you <strong>how much to trust</strong> each TPI estimate.
         </div>
-        <div class="formula" style="margin-top:10px" data-it="Confidence = √(rapporto_minuti × completezza_dimensioni)<br><span class=&quot;comment&quot;>// media geometrica — entrambi i fattori devono essere alti per alta confidence</span>" data-en="Confidence = √(minutes_ratio × dimension_completeness)<br><span class=&quot;comment&quot;>// geometric mean — both factors must be high for high confidence</span>">
-          Confidence = √(minutes_ratio × dimension_completeness)<br>
-          <span class="comment">// geometric mean — both factors must be high for high confidence</span>
+        <div class="formula" style="margin-top:10px" data-it="Confidence = (minuti_rel × partite_rel × intensità × completezza_dim) ^ 0.25<br><span class=&quot;comment&quot;>// media geometrica a 4 fattori — ogni fattore basso abbassa la confidence</span>" data-en="Confidence = (minutes_ratio × games_ratio × intensity × dim_completeness) ^ 0.25<br><span class=&quot;comment&quot;>// geometric mean of 4 factors — any low factor drags confidence down</span>">
+          Confidence = (minutes_ratio × games_ratio × intensity × dim_completeness) ^ 0.25<br>
+          <span class="comment">// geometric mean of 4 factors — any low factor drags confidence down</span>
         </div>
-        <div class="ex" style="margin-top:10px" data-it="<strong>Esempio:</strong> Un giocatore con 1800 minuti e tutte e 4 le dimensioni = Confidence 0.91. Un giocatore con 400 minuti = Confidence ≤ 0.55 per quanto buono sembri il TPI. Usa la confidence per filtrare il rumore nelle classifiche di inizio stagione." data-en="<strong>Example:</strong> A player with 1800 minutes and all 4 dimensions = Confidence 0.91. A player with 400 minutes = Confidence ≤ 0.55 regardless of how good the TPI looks. Use confidence to filter out noise in early-season rankings.">
-          <strong>Example:</strong> A player with 1800 minutes and all 4 dimensions = Confidence 0.91.
-          A player with 400 minutes = Confidence ≤ 0.55 regardless of how good the TPI looks.
-          Use confidence to filter out noise in early-season rankings.
+        <div class="ex" style="margin-top:10px" data-it="<strong>Esempio:</strong> 30 partite × 80'/gara (Lautaro) → confidence ≈ 0.83. 18 partite × 65'/gara (De Bruyne) → confidence ≈ 0.65 nonostante minuti totali decenti. 13 partite × 68'/gara (Berisha) → confidence ≈ 0.54 nonostante intensità OK. Cattura il bias 'pochi sample non bastano anche se intensi'." data-en="<strong>Example:</strong> 30 games × 80'/match (Lautaro) → confidence ≈ 0.83. 18 games × 65'/match (De Bruyne) → confidence ≈ 0.65 despite decent total minutes. 13 games × 68'/match (Berisha) → confidence ≈ 0.54 even with good intensity. Captures the 'few samples aren't enough even if intense' bias.">
+          <strong>Example:</strong> 30 games × 80'/match (Lautaro) → confidence ≈ 0.83.
+          18 games × 65'/match (De Bruyne) → confidence ≈ 0.65 despite decent total minutes.
+          13 games × 68'/match (Berisha) → confidence ≈ 0.54 even with good intensity.
+        </div>
+      </div>
+
+      <div class="section">
+        <h3 class="section-ttl" data-it="Shrinkage Bayes dinamico + Penalty disponibilità winter-aware" data-en="Dynamic Bayesian shrinkage + Winter-aware availability penalty">Dynamic Bayesian shrinkage + Winter-aware availability penalty</h3>
+        <div class="body" data-it="Due fix di robustezza (2026-06) che evitano due bias noti del per-90: (1) i subentranti hanno p90 estrapolato (0.5 xG in 20' → 'p90=2.25' artificiale); (2) chi gioca poche partite ha stima rumorosa. Soluzione: K dello shrinkage è DINAMICO, e il TPI finale viene moltiplicato per una penalty di disponibilità relativa al periodo di presenza." data-en="Two robustness fixes (2026-06) that mitigate two known per-90 biases: (1) substitutes have over-extrapolated p90 (0.5 xG in 20' → artificial 'p90=2.25'); (2) few games = noisy estimates. Solution: shrinkage K is DYNAMIC, and the final TPI is multiplied by an availability penalty relative to the player's presence window.">
+          Two robustness fixes (2026-06) mitigating per-90 over-extrapolation.
+        </div>
+        <div class="formula" style="margin-top:10px" data-it="K_mult = max(75/avg_min, 30/partite), clip(1.0, 3.0)<br>output_shrunk = (m·output + K_mult·K_base·prior_ruolo) / (m + K_mult·K_base)<br><br>disponibilità_rel = partite_giocate / partite_disponibili  <span class=&quot;comment&quot;>// titolare:38, winter:dalla finestra arrivo</span><br>penalty = clip(0.85, 1.0)  TPI_finale = TPI × penalty" data-en="K_mult = max(75/avg_min, 30/games), clip(1.0, 3.0)<br>output_shrunk = (m·output + K_mult·K_base·role_prior) / (m + K_mult·K_base)<br><br>availability_rel = games_played / games_available  <span class=&quot;comment&quot;>// starter:38, winter:from arrival</span><br>penalty = clip(0.85, 1.0)  TPI_final = TPI × penalty">
+          K_mult = max(75/avg_min, 30/games), clip(1.0, 3.0)<br>
+          output_shrunk = (m·output + K_mult·K_base·role_prior) / (m + K_mult·K_base)<br><br>
+          availability_rel = games_played / games_available <span class="comment">// starter:38, winter:from arrival</span><br>
+          penalty = clip(0.85, 1.0)  TPI_final = TPI × penalty
+        </div>
+        <div class="ex" style="margin-top:10px" data-it="<strong>Esempio winter-aware:</strong> Donyell Malen (arrivo gennaio, 18/20 partite = 90% disp) → penalty 1.0, TPI intatto. De Bruyne (titolare, 18/38 = 47% disp) → penalty 0.91, TPI ridotto. Berisha (titolare, 13/38 = 34%) → penalty 0.85 (cap), TPI ridotto del 15%." data-en="<strong>Winter-aware example:</strong> Donyell Malen (Jan signing, 18/20 = 90% avail) → penalty 1.0, TPI intact. De Bruyne (starter, 18/38 = 47%) → penalty 0.91, TPI reduced. Berisha (starter, 13/38 = 34%) → penalty 0.85 (cap), TPI cut 15%.">
+          <strong>Winter-aware example:</strong> Malen (Jan signing, 90% avail) → penalty 1.0, TPI intact.
+          De Bruyne (starter, 47% avail) → penalty 0.91.
+          Berisha (starter, 34% avail) → penalty 0.85 cap.
         </div>
       </div>
 
