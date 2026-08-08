@@ -1,6 +1,18 @@
 __pycache__/
 *.pyc
 
+# Avvio del server locale: il .bat stampa a video la passphrase del vecchio
+# cancello della pagina Pro. La pagina ora e' pubblica e senza cancello, ma
+# il file resta uno strumento offline e non deve poter finire nel repo.
+AVVIA_TPI_PRO.bat
+AVVIA_TPI_PRO_SILENT.vbs
+
+# Bozza di dashboard mai pubblicata.
+dashboard_nuova.html
+
+# Pagine di prova usate per guardare il sito a viewport diversi.
+_*.html
+
 # Worker: dipendenze e stato locale di wrangler.
 # La chiave API vive in `wrangler secret`, mai in un file.
 worker/node_modules/

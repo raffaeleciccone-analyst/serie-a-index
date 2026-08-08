@@ -149,6 +149,32 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
 .btn-purp{background:none;border-color:var(--sep2);color:var(--ls);box-shadow:none}
 .btn-purp:hover{transform:none;box-shadow:none;color:var(--lp);border-color:var(--lt)}
 
+/* Fascia TPI Pro
+   Il Pro e' l'indice piu' recente e il piu' difficile da riassumere in una
+   riga: prende una fascia sua invece di essere la quarta scheda di quattro,
+   dove sarebbe rimasto orfano su una seconda riga. Il filetto in alto e'
+   l'unico ambra della pagina fuori dai bottoni. */
+.pro-band{display:block;text-decoration:none;color:inherit;
+  border-top:1px solid var(--orng);border-bottom:1px solid var(--sep);
+  padding:26px 0 24px;transition:background .18s}
+.pro-band:hover{background:var(--bg1)}
+.pro-band-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--orng);margin-bottom:12px}
+.pro-band-ttl{font-family:var(--disp);font-size:clamp(28px,4vw,44px);font-weight:500;
+  line-height:.95;text-transform:uppercase;letter-spacing:-.005em}
+.pro-band-ttl em{font-style:normal;color:var(--orng)}
+.pro-band-body{font-size:13.5px;color:var(--ls);line-height:1.65;max-width:64ch;margin-top:14px}
+.pro-band-body strong{color:var(--lp);font-weight:600}
+.pro-band-mods{display:flex;flex-wrap:wrap;gap:0;margin-top:20px}
+.pro-band-mods span{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--lt);padding:3px 14px;white-space:nowrap}
+.pro-band-mods span:first-child{padding-left:0}
+.pro-band-mods span + span{border-left:1px solid var(--sep)}
+.pro-band-lnk{display:inline-flex;align-items:center;gap:7px;margin-top:22px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orng);transition:gap .16s}
+.pro-band:hover .pro-band-lnk{gap:11px}
+
 /* SEZIONI */
 .section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 76px}
 .section-ttl{font-family:var(--mono);font-size:9.5px;font-weight:400;color:var(--lt);
@@ -263,6 +289,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
         </a>
         <a href="validazione.html" class="btn-secondary">
           <span data-i18n="btn_see_validation">See Validation</span>
+        </a>
+        <a href="dashboard_pro.html" class="btn-secondary">
+          <span data-it="TPI Pro" data-en="TPI Pro">TPI Pro</span>
         </a>
         <a href="guida_completa.html" class="btn-purp btn-secondary">
           <span data-i18n="btn_methodology">Methodology</span>
@@ -387,6 +416,26 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
     <span class="hero-tag purp" data-i18n="hp_tag_pro">TPI Pro &mdash; AII + PRI</span>
     <span class="hero-tag teal" data-i18n="hp_tag_validated">Statistically Validated</span>
   </div>
+</div>
+
+<div class="section" style="padding-bottom:56px">
+  <a class="pro-band" href="dashboard_pro.html">
+    <div class="pro-band-tag"
+      data-it="Nuovo &middot; Indice avanzato" data-en="New &middot; Advanced index">Nuovo &middot; Indice avanzato</div>
+    <div class="pro-band-ttl">TPI <em>Pro</em></div>
+    <div class="pro-band-body"
+      data-it="Il TPI classico misura il <strong>rendimento in campo</strong>. Il Pro aggiunge cinque modulatori che guardano al <strong>giocatore</strong>: dove sta nella curva dell&rsquo;et&agrave;, quanto regge fisicamente, se rende in tutti i contesti o solo in casa, in che direzione va la sua forma, e chi produce sopra l&rsquo;aspettativa per la sua et&agrave;. Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;."
+      data-en="The classic TPI measures <strong>on-pitch performance</strong>. Pro adds five modulators that look at the <strong>player</strong>: where they sit on the age curve, how well they hold up physically, whether they deliver in every context or only at home, which way their form is heading, and who produces above expectation for their age. It tells apart who is good now from who will be.">Il TPI classico misura il <strong>rendimento in campo</strong>. Il Pro aggiunge cinque modulatori che guardano al <strong>giocatore</strong>: dove sta nella curva dell&rsquo;et&agrave;, quanto regge fisicamente, se rende in tutti i contesti o solo in casa, in che direzione va la sua forma, e chi produce sopra l&rsquo;aspettativa per la sua et&agrave;. Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;.</div>
+    <div class="pro-band-mods">
+      <span data-it="AII &middot; Indice et&agrave;" data-en="AII &middot; Age index">AII &middot; Indice et&agrave;</span>
+      <span data-it="PRI &middot; Tenuta fisica" data-en="PRI &middot; Physical reliability">PRI &middot; Tenuta fisica</span>
+      <span data-it="Stabilit&agrave; fra contesti" data-en="Cross-context stability">Stabilit&agrave; fra contesti</span>
+      <span data-it="Direzione della forma" data-en="Form trend">Direzione della forma</span>
+      <span data-it="EMI &middot; Early momentum" data-en="EMI &middot; Early momentum">EMI &middot; Early momentum</span>
+    </div>
+    <div class="pro-band-lnk"
+      data-it="Apri la dashboard Pro &rarr;" data-en="Open the Pro dashboard &rarr;">Apri la dashboard Pro &rarr;</div>
+  </a>
 </div>
 
 <div class="section">
