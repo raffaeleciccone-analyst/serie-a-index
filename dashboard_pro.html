@@ -118,6 +118,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
 .hero-ttl em{font-style:normal;color:var(--orng)}
 .hero-sub{font-size:13.5px;color:var(--ls);max-width:60ch;margin:16px 0 0;line-height:1.65}
 .hero-sub strong{color:var(--lp);font-weight:600}
+.hero-onesta{font-size:12.5px;color:var(--lt);line-height:1.6;max-width:64ch;
+  margin-top:16px;padding-left:12px;border-left:1px solid var(--sep2)}
+.hero-onesta strong{color:var(--ls);font-weight:600}
+.hero-onesta a{color:var(--orng);text-decoration:none;white-space:nowrap}
+.hero-onesta a:hover{text-decoration:underline}
 .hero-meta{display:flex;justify-content:flex-start;gap:0;flex-wrap:wrap;
   margin-top:22px;padding-top:14px;border-top:1px solid var(--sep)}
 .hero-meta span{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
@@ -375,28 +380,36 @@ footer a:hover{color:var(--lp)}
       <span class="nav-pro-badge">TPI Pro</span>
     </div>
     <div class="nav-sections">
-      <a class="nav-link" onclick="scrollTo2('#insights')">Insights</a>
-      <a class="nav-link" onclick="scrollTo2('#categories')">Categorie</a>
-      <a class="nav-link" onclick="scrollTo2('#ranking')">Ranking</a>
-      <a class="nav-link" onclick="scrollTo2('#modulators')">Modulatori</a>
-      <a class="nav-link" onclick="scrollTo2('#multiseason')">Multi-season</a>
+      <a class="nav-link" onclick="scrollTo2('#insights')" data-it="Insights" data-en="Insights">Insights</a>
+      <a class="nav-link" onclick="scrollTo2('#categories')" data-it="Categorie" data-en="Categories">Categorie</a>
+      <a class="nav-link" onclick="scrollTo2('#ranking')" data-it="Ranking" data-en="Ranking">Ranking</a>
+      <a class="nav-link" onclick="scrollTo2('#modulators')" data-it="Modulatori" data-en="Modulators">Modulatori</a>
+      <a class="nav-link" onclick="scrollTo2('#multiseason')" data-it="Multi-season" data-en="Multi-season">Multi-season</a>
     </div>
     <div class="nav-spacer"></div>
-    <a class="nav-link" href="dashboard_serie_a.html">Classifica</a>
-    <a class="nav-link" href="validazione.html">Validazione</a>
-    <a class="nav-link" href="index.html">Homepage</a>
+    <span data-i18n-switcher></span>
+    <a class="nav-link" href="dashboard_serie_a.html" data-it="Classifica" data-en="Ranking">Classifica</a>
+    <a class="nav-link" href="validazione.html" data-it="Validazione" data-en="Validation">Validazione</a>
+    <a class="nav-link" href="index.html" data-it="Homepage" data-en="Homepage">Homepage</a>
   </nav>
 
   <div class="hero">
-    <div class="hero-eyebrow">Serie A Scout Index &middot; Stagione 2025/26</div>
+    <div class="hero-eyebrow" data-it="Serie A Scout Index &middot; Stagione 2025/26" data-en="Serie A Scout Index &middot; 2025/26 season">Serie A Scout Index &middot; Stagione 2025/26</div>
     <div class="hero-ttl">TPI <em>Pro</em></div>
-    <div class="hero-sub">Il TPI classico misura il rendimento in campo. Il
+    <div class="hero-sub" data-it="Il TPI classico misura il rendimento in campo. Il <strong>TPI Pro</strong> aggiunge cinque modulatori che guardano al giocatore invece che alla sola prestazione: <strong>AII</strong> (dove sta nella curva dell&rsquo;et&agrave;), <strong>PRI</strong> (quanto regge fisicamente), la stabilit&agrave; fra i cinque contesti, la direzione della forma ed <strong>EMI</strong> (chi rende sopra l&rsquo;aspettativa per la sua et&agrave;). Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;." data-en="The classic TPI measures on-pitch performance. <strong>TPI Pro</strong> adds five modulators that look at the player rather than the performance alone: <strong>AII</strong> (where they sit on the age curve), <strong>PRI</strong> (how well they hold up physically), stability across the five contexts, the direction of their form and <strong>EMI</strong> (who produces above expectation for their age). It tells apart who is good now from who will be.">Il TPI classico misura il rendimento in campo. Il
       <strong>TPI Pro</strong> aggiunge cinque modulatori che guardano al giocatore invece
       che alla sola prestazione: <strong>AII</strong> (dove sta nella curva dell'et&agrave;),
       <strong>PRI</strong> (quanto regge fisicamente), la stabilit&agrave; fra i cinque
       contesti, la direzione della forma ed <strong>EMI</strong> (chi rende sopra
       l'aspettativa per la sua et&agrave;). Serve a distinguere chi &egrave; forte adesso
       da chi lo sar&agrave;.</div>
+    <!-- Il limite dichiarato dove si presenta l'indice, non solo in fondo alla
+         pagina di validazione. -->
+    <div class="hero-onesta" data-it="Testato <em>out-of-sample</em> sulla validazione: sul rendimento futuro <strong>non batte il TPI classico</strong> &mdash; la differenza di RMSE &egrave; indistinguibile da zero. Va letto per quello che &egrave;: uno strumento descrittivo che dice <em>che profilo</em> ha un giocatore, non quanto render&agrave;. <a href=&quot;validazione.html&quot;>Vedi la validazione &rarr;</a>" data-en="Tested <em>out-of-sample</em> in the validation: on future performance it <strong>does not beat the classic TPI</strong> &mdash; the RMSE difference is indistinguishable from zero. Read it for what it is: a descriptive tool telling you <em>what kind of profile</em> a player has, not how much they will produce. <a href=&quot;validazione.html&quot;>See the validation &rarr;</a>">Testato <em>out-of-sample</em> sulla validazione:
+      sul rendimento futuro <strong>non batte il TPI classico</strong> — la differenza
+      di RMSE &egrave; indistinguibile da zero. Va letto per quello che &egrave;: uno strumento
+      descrittivo che dice <em>che profilo</em> ha un giocatore, non quanto render&agrave;.
+      <a href="validazione.html">Vedi la validazione &rarr;</a></div>
     <div class="hero-meta" id="meta-bar"></div>
   </div>
 
@@ -405,8 +418,8 @@ footer a:hover{color:var(--lp)}
     <!-- INSIGHTS automatici -->
     <section class="section" id="insights">
       <div class="section-hdr">
-        <div class="section-ttl">Insights automatici</div>
-        <div class="section-note">Highlights calcolati sul payload corrente</div>
+        <div class="section-ttl" data-it="Insights automatici" data-en="Automatic insights">Insights automatici</div>
+        <div class="section-note" data-it="Highlights calcolati sul payload corrente" data-en="Highlights computed on the current payload">Highlights calcolati sul payload corrente</div>
       </div>
       <div class="insights" id="insights-grid"></div>
     </section>
@@ -414,8 +427,8 @@ footer a:hover{color:var(--lp)}
     <!-- CATEGORIE -->
     <section class="section" id="categories">
       <div class="section-hdr">
-        <div class="section-ttl">Top per categoria età</div>
-        <div class="section-note">Pesi Pro age-aware: prospetto &lt;23 · prime 23–29 · veterano ≥29</div>
+        <div class="section-ttl" data-it="Top per categoria età" data-en="Top by age category">Top per categoria età</div>
+        <div class="section-note" data-it="Pesi Pro age-aware: prospetto &lt;23 · prime 23–29 · veterano ≥29" data-en="Age-aware Pro weights: prospect &lt;23 · prime 23–29 · veteran ≥29">Pesi Pro age-aware: prospetto &lt;23 · prime 23–29 · veterano ≥29</div>
       </div>
       <div class="cat-grid" id="cat-grid"></div>
     </section>
@@ -423,32 +436,32 @@ footer a:hover{color:var(--lp)}
     <!-- CLASSIFICA -->
     <section class="section" id="ranking">
       <div class="section-hdr">
-        <div class="section-ttl">Classifica TPI Pro</div>
+        <div class="section-ttl" data-it="Classifica TPI Pro" data-en="TPI Pro ranking">Classifica TPI Pro</div>
         <div class="filters">
-          <span class="filter-lbl">Ruolo:</span>
-          <button class="filter-pill active" data-r-filter="ALL">Tutti</button>
+          <span class="filter-lbl" data-it="Ruolo:" data-en="Role:">Ruolo:</span>
+          <button class="filter-pill active" data-r-filter="ALL" data-it="Tutti" data-en="All">Tutti</button>
           <button class="filter-pill" data-r-filter="ATT">ATT</button>
           <button class="filter-pill" data-r-filter="CEN">CEN</button>
           <button class="filter-pill" data-r-filter="DIF">DIF</button>
           <span style="width:8px"></span>
-          <span class="filter-lbl">Cat:</span>
-          <button class="filter-pill active" data-c-filter="ALL">Tutte</button>
-          <button class="filter-pill" data-c-filter="prospetto">Prospetto</button>
-          <button class="filter-pill" data-c-filter="prime">Prime</button>
-          <button class="filter-pill" data-c-filter="veterano">Veterano</button>
+          <span class="filter-lbl" data-it="Cat:" data-en="Cat:">Cat:</span>
+          <button class="filter-pill active" data-c-filter="ALL" data-it="Tutte" data-en="All">Tutte</button>
+          <button class="filter-pill" data-c-filter="prospetto" data-it="Prospetto" data-en="Prospect">Prospetto</button>
+          <button class="filter-pill" data-c-filter="prime" data-it="Prime" data-en="Prime">Prime</button>
+          <button class="filter-pill" data-c-filter="veterano" data-it="Veterano" data-en="Veteran">Veterano</button>
         </div>
       </div>
       <div class="card">
-        <p style="font-size:11.5px;color:var(--lt);margin-bottom:10px">Clicca su una riga per vedere il dettaglio completo (5 contesti, modulatori, KPI, forma)</p>
+        <p style="font-size:11.5px;color:var(--lt);margin-bottom:10px"><span data-it="Clicca su una riga per vedere il dettaglio completo (5 contesti, modulatori, KPI, forma)" data-en="Click a row to see the full detail (5 contexts, modulators, KPIs, form)">Clicca su una riga per vedere il dettaglio completo (5 contesti, modulatori, KPI, forma)</span></p>
         <div class="tbl-wrap">
           <table class="tbl" id="ranking-tbl">
             <thead><tr>
-              <th>#</th><th>Giocatore</th><th>Squadra</th><th>R</th>
-              <th>Età</th><th>Cat</th>
+              <th>#</th><th data-it="Giocatore" data-en="Player">Giocatore</th><th data-it="Squadra" data-en="Team">Squadra</th><th>R</th>
+              <th data-it="Età" data-en="Age">Età</th><th>Cat</th>
               <th class="num">TPI</th><th class="num pro-col">TPI Pro</th><th class="num">Δ</th>
-              <th class="num">P</th><th class="num">Min/p</th>
+              <th class="num">P</th><th class="num" data-it="Min/p" data-en="Min/g">Min/p</th>
               <th class="num">AII</th><th class="num">PRI</th><th class="num">EMI</th>
-              <th class="num">Form</th><th class="num">Conv</th>
+              <th class="num" data-it="Form" data-en="Form">Form</th><th class="num" data-it="Conv" data-en="Conv">Conv</th>
             </tr></thead>
             <tbody></tbody>
           </table>
@@ -462,8 +475,8 @@ footer a:hover{color:var(--lp)}
     <!-- MODULATORI -->
     <section class="section" id="modulators">
       <div class="section-hdr">
-        <div class="section-ttl">Breakdown modulatori Pro</div>
-        <div class="section-note">Top performer per ogni componente del Pro</div>
+        <div class="section-ttl" data-it="Breakdown modulatori Pro" data-en="Pro modulators breakdown">Breakdown modulatori Pro</div>
+        <div class="section-note" data-it="Top performer per ogni componente del Pro" data-en="Top performers for each Pro component">Top performer per ogni componente del Pro</div>
       </div>
       <div class="mod-section" id="mod-section"></div>
     </section>
@@ -471,17 +484,17 @@ footer a:hover{color:var(--lp)}
     <!-- MULTI-SEASON -->
     <section class="section" id="multiseason">
       <div class="section-hdr">
-        <div class="section-ttl">Persistence 24-25 + 25-26</div>
-        <div class="section-note">Solo giocatori comuni a entrambe le stagioni</div>
+        <div class="section-ttl" data-it="Persistence 24-25 + 25-26" data-en="Persistence 24-25 + 25-26">Persistence 24-25 + 25-26</div>
+        <div class="section-note" data-it="Solo giocatori comuni a entrambe le stagioni" data-en="Only players present in both seasons">Solo giocatori comuni a entrambe le stagioni</div>
       </div>
       <div class="card">
         <div class="stat-grid" id="persistence-stats"></div>
         <div class="tbl-wrap">
           <table class="tbl" id="persistence-tbl">
             <thead><tr>
-              <th>#</th><th>Giocatore</th><th>Squadra (25-26)</th><th>R</th>
+              <th>#</th><th data-it="Giocatore" data-en="Player">Giocatore</th><th data-it="Squadra (25-26)" data-en="Team (25-26)">Squadra (25-26)</th><th>R</th>
               <th class="num">TPI 24-25</th><th class="num">TPI 25-26</th>
-              <th class="num">Media</th><th class="num">Δ stagioni</th>
+              <th class="num" data-it="Media" data-en="Mean">Media</th><th class="num" data-it="Δ stagioni" data-en="Δ seasons">Δ stagioni</th>
             </tr></thead>
             <tbody></tbody>
           </table>
@@ -492,16 +505,16 @@ footer a:hover{color:var(--lp)}
     <!-- MOVERS -->
     <section class="section" id="movers">
       <div class="section-hdr">
-        <div class="section-ttl">Cross-season movers</div>
-        <div class="section-note">Confronto rank TPI 24-25 → 25-26</div>
+        <div class="section-ttl" data-it="Cross-season movers" data-en="Cross-season movers">Cross-season movers</div>
+        <div class="section-note" data-it="Confronto rank TPI 24-25 → 25-26" data-en="TPI rank comparison 24-25 → 25-26">Confronto rank TPI 24-25 → 25-26</div>
       </div>
       <div class="movers-grid">
         <div class="movers-card">
-          <div class="movers-ttl up">Top risers</div>
+          <div class="movers-ttl up" data-it="Top risers" data-en="Top risers">Top risers</div>
           <div id="movers-up"></div>
         </div>
         <div class="movers-card">
-          <div class="movers-ttl down">Top fallers</div>
+          <div class="movers-ttl down" data-it="Top fallers" data-en="Top fallers">Top fallers</div>
           <div id="movers-down"></div>
         </div>
       </div>
@@ -510,12 +523,107 @@ footer a:hover{color:var(--lp)}
   </div>
 
   <footer>
-    Serie A Scout — TPI Pro Dashboard · Stagione 2025-26 + backfill 2024-25 ·
-    <a href="dashboard_serie_a.html" style="color:var(--ls)">Dashboard pubblica</a>
+    <span data-it="Serie A Scout — TPI Pro · Stagione 2025-26 + backfill 2024-25 ·" data-en="Serie A Scout — TPI Pro · 2025-26 season + 2024-25 backfill ·">Serie A Scout — TPI Pro · Stagione 2025-26 + backfill 2024-25 ·</span>
+    <a href="dashboard_serie_a.html" style="color:var(--ls)" data-it="Dashboard pubblica" data-en="Public dashboard">Dashboard pubblica</a>
   </footer>
 </div>
 
 <script>
+
+/* ── Stringhe della pagina ──────────────────────────────────────────────
+   Dizionario locale: sono specifiche del TPI Pro e non hanno motivo di stare
+   in i18n.js, che e' condiviso dalle altre quattro pagine. La lingua resta
+   quella scelta con lo switcher: la legge da SerieAi18n. I dati interpolati
+   (nomi, numeri) restano nel codice, qui c'e' solo la prosa. */
+const PRO_STR={
+ it:{
+  anni:"anni", giocatori:"giocatori", nessuno:"nessun giocatore",
+  ins_prosp:"Top prospetto", ins_vet:"Veterano affidabile", ins_hot:"In crescita",
+  ins_stab:"Più tutto-terreno", ins_gem:"Sotto il radar", ins_climb:"Maggior guadagno Pro",
+  ins_prosp_b:"performa significativamente sopra l'aspettativa per la sua età",
+  ins_vet_b:"continuità + qualità",
+  ins_hot_b:"forma in netta crescita nell'EWMA",
+  ins_stab_b:"rende stabile in tutti i 5 contesti (casa/trasferta/top6/forti)",
+  ins_gem_b:"grazie ai modulatori scout", ins_gem_a:"ma TPI Pro",
+  cat_prosp:"Prospetti <23", cat_prime:"Prime 23-29", cat_vet:"Veterani ≥29",
+  cat_prosp_h:"Premio: AII + EMI", cat_prime_h:"Equilibrio TPI + modulatori",
+  cat_vet_h:"Premio: PRI affidabilità",
+  mod_aii:"AII scout", mod_pri:"PRI affidabilità", mod_ctx:"Cross-context stability",
+  mod_form:"Form trend", mod_emi:"EMI (Early Momentum)",
+  mod_aii_d:"Età-index: gaussiana picco 23 + growth + freshness. Premia profili in entrata nel prime.",
+  mod_pri_d:"Disponibilità (partite/disp) + injury free + severity. Premia chi è in salute.",
+  mod_ctx_d:"std bassa fra 5 contesti TPI. Premia 'tutto terreno' che rende ovunque.",
+  mod_form_d:"Direzione dell'EWMA: chi sta crescendo vs chi sta scendendo.",
+  mod_emi_d:"Residuo TPI vs età. Discrimina prospetti che performano sopra l'aspettativa.",
+  top5:"Top 5", bottom3:"Bottom 3",
+  d_ctx:"TPI per contesto (5)", d_mod:"Modulatori Pro (z-score · peso)",
+  d_kpi:"KPI offensivi", d_disp:"Disponibilità", d_form:"Forma recente (ultime 6 gare)",
+  d_eta:"Età & fisico",
+  k_sos:"SOS medio", k_conv:"G/xG (conv)", k_fin:"Finishing",
+  k_part:"Partite giocate", k_disprel:"Disp. relativa", k_pen:"Penalty disp.",
+  k_minp:"Min / partita", k_kshr:"K shrinkage", k_conf:"Confidence",
+  k_lab:"Etichetta", k_gol:"Gol effettivi", k_npxg:"npxG totale",
+  k_out90:"Output/90", k_ratio:"Ratio vs season", k_ewma:"Form EWMA",
+  k_eta:"Età", k_cat:"Categoria", k_aii:"AII scout", k_pri:"PRI affidabilità",
+  k_inf:"Infortuni stagione", k_out:"Giorni out", k_gol90:"Gol / 90",
+  ctx_totale:"Totale", ctx_casa:"Casa", ctx_trasferta:"Trasferta",
+  ctx_top6:"vs Top6", ctx_forti:"vs Forti",
+  p_comuni:"Comuni 24-25 + 25-26", p_mig:"Migliorati", p_reg:"Regrediti", p_delta:"Δ medio",
+  p_nodata:"payload_2024-25.json non disponibile",
+  mv_up:"Top risers", mv_down:"Top fallers",
+  m_qual:"qualificati", m_incl:"in classifica Pro", m_prosp:"prospetti",
+  m_prime:"prime", m_vet:"veterani", m_pen:"con penalty disponibilità",
+  m_2s:"2 stagioni", m_conaii:"giocatori con AII+PRI",
+  err:"Dati non disponibili: payload.json non risponde. Riprova fra poco.",
+  more_all:"Mostra tutti e", more_less:"Mostra solo i primi"
+ },
+ en:{
+  anni:"y.o.", giocatori:"players", nessuno:"no players",
+  ins_prosp:"Top prospect", ins_vet:"Reliable veteran", ins_hot:"Rising",
+  ins_stab:"Most all-round", ins_gem:"Under the radar", ins_climb:"Biggest Pro gain",
+  ins_prosp_b:"performs significantly above expectation for their age",
+  ins_vet_b:"continuity + quality",
+  ins_hot_b:"form clearly rising in the EWMA",
+  ins_stab_b:"delivers steadily across all 5 contexts (home/away/top6/strong)",
+  ins_gem_b:"thanks to the scout modulators", ins_gem_a:"but TPI Pro",
+  cat_prosp:"Prospects <23", cat_prime:"Prime 23-29", cat_vet:"Veterans ≥29",
+  cat_prosp_h:"Rewards: AII + EMI", cat_prime_h:"Balance of TPI + modulators",
+  cat_vet_h:"Rewards: PRI reliability",
+  mod_aii:"Scout AII", mod_pri:"PRI reliability", mod_ctx:"Cross-context stability",
+  mod_form:"Form trend", mod_emi:"EMI (Early Momentum)",
+  mod_aii_d:"Age index: gaussian peaking at 23 + growth + freshness. Rewards profiles entering their prime.",
+  mod_pri_d:"Availability (games/available) + injury free + severity. Rewards who stays fit.",
+  mod_ctx_d:"Low std across the 5 TPI contexts. Rewards the all-rounder who delivers everywhere.",
+  mod_form_d:"Direction of the EWMA: who is rising vs who is falling.",
+  mod_emi_d:"TPI residual vs age. Separates prospects performing above expectation.",
+  top5:"Top 5", bottom3:"Bottom 3",
+  d_ctx:"TPI by context (5)", d_mod:"Pro modulators (z-score · weight)",
+  d_kpi:"Offensive KPIs", d_disp:"Availability", d_form:"Recent form (last 6 games)",
+  d_eta:"Age & physical",
+  k_sos:"Mean SOS", k_conv:"G/xG (conv)", k_fin:"Finishing",
+  k_part:"Games played", k_disprel:"Relative avail.", k_pen:"Avail. penalty",
+  k_minp:"Min / game", k_kshr:"K shrinkage", k_conf:"Confidence",
+  k_lab:"Label", k_gol:"Actual goals", k_npxg:"Total npxG",
+  k_out90:"Output/90", k_ratio:"Ratio vs season", k_ewma:"Form EWMA",
+  k_eta:"Age", k_cat:"Category", k_aii:"Scout AII", k_pri:"PRI reliability",
+  k_inf:"Injuries this season", k_out:"Days out", k_gol90:"Goals / 90",
+  ctx_totale:"Total", ctx_casa:"Home", ctx_trasferta:"Away",
+  ctx_top6:"vs Top6", ctx_forti:"vs Strong",
+  p_comuni:"Common 24-25 + 25-26", p_mig:"Improved", p_reg:"Declined", p_delta:"Mean Δ",
+  p_nodata:"payload_2024-25.json not available",
+  mv_up:"Top risers", mv_down:"Top fallers",
+  m_qual:"qualified", m_incl:"in the Pro ranking", m_prosp:"prospects",
+  m_prime:"prime", m_vet:"veterans", m_pen:"with availability penalty",
+  m_2s:"2 seasons", m_conaii:"players with AII+PRI",
+  err:"Data unavailable: payload.json is not responding. Try again shortly.",
+  more_all:"Show all", more_less:"Show only the first"
+ }
+};
+function TT(k){
+  const l=(window.SerieAi18n&&SerieAi18n.getLang&&SerieAi18n.getLang()==="en")?"en":"it";
+  return (PRO_STR[l]&&PRO_STR[l][k])||PRO_STR.it[k]||k;
+}
+
 let CUR = null, PREV = null;
 let FILTER_R = "ALL", FILTER_C = "ALL";
 
@@ -566,12 +674,12 @@ function renderInsights(players){
   const topClimber = climbers[0];
 
   const out = [];
-  if(topProsp) out.push({cls:"prospetto", t:"Top prospetto", b:`<strong>${esc(topProsp.nome)}</strong> (${esc(topProsp.squadra)}, ${topProsp.physical?.eta?.toFixed(0)} anni) — EMI z=${fmt(topProsp.z_early_momentum)}: performa significativamente sopra l'aspettativa per la sua età`});
-  if(topVet) out.push({cls:"veterano", t:"Veterano affidabile", b:`<strong>${esc(topVet.nome)}</strong> (${esc(topVet.squadra)}, ${topVet.physical.eta.toFixed(0)} anni) — PRI ${topVet.physical.affidabilita.toFixed(2)}, TPI ${fmt(topVet.tpi.totale)}: continuità + qualità`});
-  if(topHot) out.push({cls:"prime", t:"In crescita", b:`<strong>${esc(topHot.nome)}</strong> (${esc(topHot.squadra)}) — z_form_trend ${fmt(topHot.z_form_trend)}: forma in netta crescita nell'EWMA`});
-  if(topStab) out.push({cls:"prime", t:"Più tutto-terreno", b:`<strong>${esc(topStab.nome)}</strong> (${esc(topStab.squadra)}) — ctx_stab z=${fmt(topStab.z_ctx_stab)}: rende stabile in tutti i 5 contesti (casa/trasferta/top6/forti)`});
-  if(topGem) out.push({cls:"gem", t:"Sotto il radar", b:`<strong>${esc(topGem.nome)}</strong> (${esc(topGem.squadra)}) — TPI rank #${topGem.rank?.TPI}, ma TPI Pro ${fmt(topGem.tpi_ext.totale)} grazie ai modulatori scout`});
-  if(topClimber && topClimber!==topProsp) out.push({cls:"prospetto", t:"Maggior guadagno Pro", b:`<strong>${esc(topClimber.nome)}</strong> (${esc(topClimber.squadra)}) — TPI base ${fmt(topClimber.tpi.totale)} → Pro ${fmt(topClimber.tpi_ext.totale)} (Δ ${fmt(topClimber.tpi_ext.totale-topClimber.tpi.totale)})`});
+  if(topProsp) out.push({cls:"prospetto", t:TT("ins_prosp"), b:`<strong>${esc(topProsp.nome)}</strong> (${esc(topProsp.squadra)}, ${topProsp.physical?.eta?.toFixed(0)} ${TT("anni")}) — EMI z=${fmt(topProsp.z_early_momentum)}: ${TT("ins_prosp_b")}`});
+  if(topVet) out.push({cls:"veterano", t:TT("ins_vet"), b:`<strong>${esc(topVet.nome)}</strong> (${esc(topVet.squadra)}, ${topVet.physical.eta.toFixed(0)} ${TT("anni")}) — PRI ${topVet.physical.affidabilita.toFixed(2)}, TPI ${fmt(topVet.tpi.totale)}: ${TT("ins_vet_b")}`});
+  if(topHot) out.push({cls:"prime", t:TT("ins_hot"), b:`<strong>${esc(topHot.nome)}</strong> (${esc(topHot.squadra)}) — z_form_trend ${fmt(topHot.z_form_trend)}: ${TT("ins_hot_b")}`});
+  if(topStab) out.push({cls:"prime", t:TT("ins_stab"), b:`<strong>${esc(topStab.nome)}</strong> (${esc(topStab.squadra)}) — ctx_stab z=${fmt(topStab.z_ctx_stab)}: ${TT("ins_stab_b")}`});
+  if(topGem) out.push({cls:"gem", t:TT("ins_gem"), b:`<strong>${esc(topGem.nome)}</strong> (${esc(topGem.squadra)}) — TPI rank #${topGem.rank?.TPI}, ${TT("ins_gem_a")} ${fmt(topGem.tpi_ext.totale)} ${TT("ins_gem_b")}`});
+  if(topClimber && topClimber!==topProsp) out.push({cls:"prospetto", t:TT("ins_climb"), b:`<strong>${esc(topClimber.nome)}</strong> (${esc(topClimber.squadra)}) — TPI base ${fmt(topClimber.tpi.totale)} → Pro ${fmt(topClimber.tpi_ext.totale)} (Δ ${fmt(topClimber.tpi_ext.totale-topClimber.tpi.totale)})`});
 
   document.getElementById("insights-grid").innerHTML = out.map(x=>
     `<div class="insight ${x.cls}"><div class="insight-ttl">${x.t}</div><div class="insight-body">${x.b}</div></div>`).join("");
@@ -580,9 +688,9 @@ function renderInsights(players){
 // ===== CATEGORIE =====
 function renderCategories(players){
   const cats=[
-    {key:"prospetto",label:"Prospetti <23",hint:"Premio: AII + EMI"},
-    {key:"prime",label:"Prime 23-29",hint:"Equilibrio TPI + modulatori"},
-    {key:"veterano",label:"Veterani ≥29",hint:"Premio: PRI affidabilità"},
+    {key:"prospetto",label:TT("cat_prosp"),hint:TT("cat_prosp_h")},
+    {key:"prime",label:TT("cat_prime"),hint:TT("cat_prime_h")},
+    {key:"veterano",label:TT("cat_vet"),hint:TT("cat_vet_h")},
   ];
   const html = cats.map(c=>{
     const subset=players.filter(p=>p.physical?.eta_cat===c.key && p.tpi_ext?.totale!=null);
@@ -600,8 +708,8 @@ function renderCategories(players){
       </div>`;
     }).join("");
     return `<div class="cat-card ${c.key}">
-      <div class="cat-hdr"><div class="cat-name ${c.key}">${c.label}</div><div class="cat-n">${subset.length} giocatori · ${c.hint}</div></div>
-      <div class="cat-list">${rows||'<div style="font-size:12px;color:var(--lt);padding:14px;text-align:center">nessun giocatore</div>'}</div>
+      <div class="cat-hdr"><div class="cat-name ${c.key}">${c.label}</div><div class="cat-n">${subset.length} ${TT("giocatori")} · ${c.hint}</div></div>
+      <div class="cat-list">${rows||'<div style="font-size:12px;color:var(--lt);padding:14px;text-align:center">'+TT('nessuno')+'</div>'}</div>
     </div>`;
   }).join("");
   document.getElementById("cat-grid").innerHTML=html;
@@ -648,7 +756,7 @@ function detailRow(p, i){
   const ctxCells = ["totale","casa","trasferta","vs_top6","vs_forti"].map(k=>{
     const v=ctx[k];
     const cls=v>0.5?"hi":(v<-0.5?"lo":"");
-    const lbl=k==="vs_top6"?"vs Top6":k==="vs_forti"?"vs Forti":k.charAt(0).toUpperCase()+k.slice(1);
+    const lbl=TT("ctx_"+k.replace("vs_",""))||k;
     return `<div class="ctx-cell"><div class="ctx-cell-lbl">${lbl}</div><div class="ctx-cell-val ${cls}">${v!=null?fmt(v):"—"}</div></div>`;
   }).join("");
 
@@ -677,48 +785,48 @@ function detailRow(p, i){
   return `<tr class="row-detail" id="detail-${i}"><td colspan="16">
     <div class="detail-grid">
       <div class="detail-block">
-        <div class="detail-block-ttl">TPI per contesto (5)</div>
+        <div class="detail-block-ttl">${TT("d_ctx")}</div>
         <div class="ctx-grid">${ctxCells}</div>
       </div>
       <div class="detail-block">
-        <div class="detail-block-ttl">Modulatori Pro (z-score · peso)</div>
+        <div class="detail-block-ttl">${TT("d_mod")}</div>
         ${modBars}
       </div>
       <div class="detail-block">
-        <div class="detail-block-ttl">KPI offensivi</div>
+        <div class="detail-block-ttl">${TT("d_kpi")}</div>
         <div class="kv-row"><span class="k">xG / 90</span><span class="v">${fmtN(kpi.xg_p90,3)}</span></div>
         <div class="kv-row"><span class="k">xA / 90</span><span class="v">${fmtN(kpi.xa_p90,3)}</span></div>
-        <div class="kv-row"><span class="k">Gol / 90</span><span class="v">${fmtN(kpi.goal_p90,3)}</span></div>
-        <div class="kv-row"><span class="k">SOS medio</span><span class="v">${fmtN(kpi.sos,2)}</span></div>
-        <div class="kv-row"><span class="k">G/xG (conv)</span><span class="v">${fmtN(conv.conv_ratio,2)}</span></div>
-        <div class="kv-row"><span class="k">Finishing</span><span class="v">${fmt(kpi.finishing,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_gol90")}</span><span class="v">${fmtN(kpi.goal_p90,3)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_sos")}</span><span class="v">${fmtN(kpi.sos,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_conv")}</span><span class="v">${fmtN(conv.conv_ratio,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_fin")}</span><span class="v">${fmt(kpi.finishing,2)}</span></div>
       </div>
       <div class="detail-block">
-        <div class="detail-block-ttl">Disponibilità</div>
-        <div class="kv-row"><span class="k">Partite giocate</span><span class="v">${phys.partite_gioc??"—"} / ${phys.partite_disp??"—"}</span></div>
-        <div class="kv-row"><span class="k">Disp. relativa</span><span class="v">${fmtN(p.disponibilita_rel,2)}</span></div>
-        <div class="kv-row"><span class="k">Penalty disp.</span><span class="v">${fmtN(p.disponibilita_penalty,2)}</span></div>
-        <div class="kv-row"><span class="k">Min / partita</span><span class="v">${p.avg_min_partita?p.avg_min_partita.toFixed(0):"—"}'</span></div>
-        <div class="kv-row"><span class="k">K shrinkage</span><span class="v">${fmtN(p.k_subst_mult,2)}×</span></div>
-        <div class="kv-row"><span class="k">Confidence</span><span class="v">${fmtN(p.confidence,2)}</span></div>
+        <div class="detail-block-ttl">${TT("d_disp")}</div>
+        <div class="kv-row"><span class="k">${TT("k_part")}</span><span class="v">${phys.partite_gioc??"—"} / ${phys.partite_disp??"—"}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_disprel")}</span><span class="v">${fmtN(p.disponibilita_rel,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_pen")}</span><span class="v">${fmtN(p.disponibilita_penalty,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_minp")}</span><span class="v">${p.avg_min_partita?p.avg_min_partita.toFixed(0):"—"}'</span></div>
+        <div class="kv-row"><span class="k">${TT("k_kshr")}</span><span class="v">${fmtN(p.k_subst_mult,2)}×</span></div>
+        <div class="kv-row"><span class="k">${TT("k_conf")}</span><span class="v">${fmtN(p.confidence,2)}</span></div>
       </div>
       <div class="detail-block">
-        <div class="detail-block-ttl">Forma recente (ultime 6 gare)</div>
-        <div class="kv-row"><span class="k">Etichetta</span><span class="v">${esc(rec.label||"—")}</span></div>
-        <div class="kv-row"><span class="k">Gol effettivi</span><span class="v">${rec.npg??"—"}</span></div>
-        <div class="kv-row"><span class="k">npxG totale</span><span class="v">${fmtN(rec.npxg,2)}</span></div>
-        <div class="kv-row"><span class="k">Output/90</span><span class="v">${fmtN(rec.out90,2)}</span></div>
-        <div class="kv-row"><span class="k">Ratio vs season</span><span class="v">${fmtN(rec.ratio,2)}</span></div>
-        <div class="kv-row"><span class="k">Form EWMA</span><span class="v">${fmtN(p.form?.ewma,2)} ${sparkF}</span></div>
+        <div class="detail-block-ttl">${TT("d_form")}</div>
+        <div class="kv-row"><span class="k">${TT("k_lab")}</span><span class="v">${esc(rec.label||"—")}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_gol")}</span><span class="v">${rec.npg??"—"}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_npxg")}</span><span class="v">${fmtN(rec.npxg,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_out90")}</span><span class="v">${fmtN(rec.out90,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_ratio")}</span><span class="v">${fmtN(rec.ratio,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_ewma")}</span><span class="v">${fmtN(p.form?.ewma,2)} ${sparkF}</span></div>
       </div>
       <div class="detail-block">
-        <div class="detail-block-ttl">Età & fisico</div>
-        <div class="kv-row"><span class="k">Età</span><span class="v">${phys.eta?phys.eta.toFixed(1):"—"} anni</span></div>
-        <div class="kv-row"><span class="k">Categoria</span><span class="v">${phys.eta_cat||"—"}</span></div>
-        <div class="kv-row"><span class="k">AII scout</span><span class="v">${fmtN(phys.eta_index,2)}</span></div>
-        <div class="kv-row"><span class="k">PRI affidabilità</span><span class="v">${fmtN(phys.affidabilita,2)}</span></div>
-        <div class="kv-row"><span class="k">Infortuni stagione</span><span class="v">${phys.n_infortuni??"—"}</span></div>
-        <div class="kv-row"><span class="k">Giorni out</span><span class="v">${phys.giorni_out??"—"}</span></div>
+        <div class="detail-block-ttl">${TT("d_eta")}</div>
+        <div class="kv-row"><span class="k">${TT("k_eta")}</span><span class="v">${phys.eta?phys.eta.toFixed(1):"—"} ${TT("anni")}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_cat")}</span><span class="v">${phys.eta_cat||"—"}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_aii")}</span><span class="v">${fmtN(phys.eta_index,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_pri")}</span><span class="v">${fmtN(phys.affidabilita,2)}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_inf")}</span><span class="v">${phys.n_infortuni??"—"}</span></div>
+        <div class="kv-row"><span class="k">${TT("k_out")}</span><span class="v">${phys.giorni_out??"—"}</span></div>
       </div>
     </div>
   </td></tr>`;
@@ -765,8 +873,8 @@ function aggiornaComando(totale){
   if(totale<=LIMITE_INIZIALE){ wrap.hidden=true; return; }
   wrap.hidden=false;
   btn.textContent = (LIMITE===null)
-    ? `Mostra solo i primi ${LIMITE_INIZIALE} ↑`
-    : `Mostra tutti e ${totale} ↓`;
+    ? `${TT("more_less")} ${LIMITE_INIZIALE} ↑`
+    : `${TT("more_all")} ${totale} ↓`;
 }
 
 function toggleLimite(){
@@ -792,11 +900,11 @@ function toggleDetail(i){
 function renderModulators(players){
   const valid=players.filter(p=>p.tpi_ext?.totale!=null);
   const mods=[
-    {key:"z_aii", lbl:"AII scout", desc:"Età-index: gaussiana picco 23 + growth + freshness. Premia profili in entrata nel prime.",fmt:v=>fmt(v,2)},
-    {key:"z_pri", lbl:"PRI affidabilità", desc:"Disponibilità (partite/disp) + injury free + severity. Premia chi è in salute.",fmt:v=>fmt(v,2)},
-    {key:"z_ctx_stab", lbl:"Cross-context stability", desc:"std bassa fra 5 contesti TPI. Premia 'tutto terreno' che rende ovunque.",fmt:v=>fmt(v,2)},
-    {key:"z_form_trend", lbl:"Form trend", desc:"Direzione dell'EWMA: chi sta crescendo vs chi sta scendendo.",fmt:v=>fmt(v,2)},
-    {key:"z_early_momentum", lbl:"EMI (Early Momentum)", desc:"Residuo TPI vs età. Discrimina prospetti che performano sopra l'aspettativa.",fmt:v=>fmt(v,2)},
+    {key:"z_aii", lbl:TT("mod_aii"), desc:TT("mod_aii_d"),fmt:v=>fmt(v,2)},
+    {key:"z_pri", lbl:TT("mod_pri"), desc:TT("mod_pri_d"),fmt:v=>fmt(v,2)},
+    {key:"z_ctx_stab", lbl:TT("mod_ctx"), desc:TT("mod_ctx_d"),fmt:v=>fmt(v,2)},
+    {key:"z_form_trend", lbl:TT("mod_form"), desc:TT("mod_form_d"),fmt:v=>fmt(v,2)},
+    {key:"z_early_momentum", lbl:TT("mod_emi"), desc:TT("mod_emi_d"),fmt:v=>fmt(v,2)},
   ];
   document.getElementById("mod-section").innerHTML = mods.map(m=>{
     const sub=valid.filter(p=>p[m.key]!=null);
@@ -806,9 +914,9 @@ function renderModulators(players){
     return `<div class="mod-card">
       <div class="mod-card-hdr">${m.lbl}</div>
       <div class="mod-card-desc">${m.desc}</div>
-      <div class="mod-top-lbl">Top 5</div>
+      <div class="mod-top-lbl">${TT("top5")}</div>
       <div class="mod-top-list">${top5.map(p=>`<div class="mod-top-row"><span class="nm">${esc(p.nome)} <span style="color:var(--lt);font-weight:400">${esc(p.squadra)}</span></span><span class="val">${m.fmt(p[m.key])}</span></div>`).join("")}</div>
-      <div class="mod-top-lbl" style="margin-top:12px">Bottom 3</div>
+      <div class="mod-top-lbl" style="margin-top:12px">${TT("bottom3")}</div>
       <div class="mod-top-list">${bot5.map(p=>`<div class="mod-top-row"><span class="nm">${esc(p.nome)} <span style="color:var(--lt);font-weight:400">${esc(p.squadra)}</span></span><span class="val" style="color:var(--red)">${m.fmt(p[m.key])}</span></div>`).join("")}</div>
     </div>`;
   }).join("");
@@ -817,7 +925,7 @@ function renderModulators(players){
 // ===== PERSISTENCE multi-season (calcolato live) =====
 function renderPersistence(cur, prev){
   if(!prev){
-    document.getElementById("persistence-stats").innerHTML='<div style="color:var(--lt);padding:14px;grid-column:1/-1;text-align:center">payload_2024-25.json non disponibile</div>';
+    document.getElementById("persistence-stats").innerHTML='<div style="color:var(--lt);padding:14px;grid-column:1/-1;text-align:center">'+TT('p_nodata')+'</div>';
     return;
   }
   const c={},p={};
@@ -834,10 +942,10 @@ function renderPersistence(cur, prev){
   const risers=common.filter(x=>x.delta>0).length;
   const fallers=common.filter(x=>x.delta<0).length;
   document.getElementById("persistence-stats").innerHTML=`
-    <div class="stat-cell"><div class="stat-val">${common.length}</div><div class="stat-lbl">Comuni 24-25 + 25-26</div></div>
-    <div class="stat-cell"><div class="stat-val">${risers}</div><div class="stat-lbl">Migliorati</div></div>
-    <div class="stat-cell"><div class="stat-val">${fallers}</div><div class="stat-lbl">Regrediti</div></div>
-    <div class="stat-cell"><div class="stat-val">${fmt(avgDelta)}</div><div class="stat-lbl">Δ medio</div></div>
+    <div class="stat-cell"><div class="stat-val">${common.length}</div><div class="stat-lbl">${TT("p_comuni")}</div></div>
+    <div class="stat-cell"><div class="stat-val">${risers}</div><div class="stat-lbl">${TT("p_mig")}</div></div>
+    <div class="stat-cell"><div class="stat-val">${fallers}</div><div class="stat-lbl">${TT("p_reg")}</div></div>
+    <div class="stat-cell"><div class="stat-val">${fmt(avgDelta)}</div><div class="stat-lbl">${TT("p_delta")}</div></div>
   `;
   // Tabella top 25 per media
   common.sort((a,b)=>b.mean-a.mean);
@@ -880,12 +988,12 @@ function renderMeta(cur,prev){
   const wPos=valid.filter(p=>p.disponibilita_penalty&&p.disponibilita_penalty<1.0).length;
   const meta=document.getElementById("meta-bar");
   meta.innerHTML=`
-    <span><strong>${cur.n_giocatori}</strong> qualificati · <strong>${valid.length}</strong> in classifica Pro</span>
-    <span><strong>${byCat.prospetto}</strong> prospetti</span>
-    <span><strong>${byCat.prime}</strong> prime</span>
-    <span><strong>${byCat.veterano}</strong> veterani</span>
-    <span><strong>${wPos}</strong> con penalty disponibilità</span>
-    ${prev?`<span><strong>2 stagioni</strong> (24-25 + 25-26)</span>`:""}
+    <span><strong>${cur.n_giocatori}</strong> ${TT("m_qual")} · <strong>${valid.length}</strong> ${TT("m_incl")}</span>
+    <span><strong>${byCat.prospetto}</strong> ${TT("m_prosp")}</span>
+    <span><strong>${byCat.prime}</strong> ${TT("m_prime")}</span>
+    <span><strong>${byCat.veterano}</strong> ${TT("m_vet")}</span>
+    <span><strong>${wPos}</strong> ${TT("m_pen")}</span>
+    ${prev?`<span><strong>${TT("m_2s")}</strong> (24-25 + 25-26)</span>`:""}
   `;
 }
 
@@ -893,7 +1001,7 @@ function renderMeta(cur,prev){
 async function loadDashboard(){
   CUR=await loadJSON("payload.json");
   PREV=await loadJSON("payload_2024-25.json");
-  if(!CUR){document.querySelector(".container").innerHTML="<p style='color:var(--red);padding:20px'>Dati non disponibili: payload.json non risponde. Riprova fra poco.</p>";return;}
+  if(!CUR){document.querySelector(".container").innerHTML="<p style='color:var(--red);padding:20px'>"+TT('err')+"</p>";return;}
   renderMeta(CUR,PREV);
   renderInsights(CUR.players);
   renderCategories(CUR.players);
@@ -914,6 +1022,20 @@ async function loadDashboard(){
 }
 
 loadDashboard();
+
+/* Al cambio lingua i testi statici li rifa' i18n.js, ma tutto il contenuto
+   generato qui e' gia' stampato: va ricostruito, altrimenti resta nella
+   lingua in cui e' stato reso. Si conservano i filtri e il limite di righe. */
+document.addEventListener("i18n:changed",function(){
+  if(!CUR)return;
+  renderMeta(CUR,PREV);
+  renderInsights(CUR.players);
+  renderCategories(CUR.players);
+  renderRanking(CUR.players);
+  renderModulators(CUR.players);
+  renderPersistence(CUR,PREV);
+  renderMovers(CUR,PREV);
+});
 </script>
 </body>
 </html>
