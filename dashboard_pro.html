@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TPI Pro — Serie A Scout Index</title>
+<script src="i18n.js"></script>
+<script src="ai_chat.js" defer></script>
+<style>
+/* Font serviti dal repo, non da Google: gli stessi due file variabili delle
+   altre pagine. SIL OFL, che consente esplicitamente l'auto-hosting. */
+@font-face{
+  font-family:"Oswald";font-style:normal;font-weight:200 700;font-display:swap;
+  src:url("fonts/oswald-latin-var.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"JetBrains Mono";font-style:normal;font-weight:100 800;font-display:swap;
+  src:url("fonts/jetbrainsmono-latin-var.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* ═══════════════════════════════════════
+   Stessi token delle altre pagine. Questa era nata come pagina separata,
+   protetta da passphrase, con una palette sua: nero puro, viola e oro, vetro
+   e gradienti. Ora e' una pagina del sito come le altre.
+═══════════════════════════════════════ */
+:root{
+  --bg:#0A1512; --bg1:#0F1F1B; --bg2:#132723; --bg3:#1B342E; --bg4:#24443C;
+  --sep:rgba(233,240,236,.10); --sep2:rgba(233,240,236,.18);
+  --lp:#ECF2EE; --ls:rgba(233,240,236,.66); --lt:rgba(233,240,236,.38); --lq:rgba(233,240,236,.20);
+
+  /* Un solo accento: l'ambra dice "attivo, oppure questo e' il valore". */
+  --orng:#FFB020;
+  --blue:#5A93C4; --green:#5FAE7E; --clay:#D98E6A;
+  --red:#D9705F; --purp:#9B7FC4; --teal:#6FB4C4; --indig:#7B84C9;
+
+  /* Le tre fasce d'eta' sono una categoria del dato, come il ruolo nei
+     grafici: tengono un colore, ma preso dalla triade desaturata. */
+  --pros:#5FAE7E; --prime:#5A93C4; --vet:#D98E6A;
+
+  --r:12px; --rsm:10px; --rxs:6px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",system-ui,sans-serif;
+  --disp:"Oswald","Bahnschrift",Impact,sans-serif;
+  --mono:"JetBrains Mono","Cascadia Mono",ui-monospace,monospace;
+  --maxw:1280px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px;
+  line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;
+  /* In una classifica le cifre devono incolonnarsi. */
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
+
+/* ── NAV — link di testo, come nelle altre pagine ───────────────────────
+   La pagina non e' piu' protetta, quindi spariscono il lucchetto e il tasto
+   Logout. Restano il marchio, le ancore alle sezioni e i tre link al resto
+   del sito. */
+.app{display:block;min-height:100vh}
+.nav{position:sticky;top:0;z-index:400;height:56px;
+  background:var(--bg);border-bottom:1px solid var(--sep);
+  display:flex;align-items:center;gap:20px;
+  padding-inline:max(20px,calc((100% - var(--maxw)) / 2))}
+.nav-brand{display:flex;align-items:baseline;gap:10px;flex-shrink:0;
+  font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.4px;
+  text-transform:uppercase;white-space:nowrap}
+/* Il marchio Pro era una pastiglia oro con il fulmine. E' l'identita' della
+   pagina: la dice l'ambra, che qui non usa nient'altro. */
+.nav-pro-badge{padding:0 0 0 10px;background:none;border-left:1px solid var(--sep);
+  border-radius:0;color:var(--orng);
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase}
+.nav-spacer{flex:1}
+.nav-sections{display:flex;align-items:center;gap:16px;overflow-x:auto;
+  scrollbar-width:none;min-width:0}
+.nav-sections::-webkit-scrollbar{display:none}
+.nav-link{position:relative;color:var(--lt);text-decoration:none;
+  font:12px var(--font);font-weight:600;letter-spacing:.02em;
+  padding:0 2px;height:34px;display:inline-flex;align-items:center;
+  border-radius:0;background:none;cursor:pointer;white-space:nowrap;flex-shrink:0;
+  transition:color .16s}
+.nav-link:hover{color:var(--lp);background:none}
+.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:7px;height:1.5px;
+  background:var(--orng);opacity:0;transition:opacity .16s}
+.nav-link:hover::after,.nav-link.active::after{opacity:1}
+.nav-link.active{color:var(--lp);background:none}
+.nav .i18n-switch{border:0;border-radius:0;background:none;height:auto;gap:2px}
+.nav .i18n-switch button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  padding:3px 5px;border-radius:3px;color:var(--lt)}
+.nav .i18n-switch button + button{border-left:0}
+.nav .i18n-switch button.active{background:none;color:var(--orng)}
+.nav .i18n-switch button:hover{background:none;color:var(--lp)}
+
+.container{max-width:var(--maxw);margin:0 auto;padding:26px 20px 40px}
+
+/* ── HERO ───────────────────────────────────────────────────────────────
+   Era centrato, con il titolo in gradiente bianco-viola. Allineato a
+   sinistra come le altre pagine, faccia condensata, e i numeri della barra
+   meta diventano etichette mono separate da filetti. */
+.hero{padding:44px 20px 26px;border-bottom:1px solid var(--sep);text-align:left;
+  max-width:var(--maxw);margin-inline:auto}
+.hero-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--lt);margin-bottom:12px}
+.hero-ttl{font-family:var(--disp);font-size:clamp(30px,4.6vw,50px);font-weight:500;
+  line-height:.95;text-transform:uppercase;letter-spacing:-.005em;
+  background:none;color:var(--lp);margin-bottom:0}
+.hero-ttl em{font-style:normal;color:var(--orng)}
+.hero-sub{font-size:13.5px;color:var(--ls);max-width:60ch;margin:16px 0 0;line-height:1.65}
+.hero-sub strong{color:var(--lp);font-weight:600}
+.hero-meta{display:flex;justify-content:flex-start;gap:0;flex-wrap:wrap;
+  margin-top:22px;padding-top:14px;border-top:1px solid var(--sep)}
+.hero-meta span{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--lt);padding:3px 14px;white-space:nowrap}
+.hero-meta span:first-child{padding-left:0}
+.hero-meta span + span{border-left:1px solid var(--sep)}
+.hero-meta strong{color:var(--lp);font-weight:500}
+
+/* ── INSIGHTS ───────────────────────────────────────────────────────────
+   Erano schede con gradiente e un filetto viola. Il filetto resta perche'
+   dice la categoria; il resto e' fondo piatto. */
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:30px}
+.insight{padding:14px 16px;background:var(--bg1);
+  border:1px solid var(--sep);border-left:2px solid var(--sep2);border-radius:var(--rsm)}
+.insight-ic{display:none}
+.insight-ttl{font-family:var(--mono);font-size:9px;font-weight:500;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--lt);margin-bottom:8px}
+.insight-body{font-size:13.5px;line-height:1.6;color:var(--ls)}
+.insight-body strong{color:var(--lp);font-weight:600}
+.insight.prospetto{border-left-color:var(--pros)}
+.insight.prime{border-left-color:var(--prime)}
+.insight.veterano{border-left-color:var(--vet)}
+.insight.gem{border-left-color:var(--orng)}
+
+/* ── SEZIONI ── */
+.section{margin-bottom:44px}
+.section-hdr{display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:16px;padding-top:14px;border-top:1px solid var(--sep);
+  border-bottom:0;flex-wrap:wrap;gap:10px}
+.section-ttl{font-family:var(--disp);font-size:23px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.01em;line-height:1.1}
+.section-note{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--lt)}
+
+/* ── FILTRI ─────────────────────────────────────────────────────────────
+   Le pillole attive erano riempite di viola. Lo stato corrente si segna con
+   un filetto, come nella classifica pubblica. */
+.filters{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.filter-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--lt);margin-right:0}
+.filter-pill{position:relative;padding:0 2px;height:26px;
+  border:0;border-radius:0;background:none;
+  color:var(--lt);font:12px var(--font);font-weight:600;cursor:pointer;
+  transition:color .16s}
+.filter-pill:hover{color:var(--lp);background:none}
+.filter-pill::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1.5px;
+  background:var(--orng);opacity:0;transition:opacity .16s}
+.filter-pill.active{background:none;color:var(--lp);border-color:transparent}
+.filter-pill.active::after{opacity:1}
+
+/* ── CATEGORIE ── */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.cat-card{background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm);
+  padding:15px;border-top:2px solid var(--sep2)}
+.cat-card.prospetto{border-top-color:var(--pros)}
+.cat-card.prime{border-top-color:var(--prime)}
+.cat-card.veterano{border-top-color:var(--vet)}
+.cat-hdr{display:flex;justify-content:space-between;align-items:baseline;
+  gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.cat-name{font-family:var(--mono);font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.14em}
+.cat-name.prospetto{color:var(--pros)}
+.cat-name.prime{color:var(--prime)}
+.cat-name.veterano{color:var(--vet)}
+.cat-n{font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--lt)}
+.cat-list{display:flex;flex-direction:column;gap:0}
+.cat-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  padding:8px 0;border-radius:0;background:none;
+  border-bottom:1px solid var(--sep);font-size:13px}
+.cat-row:last-child{border-bottom:0}
+.cat-row:hover{background:none}
+.cat-row:hover .cat-row-nm{color:var(--lp)}
+.cat-row-nm{font-weight:600;flex:1;min-width:0;letter-spacing:-.012em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-row-meta{font-family:var(--mono);font-size:9px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--lt);margin-left:0;white-space:nowrap}
+.cat-row-val{font-family:var(--mono);font-weight:500;color:var(--orng);
+  min-width:50px;text-align:right;letter-spacing:-.02em}
+
+/* ── CLASSIFICA ── */
+.card{background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm);padding:14px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{position:sticky;top:0;background:var(--bg1);
+  color:var(--lt);font-family:var(--mono);font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;font-size:9px;
+  padding:9px 6px;text-align:left;border-bottom:1px solid var(--sep2);white-space:nowrap}
+.tbl td{padding:9px 6px;border-bottom:1px solid var(--sep);color:var(--ls)}
+.tbl tr.row-main{cursor:pointer;transition:background .12s}
+.tbl tr.row-main:hover{background:rgba(233,240,236,.03)}
+.tbl tr.row-main.expanded{background:rgba(233,240,236,.05)}
+.tbl tr.row-detail{display:none}
+.tbl tr.row-detail.show{display:table-row}
+.tbl tr.row-detail td{padding:16px 12px;background:var(--bg);border-bottom:1px solid var(--sep2)}
+.tbl .num{font-variant-numeric:tabular-nums;font-family:var(--mono);text-align:right;
+  letter-spacing:-.02em}
+.tbl .pos{font-family:var(--mono);font-weight:500;color:var(--lt);width:32px;text-align:center}
+.tbl .nome{font-weight:600;white-space:nowrap;color:var(--lp);letter-spacing:-.012em}
+.tbl .nome::after{content:"\25BE";font-size:9px;color:var(--lt);margin-left:6px;opacity:.5}
+.tbl tr.expanded .nome::after{content:"\25B4";opacity:1;color:var(--orng)}
+/* La colonna Pro e' il motivo della pagina: e' l'unica in ambra. */
+.tbl td.pro-col,.tbl th.pro-col{color:var(--orng)}
+.tbl .cat{display:inline-block;padding:0;border-radius:0;background:none;
+  font-family:var(--mono);font-size:9px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase}
+.tbl .cat.prospetto{color:var(--pros)}
+.tbl .cat.prime{color:var(--prime)}
+.tbl .cat.veterano{color:var(--vet)}
+.tbl .delta-pos{color:var(--green)}
+.tbl .delta-neg{color:var(--red)}
+.tbl .pri-hi{color:var(--green)}
+.tbl .pri-lo{color:var(--red)}
+
+/* ── PANNELLO DI DETTAGLIO ── */
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:14px}
+.detail-block{padding:0 16px 0 0;background:none;border-radius:0;
+  border:0;border-left:1px solid var(--sep);padding-left:16px}
+.detail-block:first-child{border-left:0;padding-left:0}
+.detail-block-ttl{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--lt);
+  text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px}
+.kv-row{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding:3px 0}
+.kv-row .k{color:var(--lt)}
+.kv-row .v{font-family:var(--mono);font-weight:500;color:var(--lp);letter-spacing:-.02em}
+.ctx-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:6px;
+  background:var(--sep)}
+.ctx-cell{padding:8px 4px;background:var(--bg);border-radius:0;text-align:center}
+.ctx-cell-lbl{font-family:var(--mono);font-size:8px;color:var(--lt);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.ctx-cell-val{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--lp)}
+.ctx-cell-val.hi{color:var(--green)}
+.ctx-cell-val.lo{color:var(--red)}
+.mod-bar{display:flex;align-items:center;gap:8px;font-size:11px;margin:5px 0}
+.mod-bar-lbl{flex:0 0 90px;font-family:var(--mono);font-size:9px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--lt)}
+.mod-bar-track{flex:1;height:6px;background:rgba(233,240,236,.06);border-radius:0;
+  position:relative;overflow:hidden}
+.mod-bar-fill{position:absolute;top:0;bottom:0;background:var(--orng);border-radius:0}
+.mod-bar-fill.neg{background:var(--red);right:50%;left:auto}
+.mod-bar-fill.pos{left:50%}
+.mod-bar-val{flex:0 0 50px;font-family:var(--mono);font-weight:500;text-align:right;
+  color:var(--lp);letter-spacing:-.02em}
+
+/* ── BREAKDOWN MODULATORI ── */
+.mod-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.mod-card{padding:15px;background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm)}
+.mod-card-hdr{font-family:var(--mono);font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--lp);margin-bottom:6px}
+.mod-card-desc{font-size:11.5px;color:var(--lt);margin-bottom:12px;line-height:1.5}
+.mod-top-lbl{font-family:var(--mono);font-size:8.5px;color:var(--lt);
+  text-transform:uppercase;letter-spacing:.16em;margin-bottom:4px}
+.mod-top-list{display:flex;flex-direction:column;gap:0}
+.mod-top-row{display:flex;justify-content:space-between;gap:10px;
+  padding:7px 0;background:none;border-radius:0;
+  border-bottom:1px solid var(--sep);font-size:12px}
+.mod-top-row:last-child{border-bottom:0}
+.mod-top-row .nm{font-weight:500;color:var(--ls);min-width:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mod-top-row .val{font-family:var(--mono);font-weight:500;color:var(--orng);letter-spacing:-.02em}
+
+/* ── PERSISTENCE ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.stat-cell{padding:14px;background:none;border:0;border-left:1px solid var(--sep);
+  border-radius:0;text-align:left}
+.stat-cell:first-child{border-left:0;padding-left:0}
+.stat-val{font-family:var(--mono);font-size:24px;font-weight:500;
+  letter-spacing:-.03em;line-height:1;color:var(--lp)}
+.stat-lbl{font-family:var(--mono);font-size:9px;color:var(--lt);margin-top:8px;
+  text-transform:uppercase;letter-spacing:.14em;line-height:1.4}
+.stat-cell.sig .stat-val{color:var(--green)}
+
+/* ── MOVERS ── */
+.movers-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--sep)}
+.movers-card{padding:18px 22px;background:none;border:0;border-radius:0}
+.movers-card + .movers-card{border-left:1px solid var(--sep)}
+.movers-ttl{font-family:var(--mono);font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:.14em;margin-bottom:12px}
+.movers-ttl.up{color:var(--green)}
+.movers-ttl.down{color:var(--red)}
+.mover-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding:8px 0;border-bottom:1px solid var(--sep);font-size:12.5px}
+.mover-row:last-child{border-bottom:none}
+.mover-nm{font-weight:600;color:var(--lp);letter-spacing:-.012em}
+.mover-meta{font-family:var(--mono);font-size:9px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--lt)}
+.mover-val{font-family:var(--mono);font-weight:500;letter-spacing:-.02em}
+
+.sparkline{display:inline-block;vertical-align:middle;margin-left:6px}
+
+footer{text-align:center;padding:22px 20px;color:var(--lq);
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  border-top:1px solid var(--sep);margin-top:48px}
+footer a{color:var(--lt);text-decoration:none}
+footer a:hover{color:var(--lp)}
+
+@media (max-width:1080px){
+  .nav{gap:14px}
+  .nav-sections{gap:12px}
+}
+@media (max-width:900px){
+  /* Le ancore alle sezioni spariscono: sono navigazione interna, e la pagina
+     si scorre comunque. Restano i tre link al resto del sito. */
+  .nav-sections{display:none}
+}
+@media (max-width:768px){
+  .nav{height:48px;gap:10px}
+  .nav-brand{font-size:15px}
+  .hero{padding:30px 16px 20px}
+  .hero-sub{font-size:13px}
+  .container{padding:18px 16px 32px}
+  .section{margin-bottom:34px}
+  .section-ttl{font-size:20px}
+  .movers-grid{grid-template-columns:1fr}
+  .movers-card{padding:18px 0}
+  .movers-card + .movers-card{border-left:0;border-top:1px solid var(--sep)}
+  .tbl{font-size:11px}
+  .ctx-grid{grid-template-columns:repeat(2,1fr)}
+  .detail-block{border-left:0;border-top:1px solid var(--sep);padding:14px 0 0}
+  .detail-block:first-child{border-top:0;padding-top:0}
+}
+@media (max-width:480px){
+  /* Resta la sola sigla Pro: senza il nome accanto, il filetto che la
+     separava non separa piu' niente. */
+  .nav-brand span.nav-brand-nm{display:none}
+  .nav-pro-badge{border-left:0;padding-left:0;font-size:11px}
+  .hero{padding:24px 14px 18px}
+  .hero-meta span{display:none}
+  .hero-meta span:first-child{display:inline}
+  .stat-cell{border-left:0;border-top:1px solid var(--sep);padding:12px 0}
+  .stat-cell:first-child{border-top:0}
+}
+/* Fix autozoom input iOS */
+@media (max-width:768px){input,select,textarea{font-size:16px !important}}
+</style>
+</head>
+<body>
+
+<!-- APP -->
+<div id="app" class="app">
+  <nav class="nav">
+    <div class="nav-brand">
+      <span class="nav-brand-nm">Serie A Scout</span>
+      <span class="nav-pro-badge">TPI Pro</span>
+    </div>
+    <div class="nav-sections">
+      <a class="nav-link" onclick="scrollTo2('#insights')">Insights</a>
+      <a class="nav-link" onclick="scrollTo2('#categories')">Categorie</a>
+      <a class="nav-link" onclick="scrollTo2('#ranking')">Ranking</a>
+      <a class="nav-link" onclick="scrollTo2('#modulators')">Modulatori</a>
+      <a class="nav-link" onclick="scrollTo2('#multiseason')">Multi-season</a>
+    </div>
+    <div class="nav-spacer"></div>
+    <a class="nav-link" href="dashboard_serie_a.html">Classifica</a>
+    <a class="nav-link" href="validazione.html">Validazione</a>
+    <a class="nav-link" href="index.html">Homepage</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Serie A Scout Index &middot; Stagione 2025/26</div>
+    <div class="hero-ttl">TPI <em>Pro</em></div>
+    <div class="hero-sub">Il TPI classico misura il rendimento in campo. Il
+      <strong>TPI Pro</strong> aggiunge cinque modulatori che guardano al giocatore invece
+      che alla sola prestazione: <strong>AII</strong> (dove sta nella curva dell'et&agrave;),
+      <strong>PRI</strong> (quanto regge fisicamente), la stabilit&agrave; fra i cinque
+      contesti, la direzione della forma ed <strong>EMI</strong> (chi rende sopra
+      l'aspettativa per la sua et&agrave;). Serve a distinguere chi &egrave; forte adesso
+      da chi lo sar&agrave;.</div>
+    <div class="hero-meta" id="meta-bar"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- INSIGHTS automatici -->
+    <section class="section" id="insights">
+      <div class="section-hdr">
+        <div class="section-ttl">Insights automatici</div>
+        <div class="section-note">Highlights calcolati sul payload corrente</div>
+      </div>
+      <div class="insights" id="insights-grid"></div>
+    </section>
+
+    <!-- CATEGORIE -->
+    <section class="section" id="categories">
+      <div class="section-hdr">
+        <div class="section-ttl">Top per categoria età</div>
+        <div class="section-note">Pesi Pro age-aware: prospetto &lt;23 · prime 23–29 · veterano ≥29</div>
+      </div>
+      <div class="cat-grid" id="cat-grid"></div>
+    </section>
+
+    <!-- CLASSIFICA -->
+    <section class="section" id="ranking">
+      <div class="section-hdr">
+        <div class="section-ttl">Classifica TPI Pro</div>
+        <div class="filters">
+          <span class="filter-lbl">Ruolo:</span>
+          <button class="filter-pill active" data-r-filter="ALL">Tutti</button>
+          <button class="filter-pill" data-r-filter="ATT">ATT</button>
+          <button class="filter-pill" data-r-filter="CEN">CEN</button>
+          <button class="filter-pill" data-r-filter="DIF">DIF</button>
+          <span style="width:8px"></span>
+          <span class="filter-lbl">Cat:</span>
+          <button class="filter-pill active" data-c-filter="ALL">Tutte</button>
+          <button class="filter-pill" data-c-filter="prospetto">Prospetto</button>
+          <button class="filter-pill" data-c-filter="prime">Prime</button>
+          <button class="filter-pill" data-c-filter="veterano">Veterano</button>
+        </div>
+      </div>
+      <div class="card">
+        <p style="font-size:11.5px;color:var(--lt);margin-bottom:10px">Clicca su una riga per vedere il dettaglio completo (5 contesti, modulatori, KPI, forma)</p>
+        <div class="tbl-wrap">
+          <table class="tbl" id="ranking-tbl">
+            <thead><tr>
+              <th>#</th><th>Giocatore</th><th>Squadra</th><th>R</th>
+              <th>Età</th><th>Cat</th>
+              <th class="num">TPI</th><th class="num pro-col">TPI Pro</th><th class="num">Δ</th>
+              <th class="num">P</th><th class="num">Min/p</th>
+              <th class="num">AII</th><th class="num">PRI</th><th class="num">EMI</th>
+              <th class="num">Form</th><th class="num">Conv</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULATORI -->
+    <section class="section" id="modulators">
+      <div class="section-hdr">
+        <div class="section-ttl">Breakdown modulatori Pro</div>
+        <div class="section-note">Top performer per ogni componente del Pro</div>
+      </div>
+      <div class="mod-section" id="mod-section"></div>
+    </section>
+
+    <!-- MULTI-SEASON -->
+    <section class="section" id="multiseason">
+      <div class="section-hdr">
+        <div class="section-ttl">Persistence 24-25 + 25-26</div>
+        <div class="section-note">Solo giocatori comuni a entrambe le stagioni</div>
+      </div>
+      <div class="card">
+        <div class="stat-grid" id="persistence-stats"></div>
+        <div class="tbl-wrap">
+          <table class="tbl" id="persistence-tbl">
+            <thead><tr>
+              <th>#</th><th>Giocatore</th><th>Squadra (25-26)</th><th>R</th>
+              <th class="num">TPI 24-25</th><th class="num">TPI 25-26</th>
+              <th class="num">Media</th><th class="num">Δ stagioni</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOVERS -->
+    <section class="section" id="movers">
+      <div class="section-hdr">
+        <div class="section-ttl">Cross-season movers</div>
+        <div class="section-note">Confronto rank TPI 24-25 → 25-26</div>
+      </div>
+      <div class="movers-grid">
+        <div class="movers-card">
+          <div class="movers-ttl up">Top risers</div>
+          <div id="movers-up"></div>
+        </div>
+        <div class="movers-card">
+          <div class="movers-ttl down">Top fallers</div>
+          <div id="movers-down"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    Serie A Scout — TPI Pro Dashboard · Stagione 2025-26 + backfill 2024-25 ·
+    <a href="dashboard_serie_a.html" style="color:var(--ls)">Dashboard pubblica</a>
+  </footer>
+</div>
+
+<script>
+let CUR = null, PREV = null;
+let FILTER_R = "ALL", FILTER_C = "ALL";
+
+function scrollTo2(sel){const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
+
+async function loadJSON(url){try{const r=await fetch(url);if(!r.ok)return null;return await r.json();}catch(e){return null;}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function nm(s){if(!s)return"";return s.toString().normalize("NFKD").replace(/[̀-ͯ]/g,"").toLowerCase().trim().replace(/\s+/g," ");}
+function fmt(v,d=2){if(v==null||isNaN(v))return"—";const n=Number(v);return (n>=0?"+":"")+n.toFixed(d);}
+function fmtN(v,d=2){if(v==null||isNaN(v))return"—";return Number(v).toFixed(d);}
+
+// Sparkline SVG inline
+function sparkline(values,w=60,h=18){
+  if(!values||!values.length)return"";
+  const min=Math.min(...values),max=Math.max(...values),range=max-min||1;
+  const step=w/(values.length-1||1);
+  const pts=values.map((v,i)=>`${(i*step).toFixed(1)},${(h-(v-min)/range*h).toFixed(1)}`).join(" ");
+  const trend=values[values.length-1]>values[0]?"#5FAE7E":"#D9705F";
+  return `<svg class="sparkline" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="${trend}" stroke-width="1.5" points="${pts}"/></svg>`;
+}
+
+// ===== INSIGHTS automatici =====
+function renderInsights(players){
+  const valid = players.filter(p=>p.tpi_ext?.totale!=null && p.tpi?.totale!=null);
+  // 1) Top prospect: prospetto con z_EMI più alto
+  const prosp = valid.filter(p=>p.physical?.eta_cat==="prospetto"&&p.z_early_momentum!=null);
+  prosp.sort((a,b)=>b.z_early_momentum-a.z_early_momentum);
+  const topProsp = prosp[0];
+  // 2) Best veteran: veterano con PRI più alto e TPI ≥ +0.5
+  const vet = valid.filter(p=>p.physical?.eta_cat==="veterano"&&p.physical?.affidabilita!=null&&p.tpi.totale>=0.5);
+  vet.sort((a,b)=>b.physical.affidabilita-a.physical.affidabilita);
+  const topVet = vet[0];
+  // 3) Form trend hot: chi sta crescendo di più
+  const hot = valid.filter(p=>p.z_form_trend!=null);
+  hot.sort((a,b)=>b.z_form_trend-a.z_form_trend);
+  const topHot = hot[0];
+  // 4) Most consistent: ctx_stability più alto
+  const stab = valid.filter(p=>p.z_ctx_stab!=null);
+  stab.sort((a,b)=>b.z_ctx_stab-a.z_ctx_stab);
+  const topStab = stab[0];
+  // 5) Hidden gem: alto Pro ma rank TPI base basso (Pro premia oltre il TPI grezzo)
+  const gems = valid.filter(p=>p.rank?.TPI>=20&&p.tpi_ext.totale>=0.5);
+  gems.sort((a,b)=>b.tpi_ext.totale-a.tpi_ext.totale);
+  const topGem = gems[0];
+  // 6) Most contributed by EMI: prospetto con TPI Pro vs Base più alto
+  const climbers = valid.filter(p=>p.physical?.eta_cat==="prospetto");
+  climbers.sort((a,b)=>(b.tpi_ext.totale-b.tpi.totale)-(a.tpi_ext.totale-a.tpi.totale));
+  const topClimber = climbers[0];
+
+  const out = [];
+  if(topProsp) out.push({cls:"prospetto", t:"Top prospetto", b:`<strong>${esc(topProsp.nome)}</strong> (${esc(topProsp.squadra)}, ${topProsp.physical?.eta?.toFixed(0)} anni) — EMI z=${fmt(topProsp.z_early_momentum)}: performa significativamente sopra l'aspettativa per la sua età`});
+  if(topVet) out.push({cls:"veterano", t:"Veterano affidabile", b:`<strong>${esc(topVet.nome)}</strong> (${esc(topVet.squadra)}, ${topVet.physical.eta.toFixed(0)} anni) — PRI ${topVet.physical.affidabilita.toFixed(2)}, TPI ${fmt(topVet.tpi.totale)}: continuità + qualità`});
+  if(topHot) out.push({cls:"prime", t:"In crescita", b:`<strong>${esc(topHot.nome)}</strong> (${esc(topHot.squadra)}) — z_form_trend ${fmt(topHot.z_form_trend)}: forma in netta crescita nell'EWMA`});
+  if(topStab) out.push({cls:"prime", t:"Più tutto-terreno", b:`<strong>${esc(topStab.nome)}</strong> (${esc(topStab.squadra)}) — ctx_stab z=${fmt(topStab.z_ctx_stab)}: rende stabile in tutti i 5 contesti (casa/trasferta/top6/forti)`});
+  if(topGem) out.push({cls:"gem", t:"Sotto il radar", b:`<strong>${esc(topGem.nome)}</strong> (${esc(topGem.squadra)}) — TPI rank #${topGem.rank?.TPI}, ma TPI Pro ${fmt(topGem.tpi_ext.totale)} grazie ai modulatori scout`});
+  if(topClimber && topClimber!==topProsp) out.push({cls:"prospetto", t:"Maggior guadagno Pro", b:`<strong>${esc(topClimber.nome)}</strong> (${esc(topClimber.squadra)}) — TPI base ${fmt(topClimber.tpi.totale)} → Pro ${fmt(topClimber.tpi_ext.totale)} (Δ ${fmt(topClimber.tpi_ext.totale-topClimber.tpi.totale)})`});
+
+  document.getElementById("insights-grid").innerHTML = out.map(x=>
+    `<div class="insight ${x.cls}"><div class="insight-ttl">${x.t}</div><div class="insight-body">${x.b}</div></div>`).join("");
+}
+
+// ===== CATEGORIE =====
+function renderCategories(players){
+  const cats=[
+    {key:"prospetto",label:"Prospetti <23",hint:"Premio: AII + EMI"},
+    {key:"prime",label:"Prime 23-29",hint:"Equilibrio TPI + modulatori"},
+    {key:"veterano",label:"Veterani ≥29",hint:"Premio: PRI affidabilità"},
+  ];
+  const html = cats.map(c=>{
+    const subset=players.filter(p=>p.physical?.eta_cat===c.key && p.tpi_ext?.totale!=null);
+    subset.sort((a,b)=>b.tpi_ext.totale-a.tpi_ext.totale);
+    const top=subset.slice(0,7);
+    const rows = top.map(p=>{
+      const aii=p.physical?.eta_index, pri=p.physical?.affidabilita;
+      const meta=c.key==="prospetto"?`EMI ${fmt(p.z_early_momentum,1)}`:
+                 c.key==="veterano"?`PRI ${fmtN(pri)}`:
+                 `AII ${fmtN(aii)}`;
+      return `<div class="cat-row">
+        <span class="cat-row-nm">${esc(p.nome)}</span>
+        <span class="cat-row-meta">${esc(p.squadra)} · ${p.ruolo} · ${meta}</span>
+        <span class="cat-row-val">${fmt(p.tpi_ext.totale)}</span>
+      </div>`;
+    }).join("");
+    return `<div class="cat-card ${c.key}">
+      <div class="cat-hdr"><div class="cat-name ${c.key}">${c.label}</div><div class="cat-n">${subset.length} giocatori · ${c.hint}</div></div>
+      <div class="cat-list">${rows||'<div style="font-size:12px;color:var(--lt);padding:14px;text-align:center">nessun giocatore</div>'}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("cat-grid").innerHTML=html;
+}
+
+// ===== CLASSIFICA con detail espandibile =====
+function rankRow(p, i){
+  const phys=p.physical||{};
+  const tpi=p.tpi?.totale, pro=p.tpi_ext?.totale, delta=pro-tpi;
+  const cat=phys.eta_cat||"prime";
+  const pri=phys.affidabilita;
+  const aii=phys.eta_index;
+  const emi=p.z_early_momentum;
+  const formv=p.form?.ewma;
+  const conv=p.conv?.conv_ratio;
+  const priCls = pri!=null ? (pri>=0.85?"pri-hi":(pri<0.7?"pri-lo":"")) : "";
+  return `<tr class="row-main" data-i="${i}" data-r="${p.ruolo}" data-c="${cat}" onclick="toggleDetail(${i})">
+    <td class="pos">${i+1}</td>
+    <td class="nome">${esc(p.nome)}</td>
+    <td>${esc(p.squadra)}</td>
+    <td>${p.ruolo}</td>
+    <td class="num">${phys.eta?phys.eta.toFixed(1):"—"}</td>
+    <td><span class="cat ${cat}">${cat}</span></td>
+    <td class="num">${fmt(tpi)}</td>
+    <td class="num pro-col"><strong>${fmt(pro)}</strong></td>
+    <td class="num ${delta>=0?"delta-pos":"delta-neg"}">${fmt(delta)}</td>
+    <td class="num">${p.ctx?.totale?.n_app??"—"}</td>
+    <td class="num">${p.avg_min_partita?p.avg_min_partita.toFixed(0):"—"}</td>
+    <td class="num">${fmtN(aii)}</td>
+    <td class="num ${priCls}">${fmtN(pri)}</td>
+    <td class="num">${emi!=null?fmt(emi,1):"—"}</td>
+    <td class="num">${formv!=null?fmtN(formv):"—"}</td>
+    <td class="num">${conv!=null?fmtN(conv):"—"}</td>
+  </tr>`;
+}
+function detailRow(p, i){
+  const phys=p.physical||{};
+  const ctx=p.tpi||{};
+  const kpi=p.kpi||{};
+  const conv=p.conv||{};
+  const rec=p.recent||{};
+  const formS=p.form?.ewma_s||[];
+
+  const ctxCells = ["totale","casa","trasferta","vs_top6","vs_forti"].map(k=>{
+    const v=ctx[k];
+    const cls=v>0.5?"hi":(v<-0.5?"lo":"");
+    const lbl=k==="vs_top6"?"vs Top6":k==="vs_forti"?"vs Forti":k.charAt(0).toUpperCase()+k.slice(1);
+    return `<div class="ctx-cell"><div class="ctx-cell-lbl">${lbl}</div><div class="ctx-cell-val ${cls}">${v!=null?fmt(v):"—"}</div></div>`;
+  }).join("");
+
+  // Modulator contribution bars (relativi, scala fissa 0-3)
+  const mods=[
+    {l:"AII scout",v:p.z_aii,w:0.10},
+    {l:"PRI fisica",v:p.z_pri,w:0.08},
+    {l:"ctx stability",v:p.z_ctx_stab,w:0.07},
+    {l:"form trend",v:p.z_form_trend,w:0.05},
+    {l:"EMI",v:p.z_early_momentum,w:0.06},
+  ];
+  const modBars=mods.map(m=>{
+    if(m.v==null)return `<div class="mod-bar"><span class="mod-bar-lbl">${m.l}</span><span style="flex:1;color:var(--lt);font-size:11px">n/d</span></div>`;
+    const pct=Math.min(50,Math.abs(m.v)/3*50);
+    const cls=m.v>=0?"pos":"neg";
+    const style=m.v>=0?`left:50%;width:${pct}%`:`right:50%;width:${pct}%;left:auto`;
+    return `<div class="mod-bar">
+      <span class="mod-bar-lbl">${m.l}</span>
+      <span class="mod-bar-track"><span class="mod-bar-fill ${cls}" style="${style}"></span><span style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(233,240,236,.2)"></span></span>
+      <span class="mod-bar-val">${fmt(m.v,2)}</span>
+    </div>`;
+  }).join("");
+
+  const sparkF = sparkline(formS.slice(-15),80,22);
+
+  return `<tr class="row-detail" id="detail-${i}"><td colspan="16">
+    <div class="detail-grid">
+      <div class="detail-block">
+        <div class="detail-block-ttl">TPI per contesto (5)</div>
+        <div class="ctx-grid">${ctxCells}</div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-ttl">Modulatori Pro (z-score · peso)</div>
+        ${modBars}
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-ttl">KPI offensivi</div>
+        <div class="kv-row"><span class="k">xG / 90</span><span class="v">${fmtN(kpi.xg_p90,3)}</span></div>
+        <div class="kv-row"><span class="k">xA / 90</span><span class="v">${fmtN(kpi.xa_p90,3)}</span></div>
+        <div class="kv-row"><span class="k">Gol / 90</span><span class="v">${fmtN(kpi.goal_p90,3)}</span></div>
+        <div class="kv-row"><span class="k">SOS medio</span><span class="v">${fmtN(kpi.sos,2)}</span></div>
+        <div class="kv-row"><span class="k">G/xG (conv)</span><span class="v">${fmtN(conv.conv_ratio,2)}</span></div>
+        <div class="kv-row"><span class="k">Finishing</span><span class="v">${fmt(kpi.finishing,2)}</span></div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-ttl">Disponibilità</div>
+        <div class="kv-row"><span class="k">Partite giocate</span><span class="v">${phys.partite_gioc??"—"} / ${phys.partite_disp??"—"}</span></div>
+        <div class="kv-row"><span class="k">Disp. relativa</span><span class="v">${fmtN(p.disponibilita_rel,2)}</span></div>
+        <div class="kv-row"><span class="k">Penalty disp.</span><span class="v">${fmtN(p.disponibilita_penalty,2)}</span></div>
+        <div class="kv-row"><span class="k">Min / partita</span><span class="v">${p.avg_min_partita?p.avg_min_partita.toFixed(0):"—"}'</span></div>
+        <div class="kv-row"><span class="k">K shrinkage</span><span class="v">${fmtN(p.k_subst_mult,2)}×</span></div>
+        <div class="kv-row"><span class="k">Confidence</span><span class="v">${fmtN(p.confidence,2)}</span></div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-ttl">Forma recente (ultime 6 gare)</div>
+        <div class="kv-row"><span class="k">Etichetta</span><span class="v">${esc(rec.label||"—")}</span></div>
+        <div class="kv-row"><span class="k">Gol effettivi</span><span class="v">${rec.npg??"—"}</span></div>
+        <div class="kv-row"><span class="k">npxG totale</span><span class="v">${fmtN(rec.npxg,2)}</span></div>
+        <div class="kv-row"><span class="k">Output/90</span><span class="v">${fmtN(rec.out90,2)}</span></div>
+        <div class="kv-row"><span class="k">Ratio vs season</span><span class="v">${fmtN(rec.ratio,2)}</span></div>
+        <div class="kv-row"><span class="k">Form EWMA</span><span class="v">${fmtN(p.form?.ewma,2)} ${sparkF}</span></div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-ttl">Età & fisico</div>
+        <div class="kv-row"><span class="k">Età</span><span class="v">${phys.eta?phys.eta.toFixed(1):"—"} anni</span></div>
+        <div class="kv-row"><span class="k">Categoria</span><span class="v">${phys.eta_cat||"—"}</span></div>
+        <div class="kv-row"><span class="k">AII scout</span><span class="v">${fmtN(phys.eta_index,2)}</span></div>
+        <div class="kv-row"><span class="k">PRI affidabilità</span><span class="v">${fmtN(phys.affidabilita,2)}</span></div>
+        <div class="kv-row"><span class="k">Infortuni stagione</span><span class="v">${phys.n_infortuni??"—"}</span></div>
+        <div class="kv-row"><span class="k">Giorni out</span><span class="v">${phys.giorni_out??"—"}</span></div>
+      </div>
+    </div>
+  </td></tr>`;
+}
+
+function renderRanking(players){
+  // ordina per Pro
+  const sorted=[...players].filter(p=>p.tpi_ext?.totale!=null).sort((a,b)=>b.tpi_ext.totale-a.tpi_ext.totale).slice(0,80);
+  const tbody=document.querySelector("#ranking-tbl tbody");
+  tbody.innerHTML=sorted.map((p,i)=>rankRow(p,i)+detailRow(p,i)).join("");
+  applyFilters();
+}
+function applyFilters(){
+  document.querySelectorAll("#ranking-tbl tbody tr").forEach(tr=>{
+    if(tr.classList.contains("row-detail")){return;}
+    const r=tr.dataset.r, c=tr.dataset.c;
+    const okR=FILTER_R==="ALL"||r===FILTER_R;
+    const okC=FILTER_C==="ALL"||c===FILTER_C;
+    tr.style.display=(okR&&okC)?"":"none";
+    // Hide detail too
+    const det=document.getElementById(`detail-${tr.dataset.i}`);
+    if(det&&!(okR&&okC))det.classList.remove("show"),tr.classList.remove("expanded");
+  });
+}
+function toggleDetail(i){
+  const tr=document.querySelector(`#ranking-tbl tbody tr.row-main[data-i="${i}"]`);
+  const det=document.getElementById(`detail-${i}`);
+  if(!tr||!det)return;
+  const isOpen=det.classList.contains("show");
+  // close all others
+  document.querySelectorAll(".row-detail.show").forEach(x=>x.classList.remove("show"));
+  document.querySelectorAll(".row-main.expanded").forEach(x=>x.classList.remove("expanded"));
+  if(!isOpen){det.classList.add("show");tr.classList.add("expanded");}
+}
+
+// ===== MODULATORI =====
+function renderModulators(players){
+  const valid=players.filter(p=>p.tpi_ext?.totale!=null);
+  const mods=[
+    {key:"z_aii", lbl:"AII scout", desc:"Età-index: gaussiana picco 23 + growth + freshness. Premia profili in entrata nel prime.",fmt:v=>fmt(v,2)},
+    {key:"z_pri", lbl:"PRI affidabilità", desc:"Disponibilità (partite/disp) + injury free + severity. Premia chi è in salute.",fmt:v=>fmt(v,2)},
+    {key:"z_ctx_stab", lbl:"Cross-context stability", desc:"std bassa fra 5 contesti TPI. Premia 'tutto terreno' che rende ovunque.",fmt:v=>fmt(v,2)},
+    {key:"z_form_trend", lbl:"Form trend", desc:"Direzione dell'EWMA: chi sta crescendo vs chi sta scendendo.",fmt:v=>fmt(v,2)},
+    {key:"z_early_momentum", lbl:"EMI (Early Momentum)", desc:"Residuo TPI vs età. Discrimina prospetti che performano sopra l'aspettativa.",fmt:v=>fmt(v,2)},
+  ];
+  document.getElementById("mod-section").innerHTML = mods.map(m=>{
+    const sub=valid.filter(p=>p[m.key]!=null);
+    sub.sort((a,b)=>b[m.key]-a[m.key]);
+    const top5=sub.slice(0,5);
+    const bot5=sub.slice(-3).reverse();
+    return `<div class="mod-card">
+      <div class="mod-card-hdr">${m.lbl}</div>
+      <div class="mod-card-desc">${m.desc}</div>
+      <div class="mod-top-lbl">Top 5</div>
+      <div class="mod-top-list">${top5.map(p=>`<div class="mod-top-row"><span class="nm">${esc(p.nome)} <span style="color:var(--lt);font-weight:400">${esc(p.squadra)}</span></span><span class="val">${m.fmt(p[m.key])}</span></div>`).join("")}</div>
+      <div class="mod-top-lbl" style="margin-top:12px">Bottom 3</div>
+      <div class="mod-top-list">${bot5.map(p=>`<div class="mod-top-row"><span class="nm">${esc(p.nome)} <span style="color:var(--lt);font-weight:400">${esc(p.squadra)}</span></span><span class="val" style="color:var(--red)">${m.fmt(p[m.key])}</span></div>`).join("")}</div>
+    </div>`;
+  }).join("");
+}
+
+// ===== PERSISTENCE multi-season (calcolato live) =====
+function renderPersistence(cur, prev){
+  if(!prev){
+    document.getElementById("persistence-stats").innerHTML='<div style="color:var(--lt);padding:14px;grid-column:1/-1;text-align:center">payload_2024-25.json non disponibile</div>';
+    return;
+  }
+  const c={},p={};
+  for(const x of cur.players)if(x.tpi?.totale!=null)c[nm(x.nome)]=x;
+  for(const x of prev.players)if(x.tpi?.totale!=null)p[nm(x.nome)]=x;
+  const common=[];
+  for(const k in c) if(k in p) common.push({nome:c[k].nome,squadra:c[k].squadra,ruolo:c[k].ruolo,
+    t24:p[k].tpi.totale, t25:c[k].tpi.totale,
+    mean:(p[k].tpi.totale+c[k].tpi.totale)/2,
+    delta:c[k].tpi.totale-p[k].tpi.totale});
+  // Stats
+  const deltas=common.map(x=>x.delta);
+  const avgDelta=deltas.reduce((a,b)=>a+b,0)/(deltas.length||1);
+  const risers=common.filter(x=>x.delta>0).length;
+  const fallers=common.filter(x=>x.delta<0).length;
+  document.getElementById("persistence-stats").innerHTML=`
+    <div class="stat-cell"><div class="stat-val">${common.length}</div><div class="stat-lbl">Comuni 24-25 + 25-26</div></div>
+    <div class="stat-cell"><div class="stat-val">${risers}</div><div class="stat-lbl">Migliorati</div></div>
+    <div class="stat-cell"><div class="stat-val">${fallers}</div><div class="stat-lbl">Regrediti</div></div>
+    <div class="stat-cell"><div class="stat-val">${fmt(avgDelta)}</div><div class="stat-lbl">Δ medio</div></div>
+  `;
+  // Tabella top 25 per media
+  common.sort((a,b)=>b.mean-a.mean);
+  const tbody=document.querySelector("#persistence-tbl tbody");
+  tbody.innerHTML=common.slice(0,25).map((r,i)=>`<tr>
+    <td class="pos">${i+1}</td>
+    <td class="nome">${esc(r.nome)}</td>
+    <td>${esc(r.squadra)}</td>
+    <td>${r.ruolo}</td>
+    <td class="num">${fmt(r.t24)}</td>
+    <td class="num">${fmt(r.t25)}</td>
+    <td class="num"><strong>${fmt(r.mean)}</strong></td>
+    <td class="num ${r.delta>=0?"delta-pos":"delta-neg"}">${fmt(r.delta)}</td>
+  </tr>`).join("");
+}
+
+// ===== MOVERS =====
+function renderMovers(cur, prev){
+  if(!prev) {document.getElementById("movers").style.display="none";return;}
+  const ranks=src=>{
+    const m={};
+    [...src.players].filter(x=>x.tpi?.totale!=null).sort((a,b)=>b.tpi.totale-a.tpi.totale).forEach((p,i)=>m[nm(p.nome)]={r:i+1,nome:p.nome,squadra:p.squadra,ruolo:p.ruolo});
+    return m;
+  };
+  const r25=ranks(cur), r24=ranks(prev);
+  const movers=[];
+  for(const k in r25) if(k in r24) movers.push({...r25[k], from:r24[k].r, to:r25[k].r, delta:r24[k].r-r25[k].r});
+  const up=[...movers].sort((a,b)=>b.delta-a.delta).slice(0,10);
+  const down=[...movers].sort((a,b)=>a.delta-b.delta).slice(0,10);
+  const fmt=m=>`<div class="mover-row"><div><div class="mover-nm">${esc(m.nome)}</div><div class="mover-meta">${esc(m.squadra)} · ${m.ruolo} · #${m.from} → #${m.to}</div></div><div class="mover-val ${m.delta>=0?'delta-pos':'delta-neg'}">${m.delta>=0?"+":""}${m.delta}</div></div>`;
+  document.getElementById("movers-up").innerHTML=up.map(fmt).join("");
+  document.getElementById("movers-down").innerHTML=down.map(fmt).join("");
+}
+
+// ===== META =====
+function renderMeta(cur,prev){
+  const valid=cur.players.filter(p=>p.tpi_ext?.totale!=null);
+  const byCat={prospetto:0,prime:0,veterano:0};
+  for(const p of valid){const c=p.physical?.eta_cat||"prime";byCat[c]=(byCat[c]||0)+1;}
+  const wPos=valid.filter(p=>p.disponibilita_penalty&&p.disponibilita_penalty<1.0).length;
+  const meta=document.getElementById("meta-bar");
+  meta.innerHTML=`
+    <span><strong>${cur.n_giocatori}</strong> qualificati · <strong>${valid.length}</strong> in classifica Pro</span>
+    <span><strong>${byCat.prospetto}</strong> prospetti</span>
+    <span><strong>${byCat.prime}</strong> prime</span>
+    <span><strong>${byCat.veterano}</strong> veterani</span>
+    <span><strong>${wPos}</strong> con penalty disponibilità</span>
+    ${prev?`<span><strong>2 stagioni</strong> (24-25 + 25-26)</span>`:""}
+  `;
+}
+
+// ===== Bootstrap =====
+async function loadDashboard(){
+  CUR=await loadJSON("payload.json");
+  PREV=await loadJSON("payload_2024-25.json");
+  if(!CUR){document.querySelector(".container").innerHTML="<p style='color:var(--red);padding:20px'>Dati non disponibili: payload.json non risponde. Riprova fra poco.</p>";return;}
+  renderMeta(CUR,PREV);
+  renderInsights(CUR.players);
+  renderCategories(CUR.players);
+  renderRanking(CUR.players);
+  renderModulators(CUR.players);
+  renderPersistence(CUR,PREV);
+  renderMovers(CUR,PREV);
+
+  // Filtri
+  document.querySelectorAll("[data-r-filter]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-r-filter]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");FILTER_R=b.dataset.rFilter;applyFilters();
+  }));
+  document.querySelectorAll("[data-c-filter]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-c-filter]").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");FILTER_C=b.dataset.cFilter;applyFilters();
+  }));
+}
+
+loadDashboard();
+</script>
+</body>
+</html>
