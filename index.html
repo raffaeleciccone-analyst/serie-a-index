@@ -82,8 +82,17 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
   letter-spacing:.5px;line-height:.98;margin-bottom:14px;text-transform:uppercase;
   color:var(--lp)}
 .hero-sub{font-size:15px;color:var(--ls);line-height:1.7;max-width:none;margin:0 0 26px}
-.cta-group{display:flex;align-items:center;justify-content:flex-start;gap:10px;
-  flex-wrap:wrap;margin:0}
+/* Quattro bottoni nella colonna sinistra dell'eroe non ci stanno su una riga:
+   "Methodology" finiva da solo sulla seconda, come un ripensamento. Invece di
+   stringerli finche' entrano — e rifarlo a ogni larghezza — l'a capo diventa
+   voluto: l'azione primaria tiene la sua riga, le tre secondarie stanno in
+   fila sotto. L'interruzione la forza lo pseudo-elemento a tutta larghezza
+   fra i due gruppi, ordinati con `order`. */
+.cta-group{display:flex;align-items:center;justify-content:flex-start;
+  gap:10px;flex-wrap:wrap;margin:0}
+.cta-group .btn-primary{order:0}
+.cta-group::after{content:"";flex-basis:100%;height:0;order:1}
+.cta-group .btn-secondary{order:2}
 
 /* Classifica in apertura */
 .lb-panel{border-top:1px solid var(--sep2)}
@@ -169,6 +178,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
 .pro-band-ttl em{font-style:normal;color:var(--orng)}
 .pro-band-body{font-size:13.5px;color:var(--ls);line-height:1.65;max-width:64ch;margin-top:14px}
 .pro-band-body strong{color:var(--lp);font-weight:600}
+.pro-band-onesta{font-size:12.5px;color:var(--lt);line-height:1.6;max-width:64ch;
+  margin-top:14px;padding-left:12px;border-left:1px solid var(--sep2)}
+.pro-band-onesta strong{color:var(--ls);font-weight:600}
+.pro-band-onesta em{font-style:italic}
 .pro-band-mods{display:flex;flex-wrap:wrap;gap:0;margin-top:20px}
 .pro-band-mods span{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
   text-transform:uppercase;color:var(--lt);padding:3px 14px;white-space:nowrap}
@@ -438,6 +451,13 @@ a.pro-band-lnk:hover{gap:11px}
     <div class="pro-band-body"
       data-it="Il TPI classico misura il <strong>rendimento in campo</strong>. Il Pro aggiunge cinque modulatori che guardano al <strong>giocatore</strong>: dove sta nella curva dell&rsquo;et&agrave;, quanto regge fisicamente, se rende in tutti i contesti o solo in casa, in che direzione va la sua forma, e chi produce sopra l&rsquo;aspettativa per la sua et&agrave;. Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;."
       data-en="The classic TPI measures <strong>on-pitch performance</strong>. Pro adds five modulators that look at the <strong>player</strong>: where they sit on the age curve, how well they hold up physically, whether they deliver in every context or only at home, which way their form is heading, and who produces above expectation for their age. It tells apart who is good now from who will be.">Il TPI classico misura il <strong>rendimento in campo</strong>. Il Pro aggiunge cinque modulatori che guardano al <strong>giocatore</strong>: dove sta nella curva dell&rsquo;et&agrave;, quanto regge fisicamente, se rende in tutti i contesti o solo in casa, in che direzione va la sua forma, e chi produce sopra l&rsquo;aspettativa per la sua et&agrave;. Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;.</div>
+    <!-- Detto qui, dove il Pro si pubblicizza, non solo in fondo alla
+         validazione. Promuoverlo senza dire come e' andato il test lo fa
+         sembrare una cosa non guardata; dirlo lo trasforma nel punto piu'
+         interessante da raccontare. -->
+    <div class="pro-band-onesta"
+      data-it="Testato <em>out-of-sample</em>: sul rendimento futuro <strong>non batte il TPI classico</strong> — la differenza di RMSE &egrave; indistinguibile da zero. Resta uno strumento descrittivo, dice <em>che profilo</em> &egrave; un giocatore, non quanto rendera&#768;."
+      data-en="Tested <em>out-of-sample</em>: on future performance it <strong>does not beat the classic TPI</strong> — the RMSE difference is indistinguishable from zero. It stays a descriptive tool: it tells you <em>what kind of profile</em> a player is, not how much they will produce.">Testato <em>out-of-sample</em>: sul rendimento futuro <strong>non batte il TPI classico</strong> &mdash; la differenza di RMSE &egrave; indistinguibile da zero. Resta uno strumento descrittivo, dice <em>che profilo</em> &egrave; un giocatore, non quanto render&agrave;.</div>
     <div class="pro-band-mods">
       <span data-it="AII &middot; Indice et&agrave;" data-en="AII &middot; Age index">AII &middot; Indice et&agrave;</span>
       <span data-it="PRI &middot; Tenuta fisica" data-en="PRI &middot; Physical reliability">PRI &middot; Tenuta fisica</span>

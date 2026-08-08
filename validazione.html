@@ -462,6 +462,92 @@ tr:hover td{background:rgba(233,240,236,.03)}
   </div>
 </div>
 
+<!-- RECAP — in cima, non in fondo.
+     L'ordine A→B→C metteva davanti il test piu' debole: r=0.401 con IC
+     bootstrap che contiene lo zero, quindi non una prova. Chi si fermava al
+     primo riquadro se ne andava con quello, senza aver visto il backtest a
+     rho=0.725 con placebo p=0.002, che e' il risultato vero della pagina.
+     Il riepilogo in apertura mostra l'esito di tutti i test insieme, poi si
+     scende nel dettaglio. -->
+
+<div class="recap-outer">
+  <!-- Colonna sinistra: A B C D -->
+  <div class="recap-left">
+    <div style="font-family:var(--mono);font-size:9.5px;font-weight:500;color:var(--lt);
+                text-transform:uppercase;letter-spacing:.16em;margin-bottom:16px" data-it="Riepilogo Validazione" data-en="Validation summary">
+      Riepilogo Validazione
+    </div>
+    <div class="rc-grid"><div class="rc-card" style="">
+          <div class="rc-lbl" data-it="A &mdash; Correlazione Fantacalcio" data-en="A &mdash; Fantacalcio correlation">A &mdash; Correlazione Fantacalcio</div>
+          <div id="badge-a"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
+          <div class="rc-sub">r = 0.37 &middot; n = 29</div>
+        </div><div class="rc-card" style="">
+          <div class="rc-lbl" data-it="B &mdash; Overlap Top 10 WhoScored" data-en="B &mdash; Top 10 WhoScored overlap">B &mdash; Overlap Top 10 WhoScored</div>
+          <div id="badge-b"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
+          <div class="rc-sub">40% <span data-it="coincidenza" data-en="overlap">coincidenza</span></div>
+        </div><div class="rc-card" style="">
+          <div class="rc-lbl" data-it="C &mdash; Backtest Predittivo" data-en="C &mdash; Predictive Backtest">C &mdash; Backtest Predittivo</div>
+          <div id="badge-c"><span class="badge badge-green" data-it="Buono &#10003;" data-en="Good &#10003;">Buono &#10003;</span></div>
+          <div class="rc-sub">r = 0.725 &middot; n = 573</div>
+        </div><div class="rc-card" style="border-left:3px solid var(--teal);">
+          <div class="rc-lbl" data-it="D &mdash; Et&agrave; &amp; Fisico" data-en="D &mdash; Age &amp; Physical">D &mdash; Et&agrave; &amp; Fisico</div>
+          <div id="badge-d"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
+          <div class="rc-sub">AII:100 &middot; PRI:100 &middot; r=-0.203</div>
+        </div></div>
+  </div>
+
+  <!-- Colonna destra: E — TPI Pro in evidenza -->
+  <div class="recap-right">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <div style="font-family:var(--mono);font-size:9.5px;font-weight:500;color:var(--lt);
+                  text-transform:uppercase;letter-spacing:.16em">
+        E &mdash; TPI Pro
+      </div>
+      <span style="display:inline-flex;align-items:center;gap:4px;padding:0;
+                   background:none;border:0;border-radius:0;
+                   font-family:var(--mono);font-size:9.5px;font-weight:500;
+                   color:var(--orng);text-transform:uppercase;letter-spacing:.14em">
+        <span data-it="Nuovo indice" data-en="New index">Nuovo indice</span>
+      </span>
+    </div>
+    <div style="font-size:12px;color:var(--ls);line-height:1.6;margin-bottom:14px" data-it="Aggiunge <strong style=&quot;color:var(--lp)&quot;>AII</strong> (et&agrave;) e <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (fisico) al TPI classico. r ideale = 0.80&ndash;0.95." data-en="Adds <strong style=&quot;color:var(--lp)&quot;>AII</strong> (age) and <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (physical) to the classic TPI. Ideal r = 0.80&ndash;0.95.">
+      Aggiunge <strong style="color:var(--lp)">AII</strong> (et&agrave;)
+      e <strong style="color:var(--lp)">PRI</strong> (fisico) al TPI classico.
+      r ideale = 0.80&ndash;0.95.
+    </div>
+    
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <span class="badge badge-green">Ottimo &#10003;</span>
+            <span style="font-size:11px;color:var(--lt)">r(TPI, TPI Pro)</span>
+          </div>
+          <div style="font-size:26px;font-weight:500;letter-spacing:-.03em;
+                      font-family:var(--mono);color:var(--lp);line-height:1;margin-bottom:6px">
+            0.802
+          </div>
+          <div style="font-size:11px;color:var(--lt);margin-bottom:12px" data-it="100 giocatori con AII+PRI" data-en="100 players with AII+PRI">
+            100 giocatori con AII+PRI
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="flex:1;min-width:60px;background:none;
+                        border:0;border-left:1px solid var(--green);border-radius:0;
+                        padding:2px 0 2px 10px">
+              <div style="font-size:16px;font-weight:800;color:var(--green);
+                          font-family:var(--mono)">40</div>
+              <div style="font-size:9px;color:var(--lt);text-transform:uppercase;
+                          letter-spacing:.5px;margin-top:2px" data-it="Salgono" data-en="Rise">Salgono</div>
+            </div>
+            <div style="flex:1;min-width:60px;background:none;
+                        border:0;border-left:1px solid var(--red);border-radius:0;
+                        padding:2px 0 2px 10px">
+              <div style="font-size:16px;font-weight:800;color:var(--red);
+                          font-family:var(--mono)">39</div>
+              <div style="font-size:9px;color:var(--lt);text-transform:uppercase;
+                          letter-spacing:.5px;margin-top:2px" data-it="Scendono" data-en="Fall">Scendono</div>
+            </div>
+          </div>
+  </div>
+</div>
+
 <!-- SEZIONE A -->
 <div class="section">
   <div class="section-hd">
@@ -908,86 +994,6 @@ tr:hover td{background:rgba(233,240,236,.03)}
   <div class="card"><div class="interp" style="border-left-color:var(--orng)" data-it="Nessun guadagno predittivo dimostrato: l'IC della differenza include 0 &rarr; AII/PRI restano descrittivi. Sostituisce r(TPI,TPI Pro), circolare per costruzione (TPI Pro contiene il TPI)." data-en="No predictive gain shown: the difference CI includes 0 &rarr; AII/PRI stay descriptive. It replaces r(TPI,TPI Pro), circular by construction (TPI Pro contains the TPI).">Nessun guadagno predittivo dimostrato: l'IC della differenza include 0 &rarr; AII/PRI restano descrittivi. Sostituisce r(TPI,TPI Pro), circolare per costruzione (TPI Pro contiene il TPI).</div></div>
 </div>
 
-<!-- RECAP -->
-
-<div class="recap-outer">
-  <!-- Colonna sinistra: A B C D -->
-  <div class="recap-left">
-    <div style="font-family:var(--mono);font-size:9.5px;font-weight:500;color:var(--lt);
-                text-transform:uppercase;letter-spacing:.16em;margin-bottom:16px" data-it="Riepilogo Validazione" data-en="Validation summary">
-      Riepilogo Validazione
-    </div>
-    <div class="rc-grid"><div class="rc-card" style="">
-          <div class="rc-lbl" data-it="A &mdash; Correlazione Fantacalcio" data-en="A &mdash; Fantacalcio correlation">A &mdash; Correlazione Fantacalcio</div>
-          <div id="badge-a"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
-          <div class="rc-sub">r = 0.37 &middot; n = 29</div>
-        </div><div class="rc-card" style="">
-          <div class="rc-lbl" data-it="B &mdash; Overlap Top 10 WhoScored" data-en="B &mdash; Top 10 WhoScored overlap">B &mdash; Overlap Top 10 WhoScored</div>
-          <div id="badge-b"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
-          <div class="rc-sub">40% <span data-it="coincidenza" data-en="overlap">coincidenza</span></div>
-        </div><div class="rc-card" style="">
-          <div class="rc-lbl" data-it="C &mdash; Backtest Predittivo" data-en="C &mdash; Predictive Backtest">C &mdash; Backtest Predittivo</div>
-          <div id="badge-c"><span class="badge badge-green" data-it="Buono &#10003;" data-en="Good &#10003;">Buono &#10003;</span></div>
-          <div class="rc-sub">r = 0.725 &middot; n = 573</div>
-        </div><div class="rc-card" style="border-left:3px solid var(--teal);">
-          <div class="rc-lbl" data-it="D &mdash; Et&agrave; &amp; Fisico" data-en="D &mdash; Age &amp; Physical">D &mdash; Et&agrave; &amp; Fisico</div>
-          <div id="badge-d"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
-          <div class="rc-sub">AII:100 &middot; PRI:100 &middot; r=-0.203</div>
-        </div></div>
-  </div>
-
-  <!-- Colonna destra: E — TPI Pro in evidenza -->
-  <div class="recap-right">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-      <div style="font-family:var(--mono);font-size:9.5px;font-weight:500;color:var(--lt);
-                  text-transform:uppercase;letter-spacing:.16em">
-        E &mdash; TPI Pro
-      </div>
-      <span style="display:inline-flex;align-items:center;gap:4px;padding:0;
-                   background:none;border:0;border-radius:0;
-                   font-family:var(--mono);font-size:9.5px;font-weight:500;
-                   color:var(--orng);text-transform:uppercase;letter-spacing:.14em">
-        <span data-it="Nuovo indice" data-en="New index">Nuovo indice</span>
-      </span>
-    </div>
-    <div style="font-size:12px;color:var(--ls);line-height:1.6;margin-bottom:14px" data-it="Aggiunge <strong style=&quot;color:var(--lp)&quot;>AII</strong> (et&agrave;) e <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (fisico) al TPI classico. r ideale = 0.80&ndash;0.95." data-en="Adds <strong style=&quot;color:var(--lp)&quot;>AII</strong> (age) and <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (physical) to the classic TPI. Ideal r = 0.80&ndash;0.95.">
-      Aggiunge <strong style="color:var(--lp)">AII</strong> (et&agrave;)
-      e <strong style="color:var(--lp)">PRI</strong> (fisico) al TPI classico.
-      r ideale = 0.80&ndash;0.95.
-    </div>
-    
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-            <span class="badge badge-green">Ottimo &#10003;</span>
-            <span style="font-size:11px;color:var(--lt)">r(TPI, TPI Pro)</span>
-          </div>
-          <div style="font-size:26px;font-weight:500;letter-spacing:-.03em;
-                      font-family:var(--mono);color:var(--lp);line-height:1;margin-bottom:6px">
-            0.802
-          </div>
-          <div style="font-size:11px;color:var(--lt);margin-bottom:12px" data-it="100 giocatori con AII+PRI" data-en="100 players with AII+PRI">
-            100 giocatori con AII+PRI
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <div style="flex:1;min-width:60px;background:none;
-                        border:0;border-left:1px solid var(--green);border-radius:0;
-                        padding:2px 0 2px 10px">
-              <div style="font-size:16px;font-weight:800;color:var(--green);
-                          font-family:var(--mono)">40</div>
-              <div style="font-size:9px;color:var(--lt);text-transform:uppercase;
-                          letter-spacing:.5px;margin-top:2px" data-it="Salgono" data-en="Rise">Salgono</div>
-            </div>
-            <div style="flex:1;min-width:60px;background:none;
-                        border:0;border-left:1px solid var(--red);border-radius:0;
-                        padding:2px 0 2px 10px">
-              <div style="font-size:16px;font-weight:800;color:var(--red);
-                          font-family:var(--mono)">39</div>
-              <div style="font-size:9px;color:var(--lt);text-transform:uppercase;
-                          letter-spacing:.5px;margin-top:2px" data-it="Scendono" data-en="Fall">Scendono</div>
-            </div>
-          </div>
-  </div>
-</div>
-
 </div><!-- /main -->
 
 <div id="wm"><span id="wm-dot"></span>
@@ -1058,8 +1064,8 @@ const SPIEG={
     body_en:"Each dot is a player. Colour = role.\n\nTop-right: player at peak age AND physically reliable = ideal profile.\nBottom-left: young and fragile = high potential, high risk.",
     ex:"AII 0.85, PRI 0.90: veterano affidabile in picco. AII 0.42, PRI 0.88: giovane sano — scouting top.",ex_en:"AII 0.85, PRI 0.90: reliable veteran at peak. AII 0.42, PRI 0.88: healthy youngster — top scouting."},
   tpi_pro: {icon:"✨",ttl:"TPI Pro — 7 dimensioni + 5 modulatori",ttl_en:"TPI Pro — 7 dimensions + 5 modulators",sub:"TPI = 7 dim. TPI Pro = TPI + AII, PRI, stabilità ctx, trend forma, EMI",sub_en:"TPI = 7 dims. TPI Pro = TPI + AII, PRI, ctx stability, form trend, EMI",
-    body:"Il TPI Pro aggiunge z(AII) e z(PRI) alla media dei 4 z-score classici.\n\nChi sale: giovani in picco con buona affidabilità fisica.\nChi scende: veterani fragili che il TPI classico sopravvaluta.\n\nr(TPI,TPI Pro) ideale = 0.80–0.95.",
-    body_en:"TPI Pro adds z(AII) and z(PRI) to the mean of the 4 classic z-scores.\n\nRisers: young players at peak with good physical reliability.\nFallers: fragile veterans that the classic TPI overrates.\n\nIdeal r(TPI,TPI Pro) = 0.80–0.95.",
+    body:"Il TPI Pro combina il TPI (media pesata di 7 dimensioni) con 5 modulatori scout: AII, PRI, stabilità fra contesti, trend forma ed EMI. I pesi cambiano per fascia d'età.\n\nChi sale: giovani in picco con buona affidabilità fisica.\nChi scende: veterani fragili che il TPI classico sopravvaluta.\n\nr(TPI,TPI Pro) ideale = 0.80–0.95.",
+    body_en:"TPI Pro combines the TPI (weighted mean of 7 dimensions) with 5 scout modulators: AII, PRI, cross-context stability, form trend and EMI. Weights change by age band.\n\nRisers: young players at peak with good physical reliability.\nFallers: fragile veterans that the classic TPI overrates.\n\nIdeal r(TPI,TPI Pro) = 0.80–0.95.",
     ex:"r=0.88: TPI Pro è coerente ma aggiunge informazione reale. 15 giocatori salgono >2 posizioni grazie ad AII alto.",ex_en:"r=0.88: TPI Pro is consistent but adds real information. 15 players rise >2 positions thanks to high AII."},
   scatter_e: {icon:"📈",ttl:"Scatter TPI vs TPI Pro",ttl_en:"Scatter TPI vs TPI Pro",sub:"X = TPI classico | Y = TPI Pro",sub_en:"X = classic TPI | Y = TPI Pro",
     body:"Punti sopra la diagonale: guadagnano con TPI Pro (AII/PRI alti).\nPunti sotto: perdono.\n\nLa retta tratteggiata viola = regressione. Grigia = y=x (nessuna variazione).",

@@ -245,7 +245,7 @@
       dash_tab_conv:       "Goals vs xG",
       dash_tab_trend:      "Trend xG",
       dash_tab_radar:      "Radar",
-      dash_pro_mean6:      "0.65·TPI + 0.35·modulatori",
+      dash_pro_mean6:      "0.55–0.65·TPI + modulatori, pesi per fascia d'età",
       dash_pro_gauss:      "Gaussiana picco 23 (entrata prime) + bonus crescita",
       dash_pro_avail:      "Disponibilità + infortuni + gravità",
       dash_pro_dims:       "TPI · AII scout · PRI · Stabilità ctx · Trend forma · EMI",
@@ -306,7 +306,6 @@
       dash_only:           "Solo",
 
       /* footer condiviso */
-      footer_private:      "Uso Privato"
     },
 
     en: {
@@ -535,7 +534,7 @@
       dash_tab_conv:       "Goals vs xG",
       dash_tab_trend:      "xG Trend",
       dash_tab_radar:      "Radar",
-      dash_pro_mean6:      "0.65·TPI + 0.35·modulators",
+      dash_pro_mean6:      "0.55–0.65·TPI + modulators, weights by age band",
       dash_pro_gauss:      "Gaussian, peak at 23 (entering prime) + growth bonus",
       dash_pro_avail:      "Availability + injuries + severity",
       dash_pro_dims:       "TPI · scout AII · PRI · Ctx stability · Form trend · EMI",
@@ -596,7 +595,6 @@
       dash_only:           "Only",
 
       /* footer condiviso */
-      footer_private:      "Private use"
     }
   };
 
