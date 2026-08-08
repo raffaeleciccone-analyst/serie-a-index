@@ -226,6 +226,17 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
 .tbl .pri-hi{color:var(--green)}
 .tbl .pri-lo{color:var(--red)}
 
+/* Comando per aprire il resto della classifica: e' un'azione secondaria, non
+   un bottone. Stessa voce delle etichette mono, e l'ambra solo al passaggio. */
+.tbl-more-wrap{display:flex;justify-content:center;
+  border-top:1px solid var(--sep);margin-top:0;padding-top:14px}
+.tbl-more{display:inline-flex;align-items:center;gap:8px;
+  background:none;border:0;border-radius:0;cursor:pointer;padding:4px 2px;
+  font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--lt);
+  transition:color .16s}
+.tbl-more:hover{color:var(--orng)}
+
 /* ── PANNELLO DI DETTAGLIO ── */
 .detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:14px}
 .detail-block{padding:0 16px 0 0;background:none;border-radius:0;
@@ -435,6 +446,9 @@ footer a:hover{color:var(--lp)}
             </tr></thead>
             <tbody></tbody>
           </table>
+        </div>
+        <div class="tbl-more-wrap" id="tbl-more-wrap" hidden>
+          <button class="tbl-more" id="tbl-more" onclick="toggleLimite()"></button>
         </div>
       </div>
     </section>
@@ -711,17 +725,51 @@ function renderRanking(players){
   tbody.innerHTML=sorted.map((p,i)=>rankRow(p,i)+detailRow(p,i)).join("");
   applyFilters();
 }
+// La classifica ha 80 righe: tutte insieme erano un muro in mezzo alla pagina,
+// che si scorreva per un pezzo prima di arrivare alla sezione dopo. Ne restano
+// visibili LIMITE, il resto si apre a richiesta. Il conteggio si fa DOPO i
+// filtri, altrimenti filtrando per ruolo si vedrebbero meno di 20 righe pur
+// avendone di piu' disponibili.
+const LIMITE_INIZIALE = 20;
+let LIMITE = LIMITE_INIZIALE;   // null = mostra tutte
+
 function applyFilters(){
+  let passate = 0;
   document.querySelectorAll("#ranking-tbl tbody tr").forEach(tr=>{
     if(tr.classList.contains("row-detail")){return;}
     const r=tr.dataset.r, c=tr.dataset.c;
     const okR=FILTER_R==="ALL"||r===FILTER_R;
     const okC=FILTER_C==="ALL"||c===FILTER_C;
-    tr.style.display=(okR&&okC)?"":"none";
-    // Hide detail too
+    const passa=okR&&okC;
+    if(passa) passate++;
+    const entro=(LIMITE===null)||(passate<=LIMITE);
+    const mostra=passa&&entro;
+    tr.style.display=mostra?"":"none";
+    // Il dettaglio aperto segue la riga: se la riga sparisce, si richiude.
     const det=document.getElementById(`detail-${tr.dataset.i}`);
-    if(det&&!(okR&&okC))det.classList.remove("show"),tr.classList.remove("expanded");
+    if(det&&!mostra)det.classList.remove("show"),tr.classList.remove("expanded");
   });
+  aggiornaComando(passate);
+}
+
+function aggiornaComando(totale){
+  const wrap=document.getElementById("tbl-more-wrap");
+  const btn=document.getElementById("tbl-more");
+  if(!wrap||!btn)return;
+  if(totale<=LIMITE_INIZIALE){ wrap.hidden=true; return; }
+  wrap.hidden=false;
+  btn.textContent = (LIMITE===null)
+    ? `Mostra solo i primi ${LIMITE_INIZIALE} ↑`
+    : `Mostra tutti e ${totale} ↓`;
+}
+
+function toggleLimite(){
+  LIMITE = (LIMITE===null) ? LIMITE_INIZIALE : null;
+  applyFilters();
+  if(LIMITE!==null){
+    // Richiudendo si resta appesi in fondo a una tabella che non c'e' piu'.
+    document.getElementById("ranking").scrollIntoView({behavior:"smooth",block:"start"});
+  }
 }
 function toggleDetail(i){
   const tr=document.querySelector(`#ranking-tbl tbody tr.row-main[data-i="${i}"]`);
