@@ -55,6 +55,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
 .nav-badge{padding:0;border:0;background:none;
   font-family:var(--mono);font-size:9px;font-weight:400;
   color:var(--lt);text-transform:uppercase;letter-spacing:.16em}
+/* i18n.js monta lo switcher dentro uno <span> di blocco. L'inline-flex si
+   appoggiava alla baseline del testo di quello span, lasciando sotto lo
+   spazio del discendente: IT/EN scendevano di 2px rispetto alla fila. */
+.nav [data-i18n-switcher]{display:flex;align-items:center}
 .nav .i18n-switch{border:0;border-radius:0;background:none;height:auto;gap:2px}
 .nav .i18n-switch button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
   padding:3px 5px;color:var(--lt)}
