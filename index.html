@@ -2,15 +2,27 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Serie A Scout Index — Data-driven Player Ranking Model</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* Font serviti dal repo, non da Google. Sono i due file variabili del subset
+   latino: un peso qualsiasi tra 200 e 700 esce dallo stesso file, quindi
+   bastano 52 KB in tutto. Entrambi sono SIL Open Font License (vedi
+   fonts/OFL.txt), che consente esplicitamente l'auto-hosting. */
+@font-face{
+  font-family:"Oswald";font-style:normal;font-weight:200 700;font-display:swap;
+  src:url("fonts/oswald-latin-var.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face{
+  font-family:"JetBrains Mono";font-style:normal;font-weight:100 800;font-display:swap;
+  src:url("fonts/jetbrainsmono-latin-var.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 /* Stessi token della dashboard: la homepage aveva una palette sua (nero puro,
    azzurro/verde/viola di sistema) e passare da una pagina all'altra sembrava
    un cambio di sito. */
@@ -203,7 +215,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
   .hero-ttl{font-size:34px}
   .hero-tags{flex-direction:column;gap:6px}
   .hero-tag + .hero-tag{border-left:0;padding-left:0}
+  /* Via la squadra, ma la griglia va ridichiarata a 4 colonne: nascondere un
+     figlio lo toglie dal flusso e tutti i successivi slittano di una colonna,
+     mandando la barra a finire in quella larga zero. */
   .lb-tm{display:none}
+  .lb-row{grid-template-columns:20px minmax(0,1fr) 56px 46px}
 }
 @media(max-width:480px){
   .nav{padding-inline:14px}
