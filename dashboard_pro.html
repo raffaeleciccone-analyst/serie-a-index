@@ -66,7 +66,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
   background:var(--bg);border-bottom:1px solid var(--sep);
   display:flex;align-items:center;gap:20px;
   padding-inline:max(20px,calc((100% - var(--maxw)) / 2))}
-.nav-brand{display:flex;align-items:baseline;gap:10px;flex-shrink:0;
+/* Allineamento al centro, non alla base. Con `baseline` l'etichetta mono da
+   9px veniva allineata alla base dell'Oswald da 19px: il suo centro cadeva a
+   34px mentre marchio e link stavano tutti a 27.5, e "TPI PRO" sembrava
+   sprofondata di sei pixel rispetto alla fila. Su una riga di voci
+   orizzontali conta l'allineamento con la fila, non con la base della parola
+   accanto. */
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;
   font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.4px;
   text-transform:uppercase;white-space:nowrap}
 /* Il marchio Pro era una pastiglia oro con il fulmine. E' l'identita' della
