@@ -225,6 +225,8 @@ a.pro-band-lnk:hover{gap:11px}
   border:1px solid var(--sep2);color:var(--lt);margin-bottom:12px}
 .pro-ttl{font-family:var(--disp);font-size:22px;font-weight:600;letter-spacing:.2px;
   text-transform:uppercase;margin-bottom:8px}
+.formula-nota{font-size:11.5px;color:var(--lt);line-height:1.6;margin-top:9px;max-width:560px}
+.formula-nota strong{color:var(--ls);font-weight:600}
 .formula{font-family:var(--mono);font-size:11.5px;
   background:var(--bg1);border:1px solid var(--sep);
   border-radius:var(--rsm);padding:11px 14px;color:var(--teal);
@@ -408,7 +410,7 @@ a.pro-band-lnk:hover{gap:11px}
   <div class="hero-facts">
     <div class="hero-fact">
       <span class="hero-fact-n">01</span>
-      <span data-i18n-html="hp_bullet_1"><strong>7 dimensioni indipendenti</strong> &mdash; output, buildup, centralit&agrave;, boost, consistenza (su IQR), finishing e forma recente, standardizzate con <strong>z-score winsorizzati</strong>. I 4 modulatori scout (AII, PRI, stabilit&agrave;, trend) entrano nel TPI Pro</span>
+      <span data-i18n-html="hp_bullet_1"><strong>7 dimensioni indipendenti</strong> &mdash; output, buildup, centralit&agrave;, boost, consistenza (su IQR), finishing e forma recente, standardizzate con <strong>z-score winsorizzati</strong>. I 5 modulatori scout (AII, PRI, stabilit&agrave;, trend forma, EMI) entrano nel TPI Pro</span>
     </div>
     <div class="hero-fact">
       <span class="hero-fact-n">02</span>
@@ -526,7 +528,7 @@ a.pro-band-lnk:hover{gap:11px}
     <div class="pro-banner">
       <div class="pro-new" data-i18n="hp_pro_new">Novità — TPI Pro</div>
       <div class="pro-ttl" data-i18n="hp_pro_ttl">
-        TPI Pro — 9 Dimensioni di Analisi
+        TPI Pro — 7 dimensioni + 5 modulatori
       </div>
       <div style="font-size:13px;color:var(--ls);line-height:1.65;max-width:560px" data-i18n-html="hp_pro_body">
         Il TPI classico usa 7 dimensioni offensive (output, buildup, centralità, boost, consistenza, finishing, forma). Il TPI Pro aggiunge
@@ -539,6 +541,12 @@ a.pro-band-lnk:hover{gap:11px}
         + 0.07·<span style="color:var(--purp)">PRI</span> + 0.07·stabilità ctx
         + 0.05·trend forma + 0.06·<span style="color:var(--orng)">EMI</span>
       </div>
+      <!-- I pesi non sono unici: quelli qui sopra sono della fascia prime.
+           Mostrarli senza dirlo faceva sembrare fisso un indice che invece
+           cambia peso proprio in funzione dell'eta' — che e' il suo punto. -->
+      <div class="formula-nota"
+        data-it="Pesi della fascia <strong>prime (23&ndash;28)</strong>. Cambiano per fascia d&rsquo;et&agrave;: sul prospetto l&rsquo;AII sale a 0.15 e l&rsquo;EMI a 0.13, sul veterano il PRI sale a 0.18."
+        data-en="Weights for the <strong>prime band (23&ndash;28)</strong>. They change by age band: for prospects AII rises to 0.15 and EMI to 0.13; for veterans PRI rises to 0.18.">Pesi della fascia <strong>prime (23&ndash;28)</strong>. Cambiano per fascia d&rsquo;et&agrave;: sul prospetto l&rsquo;AII sale a 0.15 e l&rsquo;EMI a 0.13, sul veterano il PRI sale a 0.18.</div>
       <a class="pro-band-lnk" href="dashboard_pro.html"
          data-it="Apri la dashboard Pro &rarr;" data-en="Open the Pro dashboard &rarr;">Apri la dashboard Pro &rarr;</a>
     </div>
