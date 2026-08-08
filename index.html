@@ -178,6 +178,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
   font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--orng);transition:gap .16s}
 .pro-band:hover .pro-band-lnk{gap:11px}
+/* Nella fascia in alto e' un pezzo dentro un link; nel riquadro con la
+   formula, piu' in basso, e' il link stesso — li' non si puo' rendere
+   cliccabile tutto il blocco perche' la formula scorre in orizzontale, e una
+   cosa che scorre dentro un link si trascina invece di scorrere. */
+a.pro-band-lnk{text-decoration:none;margin-top:16px}
+a.pro-band-lnk:hover{gap:11px}
 
 /* SEZIONI */
 .section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 76px}
@@ -533,6 +539,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);
         + 0.07·<span style="color:var(--purp)">PRI</span> + 0.07·stabilità ctx
         + 0.05·trend forma + 0.06·<span style="color:var(--orng)">EMI</span>
       </div>
+      <a class="pro-band-lnk" href="dashboard_pro.html"
+         data-it="Apri la dashboard Pro &rarr;" data-en="Open the Pro dashboard &rarr;">Apri la dashboard Pro &rarr;</a>
     </div>
 
   </div>
