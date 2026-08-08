@@ -2,86 +2,95 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://*.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Guida Completa — Serie A Scout Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+/* Stessi token di dashboard e homepage. Qui la palette era ancora quella di
+   sistema (nero puro, azzurro/verde/viola saturi) con vetro e ombre da 32px:
+   su un documento lungo ogni riquadro gridava quanto il testo. */
 :root{
-  --bg:#000;--bg1:#0a0a0c;--bg2:#1c1c1e;--bg3:#2c2c2e;
-  --sep:rgba(255,255,255,.09);--sep2:rgba(255,255,255,.16);
-  --lp:#fff;--ls:rgba(235,235,245,.62);--lt:rgba(235,235,245,.32);
-  --blue:#0a84ff;--green:#30d158;--orng:#ff9f0a;
-  --red:#ff453a;--purp:#bf5af2;--teal:#5ac8fa;--indig:#5e5ce6;
-  --r:18px;--rsm:12px;--rxs:8px;
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
-  --mono:"SF Mono","Cascadia Code","Fira Code",monospace;
-  --gl-border:rgba(255,255,255,.14);--gl-edge:rgba(255,255,255,.26);
-  --gl-blur:saturate(220%) blur(40px);
-  --shadow:0 8px 32px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);
+  --bg:#0A1512;--bg1:#0F1F1B;--bg2:#132723;--bg3:#1B342E;
+  --sep:rgba(233,240,236,.10);--sep2:rgba(233,240,236,.18);
+  --lp:#ECF2EE;--ls:rgba(236,242,238,.68);--lt:rgba(236,242,238,.38);
+  --blue:#5A93C4;--green:#5FAE7E;--orng:#FFB020;
+  --red:#C97064;--purp:#9E8FBF;--teal:#6FB4C4;--indig:#7C86B8;--clay:#D98E6A;
+  --r:8px;--rsm:6px;--rxs:4px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",sans-serif;
+  --disp:"Oswald","Bahnschrift",Impact,sans-serif;
+  --mono:"JetBrains Mono","Cascadia Mono",ui-monospace,monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(10,132,255,.05) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(191,90,242,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
-
-/* ── Password Screen ── */
-/* Lock-screen client-side rimosso (V1) — non offriva sicurezza reale: tutto il contenuto era servito in chiaro nel medesimo HTML. Per access control reale serve auth server-side. */
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
 /* ── Nav ── */
-.nav{position:sticky;top:0;z-index:500;height:56px;background:rgba(0,0,0,.7);backdrop-filter:var(--gl-blur);-webkit-backdrop-filter:var(--gl-blur);border-bottom:1px solid var(--gl-border);box-shadow:0 1px 0 var(--gl-edge),0 4px 32px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px;position:relative;z-index:1}
-.nav-left{display:flex;align-items:center;gap:10px}
-.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--orng);box-shadow:0 0 8px rgba(255,159,10,.5)}
-.nav-title{font-size:15px;font-weight:700;letter-spacing:-.4px}
-.nav-sub{font-size:11px;color:var(--lt);margin-left:2px}
-.nav-badge{padding:3px 10px;border-radius:8px;font-size:10px;font-weight:700;background:rgba(255,159,10,.1);border:1px solid rgba(255,159,10,.2);color:var(--orng);text-transform:uppercase;letter-spacing:.5px}
+.nav{position:sticky;top:0;z-index:500;height:56px;background:var(--bg);border-bottom:1px solid var(--sep);box-shadow:none;display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:16px;position:relative;z-index:1}
+.nav-left{display:flex;align-items:center;gap:12px}
+.nav-dot{width:3px;height:16px;border-radius:2px;background:var(--orng);box-shadow:none}
+.nav-title{font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+.nav-sub{font-family:var(--mono);font-size:9px;color:var(--lt);margin-left:8px;text-transform:uppercase;letter-spacing:.16em}
+.nav-badge{padding:0;border:0;background:none;font-family:var(--mono);font-size:9px;font-weight:400;color:var(--lt);text-transform:uppercase;letter-spacing:.16em}
+.nav a{color:var(--lt);text-decoration:none;font-size:12px;font-weight:600;transition:color .16s}
+.nav a:hover{color:var(--lp)}
+.nav .i18n-switch{border:0;border-radius:0;background:none;height:auto;gap:2px}
+.nav .i18n-switch button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;padding:3px 5px;color:var(--lt)}
+.nav .i18n-switch button + button{border-left:0}
+.nav .i18n-switch button.active{background:none;color:var(--orng)}
+.nav .i18n-switch button:hover{background:none;color:var(--lp)}
 
 /* ── Sidebar ── */
 .layout{display:flex;min-height:calc(100vh - 56px);position:relative;z-index:1}
-.sidebar{width:220px;flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:24px 16px;border-right:1px solid var(--sep);background:rgba(0,0,0,.3);scrollbar-width:none}
+.sidebar{width:230px;flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;padding:24px 0 24px 20px;border-right:1px solid var(--sep);background:none;scrollbar-width:none}
 .sidebar::-webkit-scrollbar{display:none}
-.sidebar-section{font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.7px;margin:20px 0 8px;padding:0 8px}
+.sidebar-section{font-family:var(--mono);font-size:9px;font-weight:400;color:var(--lt);text-transform:uppercase;letter-spacing:.16em;margin:22px 0 8px;padding:0}
 .sidebar-section:first-child{margin-top:0}
-.slink{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--rxs);font-size:12px;font-weight:500;color:var(--lt);text-decoration:none;cursor:pointer;transition:all .15s;white-space:nowrap}
-.slink:hover{background:rgba(255,255,255,.05);color:var(--ls)}
-.slink.active{background:rgba(255,159,10,.1);color:var(--orng);font-weight:600}
-.slink-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;background:rgba(255,255,255,.2)}
-.slink.active .slink-dot{background:var(--orng)}
+/* La voce corrente si segna con un filetto ambra a sinistra, non con una
+   pillola piena: in una colonna di venti voci il riempimento pesava troppo. */
+.slink{display:flex;align-items:center;gap:10px;padding:6px 0 6px 11px;border-radius:0;font-size:12.5px;font-weight:500;color:var(--lt);text-decoration:none;cursor:pointer;transition:color .15s,border-color .15s;white-space:nowrap;border-left:2px solid transparent;margin-left:-1px}
+.slink:hover{background:none;color:var(--ls)}
+.slink.active{background:none;color:var(--orng);font-weight:600;border-left-color:var(--orng)}
+.slink-dot{display:none}
 
 /* ── Content ── */
-.content{flex:1;padding:48px 56px 120px;max-width:860px}
+.content{flex:1;padding:48px 56px 120px;max-width:900px;margin-inline:auto}
 @media(max-width:900px){.sidebar{display:none}.content{padding:32px 24px 80px}}
 
 /* ── Chapter headers ── */
 .chapter{margin-bottom:64px;scroll-margin-top:80px}
-.chapter-num{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--orng);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
-.chapter-num span{display:inline-block;width:20px;height:20px;border-radius:50%;background:rgba(255,159,10,.15);border:1px solid rgba(255,159,10,.3);text-align:center;line-height:20px;font-size:10px}
-.chapter-ttl{font-size:clamp(26px,3.5vw,34px);font-weight:800;letter-spacing:-1.2px;margin-bottom:10px;line-height:1.15}
-.chapter-desc{font-size:15px;color:var(--ls);line-height:1.75;max-width:640px;margin-bottom:32px}
+/* Il numero di capitolo era una pallina ambra col numero dentro; in mono e
+   allineato al titolo dice la stessa cosa senza fare da bersaglio. */
+.chapter-num{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9.5px;font-weight:400;color:var(--lt);text-transform:uppercase;letter-spacing:.16em;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--sep)}
+.chapter-num span{display:inline-block;width:auto;height:auto;border-radius:0;background:none;border:0;text-align:left;line-height:1;font-size:9.5px;color:var(--orng)}
+.chapter-ttl{font-family:var(--disp);font-size:clamp(30px,4vw,40px);font-weight:600;letter-spacing:.3px;text-transform:uppercase;margin-bottom:12px;line-height:1.05}
+.chapter-desc{font-size:15px;color:var(--ls);line-height:1.75;max-width:660px;margin-bottom:32px}
 
 /* ── Section ── */
 .section{margin-bottom:48px}
-.section-ttl{font-size:20px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px}
+.section-ttl{font-family:var(--disp);font-size:22px;font-weight:600;letter-spacing:.2px;text-transform:uppercase;margin-bottom:6px}
 .section-sub{font-size:13px;color:var(--lt);margin-bottom:20px;line-height:1.6}
 
 /* ── Cards ── */
-.card{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border-radius:var(--r);border:1px solid var(--gl-border);border-top-color:var(--gl-edge);box-shadow:var(--shadow);padding:24px;margin-bottom:16px;position:relative;overflow:hidden}
-.card-accent{position:absolute;top:0;left:0;right:0;height:3px}
-.card-ttl{font-size:12px;font-weight:700;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:16px}
+.card{background:var(--bg1);border-radius:var(--rsm);border:1px solid var(--sep);box-shadow:none;padding:22px;margin-bottom:16px;position:relative;overflow:hidden}
+.card-accent{position:absolute;top:0;left:0;width:28px;height:2px}
+.card-ttl{font-family:var(--mono);font-size:9.5px;font-weight:400;color:var(--lt);text-transform:uppercase;letter-spacing:.14em;margin-bottom:16px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:700px){.g2{grid-template-columns:1fr}}
 
 /* ── Formula ── */
-.formula{font-family:var(--mono);font-size:13px;background:rgba(90,200,250,.05);border:1px solid rgba(90,200,250,.15);border-left:3px solid var(--teal);border-radius:0 var(--rxs) var(--rxs) 0;padding:14px 18px;margin:16px 0;color:var(--teal);line-height:1.8}
-.formula .comment{color:rgba(90,200,250,.5);font-size:12px}
+.formula{font-family:var(--mono);font-size:12.5px;background:var(--bg1);border:1px solid var(--sep);border-left:2px solid var(--teal);border-radius:0 var(--rxs) var(--rxs) 0;padding:14px 18px;margin:16px 0;color:var(--teal);line-height:1.8;overflow-x:auto}
+.formula .comment{color:var(--lt);font-size:12px}
 
 /* ── Example / Note ── */
-.ex{background:rgba(255,159,10,.04);border:1px solid rgba(255,159,10,.15);border-left:3px solid var(--orng);border-radius:0 var(--rxs) var(--rxs) 0;padding:14px 18px;margin-top:14px;font-size:13px;color:var(--lt);line-height:1.8}
+.ex{background:none;border:0;border-left:2px solid var(--orng);border-radius:0;padding:4px 0 4px 16px;margin-top:16px;font-size:13px;color:var(--lt);line-height:1.8}
 .ex strong{color:var(--orng)}
-.note{background:rgba(10,132,255,.04);border:1px solid rgba(10,132,255,.15);border-left:3px solid var(--blue);border-radius:0 var(--rxs) var(--rxs) 0;padding:12px 16px;margin-top:12px;font-size:13px;color:var(--lt);line-height:1.7}
+.note{background:none;border:0;border-left:2px solid var(--sep2);border-radius:0;padding:4px 0 4px 16px;margin-top:14px;font-size:13px;color:var(--lt);line-height:1.7}
 
 /* ── Body text ── */
 .body{font-size:14px;color:var(--ls);line-height:1.85;margin-bottom:12px}
@@ -90,81 +99,84 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .body strong{color:var(--lp)}
 
 /* ── Tags ── */
-.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;vertical-align:middle}
-.tag-green{background:rgba(48,209,88,.1);color:var(--green);border:1px solid rgba(48,209,88,.2)}
-.tag-red{background:rgba(255,69,58,.08);color:var(--red);border:1px solid rgba(255,69,58,.15)}
-.tag-orng{background:rgba(255,159,10,.1);color:var(--orng);border:1px solid rgba(255,159,10,.2)}
-.tag-blue{background:rgba(10,132,255,.1);color:var(--blue);border:1px solid rgba(10,132,255,.2)}
-.tag-purp{background:rgba(191,90,242,.1);color:var(--purp);border:1px solid rgba(191,90,242,.2)}
-.tag-teal{background:rgba(90,200,250,.1);color:var(--teal);border:1px solid rgba(90,200,250,.2)}
+/* Sei varianti piene facevano concorrenza al testo. Il colore resta perche'
+   qui distingue "regge" da "non regge", ma senza riempimento. */
+.tag{display:inline-block;padding:1px 7px;border-radius:var(--rxs);font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.06em;vertical-align:middle;background:none}
+.tag-green{background:none;color:var(--green);border:1px solid rgba(95,174,126,.4)}
+.tag-red{background:none;color:var(--red);border:1px solid rgba(201,112,100,.4)}
+.tag-orng{background:none;color:var(--orng);border:1px solid rgba(255,176,32,.4)}
+.tag-blue{background:none;color:var(--blue);border:1px solid rgba(90,147,196,.4)}
+.tag-purp{background:none;color:var(--purp);border:1px solid rgba(158,143,191,.4)}
+.tag-teal{background:none;color:var(--teal);border:1px solid rgba(111,180,196,.4)}
 
 /* ── Stat row ── */
-.stat-row{display:flex;gap:12px;margin:16px 0;flex-wrap:wrap}
-.stat-item{flex:1;min-width:110px;background:rgba(255,255,255,.04);border:1px solid var(--sep);border-top-color:var(--sep2);border-radius:var(--rsm);padding:14px 16px;text-align:center}
-.stat-val{font-size:28px;font-weight:800;letter-spacing:-1px;font-family:var(--mono)}
-.stat-lbl{font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
+.stat-row{display:flex;gap:0;margin:18px 0;flex-wrap:wrap;border-top:1px solid var(--sep);border-bottom:1px solid var(--sep)}
+.stat-item{flex:1;min-width:110px;background:none;border:0;border-radius:0;padding:14px 16px;text-align:left}
+.stat-item + .stat-item{border-left:1px solid var(--sep)}
+.stat-val{font-size:26px;font-weight:500;letter-spacing:-.5px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.stat-lbl{font-family:var(--mono);font-size:9px;color:var(--lt);text-transform:uppercase;letter-spacing:.14em;margin-top:6px}
 
 /* ── Pipeline ── */
 .pipeline{display:flex;flex-direction:column;gap:0;margin:20px 0}
 .pipe-step{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--sep)}
 .pipe-step:last-child{border-bottom:none}
-.pipe-n{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:rgba(255,159,10,.12);border:1px solid rgba(255,159,10,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--orng);margin-top:2px}
+.pipe-n{width:auto;height:auto;border-radius:0;background:none;border:0;display:block;font-family:var(--mono);font-size:10px;font-weight:400;color:var(--orng);margin-top:4px;flex-shrink:0;letter-spacing:.1em}
 .pipe-body{flex:1}
 .pipe-title{font-size:14px;font-weight:600;margin-bottom:4px}
 .pipe-desc{font-size:13px;color:var(--ls);line-height:1.7}
 
 /* ── Divider ── */
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--sep2),transparent);margin:56px 0}
+.divider{height:1px;background:var(--sep);margin:56px 0}
 
 /* ── CSS Charts (no Plotly) ── */
 .css-chart{margin:16px 0}
-.bar-chart{display:flex;flex-direction:column;gap:8px;padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm)}
+.bar-chart{display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm)}
 .bar-row{display:flex;align-items:center;gap:12px}
 .bar-label{font-size:12px;color:var(--ls);width:130px;flex-shrink:0;text-align:right}
-.bar-track{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;position:relative}
-.bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
-.bar-val{font-size:11px;font-family:var(--mono);color:var(--ls);width:40px;flex-shrink:0;text-align:left}
+.bar-track{flex:1;height:6px;background:rgba(233,240,236,.07);border-radius:3px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:3px;transition:width .6s ease}
+.bar-val{font-size:11px;font-family:var(--mono);color:var(--ls);width:44px;flex-shrink:0;text-align:left;font-variant-numeric:tabular-nums}
 
 /* ── Gaussian curve (SVG inline) ── */
-.gaussian-wrap{padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0}
-.gaussian-wrap text{font-family:var(--font);fill:rgba(235,235,245,.35);font-size:11px}
+.gaussian-wrap{padding:16px;background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0}
+.gaussian-wrap text{font-family:var(--mono);fill:var(--lt);font-size:10px}
 
 /* ── Bayesian convergence CSS animation ── */
-.bayes-vis{padding:20px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0}
+.bayes-vis{padding:20px;background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0}
 .bayes-lines{display:flex;flex-direction:column;gap:14px}
 .bayes-row{display:flex;align-items:center;gap:12px}
-.bayes-n{font-size:11px;font-family:var(--mono);color:var(--lt);width:30px;text-align:right;flex-shrink:0}
-.bayes-track{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:3px;position:relative}
+.bayes-n{font-size:11px;font-family:var(--mono);color:var(--lt);width:34px;text-align:right;flex-shrink:0}
+.bayes-track{flex:1;height:5px;background:rgba(233,240,236,.06);border-radius:3px;position:relative}
 .bayes-fill{height:100%;border-radius:3px}
-.bayes-pct{font-size:11px;font-family:var(--mono);width:40px;flex-shrink:0}
+.bayes-pct{font-size:11px;font-family:var(--mono);width:44px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .bayes-legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
-.bayes-leg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--lt)}
-.bayes-leg-dot{width:12px;height:3px;border-radius:2px}
+.bayes-leg-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;color:var(--lt);text-transform:uppercase;letter-spacing:.1em}
+.bayes-leg-dot{width:14px;height:2px;border-radius:1px}
 
 /* ── Radar visualization ── */
-.radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
-.radar-dim{background:rgba(255,255,255,.03);border:1px solid var(--sep);border-radius:var(--rsm);padding:12px 16px}
-.radar-dim-lbl{font-size:11px;color:var(--lt);margin-bottom:6px}
-.radar-dim-bar{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
-.radar-dim-fill{height:100%;border-radius:3px}
+.radar-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin:16px 0}
+.radar-dim{background:none;border:0;border-bottom:1px solid var(--sep);border-radius:0;padding:11px 0}
+.radar-dim-lbl{font-size:11.5px;color:var(--lt);margin-bottom:7px}
+.radar-dim-bar{height:4px;background:rgba(233,240,236,.06);border-radius:2px;overflow:hidden}
+.radar-dim-fill{height:100%;border-radius:2px}
 
 /* ── Age curve special ── */
-.age-curve{padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0;overflow:hidden}
+.age-curve{padding:16px;background:var(--bg1);border:1px solid var(--sep);border-radius:var(--rsm);margin:16px 0;overflow:hidden}
 
 /* ── Physical reliability visual ── */
 .reliability-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:16px 0}
-.rel-cell{aspect-ratio:1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px}
-.rel-ok{background:rgba(48,209,88,.25);color:var(--green)}
-.rel-inj{background:rgba(255,69,58,.2);color:var(--red)}
-.rel-miss{background:rgba(255,255,255,.05);color:var(--lt)}
-.rel-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-.rel-leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--lt)}
+.rel-cell{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px}
+.rel-ok{background:rgba(95,174,126,.22);color:var(--green)}
+.rel-inj{background:rgba(201,112,100,.22);color:var(--red)}
+.rel-miss{background:rgba(233,240,236,.05);color:var(--lt)}
+.rel-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.rel-leg{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;color:var(--lt);text-transform:uppercase;letter-spacing:.1em}
 .rel-swatch{width:12px;height:12px;border-radius:3px}
 
 /* ── Watermark ── */
-#wm{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;padding:5px 14px 5px 10px;background:rgba(255,255,255,.04);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border:1px solid rgba(255,255,255,.09);border-top-color:rgba(255,255,255,.14);border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,.4);z-index:800;pointer-events:none}
-#wm-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(48,209,88,.6)}
-#wm-text{font-size:10px;font-weight:500;letter-spacing:.3px;color:rgba(235,235,245,.25);white-space:nowrap}
+#wm{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:5px 13px;background:var(--bg2);border:1px solid var(--sep);border-radius:var(--rsm);box-shadow:0 6px 20px rgba(0,0,0,.5);z-index:800;pointer-events:none}
+#wm-dot{width:5px;height:5px;border-radius:50%;background:var(--orng);box-shadow:none}
+#wm-text{font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:.1em;color:var(--lt);white-space:nowrap;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -180,17 +192,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
     </div>
   </div>
   <span style="margin-left:auto;margin-right:10px" data-i18n-switcher></span>
-  <a href="homepage.html" data-i18n-title="nav_back_homepage" title="Torna alla Homepage" style="display:inline-flex;align-items:center;gap:6px;
-    height:30px;padding:0 13px;border-radius:9px;font-size:12px;font-weight:700;
-    background:rgba(255,159,10,.12);border:1px solid rgba(255,159,10,.35);
-    border-top-color:rgba(255,159,10,.5);color:#ff9f0a;
-    text-decoration:none;margin-right:8px;
-    box-shadow:0 2px 8px rgba(255,159,10,.15),inset 0 1px 0 rgba(255,255,255,.07);
-    transition:all .18s;white-space:nowrap"
-    onmouseover="this.style.background='rgba(255,159,10,.2)';this.style.transform='translateY(-1px)'"
-    onmouseout="this.style.background='rgba(255,159,10,.12)';this.style.transform='translateY(0)'">
-    &#127968; <span data-i18n="nav_home">Homepage</span>
-  </a>
+  <a href="homepage.html" data-i18n-title="nav_back_homepage" title="Torna alla Homepage" style="margin-right:14px"><span data-i18n="nav_home">Homepage</span></a>
   <span class="nav-badge" data-i18n="footer_private">Uso Privato</span>
 </nav>
 
@@ -236,8 +238,8 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
         and validated with <strong style="color:var(--green)">Bootstrap confidence intervals</strong>.
       </p>
       <div class="stat-row">
-        <div class="stat-item"><div class="stat-val" style="color:var(--orng)">6</div><div class="stat-lbl" data-it="KPI indipendenti" data-en="Independent KPIs">Independent KPIs</div></div>
-        <div class="stat-item"><div class="stat-val" style="color:var(--blue)">406</div><div class="stat-lbl" data-it="Giocatori ordinati" data-en="Players ranked">Players ranked</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--orng)">7</div><div class="stat-lbl" data-it="Dimensioni indipendenti" data-en="Independent dimensions">Independent KPIs</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--blue)">381</div><div class="stat-lbl" data-it="Giocatori ordinati" data-en="Players ranked">Players ranked</div></div>
         <div class="stat-item"><div class="stat-val" style="color:var(--green)">0.70</div><div class="stat-lbl" data-it="r predittiva" data-en="Predictive r">Predictive r</div></div>
         <div class="stat-item"><div class="stat-val" style="color:var(--purp)">5</div><div class="stat-lbl" data-it="Contesti" data-en="Contexts">Contexts</div></div>
       </div>
@@ -474,14 +476,14 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
     <!-- ── ETA INDEX ── -->
     <div class="chapter" id="eta">
-      <div class="chapter-num" style="color:var(--teal)"><span style="background:rgba(90,200,250,.15);border-color:rgba(90,200,250,.3)">★</span></div>
+      <div class="chapter-num"><span data-it="Nuovi indici" data-en="New indices">Nuovi indici</span><span data-it="Modulatore scout" data-en="Scout modulator">Modulatore scout</span></div>
       <h2 class="chapter-ttl"><span data-it="Età Index" data-en="Age Index">Età Index</span> <span class="tag tag-teal" style="font-size:14px;vertical-align:middle;margin-left:6px">AII</span></h2>
       <p class="chapter-desc" data-it="Indice composito che misura il valore del giocatore considerando il ciclo di carriera — picco prestativo, esperienza accumulata e freschezza fisica. Usato nel <strong style=&quot;color:var(--teal)&quot;>TPI Pro</strong> come dimensione opzionale." data-en="A composite index measuring a player's value across the career cycle — performance peak, accumulated experience and physical freshness. Used in <strong style=&quot;color:var(--teal)&quot;>TPI Pro</strong> as an optional dimension.">Indice composito che misura il valore del giocatore considerando il ciclo di carriera — picco prestativo, esperienza accumulata e freschezza fisica. Usato nel <strong style="color:var(--teal)">TPI Pro</strong> come dimensione opzionale.</p>
 
       <div class="section">
         <h3 class="section-ttl" data-it="Componenti della formula" data-en="Formula components">Componenti della formula</h3>
-        <div class="formula" data-it="AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>PeakProximity = exp(−0.5 × ((età − 27) / 4.5)²)   <span class=&quot;comment&quot;>// Gaussiana, picco a 27 anni</span><br>ExperienceFactor = min(1.0, (età − 17) / 10.0)      <span class=&quot;comment&quot;>// satura dopo ~10 anni di carriera</span><br>Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span class=&quot;comment&quot;>// −5%/anno</span>" data-en="AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>PeakProximity = exp(−0.5 × ((age − 27) / 4.5)²)   <span class=&quot;comment&quot;>// Gaussian, peak at 27</span><br>ExperienceFactor = min(1.0, (age − 17) / 10.0)      <span class=&quot;comment&quot;>// saturates after ~10 years of career</span><br>Freshness = 1.0 if age ≤ 27, else max(0, 1 − (age−27)×0.05) <span class=&quot;comment&quot;>// −5%/year</span>">AII = 0.50 × PeakProximity + 0.30 × ExperienceFactor + 0.20 × Freshness<br><br>
-PeakProximity = exp(−0.5 × ((età − 27) / 4.5)²)   <span class="comment">// Gaussiana, picco a 27 anni</span><br>
+        <div class="formula" data-it="AII = 0.55 × ScoutPeak + 0.25 × GrowthPotential + 0.20 × Freshness<br><br>ScoutPeak = exp(−0.5 × ((età − 23) / 3.5)²)   <span class=&quot;comment&quot;>// Gaussiana, picco a 23 anni</span><br>GrowthPotential = max(0, (23 − età) / 5)      <span class=&quot;comment&quot;>// 1.0 a 18 anni, 0 dal picco in poi</span><br>Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.06) <span class=&quot;comment&quot;>// −6%/anno</span>" data-en="AII = 0.55 × ScoutPeak + 0.25 × GrowthPotential + 0.20 × Freshness<br><br>ScoutPeak = exp(−0.5 × ((age − 23) / 3.5)²)   <span class=&quot;comment&quot;>// Gaussian, peak at 23</span><br>GrowthPotential = max(0, (23 − age) / 5)      <span class=&quot;comment&quot;>// 1.0 at 18, 0 from the peak on</span><br>Freshness = 1.0 if age ≤ 27, else max(0, 1 − (age−27)×0.06) <span class=&quot;comment&quot;>// −6%/year</span>">AII = 0.55 × ScoutPeak + 0.25 × GrowthPotential + 0.20 × Freshness<br><br>
+ScoutPeak = exp(−0.5 × ((età − 23) / 3.5)²)   <span class="comment">// Gaussiana, picco a 23 anni</span><br>
 ExperienceFactor = min(1.0, (età − 17) / 10.0)      <span class="comment">// satura dopo ~10 anni di carriera</span><br>
 Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span class="comment">// −5%/anno</span></div>
 
@@ -490,34 +492,34 @@ Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span
           <div class="age-curve">
             <div style="font-size:10px;color:var(--lt);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px" data-it="Age Impact Index per fascia d'età" data-en="Age Impact Index by age band">Age Impact Index per fascia d'età</div>
             <div class="bar-chart" style="border:none;padding:0;background:none">
-              <div class="bar-row"><span class="bar-label" data-it="18 anni" data-en="18 yrs">18 anni</span><div class="bar-track"><div class="bar-fill" style="width:42%;background:rgba(90,200,250,.5)"></div></div><span class="bar-val" style="color:var(--teal)">0.42</span></div>
-              <div class="bar-row"><span class="bar-label" data-it="21 anni" data-en="21 yrs">21 anni</span><div class="bar-track"><div class="bar-fill" style="width:61%;background:rgba(90,200,250,.6)"></div></div><span class="bar-val" style="color:var(--teal)">0.61</span></div>
-              <div class="bar-row"><span class="bar-label" data-it="24 anni" data-en="24 yrs">24 anni</span><div class="bar-track"><div class="bar-fill" style="width:79%;background:rgba(48,209,88,.65)"></div></div><span class="bar-val" style="color:var(--green)">0.79</span></div>
-              <div class="bar-row"><span class="bar-label"><span data-it="27 anni" data-en="27 yrs">27 anni</span> <span style="color:var(--orng)">★</span></span><div class="bar-track"><div class="bar-fill" style="width:90%;background:rgba(48,209,88,.9);outline:1.5px solid var(--orng)"></div></div><span class="bar-val" style="color:var(--green)">0.90</span></div>
-              <div class="bar-row"><span class="bar-label" data-it="29 anni" data-en="29 yrs">29 anni</span><div class="bar-track"><div class="bar-fill" style="width:83%;background:rgba(48,209,88,.7)"></div></div><span class="bar-val" style="color:var(--green)">0.83</span></div>
-              <div class="bar-row"><span class="bar-label" data-it="32 anni" data-en="32 yrs">32 anni</span><div class="bar-track"><div class="bar-fill" style="width:68%;background:rgba(255,159,10,.6)"></div></div><span class="bar-val" style="color:var(--orng)">0.68</span></div>
-              <div class="bar-row"><span class="bar-label" data-it="35 anni" data-en="35 yrs">35 anni</span><div class="bar-track"><div class="bar-fill" style="width:46%;background:rgba(255,69,58,.5)"></div></div><span class="bar-val" style="color:var(--red)">0.46</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="18 anni" data-en="18 yrs">18 anni</span></span><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--clay)"></div></div><span class="bar-val" style="color:var(--clay)">0.65</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="21 anni" data-en="21 yrs">21 anni</span></span><div class="bar-track"><div class="bar-fill" style="width:77%;background:var(--green)"></div></div><span class="bar-val" style="color:var(--green)">0.77</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="22 anni" data-en="22 yrs">22 anni</span> <span style="color:var(--orng)">★</span></span><div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--green);outline:1.5px solid var(--orng)"></div></div><span class="bar-val" style="color:var(--green)">0.78</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="25 anni" data-en="25 yrs">25 anni</span></span><div class="bar-track"><div class="bar-fill" style="width:67%;background:var(--green)"></div></div><span class="bar-val" style="color:var(--green)">0.67</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="27 anni" data-en="27 yrs">27 anni</span></span><div class="bar-track"><div class="bar-fill" style="width:49%;background:var(--orng)"></div></div><span class="bar-val" style="color:var(--orng)">0.49</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="30 anni" data-en="30 yrs">30 anni</span></span><div class="bar-track"><div class="bar-fill" style="width:24%;background:var(--clay)"></div></div><span class="bar-val" style="color:var(--clay)">0.24</span></div>
+              <div class="bar-row"><span class="bar-label"><span data-it="35 anni" data-en="35 yrs">35 anni</span></span><div class="bar-track"><div class="bar-fill" style="width:11%;background:var(--clay)"></div></div><span class="bar-val" style="color:var(--clay)">0.11</span></div>
             </div>
           </div>
         </div>
 
         <div class="g2">
-          <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--teal),var(--blue))"></div><div class="card-ttl" data-it="Alto AII = alta rilevanza scout" data-en="High AII = high scouting relevance">Alto AII = alta rilevanza scout</div><div class="body" style="font-size:13px" data-it="Un giocatore di 24 anni con TPI Pro alto ha <strong style=&quot;color:var(--teal)&quot;>potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo." data-en="A 24-year-old with a high TPI Pro has <strong style=&quot;color:var(--teal)&quot;>huge potential</strong> — expected value over the next 5 years is maximal.">Un giocatore di 24 anni con TPI Pro alto ha <strong style="color:var(--teal)">potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo.</div></div>
+          <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--teal),var(--blue))"></div><div class="card-ttl" data-it="Alto AII = alta rilevanza scout" data-en="High AII = high scouting relevance">Alto AII = alta rilevanza scout</div><div class="body" style="font-size:13px" data-it="Un giocatore di 22 anni con TPI Pro alto ha <strong style=&quot;color:var(--teal)&quot;>potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo." data-en="A 22-year-old with a high TPI Pro has <strong style=&quot;color:var(--teal)&quot;>huge potential</strong> — expected value over the next 5 years is maximal.">Un giocatore di 22 anni con TPI Pro alto ha <strong style="color:var(--teal)">potenziale enorme</strong> — il valore atteso nei prossimi 5 anni è massimo.</div></div>
           <div class="card"><div class="card-accent" style="background:linear-gradient(90deg,var(--orng),var(--red))"></div><div class="card-ttl" data-it="Basso AII ≠ cattivo giocatore" data-en="Low AII ≠ bad player">Basso AII ≠ cattivo giocatore</div><div class="body" style="font-size:13px" data-it="Un 34enne con TPI classico alto resta eccellente. L'AII basso indica solo che il <strong style=&quot;color:var(--orng)&quot;>ciclo è avanzato</strong> — rilevante per decisioni di acquisto a lungo termine." data-en="A 34-year-old with a high classic TPI is still excellent. A low AII only indicates the <strong style=&quot;color:var(--orng)&quot;>cycle is advanced</strong> — relevant for long-term signing decisions.">Un 34enne con TPI classico alto resta eccellente. L'AII basso indica solo che il <strong style="color:var(--orng)">ciclo è avanzato</strong> — rilevante per decisioni di acquisto a lungo termine.</div></div>
         </div>
 
 
 
-        <div class="ex" data-it="<strong>Esempio pratico:</strong><br>Lautaro (29 anni) TPI = +1.75, AII = 0.83 → TPI Pro alto, ciclo avanzato<br>Yildiz (19 anni) TPI = +1.20, AII = 0.42 → TPI Pro moderato, <strong style=&quot;color:var(--teal)&quot;>potenziale enorme</strong><br>Per uno scouting a 3 anni → Yildiz è la scelta migliore nonostante TPI inferiore." data-en="<strong>Practical example:</strong><br>Lautaro (29 yrs) TPI = +1.75, AII = 0.83 → high TPI Pro, advanced cycle<br>Yildiz (19 yrs) TPI = +1.20, AII = 0.42 → moderate TPI Pro, <strong style=&quot;color:var(--teal)&quot;>huge potential</strong><br>For a 3-year scouting horizon → Yildiz is the better pick despite a lower TPI."><strong>Esempio pratico:</strong><br>
-        Lautaro (29 anni) TPI = +1.75, AII = 0.83 → TPI Pro alto, ciclo avanzato<br>
-        Yildiz (19 anni) TPI = +1.20, AII = 0.42 → TPI Pro moderato, <strong style="color:var(--teal)">potenziale enorme</strong><br>
+        <div class="ex" data-it="<strong>Esempio pratico:</strong><br>Lautaro (29 anni) TPI = +1.75, AII = 0.30 → TPI alto, ciclo avanzato<br>Yildiz (19 anni) TPI = +1.20, AII = 0.69 → TPI moderato, <strong style=&quot;color:var(--teal)&quot;>potenziale enorme</strong><br>Per uno scouting a 3 anni → Yildiz è la scelta migliore nonostante TPI inferiore." data-en="<strong>Practical example:</strong><br>Lautaro (29 yrs) TPI = +1.75, AII = 0.30 → high TPI, advanced cycle<br>Yildiz (19 yrs) TPI = +1.20, AII = 0.69 → moderate TPI, <strong style=&quot;color:var(--teal)&quot;>huge potential</strong><br>For a 3-year scouting horizon → Yildiz is the better pick despite a lower TPI."><strong>Esempio pratico:</strong><br>
+        Lautaro (29 anni) TPI = +1.75, AII = 0.30 → TPI alto, ciclo avanzato<br>
+        Yildiz (19 anni) TPI = +1.20, AII = 0.69 → TPI moderato, <strong style="color:var(--teal)">potenziale enorme</strong><br>
         Per uno scouting a 3 anni → Yildiz è la scelta migliore nonostante TPI inferiore.</div>
       </div>
     </div>
 
     <!-- ── AFFIDABILITÀ FISICA ── -->
     <div class="chapter" id="fisica">
-      <div class="chapter-num" style="color:var(--purp)"><span style="background:rgba(191,90,242,.15);border-color:rgba(191,90,242,.3)">★</span></div>
+      <div class="chapter-num"><span data-it="Nuovi indici" data-en="New indices">Nuovi indici</span><span data-it="Modulatore scout" data-en="Scout modulator">Modulatore scout</span></div>
       <h2 class="chapter-ttl"><span data-it="Affidabilità Fisica" data-en="Physical Reliability">Affidabilità Fisica</span> <span class="tag tag-purp" style="font-size:14px;vertical-align:middle;margin-left:6px">PRI</span></h2>
       <p class="chapter-desc" data-it="Misura quanto un giocatore è fisicamente presente e affidabile — basato su disponibilità reale, frequenza degli infortuni e gravità delle assenze. Richiede la tabella <code style=&quot;font-family:var(--mono);font-size:13px;color:var(--purp)&quot;>t_infortuni</code> nel DB." data-en="Measures how physically present and reliable a player is — based on real availability, injury frequency and absence severity. Requires the <code style=&quot;font-family:var(--mono);font-size:13px;color:var(--purp)&quot;>t_infortuni</code> table in the DB.">Misura quanto un giocatore è fisicamente presente e affidabile — basato su disponibilità reale, frequenza degli infortuni e gravità delle assenze. Richiede la tabella <code style="font-family:var(--mono);font-size:13px;color:var(--purp)">t_infortuni</code> nel DB.</p>
 
@@ -591,7 +593,7 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
       <div class="g2" style="margin-top:16px">
         <div class="card">
           <div class="card-accent" style="background:linear-gradient(90deg,var(--red),var(--orng))"></div>
-          <div class="card-ttl" style="color:var(--red)" data-it="❌ z-score standard (vecchio)" data-en="❌ Standard z-score (old)">❌ Standard z-score (old)</div>
+          <div class="card-ttl" style="color:var(--red)" data-it="z-score standard (vecchio)" data-en="Standard z-score (old)">Standard z-score (old)</div>
           <div class="body" style="font-size:13px;margin-top:8px" data-it="Un giocatore con 1.2 xG/90 in 2 partite gonfia la σ dell'intera lega. Risultato: lo z-score di tutti gli altri viene compresso — classifiche distorte." data-en="A player with 1.2 xG/90 in 2 matches inflates σ for the entire league. Result: everyone else's z-score is compressed — rankings distorted.">
             A player with 1.2 xG/90 in 2 matches inflates σ for the entire league.
             Result: everyone else's z-score is compressed — rankings distorted.
@@ -599,7 +601,7 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
         </div>
         <div class="card">
           <div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
-          <div class="card-ttl" style="color:var(--green)" data-it="✅ z-score winsorizzato (nuovo)" data-en="✅ Winsorized z-score (new)">✅ Winsorized z-score (new)</div>
+          <div class="card-ttl" style="color:var(--green)" data-it="z-score winsorizzato (nuovo)" data-en="Winsorized z-score (new)">Winsorized z-score (new)</div>
           <div class="body" style="font-size:13px;margin-top:8px" data-it="Il 5% superiore/inferiore viene tagliato prima di calcolare μ e σ. L'outlier segna comunque +3.0, ma non distorce la distribuzione per tutti gli altri." data-en="Top/bottom 5% trimmed before computing μ and σ. Outlier still scores +3.0, but doesn't distort the distribution for everyone else.">
             Top/bottom 5% trimmed before computing μ and σ.
             Outlier still scores +3.0, but doesn't distort the distribution for everyone else.
@@ -693,14 +695,14 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
         </div>
         <div class="g2" style="margin-top:12px">
           <div class="card">
-            <div class="card-ttl" style="color:var(--red)">❌ Old: CV = σ/μ</div>
+            <div class="card-ttl" style="color:var(--red)">Old: CV = σ/μ</div>
             <div class="body" style="font-size:13px;margin-top:8px" data-it="Se μ = 0.05 e σ = 0.04 → CV = 0.80 → Consistenza = 0.20<br>Ma se μ = 0.05 e σ = 0.051 → Consistenza = −0.02 → negativa!" data-en="If μ = 0.05 and σ = 0.04 → CV = 0.80 → Consistency = 0.20<br>But if μ = 0.05 and σ = 0.051 → Consistency = −0.02 → negative!">
               If μ = 0.05 and σ = 0.04 → CV = 0.80 → Consistency = 0.20<br>
               But if μ = 0.05 and σ = 0.051 → Consistency = −0.02 → negative!
             </div>
           </div>
           <div class="card">
-            <div class="card-ttl" style="color:var(--green)">✅ New: IQR-based</div>
+            <div class="card-ttl" style="color:var(--green)">New: IQR-based</div>
             <div class="body" style="font-size:13px;margin-top:8px" data-it="Sempre limitata a [0, 1]. Robusta a una singola partita outlier. Un giocatore con 8 partite costanti e 1 exploit è valutato più coerentemente che con il CV." data-en="Always bounded [0, 1]. Robust to a single outlier match. A player with 8 steady games and 1 explosion is rated more consistently than with CV.">
               Always bounded [0, 1]. Robust to a single outlier match.
               A player with 8 steady games and 1 explosion is rated more consistently than with CV.
@@ -763,11 +765,11 @@ SeverityOk = max(0, 1 − giorni_out / 90)       <span class="comment">// −1.1
         <h3 class="section-ttl" data-it="I 5 contesti di analisi" data-en="The 5 analysis contexts">I 5 contesti di analisi</h3>
         <div class="css-chart">
           <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">📊</div><div style="font-size:11px;font-weight:700" data-it="Totale" data-en="Total">Totale</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Tutta la stagione" data-en="Whole season">Tutta la stagione</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">🏠</div><div style="font-size:11px;font-weight:700" data-it="Casa" data-en="Home">Casa</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Solo in casa" data-en="Home only">Solo in casa</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">✈️</div><div style="font-size:11px;font-weight:700" data-it="Trasferta" data-en="Away">Trasferta</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Solo fuori" data-en="Away only">Solo fuori</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">⭐</div><div style="font-size:11px;font-weight:700">vs Top 6</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Big match" data-en="Big match">Big match</div></div>
-            <div class="stat-item" style="text-align:center"><div style="font-size:18px;margin-bottom:4px">🛡</div><div style="font-size:11px;font-weight:700" data-it="vs Difese" data-en="vs Defenses">vs Difese</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Top 6 difese" data-en="Top 6 defenses">Top 6 difese</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:11px;font-weight:700" data-it="Totale" data-en="Total">Totale</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Tutta la stagione" data-en="Whole season">Tutta la stagione</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:11px;font-weight:700" data-it="Casa" data-en="Home">Casa</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Solo in casa" data-en="Home only">Solo in casa</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:11px;font-weight:700" data-it="Trasferta" data-en="Away">Trasferta</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Solo fuori" data-en="Away only">Solo fuori</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:11px;font-weight:700">vs Top 6</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Big match" data-en="Big match">Big match</div></div>
+            <div class="stat-item" style="text-align:center"><div style="font-size:11px;font-weight:700" data-it="vs Difese" data-en="vs Defenses">vs Difese</div><div style="font-size:10px;color:var(--lt);margin-top:2px" data-it="Top 6 difese" data-en="Top 6 defenses">Top 6 difese</div></div>
           </div>
         </div>
       </div>
