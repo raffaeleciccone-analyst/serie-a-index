@@ -427,11 +427,15 @@ tr:hover td{background:rgba(233,240,236,.03)}
 <div class="hero">
   <div class="hero-eyebrow">Serie A Scout Index &middot; TPI System</div>
   <div class="hero-ttl" data-i18n="val_title">Model Validation</div>
-  <div class="hero-sub" data-it="15 test per verificare che il TPI misuri qualit&agrave; reale — non rumore, compreso quello che chiede se batte una baseline banale. Backtest predittivo <strong style=&quot;color:var(--orng)&quot;>r = 0.72</strong>, correlazione Fantacalcio <strong style=&quot;color:var(--orng)&quot;>r = 0.37</strong>. Clicca <strong style=&quot;color:var(--lp)&quot;>?</strong> su ogni sezione per i dettagli metodologici." data-en="15 tests to verify that TPI measures real player quality — not noise, including the one asking whether it beats a trivial baseline. Predictive backtest <strong style=&quot;color:var(--orng)&quot;>r = 0.72</strong>, Fantacalcio correlation <strong style=&quot;color:var(--orng)&quot;>r = 0.37</strong>. Click <strong style=&quot;color:var(--lp)&quot;>?</strong> on each section for methodology details.">15 test per verificare che il TPI misuri qualit&agrave; reale — non rumore, compreso quello che chiede se batte una baseline banale. Backtest predittivo <strong style="color:var(--orng)">r = 0.72</strong>, correlazione Fantacalcio <strong style="color:var(--orng)">r = 0.37</strong>. Clicca <strong style="color:var(--lp)">?</strong> su ogni sezione per i dettagli metodologici.</div>
+  <div class="hero-sub" data-it="Il TPI &egrave; un indice <strong style=&quot;color:var(--lp)&quot;>descrittivo</strong>: ordina i giocatori, non predice il loro rendimento futuro. Messo alla prova contro una baseline banale, l&rsquo;output grezzo per-90, <strong>ha perso</strong>. Quello che regge &egrave; l&rsquo;ordinamento: &rho; fra decili <strong style=&quot;color:var(--orng)&quot;>0.90</strong>. 15 verifiche, riportate come sono uscite. Clicca <strong style=&quot;color:var(--lp)&quot;>?</strong> su ogni sezione per i dettagli metodologici." data-en="The TPI is a <strong style=&quot;color:var(--lp)&quot;>descriptive</strong> index: it ranks players, it does not predict their future output. Tested against a trivial baseline, raw per-90 output, it <strong>lost</strong>. What holds up is the ordering: &rho; across deciles <strong style=&quot;color:var(--orng)&quot;>0.90</strong>. 15 checks, reported exactly as they came out. Click <strong style=&quot;color:var(--lp)&quot;>?</strong> on each section for methodology details.">Il TPI &egrave; un indice <strong style="color:var(--lp)">descrittivo</strong>: ordina i giocatori, non predice il loro rendimento futuro. Messo alla prova contro una baseline banale, l&rsquo;output grezzo per-90, <strong>ha perso</strong>. Quello che regge &egrave; l&rsquo;ordinamento: &rho; fra decili <strong style="color:var(--orng)">0.90</strong>. 15 verifiche, riportate come sono uscite. Clicca <strong style="color:var(--lp)">?</strong> su ogni sezione per i dettagli metodologici.</div>
+  <!-- Sotto i 480px resta visibile solo la prima pill: qui c'era il test piu'
+       debole (Pearson vs Fantacalcio, IC che contiene lo zero). Ora c'e' quello
+       che la pagina rivendica davvero. -->
   <div class="hero-pills">
-    <span class="hero-pill">Pearson r vs Fantacalcio</span>
-    <span class="hero-pill"><span data-it="Sovrapposizione Top 10 WhoScored" data-en="Top 10 Overlap WhoScored">Top 10 Overlap WhoScored</span></span>
-    <span class="hero-pill"><span data-it="Backtest predittivo r=0.72" data-en="Predictive Backtest r=0.72">Predictive Backtest r=0.72</span></span>
+    <span class="hero-pill"><span data-it="Indice descrittivo" data-en="Descriptive index">Indice descrittivo</span></span>
+    <span class="hero-pill"><span data-it="Confronto con baseline banali" data-en="Compared to trivial baselines">Confronto con baseline banali</span></span>
+    <span class="hero-pill"><span data-it="Persistenza su due stagioni" data-en="Two-season persistence">Persistenza su due stagioni</span></span>
+    <span class="hero-pill"><span data-it="Backtest su output grezzo r=0.72" data-en="Backtest on raw output r=0.72">Backtest su output grezzo r=0.72</span></span>
     <span class="hero-pill"><span data-it="Indice Et&agrave; &amp; Fisico" data-en="Age &amp; Physical Index">Age &amp; Physical Index</span></span>
     <span class="hero-pill">TPI Pro</span>
   </div>
@@ -450,10 +454,10 @@ tr:hover td{background:rgba(233,240,236,.03)}
         <div class="guide-body" data-it="<strong style=&quot;color:var(--green)&quot;>r&gt;0.6</strong> forte &middot; <strong style=&quot;color:var(--orng)&quot;>0.4–0.6</strong> moderata &middot; <strong style=&quot;color:var(--red)&quot;>&lt;0.4</strong> debole. Per sport r=0.5 con fonti esterne &egrave; ottimo." data-en="<strong style=&quot;color:var(--green)&quot;>r&gt;0.6</strong> strong &middot; <strong style=&quot;color:var(--orng)&quot;>0.4–0.6</strong> moderate &middot; <strong style=&quot;color:var(--red)&quot;>&lt;0.4</strong> weak. For sport, r=0.5 against external sources is excellent."><strong style="color:var(--green)">r&gt;0.6</strong> forte &middot; <strong style="color:var(--orng)">0.4–0.6</strong> moderata &middot; <strong style="color:var(--red)">&lt;0.4</strong> debole. Per sport r=0.5 con fonti esterne &egrave; ottimo.</div></div>
       <div class="guide-card"><div class="guide-ttl">p-value</div>
         <div class="guide-body" data-it="<strong style=&quot;color:var(--green)&quot;>p&lt;0.05</strong> = significativo. Senza p basso anche r alto potrebbe essere fortuna." data-en="<strong style=&quot;color:var(--green)&quot;>p&lt;0.05</strong> = significant. Without a low p, even a high r could be luck."><strong style="color:var(--green)">p&lt;0.05</strong> = significativo. Senza p basso anche r alto potrebbe essere fortuna.</div></div>
-      <div class="guide-card"><div class="guide-ttl" data-it="Overlap basso = forza" data-en="Low overlap = strength">Overlap basso = forza</div>
-        <div class="guide-body" data-it="Overlap basso = il TPI trova giocatori non valorizzati dalla stampa. 100% = non aggiunge nulla." data-en="Low overlap = the TPI finds players the press undervalues. 100% = it adds nothing.">Overlap basso = il TPI trova giocatori non valorizzati dalla stampa. 100% = non aggiunge nulla.</div></div>
+      <div class="guide-card"><div class="guide-ttl" data-it="Overlap: nessuna soglia" data-en="Overlap: no threshold">Overlap: nessuna soglia</div>
+        <div class="guide-body" data-it="Non c&rsquo;&egrave; un valore che promuove e uno che boccia: alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. Per questo la sezione B &egrave; descrittiva e non un test." data-en="There is no value that passes and one that fails: high would mean &ldquo;confirmed&rdquo;, low &ldquo;finds gems&rdquo;. That is why section B is descriptive and not a test.">Non c&rsquo;&egrave; un valore che promuove e uno che boccia: alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. Per questo la sezione B &egrave; descrittiva.</div></div>
       <div class="guide-card"><div class="guide-ttl">Backtest</div>
-        <div class="guide-body" data-it="Prima met&agrave; stagione predice la seconda? Un indice senza potere predittivo misura solo la fortuna del momento." data-en="Does the first half of the season predict the second? An index with no predictive power only measures momentary luck.">Prima met&agrave; stagione predice la seconda? Un indice senza potere predittivo misura solo la fortuna del momento.</div></div>
+        <div class="guide-body" data-it="Misura se l&rsquo;output offensivo si conferma fra le due met&agrave; della stagione. Riguarda quella rate stat, non il composito: per il composito c&rsquo;&egrave; la sezione Q." data-en="It measures whether attacking output repeats across the two halves of the season. It is about that rate stat, not the composite: for the composite see section Q.">Misura se l&rsquo;output offensivo si conferma fra le due met&agrave; della stagione. Riguarda quella rate stat, non il composito: per il composito c&rsquo;&egrave; la sezione Q.</div></div>
       <div class="guide-card"><div class="guide-ttl">TPI Pro</div>
         <div class="guide-body" data-it="Aggiunge AII (et&agrave;) e PRI (affidabilit&agrave; fisica) al TPI classico. r(TPI,TPI Pro) ideale = 0.80–0.95." data-en="Adds AII (age) and PRI (physical reliability) to the classic TPI. Ideal r(TPI,TPI Pro) = 0.80–0.95.">Aggiunge AII (et&agrave;) e PRI (affidabilit&agrave; fisica) al TPI classico. r(TPI,TPI Pro) ideale = 0.80–0.95.</div></div>
       <div class="guide-card"><div class="guide-ttl" data-it="Limiti" data-en="Limits">Limiti</div>
@@ -477,22 +481,30 @@ tr:hover td{background:rgba(233,240,236,.03)}
                 text-transform:uppercase;letter-spacing:.16em;margin-bottom:16px" data-it="Riepilogo Validazione" data-en="Validation summary">
       Riepilogo Validazione
     </div>
-    <div class="rc-grid"><div class="rc-card" style="">
-          <div class="rc-lbl" data-it="A &mdash; Correlazione Fantacalcio" data-en="A &mdash; Fantacalcio correlation">A &mdash; Correlazione Fantacalcio</div>
-          <div id="badge-a"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
-          <div class="rc-sub">r = 0.37 &middot; n = 29</div>
+    <div class="rc-grid"><div class="rc-card" style="border-left:3px solid var(--orng);">
+          <div class="rc-lbl" data-it="Q &mdash; vs output grezzo" data-en="Q &mdash; vs raw output">Q &mdash; vs output grezzo</div>
+          <div><span class="badge badge-red" data-it="Non la batte" data-en="Does not beat it">Non la batte</span></div>
+          <div class="rc-sub">&Delta;RMSE -0.0205 &middot; n = 473</div>
         </div><div class="rc-card" style="">
-          <div class="rc-lbl" data-it="B &mdash; Overlap Top 10 WhoScored" data-en="B &mdash; Top 10 WhoScored overlap">B &mdash; Overlap Top 10 WhoScored</div>
-          <div id="badge-b"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
-          <div class="rc-sub">40% <span data-it="coincidenza" data-en="overlap">coincidenza</span></div>
+          <div class="rc-lbl" data-it="P &mdash; Persistenza 2 stagioni" data-en="P &mdash; 2-season persistence">P &mdash; Persistenza 2 stagioni</div>
+          <div><span class="badge badge-green" data-it="Regge &#10003;" data-en="Holds &#10003;">Regge &#10003;</span></div>
+          <div class="rc-sub">&rho; +0.33 &rarr; +0.68 &middot; n = 35</div>
         </div><div class="rc-card" style="">
-          <div class="rc-lbl" data-it="C &mdash; Backtest Predittivo" data-en="C &mdash; Predictive Backtest">C &mdash; Backtest Predittivo</div>
+          <div class="rc-lbl" data-it="C &mdash; Backtest su output grezzo" data-en="C &mdash; Backtest on raw output">C &mdash; Backtest su output grezzo</div>
           <div id="badge-c"><span class="badge badge-green" data-it="Buono &#10003;" data-en="Good &#10003;">Buono &#10003;</span></div>
           <div class="rc-sub">r = 0.725 &middot; n = 573</div>
         </div><div class="rc-card" style="border-left:3px solid var(--teal);">
           <div class="rc-lbl" data-it="D &mdash; Et&agrave; &amp; Fisico" data-en="D &mdash; Age &amp; Physical">D &mdash; Et&agrave; &amp; Fisico</div>
-          <div id="badge-d"><span class="badge badge-red" data-it="Basso" data-en="Low">Basso</span></div>
+          <div><span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span></div>
           <div class="rc-sub">AII:100 &middot; PRI:100 &middot; r=-0.203</div>
+        </div><div class="rc-card" style="">
+          <div class="rc-lbl" data-it="A &mdash; Correlazione Fantacalcio" data-en="A &mdash; Fantacalcio correlation">A &mdash; Correlazione Fantacalcio</div>
+          <div><span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span></div>
+          <div class="rc-sub">r = 0.37 &middot; IC [-0.07, 0.664] &middot; n = 29</div>
+        </div><div class="rc-card" style="">
+          <div class="rc-lbl" data-it="B &mdash; Overlap WhoScored" data-en="B &mdash; WhoScored overlap">B &mdash; Overlap WhoScored</div>
+          <div><span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span></div>
+          <div class="rc-sub">40% &middot; p = 0.76</div>
         </div></div>
   </div>
 
@@ -548,13 +560,38 @@ tr:hover td{background:rgba(233,240,236,.03)}
   </div>
 </div>
 
+
+<div class="section" style="margin-bottom:34px">
+  <div class="section-hd">
+    <div class="section-num">&#9679;</div>
+    <div>
+      <div class="section-ttl" data-it="Cosa rivendica questo indice" data-en="What this index claims">Cosa rivendica questo indice</div>
+      <div class="section-sub" data-it="Scritto qui in alto perch&eacute; decide come va letto tutto il resto della pagina." data-en="Stated up here because it decides how the rest of this page should be read.">Scritto qui in alto perch&eacute; decide come va letto tutto il resto della pagina.</div>
+    </div>
+  </div>
+  <div class="g3">
+    <div class="card" style="border-left:2px solid var(--green)">
+      <div class="card-ttl" data-it="Lo fa" data-en="It does">Lo fa</div>
+      <div class="interp" style="border-left:0;padding-left:0" data-it="Ordinare i giocatori dentro una stagione. I decili di TPI salgono insieme al rendimento (&rho; = 0.903), e il ranking di giornata 20 vale gi&agrave; &rho; = 0.62 contro quello finale." data-en="Ranking players within a season. TPI deciles rise together with output (&rho; = 0.903), and the matchday-20 ranking already scores &rho; = 0.62 against the final one.">Ordinare i giocatori dentro una stagione. I decili di TPI salgono insieme al rendimento (&rho; = 0.903), e il ranking di giornata 20 vale gi&agrave; &rho; = 0.62 contro quello finale.</div>
+    </div>
+    <div class="card" style="border-left:2px solid var(--red)">
+      <div class="card-ttl" data-it="Non lo fa" data-en="It does not">Non lo fa</div>
+      <div class="interp" style="border-left:0;padding-left:0" data-it="Predire il rendimento futuro. Messo a confronto con l&rsquo;output grezzo per-90 &mdash; il suo stesso input dominante &mdash; su dati che non aveva visto, il TPI non lo batte (sezione Q). Chi vuole prevedere i gol della prossima met&agrave; di stagione usi quella rate stat, non questo indice." data-en="Predicting future output. Compared with raw per-90 output &mdash; its own dominant input &mdash; on data it had not seen, the TPI does not beat it (section Q). If you want to forecast next half-season goals, use that rate stat, not this index.">Predire il rendimento futuro: contro l&rsquo;output grezzo per-90, su dati mai visti, il TPI non lo batte (sezione Q).</div>
+    </div>
+    <div class="card" style="border-left:2px solid var(--orng)">
+      <div class="card-ttl" data-it="Non &egrave; ancora misurabile" data-en="Not yet measurable">Non &egrave; ancora misurabile</div>
+      <div class="interp" style="border-left:0;padding-left:0" data-it="L&rsquo;ipotesi per cui l&rsquo;indice &egrave; nato: riconoscere chi <em>sta entrando</em> nel prime, non chi ci &egrave; gi&agrave;. Per giudicarla servirebbe seguire gli stessi giocatori per anni; qui ci sono due stagioni. Non &egrave; smentita, &egrave; non testata &mdash; e le due cose non vanno confuse." data-en="The hypothesis the index was built on: spotting who is <em>entering</em> their prime rather than who is already in it. Judging it would mean following the same players for years; there are two seasons here. It is not disproved, it is untested &mdash; and the two are not the same thing.">L&rsquo;ipotesi per cui l&rsquo;indice &egrave; nato: riconoscere chi <em>sta entrando</em> nel prime. Servirebbero anni di dati, qui ce ne sono due. Non &egrave; smentita, &egrave; non testata.</div>
+    </div>
+  </div>
+</div>
+
 <!-- SEZIONE A -->
 <div class="section">
   <div class="section-hd">
     <div class="section-num">A</div>
     <div>
-      <div class="section-ttl"><span data-it="TPI vs Voti Fantacalcio" data-en="TPI vs Fantacalcio Ratings">TPI vs Fantacalcio Ratings</span> <span class="help" onclick="openM('pearson')">?</span></div>
-      <div class="section-sub" data-it="Il TPI correla col consenso degli esperti? r=0.4–0.7 &egrave; l'ideale — abbastanza alto da confermare la qualit&agrave;, abbastanza basso da aggiungere informazione indipendente." data-en="Does TPI correlate with expert consensus? r=0.4–0.7 is ideal — high enough to confirm quality, low enough to add independent insight.">Does TPI correlate with expert consensus? r=0.4–0.7 is ideal — high enough to confirm quality, low enough to add independent insight.</div>
+      <div class="section-ttl"><span data-it="TPI vs Voti Fantacalcio &mdash; descrittivo" data-en="TPI vs Fantacalcio Ratings &mdash; descriptive">TPI vs Voti Fantacalcio &mdash; descrittivo</span> <span class="help" onclick="openM('pearson')">?</span></div>
+      <div class="section-sub" data-it="Confronto col consenso degli esperti su 29 voti inseriti a mano. <strong>Non &egrave; una prova</strong>: con questo campione l&rsquo;intervallo di confidenza di r contiene lo zero, quindi il dato descrive una somiglianza, non la dimostra." data-en="Comparison with expert consensus over 29 hand-entered ratings. <strong>This is not proof</strong>: at this sample size the confidence interval for r contains zero, so the figure describes a resemblance rather than establishing one.">Confronto col consenso degli esperti su 29 voti inseriti a mano. <strong>Non &egrave; una prova</strong>: con questo campione l&rsquo;intervallo di confidenza di r contiene lo zero.</div>
     </div>
   </div>
   <div class="g3">
@@ -594,12 +631,12 @@ tr:hover td{background:rgba(233,240,236,.03)}
   <div class="section-hd">
     <div class="section-num">B</div>
     <div>
-      <div class="section-ttl"><span data-it="Top 10 TPI vs Classifiche WhoScored" data-en="Top 10 TPI vs WhoScored Rankings">Top 10 TPI vs WhoScored Rankings</span> <span class="help" onclick="openM('overlap')">?</span></div>
-      <div class="section-sub" data-it="Overlap basso = informazione indipendente. Il TPI individua giocatori sottovalutati che le classifiche popolari mancano." data-en="Low overlap = independent insight. TPI identifies undervalued players that popular rankings miss.">Low overlap = independent insight. TPI identifies undervalued players that popular rankings miss.</div>
+      <div class="section-ttl"><span data-it="Confronto con WhoScored &mdash; descrittivo" data-en="Comparison with WhoScored &mdash; descriptive">Confronto con WhoScored &mdash; descrittivo</span> <span class="help" onclick="openM('overlap')">?</span></div>
+      <div class="section-sub" data-it="Qui non c&rsquo;&egrave; un test: come criterio di validazione, l&rsquo;overlap <strong>non pu&ograve; fallire</strong> &mdash; alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. E il 40% osservato ha p = 0.76 sull&rsquo;ipergeometrica: &egrave; compatibile col caso. Resta interessante <em>dove</em> i due non sono d&rsquo;accordo." data-en="There is no test here: as a validation criterion, overlap <strong>cannot fail</strong> &mdash; high would mean &ldquo;confirmed&rdquo;, low &ldquo;finds gems&rdquo;. And the observed 40% has p = 0.76 under the hypergeometric: it is consistent with chance. What stays interesting is <em>where</em> the two disagree.">Qui non c&rsquo;&egrave; un test: come criterio di validazione l&rsquo;overlap <strong>non pu&ograve; fallire</strong>, e il 40% osservato &egrave; compatibile col caso. Resta interessante <em>dove</em> i due non sono d&rsquo;accordo.</div>
     </div>
   </div>
   <div class="g3">
-    <div class="stat-box sb-orng"><div class="stat-val">40%</div><div class="stat-lbl" data-it="Overlap Top 10" data-en="Top 10 Overlap">Overlap Top 10</div><div class="stat-sub" data-it="in comune con WhoScored" data-en="in common with WhoScored">in comune con WhoScored</div></div>
+    <div class="stat-box sb-orng"><div class="stat-val">40%</div><div class="stat-lbl" data-it="Overlap Top 10" data-en="Top 10 Overlap">Overlap Top 10</div><div class="stat-sub" data-it="p ipergeometrica = 0.76 &middot; atteso per caso 4.35/10" data-en="hypergeometric p = 0.76 &middot; expected by chance 4.35/10">p ipergeometrica = 0.76</div></div>
     <div class="stat-box sb-green"><div class="stat-val">5</div><div class="stat-lbl" data-it="Sottovalutati" data-en="Undervalued">Sottovalutati</div><div class="stat-sub" data-it="TPI alto, WhoScored basso" data-en="high TPI, low WhoScored">TPI alto, WhoScored basso</div></div>
     <div class="stat-box"><div class="stat-val">5</div><div class="stat-lbl" data-it="Sopravvalutati" data-en="Overvalued">Sopravvalutati</div><div class="stat-sub" data-it="TPI basso, WhoScored alto" data-en="low TPI, high WhoScored">TPI basso, WhoScored alto</div></div>
   </div>
@@ -611,7 +648,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
   </div>
   <div class="card"><div class="card-ttl"><span data-it="Divergenze notevoli" data-en="Notable divergences">Divergenze notevoli</span> <span class="help" onclick="openM('divergenze')">?</span></div>
     <div id="div-content"></div>
-    <div class="interp" data-it="Divergenze = insight, non errori. Identificano giocatori con impatto reale non riconosciuto." data-en="Divergences = insight, not errors. They identify players with real impact that goes unrecognized.">Divergenze = insight, non errori. Identificano giocatori con impatto reale non riconosciuto.</div>
+    <div class="interp" data-it="Le divergenze sono la parte utile di questo confronto, ma sono un&rsquo;<strong>ipotesi</strong>: che il TPI veda un impatto non riconosciuto &egrave; da verificare giocatore per giocatore, non dimostrato dal fatto che i due elenchi differiscano." data-en="The divergences are the useful part of this comparison, but they are a <strong>hypothesis</strong>: that the TPI sees unrecognised impact has to be checked player by player &mdash; the two lists differing does not establish it.">Le divergenze sono la parte utile di questo confronto, ma sono un&rsquo;<strong>ipotesi</strong>: che il TPI veda un impatto non riconosciuto &egrave; da verificare giocatore per giocatore.</div>
     <div class="interp" style="margin-top:8px" data-it="<strong>Rigore:</strong> sul set comune (~23 giocatori) Kendall &tau; = <strong>0.171</strong>, Spearman &rho; = 0.281 IC95% [-0.172, 0.647]. Overlap fair (stesso bacino) = 40% &middot; p(ipergeometrico) = 0.7629 (coincidenze attese per caso: 4.35/10)." data-en="<strong>Rigor:</strong> on the common set (~23 players) Kendall &tau; = <strong>0.171</strong>, Spearman &rho; = 0.281 95% CI [-0.172, 0.647]. Fair overlap (same pool) = 40% &middot; p(hypergeometric) = 0.7629 (coincidences expected by chance: 4.35/10)."><strong>Rigore:</strong> sul set comune (~23 giocatori) Kendall &tau; = <strong>0.171</strong>, Spearman &rho; = 0.281 IC95% [-0.172, 0.647]. Overlap fair (stesso bacino) = 40% &middot; p(ipergeometrico) = 0.7629 (coincidenze attese per caso: 4.35/10).</div>
   </div>
 </div>
@@ -621,8 +658,8 @@ tr:hover td{background:rgba(233,240,236,.03)}
   <div class="section-hd">
     <div class="section-num">C</div>
     <div>
-      <div class="section-ttl"><span data-it="Backtest Predittivo — r = 0.72" data-en="Predictive Backtest — r = 0.72">Predictive Backtest — r = 0.72</span> <span class="help" onclick="openM('backtest')">?</span></div>
-      <div class="section-sub" data-it="Il TPI di inizio stagione predice il rendimento di fine stagione? gg 1-20 &rarr; gg 21-41" data-en="Can early-season TPI predict late-season performance? gg 1-20 &rarr; gg 21-41">Can early-season TPI predict late-season performance? gg 1-20 &rarr; gg 21-41</div>
+      <div class="section-ttl"><span data-it="Backtest sull&rsquo;output grezzo — r = 0.72" data-en="Backtest on raw output — r = 0.72">Backtest sull&rsquo;output grezzo — r = 0.72</span> <span class="help" onclick="openM('backtest')">?</span></div>
+      <div class="section-sub" data-it="Il rendimento della prima met&agrave; predice quello della seconda? gg 1-20 &rarr; gg 21-41. Il titolo dice &laquo;output grezzo&raquo; e non &laquo;TPI&raquo; perch&eacute; la misura &egrave; (xG+xA)/90, la componente dominante: buona parte di questa r &egrave; l&rsquo;autocorrelazione di una rate stat fra due met&agrave; di stagione, non una prova sul composito." data-en="Does first-half output predict second-half output? gg 1-20 &rarr; gg 21-41. The title says &ldquo;raw output&rdquo; and not &ldquo;TPI&rdquo; because the measure is (xG+xA)/90, the dominant component: much of this r is the autocorrelation of a rate stat across two halves of a season, not evidence about the composite.">Il rendimento della prima met&agrave; predice quello della seconda? La misura &egrave; (xG+xA)/90, la componente dominante: buona parte di questa r &egrave; autocorrelazione, non una prova sul composito.</div>
     </div>
   </div>
   
@@ -646,10 +683,10 @@ tr:hover td{background:rgba(233,240,236,.03)}
   <div class="g2">
     <div class="card"><div class="card-ttl"><span data-it="Scatter prima &rarr; seconda fase" data-en="Scatter first &rarr; second half">Scatter prima &rarr; seconda fase</span> <span class="help" onclick="openM('scatter_c')">?</span></div>
       <div id="chart-c" class="chart-h" style="height:300px"></div></div>
-    <div class="card"><div class="card-ttl" data-it="Perch&eacute; &egrave; importante" data-en="Why it matters">Perch&eacute; &egrave; importante</div>
-      <div style="font-size:13px;color:var(--ls);line-height:1.75" data-it="<p style=&quot;margin-bottom:10px&quot;>Un indice senza predittivit&agrave; misura solo la fortuna passata.</p><p style=&quot;margin-bottom:10px&quot;><strong style=&quot;color:var(--green)&quot;>r&gt;0.5</strong> = qualit&agrave; stabile &middot; <strong style=&quot;color:var(--orng)&quot;>r=0.3–0.5</strong> = segnale parziale &middot; <strong style=&quot;color:var(--red)&quot;>r&lt;0.3</strong> = troppo volatile.</p><p><strong style=&quot;color:var(--lp)&quot;>Spearman</strong> &egrave; robusto agli outlier &mdash; ideale per dati sportivi.</p>" data-en="<p style=&quot;margin-bottom:10px&quot;>An index with no predictivity only measures past luck.</p><p style=&quot;margin-bottom:10px&quot;><strong style=&quot;color:var(--green)&quot;>r&gt;0.5</strong> = stable quality &middot; <strong style=&quot;color:var(--orng)&quot;>r=0.3–0.5</strong> = partial signal &middot; <strong style=&quot;color:var(--red)&quot;>r&lt;0.3</strong> = too volatile.</p><p><strong style=&quot;color:var(--lp)&quot;>Spearman</strong> is robust to outliers &mdash; ideal for sports data.</p>">
-        <p style="margin-bottom:10px">Un indice senza predittivit&agrave; misura solo la fortuna passata.</p>
-        <p style="margin-bottom:10px"><strong style="color:var(--green)">r&gt;0.5</strong> = qualit&agrave; stabile &middot; <strong style="color:var(--orng)">r=0.3–0.5</strong> = segnale parziale &middot; <strong style="color:var(--red)">r&lt;0.3</strong> = troppo volatile.</p>
+    <div class="card"><div class="card-ttl" data-it="Come va letta questa r" data-en="How to read this r">Come va letta questa r</div>
+      <div style="font-size:13px;color:var(--ls);line-height:1.75" data-it="<p style=&quot;margin-bottom:10px&quot;>Una rate stat che si conferma fra due met&agrave; di stagione dice che il rendimento offensivo &egrave; <strong>stabile</strong>, e serve a saperlo. Non dice che il TPI predice: dice che (xG+xA)/90 predice s&eacute; stesso.</p><p style=&quot;margin-bottom:10px&quot;>La domanda &laquo;il composito aggiunge a questo?&raquo; ha una sezione sua, la <strong>Q</strong>, e una risposta diversa.</p><p><strong style=&quot;color:var(--lp)&quot;>Spearman</strong> &egrave; robusto agli outlier &mdash; ideale per dati sportivi.</p>" data-en="<p style=&quot;margin-bottom:10px&quot;>A rate stat that repeats across two halves of a season shows attacking output is <strong>stable</strong>, which is worth knowing. It does not show that the TPI predicts: it shows that (xG+xA)/90 predicts itself.</p><p style=&quot;margin-bottom:10px&quot;>The question &ldquo;does the composite add to this?&rdquo; has its own section, <strong>Q</strong>, and a different answer.</p><p><strong style=&quot;color:var(--lp)&quot;>Spearman</strong> is robust to outliers &mdash; ideal for sports data.</p>">
+        <p style="margin-bottom:10px">Una rate stat che si conferma fra due met&agrave; di stagione dice che il rendimento offensivo &egrave; <strong>stabile</strong>, e serve a saperlo. Non dice che il TPI predice: dice che (xG+xA)/90 predice s&eacute; stesso.</p>
+        <p style="margin-bottom:10px">La domanda &laquo;il composito aggiunge a questo?&raquo; ha una sezione sua, la <strong>Q</strong>, e una risposta diversa.</p>
         <p><strong style="color:var(--lp)">Spearman</strong> &egrave; robusto agli outlier &mdash; ideale per dati sportivi.</p>
       </div>
       <div class="interp"><span data-it="Forte stabilità predittiva (r≥0.65) — il TPI cattura qualità stabile oltre il rumore." data-en="Strong predictive stability (r≥0.65) — TPI captures stable quality beyond noise.">Forte stabilità predittiva (r≥0.65) — il TPI cattura qualità stabile oltre il rumore.</span></div>
@@ -1401,9 +1438,10 @@ function toggleAcc(id){
     else{cls="badge-red";lbl="Basso";}
     el.innerHTML='<span class="badge '+cls+'">'+lbl+'</span>';
   }
-  setBadge("badge-a", R_A, 0.6, 0.4);
-  setBadge("badge-b", OV/100, 0.7, 0.5);
   setBadge("badge-c", R_C, 0.5, 0.3);
+  // A e B non hanno piu' un verdetto da calcolare: sono descrittivi e la loro
+  // etichetta e' statica lato Python. Lasciare qui setBadge la riscriveva in
+  // "Basso"/"Moderato" a pagina caricata.
   // badge-d e badge-e sono già generati lato Python con valori statici
 })();
 
