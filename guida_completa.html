@@ -269,14 +269,17 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
       <div class="stat-row">
         <div class="stat-item"><div class="stat-val" style="color:var(--orng)">7</div><div class="stat-lbl" data-it="Dimensioni indipendenti" data-en="Independent dimensions">Independent KPIs</div></div>
         <div class="stat-item"><div class="stat-val" style="color:var(--blue)">381</div><div class="stat-lbl" data-it="Giocatori ordinati" data-en="Players ranked">Players ranked</div></div>
-        <div class="stat-item"><div class="stat-val" style="color:var(--green)">0.70</div><div class="stat-lbl" data-it="r predittiva" data-en="Predictive r">Predictive r</div></div>
+        <div class="stat-item"><div class="stat-val" style="color:var(--green)">0.90</div><div class="stat-lbl" data-it="&rho; fra decili" data-en="&rho; across deciles">&rho; across deciles</div></div>
         <div class="stat-item"><div class="stat-val" style="color:var(--purp)">5</div><div class="stat-lbl" data-it="Contesti" data-en="Contexts">Contexts</div></div>
       </div>
-      <div class="ex" style="margin-top:16px" data-it="<strong style=&quot;color:var(--lp)&quot;>Perché questo modello è diverso:</strong> La maggior parte dei sistemi di ranking usa conteggi grezzi di goal/assist — molto influenzati da fortuna e qualità della squadra. Il TPI misura il <em>processo</em>, non il risultato: valore atteso creato per 90 minuti, pesato per la forza degli avversari, stabilizzato per la dimensione campionaria e validato contro il rendimento futuro." data-en="<strong style=&quot;color:var(--lp)&quot;>Why this model is different:</strong> Most ranking systems use raw goal/assist counts — heavily influenced by luck and team quality. TPI measures the <em>process</em>, not the outcome: expected value created per 90 minutes, weighted by opponent strength, stabilized for sample size, and validated against future performance.">
-        <strong style="color:var(--lp)">Why this model is different:</strong>
+      <div class="ex" style="margin-top:16px" data-it="<strong style=&quot;color:var(--lp)&quot;>Cosa fa e cosa non fa:</strong> La maggior parte dei sistemi di ranking usa conteggi grezzi di goal/assist — molto influenzati da fortuna e qualità della squadra. Il TPI misura il <em>processo</em>, non il risultato: valore atteso creato per 90 minuti, pesato per la forza degli avversari e stabilizzato per la dimensione campionaria. È un indice <strong>descrittivo</strong>: ordina i giocatori dentro la stagione, non predice il loro rendimento futuro — messo a confronto out-of-sample con l'output grezzo per-90, non lo batte. Il conto dettagliato è nella pagina di validazione." data-en="<strong style=&quot;color:var(--lp)&quot;>What it does and what it does not:</strong> Most ranking systems use raw goal/assist counts — heavily influenced by luck and team quality. TPI measures the <em>process</em>, not the outcome: expected value created per 90 minutes, weighted by opponent strength and stabilized for sample size. It is a <strong>descriptive</strong> index: it ranks players within the season, it does not predict their future output — compared out-of-sample against raw per-90 output, it does not beat it. The full account is on the validation page.">
+        <strong style="color:var(--lp)">What it does and what it does not:</strong>
         Most ranking systems use raw goal/assist counts — heavily influenced by luck and team quality.
         TPI measures the <em>process</em>, not the outcome: expected value created per 90 minutes,
-        weighted by opponent strength, stabilized for sample size, and validated against future performance.
+        weighted by opponent strength and stabilized for sample size. It is a
+        <strong>descriptive</strong> index: it ranks players within the season, it does not predict
+        their future output — compared out-of-sample against raw per-90 output, it does not beat it.
+        The full account is on the validation page.
       </div>
     </div>
 
@@ -1187,16 +1190,34 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
         </div>
       </div>
 
-      <div class="note" data-it="<strong>Guida all'interpretazione:</strong> Spearman ρ ≥ 0.65 = forte stabilità predittiva. Kendall τ ≥ 0.45 = la maggior parte delle coppie di giocatori mantiene l'ordine relativo. RMSE / MAE nel contesto: confronta con la deviazione standard di output/90 nella lega — se RMSE &lt; 0.5×SD, il modello ha reale valore predittivo." data-en="<strong>Interpretation guide:</strong> Spearman ρ ≥ 0.65 = strong predictive stability. Kendall τ ≥ 0.45 = most player pairs maintain relative order. RMSE / MAE in context: compare to the standard deviation of output/90 in the league — if RMSE &lt; 0.5×SD, the model has real predictive value.">
+      <div class="note" data-it="<strong>Guida all'interpretazione:</strong> Spearman ρ ≥ 0.65 = l'output offensivo si conferma fra le due metà. Kendall τ ≥ 0.45 = la maggior parte delle coppie di giocatori mantiene l'ordine relativo. RMSE / MAE nel contesto: confronta con la deviazione standard di output/90 nella lega. Attenzione: queste soglie giudicano la <em>stabilità della rate stat</em>, non il potere predittivo del composito." data-en="<strong>Interpretation guide:</strong> Spearman ρ ≥ 0.65 = attacking output repeats across the two halves. Kendall τ ≥ 0.45 = most player pairs maintain relative order. RMSE / MAE in context: compare to the standard deviation of output/90 in the league. Note: these thresholds judge the <em>stability of the rate stat</em>, not the predictive power of the composite.">
         <strong>Interpretation guide:</strong>
-        Spearman ρ ≥ 0.65 = strong predictive stability.
+        Spearman ρ ≥ 0.65 = attacking output repeats across the two halves.
         Kendall τ ≥ 0.45 = most player pairs maintain relative order.
-        RMSE / MAE in context: compare to the standard deviation of output/90 in the league — if RMSE &lt; 0.5×SD, the model has real predictive value.
+        RMSE / MAE in context: compare to the standard deviation of output/90 in the league.
+        Note: these thresholds judge the <em>stability of the rate stat</em>, not the predictive
+        power of the composite.
       </div>
-      <div class="ex" data-it="<strong>In sintesi:</strong> Un modello che riesce a predire la qualità della seconda metà dal TPI della prima sta catturando qualità reale e stabile del giocatore — non solo rumore o periodi di forma. È il test di validazione più importante per le applicazioni di scouting." data-en="<strong>Bottom line:</strong> A model that can predict second-half quality from first-half TPI is capturing real, stable player quality — not just noise or hot streaks. This is the most important validation test for scouting applications.">
-        <strong>Bottom line:</strong> A model that can predict second-half quality from first-half TPI
-        is capturing real, stable player quality — not just noise or hot streaks.
-        This is the most important validation test for scouting applications.
+      <div class="ex" data-it="<strong>In sintesi, e con onestà:</strong> questo backtest è sull'output offensivo per-90, cioè la componente dominante del TPI, non sul composito. Buona parte della correlazione è l'autocorrelazione di una rate stat fra due metà di stagione: dice che il rendimento offensivo è stabile, non che il TPI predice. La domanda «il composito aggiunge a questo?» ha una risposta separata nella sezione Q della validazione, ed è no." data-en="<strong>Bottom line, honestly:</strong> this backtest is on per-90 attacking output, the dominant component of the TPI, not on the composite. Much of the correlation is the autocorrelation of a rate stat across two halves of a season: it shows attacking output is stable, not that the TPI predicts. The question &laquo;does the composite add to this?&raquo; has a separate answer in section Q of the validation, and it is no.">
+        <strong>Bottom line, honestly:</strong> this backtest is on per-90 attacking output,
+        the dominant component of the TPI, not on the composite. Much of the correlation is the
+        autocorrelation of a rate stat across two halves of a season: it shows attacking output
+        is stable, not that the TPI predicts. The question &laquo;does the composite add to
+        this?&raquo; has a separate answer in section Q of the validation, and it is no.
+      </div>
+
+      <!-- Decisione presa il 13 agosto 2026: NON ricalibrare il TPI sulla
+           pendenza osservata. Ricalibrare significherebbe tararlo sul criterio
+           su cui perde (sezione Q); la miscalibrazione non tocca l'ordinamento,
+           che e' quello che si legge. Resta documentata qui. -->
+      <div class="note" data-it="<strong>Il TPI è una graduatoria, non una scala.</strong> La regressione fra decili di TPI e rendimento realizzato ha pendenza 0.37 invece di 1: l'ordine è giusto (ρ fra decili = 0.90), ma le <em>distanze</em> sono gonfiate di circa 2.7 volte. Un giocatore con TPI doppio di un altro non rende il doppio. Il valore pubblicato non è stato riscalato di proposito: ricalibrarlo significherebbe tararlo sul criterio predittivo su cui l'indice perde, e cambierebbe il numero di ogni giocatore senza migliorare l'unica cosa che regge, l'ordinamento." data-en="<strong>The TPI is a ranking, not a scale.</strong> Regressing realized output on TPI deciles gives a slope of 0.37 instead of 1: the order is right (&rho; across deciles = 0.90), but the <em>distances</em> are inflated by roughly 2.7&times;. A player with twice another's TPI does not perform twice as well. The published value has deliberately not been rescaled: recalibrating would mean tuning it to the predictive criterion the index loses on, and would change every player's number without improving the one thing that holds, the ordering.">
+        <strong>The TPI is a ranking, not a scale.</strong>
+        Regressing realized output on TPI deciles gives a slope of 0.37 instead of 1: the order is
+        right (&rho; across deciles = 0.90), but the <em>distances</em> are inflated by roughly
+        2.7&times;. A player with twice another's TPI does not perform twice as well.
+        The published value has deliberately not been rescaled: recalibrating would mean tuning it
+        to the predictive criterion the index loses on, and would change every player's number
+        without improving the one thing that holds, the ordering.
       </div>
     </div>
 
