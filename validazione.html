@@ -427,7 +427,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
 <div class="hero">
   <div class="hero-eyebrow">Serie A Scout Index &middot; TPI System</div>
   <div class="hero-ttl" data-i18n="val_title">Model Validation</div>
-  <div class="hero-sub" data-it="Il TPI &egrave; un indice <strong style=&quot;color:var(--lp)&quot;>descrittivo</strong>: ordina i giocatori, non predice il loro rendimento futuro. Messo alla prova contro una baseline banale, l&rsquo;output grezzo per-90, <strong>ha perso</strong>. Quello che regge &egrave; l&rsquo;ordinamento: &rho; fra decili <strong style=&quot;color:var(--orng)&quot;>0.96</strong>. 15 verifiche, riportate come sono uscite. Clicca <strong style=&quot;color:var(--lp)&quot;>?</strong> su ogni sezione per i dettagli metodologici." data-en="The TPI is a <strong style=&quot;color:var(--lp)&quot;>descriptive</strong> index: it ranks players, it does not predict their future output. Tested against a trivial baseline, raw per-90 output, it <strong>lost</strong>. What holds up is the ordering: &rho; across deciles <strong style=&quot;color:var(--orng)&quot;>0.96</strong>. 15 checks, reported exactly as they came out. Click <strong style=&quot;color:var(--lp)&quot;>?</strong> on each section for methodology details.">Il TPI &egrave; un indice <strong style="color:var(--lp)">descrittivo</strong>: ordina i giocatori, non predice il loro rendimento futuro. Messo alla prova contro una baseline banale, l&rsquo;output grezzo per-90, <strong>ha perso</strong>. Quello che regge &egrave; l&rsquo;ordinamento: &rho; fra decili <strong style="color:var(--orng)">0.96</strong>. 15 verifiche, riportate come sono uscite. Clicca <strong style="color:var(--lp)">?</strong> su ogni sezione per i dettagli metodologici.</div>
+  <div class="hero-sub" data-it="Il TPI <strong>ordina i giocatori dentro la stagione</strong>: i decili salgono insieme al rendimento (&rho; <strong style=&quot;color:var(--orng)&quot;>0.96</strong>), e la graduatoria di giornata 20 vale gi&agrave; &rho; 0.84 contro quella di fine stagione. Non predice il rendimento futuro: contro l&rsquo;output grezzo per-90 <strong>non lo batte</strong>, ed &egrave; scritto nella sezione Q. 15 verifiche con intervalli di confidenza bootstrap, compresa quella che poteva bocciare l&rsquo;indice, riportate come sono uscite. Clicca <strong style=&quot;color:var(--lp)&quot;>?</strong> su ogni sezione per il metodo." data-en="The TPI <strong>ranks players within the season</strong>: deciles rise together with output (&rho; <strong style=&quot;color:var(--orng)&quot;>0.96</strong>), and the matchday-20 ranking already scores &rho; 0.84 against the end-of-season one. It does not predict future output: against raw per-90 output it <strong>does not win</strong>, and section Q says so. 15 checks with bootstrap confidence intervals, including the one that could have failed the index, reported exactly as they came out. Click <strong style=&quot;color:var(--lp)&quot;>?</strong> on each section for the method.">Il TPI <strong>ordina i giocatori dentro la stagione</strong>: i decili salgono insieme al rendimento (&rho; <strong style="color:var(--orng)">0.96</strong>), e la graduatoria di giornata 20 vale gi&agrave; &rho; 0.84 contro quella di fine stagione. Non predice il rendimento futuro: contro l&rsquo;output grezzo per-90 <strong>non lo batte</strong>, ed &egrave; scritto nella sezione Q. 15 verifiche con intervalli di confidenza bootstrap, compresa quella che poteva bocciare l&rsquo;indice, riportate come sono uscite. Clicca <strong style="color:var(--lp)">?</strong> su ogni sezione per il metodo.</div>
   <!-- Sotto i 480px resta visibile solo la prima pill: qui c'era il test piu'
        debole (Pearson vs Fantacalcio, IC che contiene lo zero). Ora c'e' quello
        che la pagina rivendica davvero.
@@ -458,7 +458,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
       <div class="guide-card"><div class="guide-ttl">p-value</div>
         <div class="guide-body" data-it="<strong style=&quot;color:var(--green)&quot;>p&lt;0.05</strong> = significativo. Senza p basso anche r alto potrebbe essere fortuna." data-en="<strong style=&quot;color:var(--green)&quot;>p&lt;0.05</strong> = significant. Without a low p, even a high r could be luck."><strong style="color:var(--green)">p&lt;0.05</strong> = significativo. Senza p basso anche r alto potrebbe essere fortuna.</div></div>
       <div class="guide-card"><div class="guide-ttl" data-it="Overlap: nessuna soglia" data-en="Overlap: no threshold">Overlap: nessuna soglia</div>
-        <div class="guide-body" data-it="Non c&rsquo;&egrave; un valore che promuove e uno che boccia: alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. Per questo la sezione B &egrave; descrittiva e non un test." data-en="There is no value that passes and one that fails: high would mean &ldquo;confirmed&rdquo;, low &ldquo;finds gems&rdquo;. That is why section B is descriptive and not a test.">Non c&rsquo;&egrave; un valore che promuove e uno che boccia: alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. Per questo la sezione B &egrave; descrittiva.</div></div>
+        <div class="guide-body" data-it="Non c&rsquo;&egrave; un valore che promuove e uno che boccia: alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. Per questo la sezione B &egrave; contesto e non un test." data-en="There is no value that passes and one that fails: high would mean &ldquo;confirmed&rdquo;, low &ldquo;finds gems&rdquo;. That is why section B is context and not a test.">Non c&rsquo;&egrave; un valore che promuove e uno che boccia: alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. Per questo la sezione B &egrave; contesto.</div></div>
       <div class="guide-card"><div class="guide-ttl">Backtest</div>
         <div class="guide-body" data-it="Misura se l&rsquo;output offensivo si conferma fra le due met&agrave; della stagione. Riguarda quella rate stat, non il composito: per il composito c&rsquo;&egrave; la sezione Q." data-en="It measures whether attacking output repeats across the two halves of the season. It is about that rate stat, not the composite: for the composite see section Q.">Misura se l&rsquo;output offensivo si conferma fra le due met&agrave; della stagione. Riguarda quella rate stat, non il composito: per il composito c&rsquo;&egrave; la sezione Q.</div></div>
       <div class="guide-card"><div class="guide-ttl">TPI Pro</div>
@@ -487,7 +487,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
       Riepilogo Validazione
     </div>
     <div class="rc-grid"><div class="rc-card" style="border-left:3px solid var(--orng);">
-          <div class="rc-lbl" data-it="Q &mdash; vs output grezzo" data-en="Q &mdash; vs raw output">Q &mdash; vs output grezzo</div>
+          <div class="rc-lbl" data-it="Q &mdash; il test che pu&ograve; bocciare l&rsquo;indice" data-en="Q &mdash; the test that can fail the index">Q &mdash; il test che pu&ograve; bocciare l&rsquo;indice</div>
           <div><span class="badge badge-red" data-it="Non la batte" data-en="Does not beat it">Non la batte</span></div>
           <div class="rc-sub">&Delta;RMSE -0.0252 &middot; n = 1663</div>
         </div><div class="rc-card" style="">
@@ -500,15 +500,15 @@ tr:hover td{background:rgba(233,240,236,.03)}
           <div class="rc-sub">&rho; +0.40 &rarr; +0.52 &middot; n = 66</div>
         </div><div class="rc-card" style="border-left:3px solid var(--teal);">
           <div class="rc-lbl" data-it="D &mdash; Et&agrave; &amp; Fisico" data-en="D &mdash; Age &amp; Physical">D &mdash; Et&agrave; &amp; Fisico</div>
-          <div><span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span></div>
+          <div><span class="badge badge-blue" data-it="Contesto" data-en="Context">Contesto</span></div>
           <div class="rc-sub">AII:381 &middot; PRI:381 &middot; r=-0.031</div>
         </div><div class="rc-card" style="">
           <div class="rc-lbl" data-it="A &mdash; Correlazione Fantacalcio" data-en="A &mdash; Fantacalcio correlation">A &mdash; Correlazione Fantacalcio</div>
-          <div><span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span></div>
+          <div><span class="badge badge-blue" data-it="Contesto" data-en="Context">Contesto</span></div>
           <div class="rc-sub">r = 0.409 &middot; IC [0.105, 0.658] &middot; n = 42</div>
         </div><div class="rc-card" style="">
           <div class="rc-lbl" data-it="B &mdash; Overlap WhoScored" data-en="B &mdash; WhoScored overlap">B &mdash; Overlap WhoScored</div>
-          <div><span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span></div>
+          <div><span class="badge badge-blue" data-it="Contesto" data-en="Context">Contesto</span></div>
           <div class="rc-sub">30% &middot; p = 0.72</div>
         </div></div>
   </div>
@@ -527,14 +527,14 @@ tr:hover td{background:rgba(233,240,236,.03)}
         <span data-it="Nuovo indice" data-en="New index">Nuovo indice</span>
       </span>
     </div>
-    <div style="font-size:12px;color:var(--ls);line-height:1.6;margin-bottom:14px" data-it="Aggiunge <strong style=&quot;color:var(--lp)&quot;>AII</strong> (et&agrave;) e <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (fisico) al TPI classico. La r qui sotto misura quanto il Pro somiglia al TPI, non se funziona: lo contiene." data-en="Adds <strong style=&quot;color:var(--lp)&quot;>AII</strong> (age) and <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (physical) to the classic TPI. The r below measures how much the Pro resembles the TPI, not whether it works: it contains it.">
+    <div style="font-size:12px;color:var(--ls);line-height:1.6;margin-bottom:14px" data-it="Aggiunge <strong style=&quot;color:var(--lp)&quot;>AII</strong> (et&agrave;) e <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (fisico) al TPI classico, e mostra chi ne guadagna e chi ci perde. Se quei modulatori servano davvero lo misura il test I, fuori campione." data-en="Adds <strong style=&quot;color:var(--lp)&quot;>AII</strong> (age) and <strong style=&quot;color:var(--lp)&quot;>PRI</strong> (physical) to the classic TPI, and shows who gains and who loses from them. Whether those modulators actually help is measured by test I, out-of-sample.">
       Aggiunge <strong style="color:var(--lp)">AII</strong> (et&agrave;)
-      e <strong style="color:var(--lp)">PRI</strong> (fisico) al TPI classico.
-      La r qui sotto misura quanto il Pro somiglia al TPI, non se funziona: lo contiene.
+      e <strong style="color:var(--lp)">PRI</strong> (fisico) al TPI classico, e mostra chi ne
+      guadagna e chi ci perde. Se quei modulatori servano davvero lo misura il test I, fuori campione.
     </div>
     
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-            <span class="badge badge-blue" data-it="Descrittivo" data-en="Descriptive">Descrittivo</span>
+            <span class="badge badge-blue" data-it="Contesto" data-en="Context">Contesto</span>
             <span style="font-size:11px;color:var(--lt)">r(TPI, TPI Pro)</span>
           </div>
           <div style="font-size:26px;font-weight:500;letter-spacing:-.03em;
@@ -571,7 +571,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
     <div class="section-num">&#9679;</div>
     <div>
       <div class="section-ttl" data-it="Cosa rivendica questo indice" data-en="What this index claims">Cosa rivendica questo indice</div>
-      <div class="section-sub" data-it="Scritto qui in alto perch&eacute; decide come va letto tutto il resto della pagina." data-en="Stated up here because it decides how the rest of this page should be read.">Scritto qui in alto perch&eacute; decide come va letto tutto il resto della pagina.</div>
+      <div class="section-sub" data-it="Tre cose separate: quello che l&rsquo;indice fa, quello che non fa, e quello che con due stagioni di dati non si pu&ograve; ancora misurare." data-en="Three separate things: what the index does, what it does not do, and what two seasons of data cannot measure yet.">Tre cose separate: quello che l&rsquo;indice fa, quello che non fa, e quello che con due stagioni di dati non si pu&ograve; ancora misurare.</div>
     </div>
   </div>
   <div class="g3">
@@ -621,7 +621,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
     <div class="section-num">A</div>
     <div>
       <div class="section-ttl"><span data-it="TPI vs Voti Fantacalcio &mdash; descrittivo" data-en="TPI vs Fantacalcio Ratings &mdash; descriptive">TPI vs Voti Fantacalcio &mdash; descrittivo</span> <span class="help" onclick="openM('pearson')">?</span></div>
-      <div class="section-sub" data-it="Confronto col consenso degli esperti su 42 voti inseriti a mano. L&rsquo;IC [0.105, 0.658] non contiene lo zero, ma <strong>resta una descrizione</strong>: i voti coprono un sottoinsieme scelto a mano dei qualificati, non un campione estratto a caso, quindi il numero vale per questi giocatori e non si estende agli altri." data-en="Comparison with expert consensus over 42 hand-entered ratings. The CI [0.105, 0.658] no longer contains zero, but this <strong>remains a description</strong>: the ratings cover a hand-picked subset of the qualified players rather than a random sample, so the figure holds for these players and does not generalise to the rest.">Confronto col consenso degli esperti su 42 voti inseriti a mano. L&rsquo;IC [0.105, 0.658] non contiene lo zero, ma <strong>resta una descrizione</strong>: i voti coprono un sottoinsieme scelto a mano dei qualificati, non un campione estratto a caso, quindi il numero vale per questi giocatori e non si estende agli altri.</div>
+      <div class="section-sub" data-it="Il TPI e il consenso degli esperti vanno d&rsquo;accordo su 42 voti raccolti a mano: IC [0.105, 0.658], che non contiene lo zero. Resta <strong>contesto e non prova</strong>, perch&eacute; quei voti coprono un sottoinsieme scelto e non un campione estratto a caso." data-en="The TPI and expert consensus agree across 42 hand-collected ratings: CI [0.105, 0.658], which does not contain zero. It stays <strong>context, not proof</strong>, because those ratings cover a chosen subset rather than a random sample.">Il TPI e il consenso degli esperti vanno d&rsquo;accordo su 42 voti raccolti a mano: IC [0.105, 0.658], che non contiene lo zero. Resta <strong>contesto e non prova</strong>, perch&eacute; quei voti coprono un sottoinsieme scelto e non un campione estratto a caso.</div>
     </div>
   </div>
   <div class="g3">
@@ -662,7 +662,7 @@ tr:hover td{background:rgba(233,240,236,.03)}
     <div class="section-num">B</div>
     <div>
       <div class="section-ttl"><span data-it="Confronto con WhoScored &mdash; descrittivo" data-en="Comparison with WhoScored &mdash; descriptive">Confronto con WhoScored &mdash; descrittivo</span> <span class="help" onclick="openM('overlap')">?</span></div>
-      <div class="section-sub" data-it="Qui non c&rsquo;&egrave; un test: come criterio di validazione, l&rsquo;overlap <strong>non pu&ograve; fallire</strong> &mdash; alto direbbe &laquo;confermato&raquo;, basso &laquo;trova gemme&raquo;. E il 30% osservato ha p = 0.72 sull&rsquo;ipergeometrica: &egrave; compatibile col caso. Resta interessante <em>dove</em> i due non sono d&rsquo;accordo." data-en="There is no test here: as a validation criterion, overlap <strong>cannot fail</strong> &mdash; high would mean &ldquo;confirmed&rdquo;, low &ldquo;finds gems&rdquo;. And the observed 30% has p = 0.72 under the hypergeometric: it is consistent with chance. What stays interesting is <em>where</em> the two disagree.">Qui non c&rsquo;&egrave; un test: come criterio di validazione l&rsquo;overlap <strong>non pu&ograve; fallire</strong>, e il 30% osservato &egrave; compatibile col caso. Resta interessante <em>dove</em> i due non sono d&rsquo;accordo.</div>
+      <div class="section-sub" data-it="Il TPI e la classifica di WhoScored condividono 30% dei primi dieci: quello che interessa &egrave; <em>dove</em> non sono d&rsquo;accordo, ed &egrave; l&rsquo;elenco qui sotto. Non &egrave; un test &mdash; un overlap alto direbbe &laquo;confermato&raquo;, uno basso &laquo;trova gemme&raquo;, e nessuno dei due potrebbe bocciare l&rsquo;indice (p = 0.72)." data-en="The TPI and the WhoScored ranking share 30% of their top ten: what matters is <em>where</em> they disagree, and that is the list below. It is not a test &mdash; high overlap would mean &ldquo;confirmed&rdquo;, low overlap &ldquo;finds gems&rdquo;, and neither could fail the index (p = 0.72).">Il TPI e la classifica di WhoScored condividono 30% dei primi dieci: quello che interessa &egrave; <em>dove</em> non sono d&rsquo;accordo. Non &egrave; un test: nessun valore potrebbe bocciare l&rsquo;indice (p = 0.72).</div>
     </div>
   </div>
   <div class="g3">
