@@ -428,7 +428,9 @@ footer a:hover{color:var(--lp)}
     <section class="section" id="categories">
       <div class="section-hdr">
         <div class="section-ttl" data-it="Top per categoria età" data-en="Top by age category">Top per categoria età</div>
-        <div class="section-note" data-it="Pesi Pro age-aware: prospetto &lt;23 · prime 23–29 · veterano ≥29" data-en="Age-aware Pro weights: prospect &lt;23 · prime 23–29 · veteran ≥29">Pesi Pro age-aware: prospetto &lt;23 · prime 23–29 · veterano ≥29</div>
+        <!-- 23-28, non 23-29: in parte1_analisi.py veterano_min_age = 29, quindi
+             il 29 e' gia' veterano e non puo' stare in due fasce. -->
+        <div class="section-note" data-it="Pesi Pro age-aware: prospetto &lt;23 · prime 23–28 · veterano ≥29" data-en="Age-aware Pro weights: prospect &lt;23 · prime 23–28 · veteran ≥29">Pesi Pro age-aware: prospetto &lt;23 · prime 23–28 · veterano ≥29</div>
       </div>
       <div class="cat-grid" id="cat-grid"></div>
     </section>
@@ -545,7 +547,7 @@ const PRO_STR={
   ins_hot_b:"forma in netta crescita nell'EWMA",
   ins_stab_b:"rende stabile in tutti i 5 contesti (casa/trasferta/top6/forti)",
   ins_gem_b:"grazie ai modulatori scout", ins_gem_a:"ma TPI Pro",
-  cat_prosp:"Prospetti <23", cat_prime:"Prime 23-29", cat_vet:"Veterani ≥29",
+  cat_prosp:"Prospetti <23", cat_prime:"Prime 23-28", cat_vet:"Veterani ≥29",
   cat_prosp_h:"Premio: AII + EMI", cat_prime_h:"Equilibrio TPI + modulatori",
   cat_vet_h:"Premio: PRI affidabilità",
   mod_aii:"AII scout", mod_pri:"PRI affidabilità", mod_ctx:"Cross-context stability",
@@ -586,7 +588,7 @@ const PRO_STR={
   ins_hot_b:"form clearly rising in the EWMA",
   ins_stab_b:"delivers steadily across all 5 contexts (home/away/top6/strong)",
   ins_gem_b:"thanks to the scout modulators", ins_gem_a:"but TPI Pro",
-  cat_prosp:"Prospects <23", cat_prime:"Prime 23-29", cat_vet:"Veterans ≥29",
+  cat_prosp:"Prospects <23", cat_prime:"Prime 23-28", cat_vet:"Veterans ≥29",
   cat_prosp_h:"Rewards: AII + EMI", cat_prime_h:"Balance of TPI + modulators",
   cat_vet_h:"Rewards: PRI reliability",
   mod_aii:"Scout AII", mod_pri:"PRI reliability", mod_ctx:"Cross-context stability",
