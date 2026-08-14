@@ -100,6 +100,20 @@ h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt);
 .ev-txt strong{color:var(--lp);font-weight:600}
 .ev.muta .ev-fig{color:var(--ls)}
 
+/* L'unico elenco di giocatori della pagina: nome a sinistra, le due posizioni
+   a destra, una riga sottile a separarli. */
+.nomi{list-style:none;margin:2px 0 0;max-width:36em}
+.nomi li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 18px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--sep);font-size:14.5px;color:var(--ls)}
+.nomi li:last-child{border-bottom:0}
+.nomi li.hd{padding:0 0 6px;border-bottom:1px solid var(--sep2)}
+.nomi li.hd .pos{font-family:var(--font);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase}
+.nomi b{font-weight:600;color:var(--lp)}
+.nomi small{margin-left:9px;font-size:11.5px;color:var(--lt)}
+.nomi .pos{font-family:var(--mono);font-size:12.5px;color:var(--lt);white-space:nowrap}
+.nomi+.didascalia{margin-top:12px}
+
 .graf{display:block;width:100%;height:auto;margin:26px 0 4px;overflow:visible}
 .sv-ax{font-family:var(--mono);font-size:9.5px;fill:var(--lt)}
 .sv-val{font-family:var(--mono);font-size:10px;fill:var(--ls)}
@@ -243,7 +257,16 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   <div class="ev-txt" data-it="L&rsquo;indice e il consenso degli esperti vanno d&rsquo;accordo, IC [+0.105, +0.658], e l&rsquo;accordo resta controllando il ruolo (0.495). Non lo chiamo prova: i voti li ho raccolti a mano su un sottoinsieme scelto, non su un campione estratto a caso." data-en="The index and expert consensus agree, CI [+0.105, +0.658], and the agreement survives controlling for role (0.495). I do not call it proof: I collected those ratings by hand over a chosen subset, not a random sample.">L&rsquo;indice e il consenso degli esperti vanno d&rsquo;accordo, IC [+0.105, +0.658], e l&rsquo;accordo resta controllando il ruolo (0.495). Non lo chiamo prova: i voti li ho raccolti a mano su un sottoinsieme scelto, non su un campione estratto a caso.</div>
 </div><div class="ev riga">
   <div class="ev-fig">30%<span class="ev-lbl" data-it="Top 10 in comune" data-en="Top 10 in common">Top 10 in comune</span></div>
-  <div class="ev-txt" data-it="Con la classifica di WhoScored condivido 30% dei primi dieci, quanto ci si aspetta dal caso (p = 0.72). Non &egrave; un test &mdash; un accordo alto direbbe &laquo;confermato&raquo;, uno basso &laquo;trova occasioni&raquo; &mdash; ma il disaccordo &egrave; il posto dove guardare. Il caso pi&ugrave; netto &egrave; Nikola Krstovic: 10&ordm; per TPI, 30&ordm; per WhoScored." data-en="I share 30% of the top ten with the WhoScored ranking, about what chance would give (p = 0.72). It is not a test &mdash; high agreement would say &laquo;confirmed&raquo;, low agreement &laquo;it finds bargains&raquo; &mdash; but disagreement is where to look. The sharpest case is Nikola Krstovic: 10th by TPI, 30th by WhoScored.">Con la classifica di WhoScored condivido 30% dei primi dieci, quanto ci si aspetta dal caso (p = 0.72). Non &egrave; un test &mdash; un accordo alto direbbe &laquo;confermato&raquo;, uno basso &laquo;trova occasioni&raquo; &mdash; ma il disaccordo &egrave; il posto dove guardare. Il caso pi&ugrave; netto &egrave; Nikola Krstovic: 10&ordm; per TPI, 30&ordm; per WhoScored.</div>
+  <div class="ev-txt" data-it="Con la classifica di WhoScored condivido 30% dei primi dieci, quanto ci si aspetta dal caso (p = 0.72). Non &egrave; un test &mdash; un accordo alto direbbe &laquo;confermato&raquo;, uno basso &laquo;trova occasioni&raquo; &mdash; ma il disaccordo &egrave; il posto dove guardare." data-en="I share 30% of the top ten with the WhoScored ranking, about what chance would give (p = 0.72). It is not a test &mdash; high agreement would say &laquo;confirmed&raquo;, low agreement &laquo;it finds bargains&raquo; &mdash; but disagreement is where to look.">Con la classifica di WhoScored condivido 30% dei primi dieci, quanto ci si aspetta dal caso (p = 0.72). Non &egrave; un test &mdash; un accordo alto direbbe &laquo;confermato&raquo;, uno basso &laquo;trova occasioni&raquo; &mdash; ma il disaccordo &egrave; il posto dove guardare.</div>
+</div><div class="ev riga">
+  <div class="ev-fig ev-txtfig" data-it="Il TPI li mette pi&ugrave; in alto" data-en="The TPI ranks them higher">Il TPI li mette pi&ugrave; in alto</div>
+  <div class="ev-txt"><ul class="nomi"><li class="hd"><span></span><span class="pos" data-it="TPI &middot; WhoScored" data-en="TPI &middot; WhoScored">TPI &middot; WhoScored</span></li><li><span><b>Nikola Krstovic</b><small>Atalanta</small></span><span class="pos">10&ordm; &middot; 30&ordm;</span></li><li><span><b>Mario Pasalic</b><small>Atalanta</small></span><span class="pos">7&ordm; &middot; 24&ordm;</span></li><li><span><b>Donyell Malen</b><small>Roma</small></span><span class="pos">2&ordm; &middot; 18&ordm;</span></li><li><span><b>Scott McTominay</b><small>Napoli</small></span><span class="pos">3&ordm; &middot; 17&ordm;</span></li><li><span><b>Dusan Vlahovic</b><small>Juventus</small></span><span class="pos">17&ordm; &middot; 29&ordm;</span></li></ul></div>
+</div>
+<div class="ev riga">
+  <div class="ev-fig ev-txtfig" data-it="WhoScored li mette pi&ugrave; in alto" data-en="WhoScored ranks them higher">WhoScored li mette pi&ugrave; in alto</div>
+  <div class="ev-txt"><ul class="nomi"><li><span><b>Teun Koopmeiners</b><small>Juventus</small></span><span class="pos">31&ordm; &middot; 10&ordm;</span></li><li><span><b>Ademola Lookman</b><small>Atalanta</small></span><span class="pos">23&ordm; &middot; 6&ordm;</span></li><li><span><b>Mattia Zaccagni</b><small>Lazio</small></span><span class="pos">27&ordm; &middot; 14&ordm;</span></li><li><span><b>Paulo Dybala</b><small>Roma</small></span><span class="pos">13&ordm; &middot; 2&ordm;</span></li><li><span><b>Santiago Giménez</b><small>AC Milan</small></span><span class="pos">29&ordm; &middot; 19&ordm;</span></li></ul>
+    <p class="didascalia" data-it="Posizione per TPI e posizione per voto WhoScored, sui giocatori presenti in entrambe le classifiche. Le divergenze sono il contenuto vero di questo confronto: chi sale grazie a quello che produce e chi grazie a come viene giudicato." data-en="Rank by TPI and rank by WhoScored rating, among players present in both lists. The disagreements are the real content of this comparison: who rises for what they produce, and who rises for how they are judged.">Posizione per TPI e posizione per voto WhoScored, sui giocatori presenti in entrambe le classifiche. Le divergenze sono il contenuto vero di questo confronto: chi sale grazie a quello che produce e chi grazie a come viene giudicato.</p>
+  </div>
 </div><div class="ev riga">
   <div class="ev-fig">-0.031<span class="ev-lbl" data-it="Et&agrave; contro qualit&agrave;" data-en="Age against quality">Et&agrave; contro qualit&agrave;</span></div>
   <div class="ev-txt" data-it="L&rsquo;indice d&rsquo;et&agrave; non &egrave; correlato al TPI, e deve essere cos&igrave;: misura il momento della carriera, non quanto un giocatore &egrave; forte. Se le due cose andassero insieme, una delle due sarebbe di troppo." data-en="The age index is uncorrelated with the TPI, and it should be: it measures the point of a career, not how good a player is. If the two moved together, one of them would be redundant.">L&rsquo;indice d&rsquo;et&agrave; non &egrave; correlato al TPI, e deve essere cos&igrave;: misura il momento della carriera, non quanto un giocatore &egrave; forte. Se le due cose andassero insieme, una delle due sarebbe di troppo.</div>
