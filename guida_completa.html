@@ -527,8 +527,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
         <h3 class="section-ttl" data-it="Componenti della formula" data-en="Formula components">Componenti della formula</h3>
         <div class="formula" data-it="AII = 0.55 × ScoutPeak + 0.25 × GrowthPotential + 0.20 × Freshness<br><br>ScoutPeak = exp(−0.5 × ((età − 23) / 3.5)²)   <span class=&quot;comment&quot;>// Gaussiana, picco a 23 anni</span><br>GrowthPotential = max(0, (23 − età) / 5)      <span class=&quot;comment&quot;>// 1.0 a 18 anni, 0 dal picco in poi</span><br>Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.06) <span class=&quot;comment&quot;>// −6%/anno</span>" data-en="AII = 0.55 × ScoutPeak + 0.25 × GrowthPotential + 0.20 × Freshness<br><br>ScoutPeak = exp(−0.5 × ((age − 23) / 3.5)²)   <span class=&quot;comment&quot;>// Gaussian, peak at 23</span><br>GrowthPotential = max(0, (23 − age) / 5)      <span class=&quot;comment&quot;>// 1.0 at 18, 0 from the peak on</span><br>Freshness = 1.0 if age ≤ 27, else max(0, 1 − (age−27)×0.06) <span class=&quot;comment&quot;>// −6%/year</span>">AII = 0.55 × ScoutPeak + 0.25 × GrowthPotential + 0.20 × Freshness<br><br>
 ScoutPeak = exp(−0.5 × ((età − 23) / 3.5)²)   <span class="comment">// Gaussiana, picco a 23 anni</span><br>
-ExperienceFactor = min(1.0, (età − 17) / 10.0)      <span class="comment">// satura dopo ~10 anni di carriera</span><br>
-Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.05) <span class="comment">// −5%/anno</span></div>
+GrowthPotential = max(0, (23 − età) / 5)      <span class="comment">// 1.0 a 18 anni, 0 dal picco in poi</span><br>
+Freshness = 1.0 se età ≤ 27, altrimenti max(0, 1 − (età−27)×0.06) <span class="comment">// −6%/anno</span></div>
 
         <div class="section">
           <h3 class="section-ttl" data-it="Curva AII per età" data-en="AII curve by age">Curva AII per età</h3>
@@ -1033,8 +1033,8 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
             <circle cx="180" cy="195" r="5" fill="rgba(255,69,58,.6)"/>  <!-- Caste 0.20, 6.48 -->
             <circle cx="140" cy="203" r="5" fill="rgba(255,69,58,.5)"/>  <!-- Pellegrini −0.05,6.52 -->
             <!-- Annotation -->
-            <text x="65" y="40"  fill="rgba(235,235,245,.5)" font-size="10" font-family="-apple-system,sans-serif">r = 0.532 · p = 0.004 · n = 27</text>
-            <text x="65" y="54"  fill="rgba(235,235,245,.3)" font-size="9"  font-family="-apple-system,sans-serif">Correlazione moderata — risultato ideale</text>
+            <text x="65" y="40"  fill="rgba(235,235,245,.5)" font-size="10" font-family="-apple-system,sans-serif">r = 0.370 · n = 29 · IC 95% [−0.07, 0.66]</text>
+            <text x="65" y="54"  fill="rgba(235,235,245,.3)" font-size="9"  font-family="-apple-system,sans-serif">schema illustrativo — l&#39;IC contiene lo zero</text>
             <!-- Axis labels -->
             <text x="280" y="262" text-anchor="middle" fill="rgba(235,235,245,.2)" font-size="9" font-family="-apple-system,sans-serif">TPI Totale</text>
             <text x="14"  y="130" text-anchor="middle" fill="rgba(235,235,245,.2)" font-size="9" font-family="-apple-system,sans-serif" transform="rotate(-90,14,130)">Voto Fantacalcio</text>
@@ -1042,10 +1042,10 @@ Finishing Quality = (Goal − xG) / √xG<br><span class="comment">// versione s
         </div>
       </div>
 
-      <div class="ex" data-it="<strong>Risultati stagione 24/25:</strong> r = 0.532, p = 0.004, n = 27.<br>R² = 0.28 → il TPI spiega il 28% della varianza dei voti.<br>p = 0.004 → probabilità 0.4% che il risultato sia casuale → statisticamente significativo.<br>r = 0.532 è il risultato ideale: se fosse 0.95, il TPI non aggiungerebbe nulla di nuovo rispetto al Fantacalcio." data-en="<strong>Season 24/25 results:</strong> r = 0.532, p = 0.004, n = 27.<br>R² = 0.28 → TPI explains 28% of the variance in ratings.<br>p = 0.004 → 0.4% probability the result is by chance → statistically significant.<br>r = 0.532 is the ideal result: if it were 0.95, TPI would add nothing new over Fantacalcio."><strong>Risultati stagione 24/25:</strong> r = 0.532, p = 0.004, n = 27.<br>
-      R² = 0.28 → il TPI spiega il 28% della varianza dei voti.<br>
-      p = 0.004 → probabilità 0.4% che il risultato sia casuale → statisticamente significativo.<br>
-      r = 0.532 è il risultato ideale: se fosse 0.95, il TPI non aggiungerebbe nulla di nuovo rispetto al Fantacalcio.</div>
+      <div class="ex" data-it="<strong>Risultati stagione 25/26:</strong> r = 0.370, n = 29, IC 95% bootstrap [−0.07, 0.66].<br>R² = 0.14 → il TPI spiega circa il 14% della varianza dei voti.<br>Spearman ρ = 0.259 (p = 0.175): <strong>non significativo</strong>.<br>L'intervallo contiene lo zero, quindi questo confronto <strong>non è una prova</strong>: con 29 voti inseriti a mano il margine d'errore è largo quanto il risultato. Va letto come una descrizione, ed è così che la pagina di validazione lo presenta." data-en="<strong>Season 25/26 results:</strong> r = 0.370, n = 29, 95% bootstrap CI [−0.07, 0.66].<br>R² = 0.14 → TPI explains about 14% of the variance in ratings.<br>Spearman ρ = 0.259 (p = 0.175): <strong>not significant</strong>.<br>The interval contains zero, so this comparison is <strong>not proof</strong>: with 29 hand-entered ratings the margin of error is as wide as the result. Read it as a description, which is how the validation page presents it."><strong>Risultati stagione 25/26:</strong> r = 0.370, n = 29, IC 95% bootstrap [−0.07, 0.66].<br>
+      R² = 0.14 → il TPI spiega circa il 14% della varianza dei voti.<br>
+      Spearman ρ = 0.259 (p = 0.175): <strong>non significativo</strong>.<br>
+      L'intervallo contiene lo zero, quindi questo confronto <strong>non è una prova</strong>: con 29 voti inseriti a mano il margine d'errore è largo quanto il risultato.</div>
     </div>
 
     <!-- ── TEST B: TOP 10 OVERLAP ── -->
