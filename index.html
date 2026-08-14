@@ -2,591 +2,346 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; object-src 'none'">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Serie A Scout Index — Data-driven Player Ranking Model</title>
+<title>Serie A Scout Index &mdash; Raffaele Ciccone</title>
+<meta name="description" data-it="Un indice descrittivo che ordina i giocatori di Serie A per impatto offensivo, con tutte le verifiche pubblicate." data-en="A descriptive index ranking Serie A players by attacking impact, with every check published.">
 <style>
-/* Font serviti dal repo, non da Google. Sono i due file variabili del subset
-   latino: un peso qualsiasi tra 200 e 700 esce dallo stesso file, quindi
-   bastano 52 KB in tutto. Entrambi sono SIL Open Font License (vedi
-   fonts/OFL.txt), che consente esplicitamente l'auto-hosting. */
-@font-face{
-  font-family:"Oswald";font-style:normal;font-weight:200 700;font-display:swap;
-  src:url("fonts/oswald-latin-var.woff2") format("woff2");
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-@font-face{
-  font-family:"JetBrains Mono";font-style:normal;font-weight:100 800;font-display:swap;
-  src:url("fonts/jetbrainsmono-latin-var.woff2") format("woff2");
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-}
-
-/* Stessi token della dashboard: la homepage aveva una palette sua (nero puro,
-   azzurro/verde/viola di sistema) e passare da una pagina all'altra sembrava
-   un cambio di sito. */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#0A1512;--bg1:#0F1F1B;--bg2:#132723;--bg3:#1B342E;
-  --sep:rgba(233,240,236,.10);--sep2:rgba(233,240,236,.18);
-  --lp:#ECF2EE;--ls:rgba(236,242,238,.68);--lt:rgba(236,242,238,.38);
+  --bg:#0A1512;--bg1:#0F1F1B;--bg2:#132723;
+  --sep:rgba(233,240,236,.10);--sep2:rgba(233,240,236,.20);
+  --lp:#ECF2EE;--ls:rgba(233,240,236,.70);--lt:rgba(233,240,236,.42);
+  --lq:rgba(233,240,236,.22);
   --orng:#FFB020;
-  --blue:#5A93C4;--green:#5FAE7E;--clay:#D98E6A;--teal:#6FB4C4;
-  --purp:#9E8FBF;--indig:#7C86B8;
-  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",sans-serif;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",system-ui,sans-serif;
   --disp:"Oswald","Bahnschrift",Impact,sans-serif;
   --mono:"JetBrains Mono","Cascadia Mono",ui-monospace,monospace;
-  --rsm:6px;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--lp);
-  min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+@font-face{font-family:"Oswald";font-style:normal;font-weight:200 700;font-display:swap;
+  src:url("fonts/oswald-latin-var.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:100 800;font-display:swap;
+  src:url("fonts/jetbrainsmono-latin-var.woff2") format("woff2")}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--lp);font-family:var(--font);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(255,176,32,.26)}
+a{color:inherit}
 
-/* NAV — link di testo, come nella dashboard */
-.nav{position:sticky;top:0;z-index:100;height:56px;
-  background:var(--bg);
-  border-bottom:1px solid var(--sep);
-  display:flex;align-items:center;justify-content:space-between;
-  padding-inline:max(24px,calc((100% - 1100px) / 2));gap:12px}
-.nav-brand{font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.4px;
-  text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.nav-dot{width:3px;height:16px;border-radius:2px;background:var(--orng);box-shadow:none}
-.nav-badge{padding:0;border:0;background:none;
-  font-family:var(--mono);font-size:9px;font-weight:400;
-  color:var(--lt);text-transform:uppercase;letter-spacing:.16em}
-/* i18n.js monta lo switcher dentro uno <span> di blocco. L'inline-flex si
-   appoggiava alla baseline del testo di quello span, lasciando sotto lo
-   spazio del discendente: IT/EN scendevano di 2px rispetto alla fila. */
-.nav [data-i18n-switcher]{display:flex;align-items:center}
-.nav .i18n-switch{border:0;border-radius:0;background:none;height:auto;gap:2px}
-.nav .i18n-switch button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
-  padding:3px 5px;color:var(--lt)}
-.nav .i18n-switch button + button{border-left:0}
-.nav .i18n-switch button.active{background:none;color:var(--orng)}
-.nav .i18n-switch button:hover{background:none;color:var(--lp)}
+/* ── Nav: identica alle altre pagine del sito ─────────────────── */
+.nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:14px;
+  padding:10px clamp(18px,4vw,40px);background:rgba(10,21,18,.86);
+  backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--sep)}
+.nav-brand{font-family:var(--disp);font-size:15px;letter-spacing:.06em;
+  text-transform:uppercase;white-space:nowrap}
+.nav-brand small{display:block;font-family:var(--font);font-size:9.5px;
+  letter-spacing:.14em;color:var(--lt);text-transform:uppercase}
+.nav-sp{flex:1}
+.nav-btn{display:inline-flex;align-items:center;padding:6px 12px;border-radius:8px;
+  border:1px solid var(--sep2);font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;text-decoration:none;color:var(--ls);white-space:nowrap}
+.nav-btn:hover{color:var(--lp);border-color:var(--lq)}
+.nav-btn.pri{border-color:rgba(255,176,32,.5);color:var(--orng)}
 
-/* ── Apertura ────────────────────────────────────────────────────────────
-   Prima era un titolo centrato con sotto tre righe di testo e quattro
-   etichette: descriveva il modello senza mostrarlo. Ora la meta' destra e' il
-   risultato vero — i primi otto con il TPI e le due dimensioni in cui stanno
-   piu' in alto, che dicono *perche'* sono li'. */
-.hero{position:relative;z-index:1;padding:64px 24px 52px;text-align:left;
-  max-width:1180px;margin:0 auto}
-.hero-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
-  gap:60px;align-items:start}
-.hero-eyebrow{display:inline-block;padding:0;border-radius:0;
-  font-family:var(--mono);font-size:10px;font-weight:400;background:none;border:0;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--lt);margin-bottom:18px}
-.hero-ttl{font-family:var(--disp);font-size:clamp(38px,5vw,62px);font-weight:600;
-  letter-spacing:.5px;line-height:.98;margin-bottom:14px;text-transform:uppercase;
-  color:var(--lp)}
-.hero-sub{font-size:15px;color:var(--ls);line-height:1.7;max-width:none;margin:0 0 26px}
-/* Quattro bottoni nella colonna sinistra dell'eroe non ci stanno su una riga:
-   "Methodology" finiva da solo sulla seconda, come un ripensamento. Invece di
-   stringerli finche' entrano — e rifarlo a ogni larghezza — l'a capo diventa
-   voluto: l'azione primaria tiene la sua riga, le tre secondarie stanno in
-   fila sotto. L'interruzione la forza lo pseudo-elemento a tutta larghezza
-   fra i due gruppi, ordinati con `order`. */
-.cta-group{display:flex;align-items:center;justify-content:flex-start;
-  gap:10px;flex-wrap:wrap;margin:0}
-.cta-group .btn-primary{order:0}
-.cta-group::after{content:"";flex-basis:100%;height:0;order:1}
-.cta-group .btn-secondary{order:2}
+/* ── Impaginazione ──────────────────────────────────────────────
+   Due bordi sinistri in tutta la pagina e non uno di piu':
+     · colonna di margine (--marg): numeri, etichette, marcatori
+     · colonna di testo: titoli, prosa, frasi, didascalie, tabella
+   Prima le scritte cadevano su quattro rientri diversi — hero a filo
+   pagina, capitoli a +84, frasi a +176, voci del metodo a +108 — e da
+   fuori si legge come sciatteria, non come gerarchia. */
+:root{--marg:150px;--gutter:26px}
+.doc{max-width:1040px;margin:0 auto;padding:0 clamp(20px,5vw,40px) 80px}
+.riga{display:grid;grid-template-columns:var(--marg) minmax(0,1fr);gap:0 var(--gutter)}
+.prosa{max-width:36em;font-size:16.5px;line-height:1.75;color:var(--ls)}
+.prosa strong{color:var(--lp);font-weight:600}
+.prosa+.prosa{margin-top:14px}
+.prosa.chiusa{margin-top:30px;padding-top:22px;border-top:1px solid var(--sep2);
+  font-size:17px;color:var(--lp)}
 
-/* Classifica in apertura */
-.lb-panel{border-top:1px solid var(--sep2)}
-.lb-hd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--lt);padding:12px 0 10px}
-.lb-row{display:grid;grid-template-columns:22px minmax(0,1fr) auto 92px 52px;
-  gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid var(--sep);
-  text-decoration:none;color:inherit;transition:background .14s}
-.lb-row:hover{background:var(--bg1)}
-.lb-n{font-family:var(--mono);font-size:11px;color:var(--lt);font-variant-numeric:tabular-nums}
-.lb-id{min-width:0}
-.lb-nm{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis}
-.lb-why{display:block;font-family:var(--mono);font-size:9.5px;color:var(--lt);
-  margin-top:3px;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb-tm{font-family:var(--mono);font-size:9.5px;color:var(--lt);text-transform:uppercase;
-  letter-spacing:.1em;white-space:nowrap}
-.lb-bar{display:block;height:3px;background:rgba(233,240,236,.08);border-radius:2px;
-  overflow:hidden}
-.lb-bar span{display:block;height:100%;border-radius:2px}
-.lb-v{font-family:var(--mono);font-size:13px;text-align:right;
-  font-variant-numeric:tabular-nums;color:var(--lp)}
-.lb-more{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--lt);text-decoration:none;transition:color .16s,gap .16s}
-.lb-more:hover{color:var(--orng);gap:11px}
+.hero{padding:clamp(46px,9vw,96px) 0 clamp(30px,5vw,52px);align-items:start}
+.eyebrow{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--lt);
+  margin-bottom:20px}
+h1{font-family:var(--disp);font-weight:500;text-transform:uppercase;
+  font-size:clamp(38px,8.4vw,84px);line-height:.92;letter-spacing:-.012em;margin-bottom:24px}
+h1 em{font-style:normal;color:var(--orng)}
+.lede{max-width:31em;font-size:clamp(16.5px,2.1vw,19px);line-height:1.62;color:var(--ls)}
+.lede strong{color:var(--lp);font-weight:600}
+.lede.sec{margin-top:16px;font-size:15px;color:var(--lt);max-width:33em}
 
-/* I tre fatti scendono sotto la griglia, a tutta larghezza */
-.hero-facts{display:flex;flex-direction:column;gap:0;max-width:none;
-  margin:52px 0 0;text-align:left}
-.hero-fact{display:flex;gap:14px;font-size:13.5px;color:var(--ls);line-height:1.6;
-  padding:12px 0;border-bottom:1px solid var(--sep)}
-.hero-fact:first-child{border-top:1px solid var(--sep)}
-.hero-fact-n{font-family:var(--mono);font-size:10px;color:var(--lt);
-  flex-shrink:0;padding-top:3px;letter-spacing:.1em}
-.hero-fact strong{color:var(--lp);font-weight:700}
-.hero-tags{display:flex;gap:0;flex-wrap:wrap;justify-content:flex-start;margin:20px 0 0}
-.hero-tag{padding:0 14px 0 0;border-radius:0;font-family:var(--mono);font-size:10px;
-  font-weight:400;letter-spacing:.1em;text-transform:uppercase;
-  background:none;border:0;color:var(--lt)}
-.hero-tag + .hero-tag{border-left:1px solid var(--sep);padding-left:14px}
-.hero-tag.blue,.hero-tag.green,.hero-tag.purp,.hero-tag.teal{
-  background:none;border-color:var(--sep);color:var(--lt)}
+/* Niente piu' righe verticali fra le cifre: il testo della colonna dopo le
+   toccava, e con il ritorno a capo restava un bordo appeso a meta' riga. */
+.cifre{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 34px;
+  margin-top:44px;padding-top:22px;border-top:1px solid var(--sep)}
+.cifra{min-width:0}
+.cifra b{display:block;font-family:var(--mono);font-weight:500;font-size:clamp(26px,4vw,34px);
+  color:var(--orng);letter-spacing:-.03em;line-height:1}
+.cifra span{display:block;margin-top:8px;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--lt);line-height:1.5}
 
-@media(max-width:980px){
-  .hero-grid{grid-template-columns:1fr;gap:40px}
-  .lb-row{grid-template-columns:20px minmax(0,1fr) auto 70px 48px;gap:10px}
+.cap{padding:clamp(38px,6vw,64px) 0;border-top:1px solid var(--sep)}
+.cap-num{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--orng);
+  padding-top:9px}
+h2{font-family:var(--disp);font-weight:500;text-transform:uppercase;
+  font-size:clamp(23px,3.4vw,34px);line-height:1.06;letter-spacing:.004em;margin-bottom:18px}
+h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt);
+  margin:38px 0 10px}
+
+.ev{padding:17px 0;border-top:1px solid var(--sep)}
+.ev:first-of-type{border-top:1px solid var(--sep2)}
+.ev-fig{font-family:var(--mono);font-weight:500;font-size:23px;color:var(--orng);
+  letter-spacing:-.03em;line-height:1.1}
+.ev-lbl{display:block;margin-top:7px;font-family:var(--font);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--lt);line-height:1.5}
+.ev-txt{font-size:15px;line-height:1.68;color:var(--ls);padding-top:2px;max-width:36em}
+/* Nel capitolo delle conseguenze il margine porta un titolo, non una cifra:
+   stesso impianto, font di testo perche' una parola in mono si legge peggio. */
+.ev-fig.ev-txtfig{font-family:var(--font);font-size:14.5px;font-weight:600;
+  color:var(--lp);line-height:1.45;padding-top:3px}
+.ev-txt strong{color:var(--lp);font-weight:600}
+.ev.muta .ev-fig{color:var(--ls)}
+
+/* L'unico elenco di giocatori della pagina: nome a sinistra, le due posizioni
+   a destra, una riga sottile a separarli. */
+.nomi{list-style:none;margin:2px 0 0;max-width:36em}
+.nomi li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 18px;align-items:baseline;
+  padding:9px 0;border-bottom:1px solid var(--sep);font-size:14.5px;color:var(--ls)}
+.nomi li:last-child{border-bottom:0}
+.nomi li.hd{padding:0 0 6px;border-bottom:1px solid var(--sep2)}
+.nomi li.hd .pos{font-family:var(--font);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase}
+.nomi b{font-weight:600;color:var(--lp)}
+.nomi small{margin-left:9px;font-size:11.5px;color:var(--lt)}
+.nomi .pos{font-family:var(--mono);font-size:12.5px;color:var(--lt);white-space:nowrap}
+.nomi+.didascalia{margin-top:12px}
+
+.graf{display:block;width:100%;height:auto;margin:26px 0 4px;overflow:visible}
+.sv-ax{font-family:var(--mono);font-size:9.5px;fill:var(--lt)}
+.sv-val{font-family:var(--mono);font-size:10px;fill:var(--ls)}
+.sv-dim{font-family:var(--mono);font-size:10.5px;fill:var(--ls)}
+.didascalia{font-size:12.5px;color:var(--lt);line-height:1.6;max-width:36em;margin-top:6px}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+th{text-align:left;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--lt);font-weight:500;padding:0 14px 10px 0;border-bottom:1px solid var(--sep2)}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--sep);color:var(--ls);
+  vertical-align:top;line-height:1.55}
+tr:hover td{color:var(--lp)}
+.t-let{font-family:var(--mono);font-size:11px;color:var(--orng);width:26px;padding-top:15px}
+.t-mis{font-family:var(--mono);font-size:12px;color:var(--lp);white-space:nowrap}
+
+/* Il marcatore sta nella colonna di margine, cosi' il titolo del blocco e il
+   testo che si apre sotto partono dallo stesso bordo di tutto il resto. */
+details{border-top:1px solid var(--sep);padding:15px 0}
+details[open]{padding-bottom:22px}
+/* Titolo nella colonna di margine e testo in quella di lettura, come le voci
+   del capitolo precedente: erano l'unico blocco con un rientro suo. */
+summary{cursor:pointer;list-style:none;font-size:14.5px;font-weight:600;color:var(--lp);
+  line-height:1.45}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";font-family:var(--mono);color:var(--orng);font-size:14px}
+details[open] summary::before{content:"\2212 "}
+details.riga>summary{grid-column:1}
+details.riga>.prosa{grid-column:2;margin-top:0}
+details .prosa{font-size:14.5px}
+
+footer{border-top:1px solid var(--sep);padding:30px 0 0;margin-top:20px;
+  font-size:12px;color:var(--lt)}
+footer>div{display:flex;flex-wrap:wrap;gap:14px 26px}
+footer a{color:var(--ls);text-decoration:none;border-bottom:1px solid var(--lq)}
+footer a:hover{color:var(--orng);border-color:var(--orng)}
+
+@media(max-width:900px){
+  /* Sotto questa larghezza la colonna di margine mangerebbe la riga di testo:
+     tutto torna in colonna unica, e i due bordi diventano uno solo. */
+  .riga{grid-template-columns:minmax(0,1fr);gap:0}
+  .cap-num{padding:0 0 10px}
+  .ev{padding:16px 0}
+  .ev-fig{font-size:21px}
+  .ev-lbl{display:inline;margin-left:10px}
+  .ev-fig.ev-txtfig{margin-bottom:6px}
+  .cifre{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 30px}
+  details.riga>summary,details.riga>.prosa{grid-column:auto}
+  details .prosa{margin-top:10px}
+  .nav-brand small{display:none}
+  table{font-size:12.5px}
+  .t-mis{white-space:normal}
 }
-
-/* CTA — una sola azione primaria, in ambra */
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 26px;border-radius:var(--rsm);font-size:14px;font-weight:700;
-  font-family:var(--font);text-decoration:none;cursor:pointer;
-  background:var(--orng);border:1px solid var(--orng);
-  color:var(--bg);box-shadow:none;
-  transition:filter .16s;white-space:nowrap}
-.btn-primary:hover{transform:none;filter:brightness(1.1);box-shadow:none}
-.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:13px 20px;border-radius:var(--rsm);font-size:13.5px;font-weight:600;
-  font-family:var(--font);text-decoration:none;cursor:pointer;
-  background:none;border:1px solid var(--sep2);
-  color:var(--ls);box-shadow:none;
-  transition:color .16s,border-color .16s;white-space:nowrap}
-.btn-secondary:hover{background:none;color:var(--lp);border-color:var(--lt);
-  transform:none;box-shadow:none}
-.btn-purp{background:none;border-color:var(--sep2);color:var(--ls);box-shadow:none}
-.btn-purp:hover{transform:none;box-shadow:none;color:var(--lp);border-color:var(--lt)}
-
-/* Fascia TPI Pro
-   Il Pro e' l'indice piu' recente e il piu' difficile da riassumere in una
-   riga: prende una fascia sua invece di essere la quarta scheda di quattro,
-   dove sarebbe rimasto orfano su una seconda riga. Il filetto in alto e'
-   l'unico ambra della pagina fuori dai bottoni. */
-.pro-band{display:block;text-decoration:none;color:inherit;
-  border-top:1px solid var(--orng);border-bottom:1px solid var(--sep);
-  padding:26px 0 24px;transition:background .18s}
-.pro-band:hover{background:var(--bg1)}
-.pro-band-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--orng);margin-bottom:12px}
-.pro-band-ttl{font-family:var(--disp);font-size:clamp(28px,4vw,44px);font-weight:500;
-  line-height:.95;text-transform:uppercase;letter-spacing:-.005em}
-.pro-band-ttl em{font-style:normal;color:var(--orng)}
-.pro-band-body{font-size:13.5px;color:var(--ls);line-height:1.65;max-width:64ch;margin-top:14px}
-.pro-band-body strong{color:var(--lp);font-weight:600}
-.pro-band-onesta{font-size:12.5px;color:var(--lt);line-height:1.6;max-width:64ch;
-  margin-top:14px;padding-left:12px;border-left:1px solid var(--sep2)}
-.pro-band-onesta strong{color:var(--ls);font-weight:600}
-.pro-band-onesta em{font-style:italic}
-.pro-band-mods{display:flex;flex-wrap:wrap;gap:0;margin-top:20px}
-.pro-band-mods span{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--lt);padding:3px 14px;white-space:nowrap}
-.pro-band-mods span:first-child{padding-left:0}
-.pro-band-mods span + span{border-left:1px solid var(--sep)}
-.pro-band-lnk{display:inline-flex;align-items:center;gap:7px;margin-top:22px;
-  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--orng);transition:gap .16s}
-.pro-band:hover .pro-band-lnk{gap:11px}
-/* Nella fascia in alto e' un pezzo dentro un link; nel riquadro con la
-   formula, piu' in basso, e' il link stesso — li' non si puo' rendere
-   cliccabile tutto il blocco perche' la formula scorre in orizzontale, e una
-   cosa che scorre dentro un link si trascina invece di scorrere. */
-a.pro-band-lnk{text-decoration:none;margin-top:16px}
-a.pro-band-lnk:hover{gap:11px}
-
-/* SEZIONI */
-.section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 76px}
-.section-ttl{font-family:var(--mono);font-size:9.5px;font-weight:400;color:var(--lt);
-  text-transform:uppercase;letter-spacing:.16em;margin-bottom:22px;text-align:left;
-  padding-bottom:10px;border-bottom:1px solid var(--sep)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.card{background:none;border:0;border-radius:0;padding:22px 24px 24px;
-  position:relative;overflow:hidden;
-  transition:background .18s;text-decoration:none;color:inherit;box-shadow:none}
-.card + .card{border-left:1px solid var(--sep)}
-.card:hover{transform:none;background:var(--bg1);box-shadow:none}
-.card-accent{position:absolute;top:0;left:24px;width:26px;height:2px;border-radius:0}
-.card-icon{display:none}
-.card-ttl{font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.2px;
-  text-transform:uppercase;margin-bottom:10px}
-.card-body{font-size:13px;color:var(--lt);line-height:1.7;margin-bottom:16px}
-.card-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);
-  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:400;text-decoration:none;transition:gap .15s}
-.card-link:hover{gap:9px}
-
-/* INDICI */
-.indices{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px;margin-top:22px}
-.idx{background:none;border:0;border-bottom:1px solid var(--sep);
-  border-radius:0;padding:13px 0;display:flex;align-items:flex-start;gap:12px}
-.idx-dot{width:2px;height:30px;border-radius:1px;flex-shrink:0;margin-top:2px}
-.idx-ttl{font-size:13px;font-weight:600;margin-bottom:3px}
-.idx-sub{font-size:11.5px;color:var(--lt);line-height:1.55}
-
-/* TPI PRO */
-.pro-banner{background:none;
-  border:0;border-top:1px solid var(--sep2);border-radius:0;
-  padding:22px 0 0;margin:36px 0 0;position:relative;overflow:visible}
-.pro-banner::before{display:none}
-.pro-new{display:inline-block;padding:3px 9px;
-  border-radius:var(--rsm);font-family:var(--mono);font-size:9px;font-weight:400;
-  text-transform:uppercase;letter-spacing:.14em;background:none;
-  border:1px solid var(--sep2);color:var(--lt);margin-bottom:12px}
-.pro-ttl{font-family:var(--disp);font-size:22px;font-weight:600;letter-spacing:.2px;
-  text-transform:uppercase;margin-bottom:8px}
-.formula-nota{font-size:11.5px;color:var(--lt);line-height:1.6;margin-top:9px;max-width:560px}
-.formula-nota strong{color:var(--ls);font-weight:600}
-.formula{font-family:var(--mono);font-size:11.5px;
-  background:var(--bg1);border:1px solid var(--sep);
-  border-radius:var(--rsm);padding:11px 14px;color:var(--teal);
-  margin-top:14px;line-height:1.9;overflow-x:auto}
-
-/* FOOTER */
-.footer{position:relative;z-index:1;text-align:center;padding:30px 24px 44px;
-  border-top:1px solid var(--sep)}
-.footer-text{font-family:var(--mono);font-size:10px;color:var(--lt);line-height:2;
-  letter-spacing:.06em}
-.footer-text a{color:var(--ls);text-decoration:none}
-.footer-text a:hover{color:var(--orng);text-decoration:none}
-
-/* RESPONSIVE */
-@media(max-width:860px){
-  .cards{grid-template-columns:1fr}
-  .card + .card{border-left:0;border-top:1px solid var(--sep)}
-  .indices{grid-template-columns:1fr;gap:0}
+@media(max-width:520px){
+  .cifre{grid-template-columns:minmax(0,1fr)}
+  td:nth-child(3),th:nth-child(3){display:none}
 }
-@media(max-width:720px){
-  .cta-group{flex-direction:column;align-items:stretch;max-width:320px}
-  .btn-primary,.btn-secondary{width:100%;justify-content:center}
-  .hero{padding:44px 16px 32px}
-  .hero-ttl{font-size:34px}
-  .hero-tags{flex-direction:column;gap:6px}
-  .hero-tag + .hero-tag{border-left:0;padding-left:0}
-  /* Via la squadra, ma la griglia va ridichiarata a 4 colonne: nascondere un
-     figlio lo toglie dal flusso e tutti i successivi slittano di una colonna,
-     mandando la barra a finire in quella larga zero. */
-  .lb-tm{display:none}
-  .lb-row{grid-template-columns:20px minmax(0,1fr) 56px 46px}
-}
-@media(max-width:480px){
-  .nav{padding-inline:14px}
-  .nav-badge{display:none}
-  .section{padding:0 14px 52px}
-  .card{padding:18px 0}
+@media print{.nav{display:none}body{background:#fff;color:#000}}
+
+/* Classifica in apertura: numero, nome, barra, punteggio. La barra e' larga in
+   proporzione al primo, e serve a far vedere le distanze senza leggerle. */
+.clas{margin-top:6px;border-top:1px solid var(--sep2)}
+.cl-row{display:grid;grid-template-columns:30px minmax(0,1fr) 110px 62px;gap:0 16px;
+  align-items:center;padding:11px 0;border-bottom:1px solid var(--sep);
+  text-decoration:none;color:inherit}
+.cl-row:hover{background:rgba(255,176,32,.045)}
+.cl-n{font-family:var(--mono);font-size:11.5px;color:var(--lt)}
+.cl-id b{font-weight:600;color:var(--lp);font-size:15px}
+.cl-id small{margin-left:9px;font-size:11.5px;color:var(--lt)}
+.cl-id em{display:block;font-style:normal;font-size:11.5px;color:var(--lt);margin-top:3px}
+.cl-bar{height:4px;background:rgba(233,240,236,.08);border-radius:2px;overflow:hidden}
+.cl-bar i{display:block;height:100%;background:var(--orng);opacity:.75}
+.cl-v{font-family:var(--mono);font-size:14px;color:var(--orng);text-align:right}
+.oltre{display:inline-block;margin-top:22px;font-size:13.5px;color:var(--ls);
+  text-decoration:none;border-bottom:1px solid var(--lq);padding-bottom:2px}
+.oltre:hover{color:var(--orng);border-color:var(--orng)}
+.oltre::after{content:" \2192"}
+a.pag{text-decoration:none;color:inherit}
+a.pag:hover .ev-txtfig{color:var(--orng)}
+@media(max-width:900px){
+  .cl-row{grid-template-columns:26px minmax(0,1fr) 56px;gap:0 12px}
+  .cl-bar{display:none}
 }
 </style>
 </head>
 <body>
-
 <nav class="nav">
-  <div class="nav-brand">
-    <div class="nav-dot"></div>
-    Serie A Scout Index
-  </div>
-  <div style="display:flex;align-items:center;gap:12px">
-    <span class="nav-badge">by Raffaele Ciccone</span>
-    <span data-i18n-switcher></span>
-  </div>
+  <div class="nav-brand">TPI <small>Serie A 25/26</small></div>
+  <div class="nav-sp"></div>
+  <span data-i18n-switcher></span>
+  <a class="nav-btn" href="dashboard_serie_a.html" data-it="Classifica" data-en="Ranking">Classifica</a><a class="nav-btn" href="validazione.html" data-it="Validazione" data-en="Validation">Validazione</a><a class="nav-btn" href="guida_completa.html" data-it="Metodo" data-en="Method">Metodo</a><a class="nav-btn" href="dashboard_pro.html" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</a>
+  
 </nav>
-
-<div class="hero">
-  <div class="hero-grid">
-
-    <div class="hero-left">
-      <div class="hero-eyebrow" data-i18n="hp_eyebrow">Football Analytics &middot; Serie A 25/26</div>
-      <h1 class="hero-ttl">Serie A Scout Index</h1>
-      <p class="hero-sub" style="color:var(--lt);font-weight:600;letter-spacing:.2px;margin-bottom:12px" data-i18n="hp_tagline">
-        Data-driven Player Ranking Model
-      </p>
-      <p class="hero-sub" data-i18n="hp_intro">
-        A model designed to evaluate and rank Serie A players using
-        independent performance metrics &mdash; corrected for opponent difficulty
-        and stabilized with Bayesian Shrinkage. It is a descriptive index:
-        it ranks, it does not predict. How I got there, and where it does not
-        hold, is all in the validation page.
-      </p>
-
-      <div class="cta-group">
-        <a href="dashboard_serie_a.html" class="btn-primary">
-          <span data-i18n="btn_explore">Explore Dashboard</span>
-        </a>
-        <a href="validazione.html" class="btn-secondary">
-          <span data-i18n="btn_see_validation">See Validation</span>
-        </a>
-        <a href="dashboard_pro.html" class="btn-secondary">
-          <span data-it="TPI Pro" data-en="TPI Pro">TPI Pro</span>
-        </a>
-        <a href="guida_completa.html" class="btn-purp btn-secondary">
-          <span data-i18n="btn_methodology">Methodology</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Il risultato del modello, non la sua descrizione. Righe generate da
-         payload.json con scratchpad/build_hero.py: sono inlinate perche'
-         payload.json non e' pubblicato, quindi una fetch darebbe 404. -->
-    <div class="hero-right">
-      <div class="lb-panel">
-        <div class="lb-hd">
-          <span data-it="Classifica TPI &middot; totale" data-en="TPI ranking &middot; total">Classifica TPI &middot; totale</span>
-          <span data-it="38 giornate" data-en="38 matchdays">38 giornate</span>
-        </div>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">01</span>
-          <span class="lb-id">
-            <span class="lb-nm">Lautaro Martínez</span>
-            <span class="lb-why" data-it="#1 output · #4 centralità" data-en="#1 Output · #4 Centrality">#1 output · #4 centralità</span>
-          </span>
-          <span class="lb-tm">Inter</span>
-          <span class="lb-bar"><span style="width:100.0%;background:var(--clay)"></span></span>
-          <span class="lb-v">+1.80</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">02</span>
-          <span class="lb-id">
-            <span class="lb-nm">Donyell Malen</span>
-            <span class="lb-why" data-it="#1 consistenza · #2 centralità" data-en="#1 Consistency · #2 Centrality">#1 consistenza · #2 centralità</span>
-          </span>
-          <span class="lb-tm">Roma</span>
-          <span class="lb-bar"><span style="width:76.5%;background:var(--clay)"></span></span>
-          <span class="lb-v">+1.38</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">03</span>
-          <span class="lb-id">
-            <span class="lb-nm">Scott McTominay</span>
-            <span class="lb-why" data-it="#15 consistenza · #18 centralità" data-en="#15 Consistency · #18 Centrality">#15 consistenza · #18 centralità</span>
-          </span>
-          <span class="lb-tm">Napoli</span>
-          <span class="lb-bar"><span style="width:76.3%;background:var(--green)"></span></span>
-          <span class="lb-v">+1.37</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">04</span>
-          <span class="lb-id">
-            <span class="lb-nm">Marcus Thuram</span>
-            <span class="lb-why" data-it="#4 output · #16 consistenza" data-en="#4 Output · #16 Consistency">#4 output · #16 consistenza</span>
-          </span>
-          <span class="lb-tm">Inter</span>
-          <span class="lb-bar"><span style="width:71.3%;background:var(--clay)"></span></span>
-          <span class="lb-v">+1.28</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">05</span>
-          <span class="lb-id">
-            <span class="lb-nm">Federico Dimarco</span>
-            <span class="lb-why" data-it="#8 output · #10 centralità" data-en="#8 Output · #10 Centrality">#8 output · #10 centralità</span>
-          </span>
-          <span class="lb-tm">Inter</span>
-          <span class="lb-bar"><span style="width:66.1%;background:var(--blue)"></span></span>
-          <span class="lb-v">+1.19</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">06</span>
-          <span class="lb-id">
-            <span class="lb-nm">Christian Pulisic</span>
-            <span class="lb-why" data-it="#6 output · #12 centralità" data-en="#6 Output · #12 Centrality">#6 output · #12 centralità</span>
-          </span>
-          <span class="lb-tm">AC Milan</span>
-          <span class="lb-bar"><span style="width:64.7%;background:var(--clay)"></span></span>
-          <span class="lb-v">+1.16</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">07</span>
-          <span class="lb-id">
-            <span class="lb-nm">Henrikh Mkhitaryan</span>
-            <span class="lb-why" data-it="#58 output · #69 consistenza" data-en="#58 Output · #69 Consistency">#58 output · #69 consistenza</span>
-          </span>
-          <span class="lb-tm">Inter</span>
-          <span class="lb-bar"><span style="width:59.2%;background:var(--green)"></span></span>
-          <span class="lb-v">+1.06</span>
-        </a>
-        <a class="lb-row" href="dashboard_serie_a.html">
-          <span class="lb-n">08</span>
-          <span class="lb-id">
-            <span class="lb-nm">Mario Pasalic</span>
-            <span class="lb-why" data-it="#86 centralità · #87 output" data-en="#86 Centrality · #87 Output">#86 centralità · #87 output</span>
-          </span>
-          <span class="lb-tm">Atalanta</span>
-          <span class="lb-bar"><span style="width:57.6%;background:var(--green)"></span></span>
-          <span class="lb-v">+1.04</span>
-        </a>
-        <a class="lb-more" href="dashboard_serie_a.html"
-           data-it="e altri 373 giocatori &rarr;" data-en="and 373 more players &rarr;">e altri 373 giocatori &rarr;</a>
-      </div>
-    </div>
-
+<main class="doc">
+<header class="hero riga">
+  <div></div>
+  <div>
+  <div class="eyebrow">Raffaele Ciccone &middot; Football analytics</div>
+  <h1 data-it="Serie A<br><em>Scout Index</em>" data-en="Serie A<br><em>Scout Index</em>">Serie A<br><em>Scout Index</em></h1>
+  <p class="lede" data-it="Un indice che ordina i giocatori di Serie A per <strong>impatto offensivo</strong>: xG e xA corretti per la difficolt&agrave; dell&rsquo;avversario, sette dimensioni, una graduatoria sola. &Egrave; descrittivo &mdash; ordina, non predice &mdash; e le verifiche dicono anche dove perde." data-en="An index that ranks Serie A players by <strong>attacking impact</strong>: xG and xA adjusted for opponent difficulty, seven dimensions, one ranking. It is descriptive &mdash; it ranks, it does not predict &mdash; and the checks also say where it loses.">Un indice che ordina i giocatori di Serie A per <strong>impatto offensivo</strong>: xG e xA corretti per la difficolt&agrave; dell&rsquo;avversario, sette dimensioni, una graduatoria sola. &Egrave; descrittivo &mdash; ordina, non predice &mdash; e le verifiche dicono anche dove perde.</p>
+  <div class="cifre"><div class="cifra"><b>381</b><span data-it="giocatori qualificati" data-en="qualified players">giocatori qualificati</span></div><div class="cifra"><b>7</b><span data-it="dimensioni nel punteggio" data-en="dimensions in the score">dimensioni nel punteggio</span></div><div class="cifra"><b>15</b><span data-it="verifiche pubblicate" data-en="checks published">verifiche pubblicate</span></div></div>
   </div>
-
-  <div class="hero-facts">
-    <div class="hero-fact">
-      <span class="hero-fact-n">01</span>
-      <span data-i18n-html="hp_bullet_1"><strong>7 dimensioni indipendenti</strong> &mdash; output, buildup, centralit&agrave;, boost, consistenza (su IQR), finishing e forma recente, standardizzate con <strong>z-score winsorizzati</strong>. I 5 modulatori scout (AII, PRI, stabilit&agrave;, trend forma, EMI) entrano nel TPI Pro</span>
-    </div>
-    <div class="hero-fact">
-      <span class="hero-fact-n">02</span>
-      <span data-i18n-html="hp_bullet_2"><strong>381 giocatori &middot; 38 giornate &middot; 5 contesti</strong> &mdash; Totale, Casa, Trasferta, vs Top 6, vs Difese Solide</span>
-    </div>
-    <div class="hero-fact">
-      <span class="hero-fact-n">03</span>
-      <span data-i18n-html="hp_bullet_3"><strong>Messo alla prova, anche dove perde</strong> &mdash; ogni verifica con intervalli di confidenza bootstrap al 95%, compreso il confronto out-of-sample con baseline banali: contro l'output grezzo per-90 il TPI non vince</span>
-    </div>
+</header>
+<section class="cap riga">
+  <div class="cap-num">01</div>
+  <div>
+    <h2 data-it="Chi c&rsquo;&egrave; in cima adesso" data-en="Who is on top right now">Chi c&rsquo;&egrave; in cima adesso</h2>
+    <p class="prosa" data-it="I primi otto per TPI totale. Sotto ogni nome ci sono le due dimensioni in cui quel giocatore sta pi&ugrave; in alto: dicono <em>perch&eacute;</em> &egrave; l&igrave;, che il punteggio da solo non dice." data-en="The top eight by total TPI. Under each name are the two dimensions where that player ranks highest: they say <em>why</em> he is there, which the score alone does not.">I primi otto per TPI totale. Sotto ogni nome ci sono le due dimensioni in cui quel giocatore sta pi&ugrave; in alto: dicono <em>perch&eacute;</em> &egrave; l&igrave;, che il punteggio da solo non dice.</p>
+    <div class="clas"><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">01</span>
+  <span class="cl-id"><b>Lautaro Martínez</b><small>Inter</small>
+    <em data-it="#1 output &middot; #4 centralit&agrave;" data-en="#1 output &middot; #4 centrality">#1 output &middot; #4 centralit&agrave;</em></span>
+  <span class="cl-bar"><i style="width:100%"></i></span>
+  <span class="cl-v">+1.80</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">02</span>
+  <span class="cl-id"><b>Donyell Malen</b><small>Roma</small>
+    <em data-it="#1 consistenza &middot; #2 centralit&agrave;" data-en="#1 consistency &middot; #2 centrality">#1 consistenza &middot; #2 centralit&agrave;</em></span>
+  <span class="cl-bar"><i style="width:77%"></i></span>
+  <span class="cl-v">+1.38</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">03</span>
+  <span class="cl-id"><b>Scott McTominay</b><small>Napoli</small>
+    <em data-it="#15 consistenza &middot; #18 centralit&agrave;" data-en="#15 consistency &middot; #18 centrality">#15 consistenza &middot; #18 centralit&agrave;</em></span>
+  <span class="cl-bar"><i style="width:76%"></i></span>
+  <span class="cl-v">+1.37</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">04</span>
+  <span class="cl-id"><b>Marcus Thuram</b><small>Inter</small>
+    <em data-it="#4 output &middot; #16 consistenza" data-en="#4 output &middot; #16 consistency">#4 output &middot; #16 consistenza</em></span>
+  <span class="cl-bar"><i style="width:71%"></i></span>
+  <span class="cl-v">+1.28</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">05</span>
+  <span class="cl-id"><b>Federico Dimarco</b><small>Inter</small>
+    <em data-it="#8 output &middot; #10 centralit&agrave;" data-en="#8 output &middot; #10 centrality">#8 output &middot; #10 centralit&agrave;</em></span>
+  <span class="cl-bar"><i style="width:66%"></i></span>
+  <span class="cl-v">+1.19</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">06</span>
+  <span class="cl-id"><b>Christian Pulisic</b><small>AC Milan</small>
+    <em data-it="#6 output &middot; #12 centralit&agrave;" data-en="#6 output &middot; #12 centrality">#6 output &middot; #12 centralit&agrave;</em></span>
+  <span class="cl-bar"><i style="width:65%"></i></span>
+  <span class="cl-v">+1.16</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">07</span>
+  <span class="cl-id"><b>Henrikh Mkhitaryan</b><small>Inter</small>
+    <em data-it="#58 output &middot; #69 consistenza" data-en="#58 output &middot; #69 consistency">#58 output &middot; #69 consistenza</em></span>
+  <span class="cl-bar"><i style="width:59%"></i></span>
+  <span class="cl-v">+1.06</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">08</span>
+  <span class="cl-id"><b>Mario Pasalic</b><small>Atalanta</small>
+    <em data-it="#86 centralit&agrave; &middot; #87 output" data-en="#86 centrality &middot; #87 output">#86 centralit&agrave; &middot; #87 output</em></span>
+  <span class="cl-bar"><i style="width:58%"></i></span>
+  <span class="cl-v">+1.04</span>
+</a></div>
+    <a class="oltre" href="dashboard_serie_a.html" data-it="e altri 373 giocatori nella dashboard" data-en="and 373 more players in the dashboard">e altri 373 giocatori nella dashboard</a>
   </div>
-
-  <div class="hero-tags">
-    <span class="hero-tag blue" data-i18n="hp_tag_xg">xG &middot; xA &middot; SOS-weighting</span>
-    <span class="hero-tag green" data-i18n="hp_tag_bayes">Bayesian Shrinkage</span>
-    <span class="hero-tag purp" data-i18n="hp_tag_pro">TPI Pro &mdash; AII + PRI</span>
-    <span class="hero-tag teal" data-i18n="hp_tag_validated">Descriptive index</span>
-  </div>
+</section>
+<section class="cap riga">
+  <div class="cap-num">02</div>
+  <div>
+    <h2 data-it="Come &egrave; costruito" data-en="How it is built">Come &egrave; costruito</h2>
+    <p class="prosa" data-it="Il punteggio non &egrave; una media di statistiche grezze. Ogni pezzo risponde a un problema preciso di chi guarda i numeri del calcio." data-en="The score is not an average of raw statistics. Each piece answers a specific problem you hit when you look at football numbers.">Il punteggio non &egrave; una media di statistiche grezze. Ogni pezzo risponde a un problema preciso di chi guarda i numeri del calcio.</p>
+    <div class="ev riga">
+  <div class="ev-fig">7<span class="ev-lbl" data-it="Dimensioni" data-en="Dimensions">Dimensioni</span></div>
+  <div class="ev-txt" data-it="Output, buildup, centralit&agrave;, boost, consistenza, finishing e forma recente. Ognuna &egrave; uno z-score winsorizzato, cos&igrave; una partita fuori scala non trascina la graduatoria." data-en="Output, buildup, centrality, boost, consistency, finishing and recent form. Each is a winsorised z-score, so a single off-the-charts match does not drag the ranking.">Output, buildup, centralit&agrave;, boost, consistenza, finishing e forma recente. Ognuna &egrave; uno z-score winsorizzato, cos&igrave; una partita fuori scala non trascina la graduatoria.</div>
+</div><div class="ev riga">
+  <div class="ev-fig">SOS<span class="ev-lbl" data-it="Difficolt&agrave; dell&rsquo;avversario" data-en="Opponent difficulty">Difficolt&agrave; dell&rsquo;avversario</span></div>
+  <div class="ev-txt" data-it="Ogni prestazione &egrave; pesata per la forza di chi c&rsquo;era dall&rsquo;altra parte: segnare al Como e segnare all&rsquo;Inter non valgono uguale." data-en="Every performance is weighted by the strength of the opposition: scoring against Como and scoring against Inter are not worth the same.">Ogni prestazione &egrave; pesata per la forza di chi c&rsquo;era dall&rsquo;altra parte: segnare al Como e segnare all&rsquo;Inter non valgono uguale.</div>
+</div><div class="ev riga">
+  <div class="ev-fig">Bayes<span class="ev-lbl" data-it="Chi ha giocato poco" data-en="Players with few minutes">Chi ha giocato poco</span></div>
+  <div class="ev-txt" data-it="Uno shrinkage tira i punteggi verso la media del ruolo in proporzione ai minuti: cos&igrave; chi ha fatto due partite buone non finisce davanti a chi regge da trenta." data-en="A shrinkage pulls scores towards the role average in proportion to minutes played: two good matches do not put a player ahead of someone who has delivered for thirty.">Uno shrinkage tira i punteggi verso la media del ruolo in proporzione ai minuti: cos&igrave; chi ha fatto due partite buone non finisce davanti a chi regge da trenta.</div>
+</div><div class="ev riga">
+  <div class="ev-fig">5<span class="ev-lbl" data-it="Contesti" data-en="Contexts">Contesti</span></div>
+  <div class="ev-txt" data-it="Totale, casa, trasferta, contro le prime sei e contro le difese pi&ugrave; solide. Lo stesso giocatore ha cinque punteggi, e la differenza fra loro &egrave; informazione." data-en="Overall, home, away, against the top six and against the tightest defences. The same player gets five scores, and the gap between them is information.">Totale, casa, trasferta, contro le prime sei e contro le difese pi&ugrave; solide. Lo stesso giocatore ha cinque punteggi, e la differenza fra loro &egrave; informazione.</div>
+</div><div class="ev riga">
+  <div class="ev-fig">+5<span class="ev-lbl" data-it="Modulatori scout" data-en="Scout modulators">Modulatori scout</span></div>
+  <div class="ev-txt" data-it="Il <strong>TPI Pro</strong> aggiunge et&agrave;, tenuta fisica, stabilit&agrave; fra contesti, direzione della forma e produzione sopra l&rsquo;attesa. Serve a leggere il profilo di un giocatore, non a prevederne il rendimento." data-en="The <strong>TPI Pro</strong> adds age, physical durability, cross-context stability, form direction and above-expectation production. It helps read a player&rsquo;s profile, not forecast his output.">Il <strong>TPI Pro</strong> aggiunge et&agrave;, tenuta fisica, stabilit&agrave; fra contesti, direzione della forma e produzione sopra l&rsquo;attesa. Serve a leggere il profilo di un giocatore, non a prevederne il rendimento.</div>
 </div>
-
-<div class="section" style="padding-bottom:56px">
-  <a class="pro-band" href="dashboard_pro.html">
-    <div class="pro-band-tag"
-      data-it="Nuovo &middot; Indice avanzato" data-en="New &middot; Advanced index">Nuovo &middot; Indice avanzato</div>
-    <div class="pro-band-ttl">TPI <em>Pro</em></div>
-    <div class="pro-band-body"
-      data-it="Il TPI classico misura il <strong>rendimento in campo</strong>. Il Pro aggiunge cinque modulatori che guardano al <strong>giocatore</strong>: dove sta nella curva dell&rsquo;et&agrave;, quanto regge fisicamente, se rende in tutti i contesti o solo in casa, in che direzione va la sua forma, e chi produce sopra l&rsquo;aspettativa per la sua et&agrave;. Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;."
-      data-en="The classic TPI measures <strong>on-pitch performance</strong>. Pro adds five modulators that look at the <strong>player</strong>: where they sit on the age curve, how well they hold up physically, whether they deliver in every context or only at home, which way their form is heading, and who produces above expectation for their age. It tells apart who is good now from who will be.">Il TPI classico misura il <strong>rendimento in campo</strong>. Il Pro aggiunge cinque modulatori che guardano al <strong>giocatore</strong>: dove sta nella curva dell&rsquo;et&agrave;, quanto regge fisicamente, se rende in tutti i contesti o solo in casa, in che direzione va la sua forma, e chi produce sopra l&rsquo;aspettativa per la sua et&agrave;. Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;.</div>
-    <!-- Detto qui, dove il Pro si pubblicizza, non solo in fondo alla
-         validazione. Promuoverlo senza dire come e' andato il test lo fa
-         sembrare una cosa non guardata; dirlo lo trasforma nel punto piu'
-         interessante da raccontare. -->
-    <div class="pro-band-onesta"
-      data-it="Testato <em>out-of-sample</em>: sul rendimento futuro <strong>non batte il TPI classico</strong> — la differenza di RMSE &egrave; indistinguibile da zero. Resta uno strumento descrittivo, dice <em>che profilo</em> &egrave; un giocatore, non quanto rendera&#768;."
-      data-en="Tested <em>out-of-sample</em>: on future performance it <strong>does not beat the classic TPI</strong> — the RMSE difference is indistinguishable from zero. It stays a descriptive tool: it tells you <em>what kind of profile</em> a player is, not how much they will produce.">Testato <em>out-of-sample</em>: sul rendimento futuro <strong>non batte il TPI classico</strong> &mdash; la differenza di RMSE &egrave; indistinguibile da zero. Resta uno strumento descrittivo, dice <em>che profilo</em> &egrave; un giocatore, non quanto render&agrave;.</div>
-    <div class="pro-band-mods">
-      <span data-it="AII &middot; Indice et&agrave;" data-en="AII &middot; Age index">AII &middot; Indice et&agrave;</span>
-      <span data-it="PRI &middot; Tenuta fisica" data-en="PRI &middot; Physical reliability">PRI &middot; Tenuta fisica</span>
-      <span data-it="Stabilit&agrave; fra contesti" data-en="Cross-context stability">Stabilit&agrave; fra contesti</span>
-      <span data-it="Direzione della forma" data-en="Form trend">Direzione della forma</span>
-      <span data-it="EMI &middot; Early momentum" data-en="EMI &middot; Early momentum">EMI &middot; Early momentum</span>
-    </div>
-    <div class="pro-band-lnk"
-      data-it="Apri la dashboard Pro &rarr;" data-en="Open the Pro dashboard &rarr;">Apri la dashboard Pro &rarr;</div>
-  </a>
-</div>
-
-<div class="section">
-  <div class="section-ttl" data-i18n="hp_whats_inside">What's inside</div>
-  <div class="cards">
-
-    <a href="dashboard_serie_a.html" class="card">
-      <div class="card-accent" style="background:linear-gradient(90deg,var(--blue),var(--indig))"></div>
-      <div class="card-ttl" data-i18n="hp_card_dash_ttl">Scout Dashboard</div>
-      <div class="card-body" data-i18n="hp_card_dash_body">
-        Interactive player rankings across 7 metrics, squad filter,
-        head-to-head comparison up to 4 players, TPI radar and
-        differential analysis. Fully responsive.
-      </div>
-      <div class="card-link" style="color:var(--blue)" data-i18n="hp_card_dash_lnk">Explore dashboard →</div>
-    </a>
-
-    <a href="validazione.html" class="card">
-      <div class="card-accent" style="background:linear-gradient(90deg,var(--green),var(--teal))"></div>
-      <div class="card-ttl" data-i18n="hp_card_val_ttl">Statistical Validation</div>
-      <div class="card-body" data-i18n="hp_card_val_body">
-        Checks reported exactly as they came out: comparison against
-        trivial baselines, calibration, ablation of the 7 dimensions,
-        predictivity by role, convergence and persistence.
-      </div>
-      <div class="card-link" style="color:var(--green)" data-i18n="hp_card_val_lnk">See validation →</div>
-    </a>
-
-    <a href="guida_completa.html" class="card">
-      <div class="card-accent" style="background:linear-gradient(90deg,var(--purp),var(--indig))"></div>
-      <div class="card-ttl" data-i18n="hp_card_meth_ttl">Full Methodology</div>
-      <div class="card-body" data-i18n="hp_card_meth_body">
-        Every index explained with formulas, rationale and interactive charts.
-        From raw data pipeline to final TPI — all steps documented.
-      </div>
-      <div class="card-link" style="color:var(--purp)" data-i18n="hp_card_meth_lnk">Read methodology →</div>
-    </a>
-
+    <a class="oltre" href="guida_completa.html" data-it="Le formule, una per una" data-en="The formulas, one by one">Le formule, una per una</a>
   </div>
-
-  <!-- Indici -->
-  <div style="margin-top:56px">
-    <div class="section-ttl" data-i18n="hp_idx_section">Gli indici del sistema</div>
-    <div class="indices">
-      <div class="idx">
-        <div class="idx-dot" style="background:var(--blue)"></div>
-        <div><div class="idx-ttl" data-i18n="hp_idx_output_t">Output Adj / 90'</div>
-          <div class="idx-sub" data-i18n="hp_idx_output_s">(xG+xA)/min×90 pesato per SOS — corregge per la forza degli avversari</div></div>
-      </div>
-      <div class="idx">
-        <div class="idx-dot" style="background:var(--green)"></div>
-        <div><div class="idx-ttl" data-i18n="hp_idx_centr_t">Centralità Offensiva</div>
-          <div class="idx-sub" data-i18n="hp_idx_centr_s">% produzione squadra che passa dal giocatore — con Bayesian Shrinkage</div></div>
-      </div>
-      <div class="idx">
-        <div class="idx-dot" style="background:var(--orng)"></div>
-        <div><div class="idx-ttl" data-i18n="hp_idx_boost_t">Team Boost Ratio</div>
-          <div class="idx-sub" data-i18n="hp_idx_boost_s">xG squadra CON / SENZA — quanto vale davvero per la squadra</div></div>
-      </div>
-      <div class="idx">
-        <div class="idx-dot" style="background:var(--purp)"></div>
-        <div><div class="idx-ttl" data-i18n="hp_idx_cons_t">Consistenza (IQR-based)</div>
-          <div class="idx-sub" data-i18n="hp_idx_cons_s">1 − IQR/mediana — robust to outlier matches, bounded [0,1]</div></div>
-      </div>
-      <div class="idx">
-        <div class="idx-dot" style="background:var(--teal)"></div>
-        <div><div class="idx-ttl" data-i18n="hp_idx_aii_t">AII — Age Impact Index</div>
-          <div class="idx-sub" data-i18n="hp_idx_aii_s">Gaussiana con picco a 23 anni — premia chi sta entrando nel prime</div></div>
-      </div>
-      <div class="idx">
-        <div class="idx-dot" style="background:var(--clay)"></div>
-        <div><div class="idx-ttl" data-i18n="hp_idx_pri_t">PRI — Physical Reliability</div>
-          <div class="idx-sub" data-i18n="hp_idx_pri_s">Disponibilità + infortuni + gravità — affidabilità fisica storica</div></div>
-      </div>
-    </div>
-
-    <!-- TPI Pro banner -->
-    <div class="pro-banner">
-      <div class="pro-new" data-i18n="hp_pro_new">Novità — TPI Pro</div>
-      <div class="pro-ttl" data-i18n="hp_pro_ttl">
-        TPI Pro — 7 dimensioni + 5 modulatori
-      </div>
-      <div style="font-size:13px;color:var(--ls);line-height:1.65;max-width:560px" data-i18n-html="hp_pro_body">
-        Il TPI classico usa 7 dimensioni offensive (output, buildup, centralità, boost, consistenza, finishing, forma). Il TPI Pro aggiunge
-        <strong style="color:var(--teal)">Età Index (AII)</strong> e
-        <strong style="color:var(--purp)">Affidabilità Fisica (PRI)</strong>
-        per uno scouting a lungo termine più accurato.
-      </div>
-      <div class="formula">
-        TPI Pro = 0.65·TPI + 0.10·<span style="color:var(--teal)">AII scout</span>
-        + 0.07·<span style="color:var(--purp)">PRI</span> + 0.07·stabilità ctx
-        + 0.05·trend forma + 0.06·<span style="color:var(--orng)">EMI</span>
-      </div>
-      <!-- I pesi non sono unici: quelli qui sopra sono della fascia prime.
-           Mostrarli senza dirlo faceva sembrare fisso un indice che invece
-           cambia peso proprio in funzione dell'eta' — che e' il suo punto. -->
-      <div class="formula-nota"
-        data-it="Pesi della fascia <strong>prime (23&ndash;28)</strong>. Cambiano per fascia d&rsquo;et&agrave;: sul prospetto l&rsquo;AII sale a 0.15 e l&rsquo;EMI a 0.13, sul veterano il PRI sale a 0.18."
-        data-en="Weights for the <strong>prime band (23&ndash;28)</strong>. They change by age band: for prospects AII rises to 0.15 and EMI to 0.13; for veterans PRI rises to 0.18.">Pesi della fascia <strong>prime (23&ndash;28)</strong>. Cambiano per fascia d&rsquo;et&agrave;: sul prospetto l&rsquo;AII sale a 0.15 e l&rsquo;EMI a 0.13, sul veterano il PRI sale a 0.18.</div>
-      <a class="pro-band-lnk" href="dashboard_pro.html"
-         data-it="Apri la dashboard Pro &rarr;" data-en="Open the Pro dashboard &rarr;">Apri la dashboard Pro &rarr;</a>
-    </div>
-
-  </div>
+</section>
+<section class="cap riga">
+  <div class="cap-num">03</div>
+  <div>
+    <h2 data-it="Quanto regge" data-en="How well it holds">Quanto regge</h2>
+    <p class="prosa" data-it="Un indice si giudica da quello che regge quando lo si mette alla prova, non da quanto suona bene. Le verifiche sono pubblicate per intero, comprese quelle costruite per bocciarlo." data-en="An index is judged by what survives testing, not by how good it sounds. The checks are published in full, including the ones built to fail it.">Un indice si giudica da quello che regge quando lo si mette alla prova, non da quanto suona bene. Le verifiche sono pubblicate per intero, comprese quelle costruite per bocciarlo.</p>
+    <div class="ev riga">
+  <div class="ev-fig">&rho; 0.964<span class="ev-lbl" data-it="L&rsquo;ordine tiene" data-en="The order holds">L&rsquo;ordine tiene</span></div>
+  <div class="ev-txt" data-it="Diviso in dieci gruppi, l&rsquo;indice li dispone nell&rsquo;ordine del rendimento realizzato in campo." data-en="Split into ten groups, the index lines them up in the order of output actually produced on the pitch.">Diviso in dieci gruppi, l&rsquo;indice li dispone nell&rsquo;ordine del rendimento realizzato in campo.</div>
+</div><div class="ev riga">
+  <div class="ev-fig">&rho; 0.845<span class="ev-lbl" data-it="Gi&agrave; alla giornata 20" data-en="Already by matchday 20">Gi&agrave; alla giornata 20</span></div>
+  <div class="ev-txt" data-it="A met&agrave; stagione la graduatoria &egrave; gi&agrave; quasi quella di fine anno: non serve aspettare maggio per usarla." data-en="Halfway through the season the ranking is already close to the final one: you do not have to wait for May to use it.">A met&agrave; stagione la graduatoria &egrave; gi&agrave; quasi quella di fine anno: non serve aspettare maggio per usarla.</div>
+</div><div class="ev riga">
+  <div class="ev-fig">-0.0252<span class="ev-lbl" data-it="E dove perde" data-en="And where it loses">E dove perde</span></div>
+  <div class="ev-txt" data-it="Sul rendimento <em>futuro</em>, contro l&rsquo;output grezzo per-90, il TPI <strong>non vince</strong> (1663 confronti fuori campione). Sta scritto nella pagina delle verifiche, con l&rsquo;intervallo di confidenza accanto." data-en="On <em>future</em> output, against raw per-90 output, the TPI <strong>does not win</strong> (1663 out-of-sample comparisons). It is written on the validation page, with the confidence interval next to it.">Sul rendimento <em>futuro</em>, contro l&rsquo;output grezzo per-90, il TPI <strong>non vince</strong> (1663 confronti fuori campione). Sta scritto nella pagina delle verifiche, con l&rsquo;intervallo di confidenza accanto.</div>
 </div>
-
-<footer class="footer">
-  <div class="footer-text">
-    Raffaele Ciccone &nbsp;·&nbsp;
-    <a href="https://github.com/raffaeleciccone-analyst" target="_blank">GitHub</a>
-    &nbsp;·&nbsp; Serie A Scout Index &nbsp;·&nbsp; <span data-i18n="hp_footer_season">Stagione 2025/26</span><br>
-    <span style="color:rgba(235,235,245,.18)" data-i18n="hp_footer_data">
-      Dati: FBref (fonte Opta) · Transfermarkt · SosFanta · PazzidiFanta
-    </span>
+    <a class="oltre" href="validazione.html" data-it="Tutte le verifiche, come sono uscite" data-en="Every check, exactly as it came out">Tutte le verifiche, come sono uscite</a>
+  </div>
+</section>
+<section class="cap riga">
+  <div class="cap-num">04</div>
+  <div>
+    <h2 data-it="Le quattro pagine" data-en="The four pages">Le quattro pagine</h2>
+    <a class="ev riga pag" href="dashboard_serie_a.html">
+  <div class="ev-fig ev-txtfig" data-it="Classifica" data-en="Ranking">Classifica</div>
+  <div class="ev-txt" data-it="Tutti i giocatori qualificati, filtrabili per squadra e ruolo, con i cinque contesti e il confronto fino a quattro alla volta." data-en="Every qualified player, filterable by team and role, with the five contexts and a head-to-head of up to four at a time.">Tutti i giocatori qualificati, filtrabili per squadra e ruolo, con i cinque contesti e il confronto fino a quattro alla volta.</div>
+</a><a class="ev riga pag" href="validazione.html">
+  <div class="ev-fig ev-txtfig" data-it="Validazione" data-en="Validation">Validazione</div>
+  <div class="ev-txt" data-it="Cosa regge e cosa no, con gli intervalli di confidenza e il test costruito per bocciare l&rsquo;indice." data-en="What holds up and what does not, with confidence intervals and the test built to fail the index.">Cosa regge e cosa no, con gli intervalli di confidenza e il test costruito per bocciare l&rsquo;indice.</div>
+</a><a class="ev riga pag" href="guida_completa.html">
+  <div class="ev-fig ev-txtfig" data-it="Metodo" data-en="Method">Metodo</div>
+  <div class="ev-txt" data-it="Ogni indice spiegato con la formula, il motivo per cui esiste e un esempio calcolato." data-en="Every index explained with its formula, the reason it exists and a worked example.">Ogni indice spiegato con la formula, il motivo per cui esiste e un esempio calcolato.</div>
+</a><a class="ev riga pag" href="dashboard_pro.html">
+  <div class="ev-fig ev-txtfig" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</div>
+  <div class="ev-txt" data-it="L&rsquo;indice con i cinque modulatori scout, i pesi che cambiano per fascia d&rsquo;et&agrave; e chi guadagna o perde posizioni." data-en="The index with the five scout modulators, weights that change by age band, and who gains or loses places.">L&rsquo;indice con i cinque modulatori scout, i pesi che cambiano per fascia d&rsquo;et&agrave; e chi guadagna o perde posizioni.</div>
+</a>
+  </div>
+</section>
+<footer class="riga">
+  <div></div>
+  <div>
+    <span>Raffaele Ciccone &middot; Serie A Scout Index</span>
+    <a href="validazione.html" data-it="Come &egrave; stato verificato" data-en="How it was checked">Come &egrave; stato verificato</a><a href="guida_completa.html" data-it="Come &egrave; costruito" data-en="How it is built">Come &egrave; costruito</a>
   </div>
 </footer>
-
+</main>
 <script src="i18n.js"></script>
 <script src="ai_chat.js" defer></script>
 </body>
