@@ -6,6 +6,7 @@
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A1512'/><rect x='6' y='19' width='5' height='7' fill='%23FFB020'/><rect x='13.5' y='13' width='5' height='13' fill='%23FFB020'/><rect x='21' y='6' width='5' height='20' fill='%23FFB020'/></svg>">
 <title>TPI Pro — Serie A Scout Index</title>
 <script src="i18n.js"></script>
 <script src="ai_chat.js" defer></script>
@@ -31,7 +32,11 @@
 :root{
   --bg:#0A1512; --bg1:#0F1F1B; --bg2:#132723; --bg3:#1B342E; --bg4:#24443C;
   --sep:rgba(233,240,236,.10); --sep2:rgba(233,240,236,.18);
-  --lp:#ECF2EE; --ls:rgba(233,240,236,.66); --lt:rgba(233,240,236,.38); --lq:rgba(233,240,236,.20);
+/* --lt e' il colore di tutto cio' che etichetta: sigle di colonna, didascalie,
+   intestazioni, voci di nav non attive, assi dei grafici. A .38 dava 3.24:1 sul
+   fondo, sotto la soglia AA di 4.5, e quasi sempre su corpi fra 8 e 11px. A .58
+   sale sopra AA e resta subordinato al bianco pieno. */
+  --lp:#ECF2EE; --ls:rgba(233,240,236,.66); --lt:rgba(233,240,236,.58); --lq:rgba(233,240,236,.20);
 
   /* Un solo accento: l'ambra dice "attivo, oppure questo e' il valore". */
   --orng:#FFB020;
@@ -72,7 +77,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
   background:rgba(10,21,18,.86);backdrop-filter:saturate(160%) blur(14px);
   border-bottom:1px solid var(--sep);
   display:flex;align-items:center;gap:20px;
-  padding-inline:max(20px,calc((100% - var(--maxw)) / 2))}
+  padding-inline:clamp(18px,4vw,40px)}
 /* Allineamento al centro, non alla base. Con `baseline` l'etichetta mono da
    9px veniva allineata alla base dell'Oswald da 19px: il suo centro cadeva a
    34px mentre marchio e link stavano tutti a 27.5, e la sigla sembrava

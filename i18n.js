@@ -216,7 +216,7 @@
       dash_m_conv:         "G / xG — Conversion",
       /* dashboard — righe leaderboard / stati */
       dash_btn_profile:    "Profilo",
-      dash_btn_diff:       "Scarto",
+      dash_btn_diff:       "Confronta con…",
       dash_no_filter_data: "Nessun dato disponibile per questo filtro",
       dash_roster_note:    "giocatori (minuti insufficienti per TPI)",
       dash_off_profile:    "Profilo offensivo",
@@ -505,7 +505,7 @@
       dash_m_conv:         "G / xG — Conversion",
       /* dashboard — leaderboard rows / states */
       dash_btn_profile:    "Profile",
-      dash_btn_diff:       "Gap",
+      dash_btn_diff:       "Compare with…",
       dash_no_filter_data: "No data available for this filter",
       dash_roster_note:    "players (insufficient minutes for TPI)",
       dash_off_profile:    "Offensive profile",
