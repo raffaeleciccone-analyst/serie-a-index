@@ -27,20 +27,44 @@ body{background:var(--bg);color:var(--lp);font-family:var(--font);
 ::selection{background:rgba(255,176,32,.26)}
 a{color:inherit}
 
-/* ── Nav: identica alle altre pagine del sito ─────────────────── */
-.nav{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:14px;
-  padding:10px clamp(18px,4vw,40px);background:rgba(10,21,18,.86);
+/* ── Nav: una sola per tutte e cinque le pagine ──────────────────
+   Prima ce n'erano tre. Qui pastiglie bordate in maiuscolo, sulle due
+   dashboard link piatti con la sottolineatura ambra, e marchi diversi
+   ("TPI / Serie A 25/26" contro "Serie A 25/26 / Scout Index" contro
+   "Serie A Scout / TPI Pro"): passando da una pagina all'altra sembrava
+   di cambiare sito. Vince l'impianto delle dashboard, perche' fa una
+   cosa che le pastiglie non facevano — dire dove sei invece di
+   nascondere la voce corrente. Le stesse regole stanno in
+   assets/dashboard.css per le pagine che non passano di qui. */
+.nav{position:sticky;top:0;z-index:60;height:56px;display:flex;align-items:center;gap:14px;
+  padding:0 clamp(18px,4vw,40px);background:rgba(10,21,18,.86);
   backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--sep)}
-.nav-brand{font-family:var(--disp);font-size:15px;letter-spacing:.06em;
-  text-transform:uppercase;white-space:nowrap}
-.nav-brand small{display:block;font-family:var(--font);font-size:9.5px;
-  letter-spacing:.14em;color:var(--lt);text-transform:uppercase}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;
+  font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.4px;
+  text-transform:uppercase;white-space:nowrap;text-decoration:none;color:var(--lp)}
+.nav-brand small{font-family:var(--mono);font-size:9px;font-weight:400;
+  letter-spacing:.16em;color:var(--lt);padding-left:10px;
+  border-left:1px solid var(--sep)}
 .nav-sp{flex:1}
-.nav-btn{display:inline-flex;align-items:center;padding:6px 12px;border-radius:8px;
-  border:1px solid var(--sep2);font-size:11.5px;letter-spacing:.08em;
-  text-transform:uppercase;text-decoration:none;color:var(--ls);white-space:nowrap}
-.nav-btn:hover{color:var(--lp);border-color:var(--lq)}
-.nav-btn.pri{border-color:rgba(255,176,32,.5);color:var(--orng)}
+/* Le voci scorrono invece di andare a capo: restano cinque su una riga sola a
+   qualunque larghezza, e la barra resta alta uguale. Le soglie a cui la riga
+   si stringe stanno in fondo al foglio. */
+.nav-links{display:flex;align-items:center;gap:16px;min-width:0;
+  overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{position:relative;display:inline-flex;align-items:center;height:34px;
+  padding:0 2px;font-size:12px;font-weight:600;letter-spacing:.02em;
+  color:var(--lt);text-decoration:none;white-space:nowrap;flex-shrink:0;
+  transition:color .16s}
+.nav-link:hover{color:var(--lp)}
+.nav-link::after{content:"";position:absolute;left:0;right:0;bottom:7px;height:1.5px;
+  background:var(--orng);opacity:0;transition:opacity .16s}
+.nav-link:hover::after,.nav-link.on::after{opacity:1}
+.nav-link.on{color:var(--lp)}
+/* L'unico accento della fila: il TPI Pro e' l'altro indice, non un'altra
+   sezione di questo. */
+.nav-link.pro{color:var(--orng)}
+.nav-link.pro:hover{color:#FFC85A}
 
 /* ── Impaginazione ──────────────────────────────────────────────
    Due bordi sinistri in tutta la pagina e non uno di piu':
@@ -162,9 +186,25 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   .cifre{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 30px}
   details.riga>summary,details.riga>.prosa{grid-column:auto}
   details .prosa{margin-top:10px}
-  .nav-brand small{display:none}
   table{font-size:12.5px}
   .t-mis{white-space:normal}
+}
+/* Le cinque voci chiedono 336px, e non si stringono: quello che cede e' il
+   marchio, prima la stagione e poi tutto. Le soglie sono misurate, non a
+   occhio — con il marchio in riga fino a 420px l'ultima voce, TPI Pro, finiva
+   fuori dallo schermo su qualunque telefono, e nessuno pensa a trascinare di
+   lato un'intestazione. Sotto i 400px scorre comunque: li' non ci sta niente. */
+@media(max-width:700px){
+  .nav-brand small{display:none}
+}
+@media(max-width:560px){
+  .nav{gap:10px;padding:0 14px}
+  .nav-brand{display:none}
+}
+@media(max-width:440px){
+  .nav{height:46px;padding:0 8px;gap:8px}
+  .nav-links{gap:9px}
+  .nav-link{font-size:11px;height:28px}
 }
 @media(max-width:520px){
   .cifre{grid-template-columns:minmax(0,1fr)}
@@ -190,21 +230,57 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   text-decoration:none;border-bottom:1px solid var(--lq);padding-bottom:2px}
 .oltre:hover{color:var(--orng);border-color:var(--orng)}
 .oltre::after{content:" \2192"}
-a.pag{text-decoration:none;color:inherit}
-a.pag:hover .ev-txtfig{color:var(--orng)}
+
+/* I quattro tasti d'ingresso. Sono le uniche scatole del sito: il resto delle
+   pagine mette i numeri sul filo del testo apposta, ma un tasto deve avere un
+   bordo per farsi riconoscere come tasto. Restano dentro le due colonne di
+   tutto il resto — l'etichetta nel margine, i tasti nella colonna di lettura.
+
+   L'eroe qui sotto si stringe di una trentina di pixel rispetto alle altre
+   pagine, e solo qui: con l'aria di prima i tasti cadevano sul bordo basso di
+   un portatile da 900px, cioe' esattamente dove non li vede chi arriva. */
+.hero{padding-bottom:clamp(22px,3vw,30px)}
+.cifre{margin-top:32px;padding-top:18px}
+.porte{padding:0 0 clamp(34px,5.5vw,50px);align-items:start}
+.porte-lbl{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--lt);padding-top:15px}
+.porte-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.porta{display:flex;flex-direction:column;gap:7px;min-height:98px;
+  padding:14px 14px 13px;border:1px solid var(--sep2);border-radius:10px;
+  background:var(--bg1);text-decoration:none;color:inherit;
+  transition:border-color .16s,background .16s}
+.porta:hover{border-color:rgba(255,176,32,.55);background:var(--bg2)}
+.porta-t{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  font-family:var(--disp);font-weight:500;font-size:17.5px;text-transform:uppercase;
+  letter-spacing:.02em;line-height:1;color:var(--lp)}
+.porta-t::after{content:"\2192";font-family:var(--font);font-size:13px;font-weight:400;
+  color:var(--orng);opacity:.42;transition:opacity .16s}
+.porta:hover .porta-t::after{opacity:1}
+.porta-d{font-size:12px;line-height:1.5;color:var(--lt)}
+/* La classifica e' quello che il visitatore e' venuto a vedere: e' l'unico dei
+   quattro a portare l'ambra, come la voce Pro nella nav. */
+.porta.pri{border-color:rgba(255,176,32,.42)}
+.porta.pri .porta-t{color:var(--orng)}
+.porta.pri .porta-t::after{opacity:.8}
+
 @media(max-width:900px){
   .cl-row{grid-template-columns:26px minmax(0,1fr) 56px;gap:0 12px}
   .cl-bar{display:none}
+  .porte-g{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .porte-lbl{padding:0 0 10px}
+}
+@media(max-width:460px){
+  .porte-g{grid-template-columns:minmax(0,1fr)}
+  .porta{min-height:0}
 }
 </style>
 </head>
 <body>
 <nav class="nav">
-  <div class="nav-brand">TPI <small>Serie A 25/26</small></div>
+  <a class="nav-brand" href="index.html">Serie A Scout <small>25/26</small></a>
   <div class="nav-sp"></div>
   <span data-i18n-switcher></span>
-  <a class="nav-btn" href="dashboard_serie_a.html" data-it="Classifica" data-en="Ranking">Classifica</a><a class="nav-btn" href="validazione.html" data-it="Validazione" data-en="Validation">Validazione</a><a class="nav-btn" href="guida_completa.html" data-it="Metodo" data-en="Method">Metodo</a><a class="nav-btn" href="dashboard_pro.html" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</a>
-  
+  <div class="nav-links"><a class="nav-link on" href="index.html" aria-current="page" data-it="Homepage" data-en="Homepage">Homepage</a><a class="nav-link" href="dashboard_serie_a.html" data-it="Classifica" data-en="Ranking">Classifica</a><a class="nav-link" href="validazione.html" data-it="Validazione" data-en="Validation">Validazione</a><a class="nav-link" href="guida_completa.html" data-it="Metodo" data-en="Method">Metodo</a><a class="nav-link pro" href="dashboard_pro.html" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</a></div>
 </nav>
 <main class="doc">
 <header class="hero riga">
@@ -216,6 +292,22 @@ a.pag:hover .ev-txtfig{color:var(--orng)}
   <div class="cifre"><div class="cifra"><b>381</b><span data-it="giocatori qualificati" data-en="qualified players">giocatori qualificati</span></div><div class="cifra"><b>7</b><span data-it="dimensioni nel punteggio" data-en="dimensions in the score">dimensioni nel punteggio</span></div><div class="cifra"><b>15</b><span data-it="verifiche pubblicate" data-en="checks published">verifiche pubblicate</span></div></div>
   </div>
 </header>
+<nav class="porte riga" aria-label="Le pagine del sito">
+  <div class="porte-lbl" data-it="Vai a" data-en="Go to">Vai a</div>
+  <div class="porte-g"><a class="porta pri" href="dashboard_serie_a.html">
+    <span class="porta-t" data-it="Classifica" data-en="Ranking">Classifica</span>
+    <span class="porta-d" data-it="Tutti i 381 giocatori, con filtri e confronto" data-en="All 381 players, with filters and head-to-head">Tutti i 381 giocatori, con filtri e confronto</span>
+  </a><a class="porta" href="validazione.html">
+    <span class="porta-t" data-it="Validazione" data-en="Validation">Validazione</span>
+    <span class="porta-d" data-it="Le 15 verifiche, compresa quella che perde" data-en="The 15 checks, including the one it loses">Le 15 verifiche, compresa quella che perde</span>
+  </a><a class="porta" href="guida_completa.html">
+    <span class="porta-t" data-it="Metodo" data-en="Method">Metodo</span>
+    <span class="porta-d" data-it="Le formule, una per una, con un esempio calcolato" data-en="The formulas, one by one, with a worked example">Le formule, una per una, con un esempio calcolato</span>
+  </a><a class="porta" href="dashboard_pro.html">
+    <span class="porta-t" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</span>
+    <span class="porta-d" data-it="L&rsquo;indice con i cinque modulatori scout" data-en="The index with the five scout modulators">L&rsquo;indice con i cinque modulatori scout</span>
+  </a></div>
+</nav>
 <section class="cap riga">
   <div class="cap-num">01</div>
   <div>
@@ -313,25 +405,6 @@ a.pag:hover .ev-txtfig{color:var(--orng)}
   <div class="ev-txt" data-it="Sul rendimento <em>futuro</em>, contro l&rsquo;output grezzo per-90, il TPI <strong>non vince</strong> (1663 confronti fuori campione). Sta scritto nella pagina delle verifiche, con l&rsquo;intervallo di confidenza accanto." data-en="On <em>future</em> output, against raw per-90 output, the TPI <strong>does not win</strong> (1663 out-of-sample comparisons). It is written on the validation page, with the confidence interval next to it.">Sul rendimento <em>futuro</em>, contro l&rsquo;output grezzo per-90, il TPI <strong>non vince</strong> (1663 confronti fuori campione). Sta scritto nella pagina delle verifiche, con l&rsquo;intervallo di confidenza accanto.</div>
 </div>
     <a class="oltre" href="validazione.html" data-it="Tutte le verifiche, come sono uscite" data-en="Every check, exactly as it came out">Tutte le verifiche, come sono uscite</a>
-  </div>
-</section>
-<section class="cap riga">
-  <div class="cap-num">04</div>
-  <div>
-    <h2 data-it="Le quattro pagine" data-en="The four pages">Le quattro pagine</h2>
-    <a class="ev riga pag" href="dashboard_serie_a.html">
-  <div class="ev-fig ev-txtfig" data-it="Classifica" data-en="Ranking">Classifica</div>
-  <div class="ev-txt" data-it="Tutti i giocatori qualificati, filtrabili per squadra e ruolo, con i cinque contesti e il confronto fino a quattro alla volta." data-en="Every qualified player, filterable by team and role, with the five contexts and a head-to-head of up to four at a time.">Tutti i giocatori qualificati, filtrabili per squadra e ruolo, con i cinque contesti e il confronto fino a quattro alla volta.</div>
-</a><a class="ev riga pag" href="validazione.html">
-  <div class="ev-fig ev-txtfig" data-it="Validazione" data-en="Validation">Validazione</div>
-  <div class="ev-txt" data-it="Cosa regge e cosa no, con gli intervalli di confidenza e il test costruito per bocciare l&rsquo;indice." data-en="What holds up and what does not, with confidence intervals and the test built to fail the index.">Cosa regge e cosa no, con gli intervalli di confidenza e il test costruito per bocciare l&rsquo;indice.</div>
-</a><a class="ev riga pag" href="guida_completa.html">
-  <div class="ev-fig ev-txtfig" data-it="Metodo" data-en="Method">Metodo</div>
-  <div class="ev-txt" data-it="Ogni indice spiegato con la formula, il motivo per cui esiste e un esempio calcolato." data-en="Every index explained with its formula, the reason it exists and a worked example.">Ogni indice spiegato con la formula, il motivo per cui esiste e un esempio calcolato.</div>
-</a><a class="ev riga pag" href="dashboard_pro.html">
-  <div class="ev-fig ev-txtfig" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</div>
-  <div class="ev-txt" data-it="L&rsquo;indice con i cinque modulatori scout, i pesi che cambiano per fascia d&rsquo;et&agrave; e chi guadagna o perde posizioni." data-en="The index with the five scout modulators, weights that change by age band, and who gains or loses places.">L&rsquo;indice con i cinque modulatori scout, i pesi che cambiano per fascia d&rsquo;et&agrave; e chi guadagna o perde posizioni.</div>
-</a>
   </div>
 </section>
 <footer class="riga">
