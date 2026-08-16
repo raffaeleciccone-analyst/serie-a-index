@@ -668,17 +668,32 @@
   /* ── SWITCHER UI ────────────────────────────────────────── */
   function injectSwitcherStyles() {
     if (document.getElementById("i18n-style")) return;
+    /* Lo switcher e' l'unico elemento che lo stesso file monta su tutte e cinque
+       le pagine: se il suo stile sta qui, non puo' divergere. Prima usciva in
+       scatola con l'attiva in blu iOS — un colore che il sito non ha — e le
+       dashboard se lo riscrivevano addosso, quindi la stessa pagina cambiava
+       aspetto a seconda di dove la aprivi. Ora e' gia' nella palette: due sigle
+       in mono, l'attiva in ambra come ogni altro stato corrente. */
     const css = `
-      .i18n-switch{display:inline-flex;align-items:center;gap:0;
-        border:1px solid rgba(255,255,255,.18);border-radius:8px;overflow:hidden;
-        font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
-        background:rgba(255,255,255,.04);height:28px}
-      .i18n-switch button{background:transparent;border:none;color:rgba(235,235,245,.55);
-        font-size:11px;font-weight:700;letter-spacing:.6px;padding:0 9px;height:100%;
-        cursor:pointer;transition:background .15s,color .15s;text-transform:uppercase}
-      .i18n-switch button:hover{color:#fff;background:rgba(255,255,255,.06)}
-      .i18n-switch button.active{color:#fff;background:rgba(10,132,255,.25)}
-      .i18n-switch button + button{border-left:1px solid rgba(255,255,255,.10)}
+      [data-i18n-switcher]{display:inline-flex;align-items:center}
+      .i18n-switch{display:inline-flex;align-items:center;gap:2px;
+        border:0;border-radius:0;background:none;height:auto;
+        font-family:"JetBrains Mono","Cascadia Mono",ui-monospace,monospace}
+      .i18n-switch button{background:none;border:0;color:rgba(233,240,236,.42);
+        font-family:inherit;font-size:10px;font-weight:500;letter-spacing:.12em;
+        padding:3px 5px;border-radius:3px;
+        cursor:pointer;transition:color .16s;text-transform:uppercase}
+      .i18n-switch button:hover{color:#ECF2EE;background:none}
+      .i18n-switch button.active{color:#FFB020;background:none}
+      .i18n-switch button + button{border-left:0}
+      /* Sul telefono le due sigle stanno accanto a cinque voci di menu: il
+         posto che cedono qui e' quello che serve all'ultima voce per restare
+         dentro lo schermo. Sta in questo file e non nei CSS delle pagine
+         perche' e' lo switcher a doverlo sapere, non ognuna delle cinque. */
+      @media(max-width:440px){
+        .i18n-switch{gap:0}
+        .i18n-switch button{font-size:9px;letter-spacing:.08em;padding:3px 3px}
+      }
     `;
     const s = document.createElement("style");
     s.id = "i18n-style"; s.textContent = css;
