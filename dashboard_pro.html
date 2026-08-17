@@ -568,7 +568,7 @@ const PRO_STR={
   ins_stab:"Più tutto-terreno", ins_gem:"Sotto il radar", ins_climb:"Maggior guadagno Pro",
   ins_prosp_b:"performa significativamente sopra l'aspettativa per la sua età",
   ins_vet_b:"continuità + qualità",
-  ins_hot_b:"forma in netta crescita nell'EWMA",
+  ins_hot_b:"forma in netta crescita nella media delle ultime partite",
   ins_stab_b:"rende stabile in tutti i 5 contesti (casa/trasferta/top6/forti)",
   ins_gem_b:"grazie ai modulatori scout", ins_gem_a:"ma TPI Pro",
   cat_prosp:"Prospetti <23", cat_prime:"Prime 23-28", cat_vet:"Veterani ≥29",
@@ -579,7 +579,7 @@ const PRO_STR={
   mod_aii_d:"Età-index: gaussiana picco 23 + growth + freshness. Premia profili in entrata nel prime.",
   mod_pri_d:"Disponibilità (partite/disp) + injury free + severity. Premia chi è in salute.",
   mod_ctx_d:"std bassa fra 5 contesti TPI. Premia 'tutto terreno' che rende ovunque.",
-  mod_form_d:"Direzione dell'EWMA: chi sta crescendo vs chi sta scendendo.",
+  mod_form_d:"Dove sta andando la forma: chi sta crescendo vs chi sta scendendo.",
   mod_emi_d:"Residuo TPI vs età. Discrimina prospetti che performano sopra l'aspettativa.",
   top5:"Top 5", bottom3:"Bottom 3",
   d_ctx:"TPI per contesto (5)", d_mod:"Modulatori Pro (z-score · peso)",
@@ -589,7 +589,7 @@ const PRO_STR={
   k_part:"Partite giocate", k_disprel:"Disp. relativa", k_pen:"Penalty disp.",
   k_minp:"Min / partita", k_kshr:"K shrinkage", k_conf:"Confidence",
   k_lab:"Etichetta", k_gol:"Gol effettivi", k_npxg:"npxG totale",
-  k_out90:"Output/90", k_ratio:"Ratio vs season", k_ewma:"Form EWMA",
+  k_out90:"Output/90", k_ratio:"Ratio vs season", k_ewma:"Forma recente",
   k_eta:"Età", k_cat:"Categoria", k_aii:"AII scout", k_pri:"PRI affidabilità",
   k_inf:"Infortuni stagione", k_out:"Giorni out", k_gol90:"Gol / 90",
   ctx_totale:"Totale", ctx_casa:"Casa", ctx_trasferta:"Trasferta",
@@ -609,7 +609,7 @@ const PRO_STR={
   ins_stab:"Most all-round", ins_gem:"Under the radar", ins_climb:"Biggest Pro gain",
   ins_prosp_b:"performs significantly above expectation for their age",
   ins_vet_b:"continuity + quality",
-  ins_hot_b:"form clearly rising in the EWMA",
+  ins_hot_b:"form clearly rising over recent matches",
   ins_stab_b:"delivers steadily across all 5 contexts (home/away/top6/strong)",
   ins_gem_b:"thanks to the scout modulators", ins_gem_a:"but TPI Pro",
   cat_prosp:"Prospects <23", cat_prime:"Prime 23-28", cat_vet:"Veterans ≥29",
@@ -620,7 +620,7 @@ const PRO_STR={
   mod_aii_d:"Age index: gaussian peaking at 23 + growth + freshness. Rewards profiles entering their prime.",
   mod_pri_d:"Availability (games/available) + injury free + severity. Rewards who stays fit.",
   mod_ctx_d:"Low std across the 5 TPI contexts. Rewards the all-rounder who delivers everywhere.",
-  mod_form_d:"Direction of the EWMA: who is rising vs who is falling.",
+  mod_form_d:"Where form is heading: who is rising vs who is falling.",
   mod_emi_d:"TPI residual vs age. Separates prospects performing above expectation.",
   top5:"Top 5", bottom3:"Bottom 3",
   d_ctx:"TPI by context (5)", d_mod:"Pro modulators (z-score · weight)",
@@ -630,7 +630,7 @@ const PRO_STR={
   k_part:"Games played", k_disprel:"Relative avail.", k_pen:"Avail. penalty",
   k_minp:"Min / game", k_kshr:"K shrinkage", k_conf:"Confidence",
   k_lab:"Label", k_gol:"Actual goals", k_npxg:"Total npxG",
-  k_out90:"Output/90", k_ratio:"Ratio vs season", k_ewma:"Form EWMA",
+  k_out90:"Output/90", k_ratio:"Ratio vs season", k_ewma:"Forma recente",
   k_eta:"Age", k_cat:"Category", k_aii:"Scout AII", k_pri:"PRI reliability",
   k_inf:"Injuries this season", k_out:"Days out", k_gol90:"Goals / 90",
   ctx_totale:"Total", ctx_casa:"Home", ctx_trasferta:"Away",
@@ -702,8 +702,8 @@ function renderInsights(players){
   const out = [];
   if(topProsp) out.push({cls:"prospetto", t:TT("ins_prosp"), b:`<strong>${esc(topProsp.nome)}</strong> (${esc(topProsp.squadra)}, ${topProsp.physical?.eta?.toFixed(0)} ${TT("anni")}) — EMI z=${fmt(topProsp.z_early_momentum)}: ${TT("ins_prosp_b")}`});
   if(topVet) out.push({cls:"veterano", t:TT("ins_vet"), b:`<strong>${esc(topVet.nome)}</strong> (${esc(topVet.squadra)}, ${topVet.physical.eta.toFixed(0)} ${TT("anni")}) — PRI ${topVet.physical.affidabilita.toFixed(2)}, TPI ${fmt(topVet.tpi.totale)}: ${TT("ins_vet_b")}`});
-  if(topHot) out.push({cls:"prime", t:TT("ins_hot"), b:`<strong>${esc(topHot.nome)}</strong> (${esc(topHot.squadra)}) — z_form_trend ${fmt(topHot.z_form_trend)}: ${TT("ins_hot_b")}`});
-  if(topStab) out.push({cls:"prime", t:TT("ins_stab"), b:`<strong>${esc(topStab.nome)}</strong> (${esc(topStab.squadra)}) — ctx_stab z=${fmt(topStab.z_ctx_stab)}: ${TT("ins_stab_b")}`});
+  if(topHot) out.push({cls:"prime", t:TT("ins_hot"), b:`<strong>${esc(topHot.nome)}</strong> (${esc(topHot.squadra)}) — forma in crescita, indice ${fmt(topHot.z_form_trend)}: ${TT("ins_hot_b")}`});
+  if(topStab) out.push({cls:"prime", t:TT("ins_stab"), b:`<strong>${esc(topStab.nome)}</strong> (${esc(topStab.squadra)}) — stabile fra i contesti, indice ${fmt(topStab.z_ctx_stab)}: ${TT("ins_stab_b")}`});
   if(topGem) out.push({cls:"gem", t:TT("ins_gem"), b:`<strong>${esc(topGem.nome)}</strong> (${esc(topGem.squadra)}) — TPI rank #${topGem.rank?.TPI}, ${TT("ins_gem_a")} ${fmt(topGem.tpi_ext.totale)} ${TT("ins_gem_b")}`});
   if(topClimber && topClimber!==topProsp) out.push({cls:"prospetto", t:TT("ins_climb"), b:`<strong>${esc(topClimber.nome)}</strong> (${esc(topClimber.squadra)}) — TPI base ${fmt(topClimber.tpi.totale)} → Pro ${fmt(topClimber.tpi_ext.totale)} (Δ ${fmt(topClimber.tpi_ext.totale-topClimber.tpi.totale)})`});
 
@@ -790,8 +790,8 @@ function detailRow(p, i){
   const mods=[
     {l:"AII scout",v:p.z_aii,w:0.10},
     {l:"PRI fisica",v:p.z_pri,w:0.08},
-    {l:"ctx stability",v:p.z_ctx_stab,w:0.07},
-    {l:"form trend",v:p.z_form_trend,w:0.05},
+    {l:"stabilità fra contesti",v:p.z_ctx_stab,w:0.07},
+    {l:"direzione della forma",v:p.z_form_trend,w:0.05},
     {l:"EMI",v:p.z_early_momentum,w:0.06},
   ];
   const modBars=mods.map(m=>{
