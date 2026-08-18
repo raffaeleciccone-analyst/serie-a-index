@@ -14,3 +14,15 @@ repos:
       - id: check-added-large-files
         args: ['--maxkb=2048']
       - id: detect-private-key
+
+  # Il dataset dell'assistente si genera da payload.json: se lo committi
+  # vecchio, l'assistente risponde con i numeri della settimana scorsa e
+  # nessuno se ne accorge (e' successo: era indietro di otto giorni).
+  - repo: local
+    hooks:
+      - id: ai-dataset-allineato
+        name: ai_dataset.json allineato a payload.json
+        entry: python build_ai_dataset.py --check
+        language: system
+        pass_filenames: false
+        files: '^(payload\.json|ai_dataset\.json|build_ai_dataset\.py|validazione_sintesi\.json)$'
