@@ -90,6 +90,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
 .nav-brand small{font-family:var(--mono);font-size:9px;font-weight:400;
   letter-spacing:.16em;text-transform:uppercase;color:var(--lt);
   padding-left:10px;border-left:1px solid var(--sep)}
+/* Sotto i 560px il marchio esce per fare posto alle voci, e la barra restava
+   una fila di link nudi con IT/EN in testa: la cosa meno importante nel posto
+   piu' importante. Al suo posto entra il monogramma della favicon. */
+.nav-mark{display:none;align-items:center;flex-shrink:0;color:var(--orng);
+  text-decoration:none;line-height:0}
 .nav-spacer{flex:1}
 .nav-sections,.nav-links{display:flex;align-items:center;gap:16px;overflow-x:auto;
   scrollbar-width:none;min-width:0}
@@ -229,6 +234,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
   letter-spacing:-.02em}
 .tbl .pos{font-family:var(--mono);font-weight:500;color:var(--lt);width:32px;text-align:center}
 .tbl .nome{font-weight:600;white-space:nowrap;color:var(--lp);letter-spacing:-.012em}
+/* Tredici colonne che scorrono in orizzontale, e alla quarta non si sa piu' di
+   chi sia la riga: numero e nome restano fermi a sinistra mentre il resto
+   scorre. Lo sfondo pieno serve o le colonne che passano sotto si leggono
+   attraverso. Vale per tutte e due le tabelle della pagina. */
+.tbl th:first-child,.tbl td.pos{position:sticky;left:0;z-index:3;background:var(--bg1)}
+.tbl th:nth-child(2),.tbl td.nome{position:sticky;left:32px;z-index:3;background:var(--bg1)}
+.tbl tr.row-main:hover td.pos,.tbl tr.row-main:hover td.nome{background:var(--bg2)}
+.tbl tr.row-main.expanded td.pos,.tbl tr.row-main.expanded td.nome{background:var(--bg2)}
+/* La testata deve stare sopra le due colonne ferme, non dietro. */
+.tbl th:first-child,.tbl th:nth-child(2){z-index:4}
 .tbl .nome::after{content:"\25BE";font-size:9px;color:var(--lt);margin-left:6px;opacity:.5}
 .tbl tr.expanded .nome::after{content:"\25B4";opacity:1;color:var(--orng)}
 /* La colonna Pro e' il motivo della pagina: e' l'unica in ambra. */
@@ -239,10 +254,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
 .tbl .cat.prospetto{color:var(--pros)}
 .tbl .cat.prime{color:var(--prime)}
 .tbl .cat.veterano{color:var(--vet)}
-.tbl .delta-pos{color:var(--green)}
-.tbl .delta-neg{color:var(--red)}
-.tbl .pri-hi{color:var(--green)}
-.tbl .pri-lo{color:var(--red)}
+/* Niente rosso e verde sui numeri. La colonna Delta era rossa in quattordici
+   righe su quindici, non perche' quei giocatori fossero peggiorati ma perche' i
+   modulatori scout abbassano quasi sempre il punteggio: un numero letto come
+   voto, e per giunta un voto sbagliato. Il segno lo porta gia' il segno. */
+.tbl .delta-pos,.tbl .delta-neg{color:var(--lt)}
+.tbl .delta-pos{color:var(--lp)}
+.tbl .pri-hi,.tbl .pri-lo{color:var(--lt)}
 
 /* Comando per aprire il resto della classifica: e' un'azione secondaria, non
    un bottone. Stessa voce delle etichette mono, e l'ambra solo al passaggio. */
@@ -375,6 +393,8 @@ footer a:hover{color:var(--lp)}
 @media (max-width:560px){
   .nav{gap:10px;padding-inline:14px}
   .nav-brand{display:none}
+  .nav-mark{display:inline-flex}
+  [data-i18n-switcher]{order:9}
   .nav-sections,.nav-links{gap:13px}
 }
 @media (max-width:480px){
@@ -399,6 +419,7 @@ footer a:hover{color:var(--lp)}
 <div id="app" class="app">
   <nav class="nav">
     <a class="nav-brand" href="index.html">Serie A Scout <small>25/26</small></a>
+    <a class="nav-mark" href="index.html" aria-label="Serie A Scout Index" title="Serie A Scout Index"><svg viewBox="0 0 32 32" width="19" height="19" aria-hidden="true" focusable="false"><rect x="6" y="19" width="5" height="7" fill="currentColor"/><rect x="13.5" y="13" width="5" height="13" fill="currentColor"/><rect x="21" y="6" width="5" height="20" fill="currentColor"/></svg></a>
     <div class="nav-sections">
       <a class="nav-link" onclick="scrollTo2('#insights')" data-it="Insights" data-en="Insights">Insights</a>
       <a class="nav-link" onclick="scrollTo2('#categories')" data-it="Categorie" data-en="Categories">Categorie</a>
@@ -479,6 +500,7 @@ footer a:hover{color:var(--lp)}
       </div>
       <div class="card">
         <p style="font-size:11.5px;color:var(--lt);margin-bottom:10px"><span data-it="Clicca su una riga per vedere il dettaglio completo (5 contesti, modulatori, KPI, forma)" data-en="Click a row to see the full detail (5 contexts, modulators, KPIs, form)">Clicca su una riga per vedere il dettaglio completo (5 contesti, modulatori, KPI, forma)</span></p>
+        <p style="font-size:11.5px;color:var(--lt);margin-bottom:10px"><span data-it="&Delta; = TPI Pro meno TPI. &Egrave; negativo per quasi tutti: i modulatori scout tolgono pi&ugrave; di quanto aggiungano, ed &egrave; una propriet&agrave; della scala, non un giudizio sul giocatore." data-en="&Delta; = TPI Pro minus TPI. It is negative for almost everyone: the scout modulators take away more than they add, which is a property of the scale, not a verdict on the player.">&Delta; = TPI Pro meno TPI. &Egrave; negativo per quasi tutti: i modulatori scout tolgono pi&ugrave; di quanto aggiungano, ed &egrave; una propriet&agrave; della scala, non un giudizio sul giocatore.</span></p>
         <div class="tbl-wrap">
           <table class="tbl" id="ranking-tbl">
             <thead><tr>
