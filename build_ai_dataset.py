@@ -5,19 +5,35 @@ cache_control: quindi conta ogni byte. Qui teniamo solo i campi su cui ha senso
 fare domande (ranking, contesti, forma, eta, affidabilita) e buttiamo le serie
 per-giornata, che valgono migliaia di token e non servono a una risposta in chat.
 
+NIENTE NUMERI SCRITTI A MANO. La metodologia era una costante di testo in questo
+file, e mentiva: sei dimensioni invece di sette, l'AII spacciata per dimensione
+del TPI quando e' un modulatore del Pro, la consistenza calcolata con l'IQR
+(versione rimossa perche' era una dimensione morta), il picco d'eta a 27 anni
+quando il motore usa 23, rho 0.70 dove il sito pubblica 0.725, e nessuna
+menzione di finishing, che pesa 0.20 ed e' la dimensione che l'ablation indica
+come piu' utile. Il file esisteva per impedire all'assistente di inventare, e
+gli serviva fatti falsi.
+
+Ora tutto arriva dal motore:
+    payload.json           -> blocco "metodo" (dimensioni, pesi, formule, soglie)
+    validazione_sintesi.json -> i numeri delle verifiche pubblicate
+
 Uso:
     python build_ai_dataset.py                 # legge payload.json accanto a questo file
     python build_ai_dataset.py path/al/payload.json
+    python build_ai_dataset.py --check         # non scrive: fallisce se e' da rigenerare
 """
 
 from __future__ import annotations
 
 import json
 import sys
+import textwrap
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 OUT_PATH = BASE_DIR / "ai_dataset.json"
+VALIDAZIONE = BASE_DIR / "validazione_sintesi.json"
 
 # Quanti giocatori esporre. Il payload ne classifica 100; oltre i primi ~60 le
 # domande diventano rare e il costo per token resta su ogni singola richiesta.
@@ -54,13 +70,21 @@ def compact_player(p: dict) -> dict:
         "presenze": tot.get("n_app"),
         "eta": r(phys.get("eta"), 1),
         "eta_cat": phys.get("eta_cat"),
-        # z-score delle 6 dimensioni: sono la spiegazione del TPI, non un extra
+        # Gli z delle SETTE dimensioni del TPI: sono la spiegazione del
+        # punteggio, non un extra. Prima ne uscivano cinque piu' AII e PRI, che
+        # dimensioni non sono: l'assistente non poteva spiegare una differenza
+        # che venisse da finishing o dalla forma, cioe' da 0.31 di peso.
         "z": {
             "output": r(p.get("z_output")),
             "buildup": r(p.get("z_buildup")),
             "centralita": r(p.get("z_centralita")),
             "boost": r(p.get("z_boost")),
             "consistenza": r(p.get("z_consistenza")),
+            "finishing": r(p.get("z_finishing")),
+            "form": r(p.get("z_form")),
+        },
+        # Modulatori del TPI Pro, tenuti separati dalle dimensioni.
+        "z_pro": {
             "aii": r(p.get("z_aii")),
             "pri": r(p.get("z_pri")),
         },
@@ -80,85 +104,149 @@ def compact_player(p: dict) -> dict:
     }
 
 
-# Sintesi del modello. Non e' documentazione: e' quel che serve all'assistente per
-# rispondere "come e' calcolato" senza inventarsi formule. Fonte: guida_completa.html.
-METHODOLOGY = """\
-Il TPI (Total Performance Index) e' la media pesata di z-score winsorizzati su sei
-dimensioni indipendenti, calcolate su dati Understat/FBref della Serie A:
+def metodologia(metodo: dict) -> str:
+    """La sintesi del modello, scritta dai pesi che il motore usa davvero.
 
-1. Output Adj/90 - npxG + xA per 90', corretti per la forza degli avversari (SOS).
-   Usa xG NO-rigori: i rigoristi non vengono premiati per il ruolo.
-2. Buildup (xGBuildup) - contributo alle azioni da gol senza tiro/assist finale:
-   premia i costruttori di gioco, non solo i finalizzatori.
-3. Centralita offensiva - quota di produzione offensiva della squadra che passa
-   dal giocatore. Misura quanto la squadra dipende da lui.
-4. Team Boost Ratio - xG creati dalla squadra con lui in campo vs senza,
-   in log-ratio simmetrico e shrinkato. Nullo se i minuti "senza" sono troppo pochi.
-5. Consistenza - stabilita partita su partita basata su IQR (non deviazione standard):
-   robusta agli outlier, premia chi rende sempre invece di chi ha 2 partite record.
-6. AII (Age Index) - curva gaussiana con picco a 27 anni, orientata a chi ENTRA nel
-   prime (22-25 anni) piu' che a chi ci e' gia' dentro.
+    Fonte unica: il blocco `metodo` che parte1_analisi.py mette nel payload. Se
+    domani un peso cambia o una dimensione sparisce, questa frase cambia con
+    lui e nessuno se ne deve ricordare.
+    """
+    dims = metodo.get("dimensioni") or []
+    elenco = "\n".join(
+        f"{i}. {d['nome_it']} (peso {d['peso']:.2f}) - {d['formula']}"
+        for i, d in enumerate(dims, 1)
+    )
+    z = metodo.get("z") or {}
+    eta = metodo.get("eta") or {}
+    shr = metodo.get("shrinkage") or {}
+    pro = ", ".join(m["nome_it"] for m in (metodo.get("modulatori_pro") or []))
+    contesti = ", ".join(metodo.get("contesti") or [])
+    pesi_ruolo = ", ".join(
+        f"{k} {v:.2f}" for k, v in (metodo.get("peso_offensivo_per_ruolo") or {}).items()
+    )
+    # I paragrafi si scrivono per intero e si mandano a capo dopo: cosi' i
+    # valori lunghi non spezzano le righe in punti a caso dentro il prompt.
+    paragrafi = [
+        f"Il TPI (Total Performance Index) e' la media pesata di z-score "
+        f"winsorizzati su {len(dims)} dimensioni, calcolate su dati "
+        f"Understat/FBref della Serie A:",
 
-Il PRI (Physical Reliability Index) pesa disponibilita, infortuni e gravita; entra nel
-TPI Pro insieme ad AII.
+        f"{z.get('nota_it', '')} Winsorizzazione al "
+        f"{z.get('winsor_pct', 0.05):.0%} prima di standardizzare, poi clamp a "
+        f"+/-{z.get('clamp_sigma', 3):.0f} sigma. Peso della fase offensiva per "
+        f"ruolo: {pesi_ruolo}. Portieri: {metodo.get('portieri', 'esclusi')}.",
 
-Correzioni statistiche applicate:
-- Bayesian shrinkage dinamico sui per-90: chi ha pochi minuti viene tirato verso la
-  media di ruolo, quindi i subentranti non scalano la classifica con 200 minuti.
-- SOS (Strength of Schedule): xG concessi reali degli avversari affrontati.
-- Winsorized z-score a +/-3 sigma.
-- Penalita disponibilita consapevole del mercato invernale: chi arriva a gennaio non
-  viene punito per le giornate in cui non era in rosa.
-- Confidence score a 4 fattori (minuti, presenze, stabilita fra contesti, ampiezza CI).
+        f"Consistenza: {metodo.get('consistenza_formula', '')}. Forma: EWMA con "
+        f"alpha = {metodo.get('ewma_alpha', 0):.2f}.",
 
-Validazione (validazione.html): Spearman rho = 0.70 nel backtest predittivo
-prima meta -> seconda meta di stagione, bootstrap CI 95%, Kendall tau per la
-stabilita del ranking, overlap top-10 contro WhoScored.
+        f"Il TPI Pro aggiunge {len(metodo.get('modulatori_pro') or [])} "
+        f"modulatori scout, che NON sono dimensioni del TPI base: {pro}. La "
+        f"curva d'eta ha il picco a {eta.get('picco', 0):.0f} anni (sigma "
+        f"{eta.get('sigma', 0):.1f}): premia chi sta ENTRANDO nel prime, non "
+        f"chi ci e' gia' dentro.",
 
-I 5 contesti (totale, casa, trasferta, vs top 6, vs difese forti) sono ricalcolati
-da zero, non filtri sul totale: ogni contesto ha i suoi z-score e la sua SOS.\
-"""
+        f"Correzioni statistiche: shrinkage bayesiano sui per-90 verso la media "
+        f"di ruolo (K = {shr.get('output_prior_minuti', 0):.0f} minuti, cioe' a "
+        f"quei minuti meta' del segnale); SOS, cioe' gli xG concessi reali degli "
+        f"avversari affrontati; regressione verso la media di ruolo pesata sulla "
+        f"confidence, con pavimento {shr.get('confidence_floor', 0):.2f}; "
+        f"penalita disponibilita che non punisce chi e' arrivato a gennaio.",
 
-GLOSSARY = {
-    "TPI": "Total Performance Index, il punteggio complessivo. Piu' alto = meglio. Scala z-score, quindi 0 = giocatore medio della Serie A analizzata.",
-    "z": "z-score winsorizzato a +/-3. 0 = media, +1 = una deviazione standard sopra la media.",
-    "rank": "posizione in classifica TPI sul totale dei giocatori analizzati.",
-    "sos": "Strength of Schedule: >1 = calendario piu' duro della media.",
-    "forma": "hot = in crescita, cold = in calo, stable = stabile. Calcolata su EWMA delle ultime giornate.",
-    "forma_ratio": "output recente diviso output stagionale. >1 = sta rendendo sopra la sua media.",
-    "confidence": "0-1, quanto e' affidabile il TPI di quel giocatore (minuti, presenze, stabilita).",
-    "affidabilita": "componente del PRI: 1 = sempre disponibile.",
-    "eta_cat": "young / prime / veteran.",
-}
+        f"I {len(metodo.get('contesti') or [])} contesti ({contesti}) sono "
+        f"ricalcolati da zero, non filtri sul totale: ogni contesto ha i suoi "
+        f"z-score e la sua SOS.",
+    ]
+    testa = textwrap.fill(paragrafi[0], width=86)
+    resto = "\n\n".join(textwrap.fill(p, width=86) for p in paragrafi[1:])
+    return f"{testa}\n\n{elenco}\n\n{resto}"
 
 
-def main() -> int:
-    src = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "payload.json"
-    if not src.exists():
-        print(f"payload non trovato: {src}", file=sys.stderr)
-        return 1
+def glossario(metodo: dict) -> dict:
+    """Le voci definitorie. Restano a mano perche' sono definizioni, non misure
+    — ma quelle che dipendono da una scelta del motore la leggono dal motore."""
+    z = metodo.get("z") or {}
+    dentro = z.get("dentro_il_ruolo", True)
+    zero = ("0 = il giocatore medio del SUO RUOLO" if dentro
+            else "0 = il giocatore medio della lega")
+    return {
+        "TPI": f"Total Performance Index, il punteggio complessivo. Piu' alto = meglio. Scala z-score: {zero}.",
+        "z": f"z-score winsorizzato a +/-{z.get('clamp_sigma', 3):.0f}. {zero}, +1 = una deviazione standard sopra.",
+        "z_pro": "modulatori del TPI Pro (eta, affidabilita fisica). Non sono dimensioni del TPI base.",
+        "rank": "posizione in classifica TPI sul totale dei giocatori qualificati.",
+        "sos": "Strength of Schedule: >1 = calendario piu' duro della media.",
+        "forma": "hot = in crescita, cold = in calo, stable = stabile. Calcolata su media mobile esponenziale delle ultime giornate.",
+        "forma_ratio": "output recente diviso output stagionale. >1 = sta rendendo sopra la sua media.",
+        "confidence": "0-1, quanto e' affidabile il TPI di quel giocatore (minuti, presenze, stabilita fra contesti, ampiezza dell'intervallo).",
+        "affidabilita": "componente del PRI: 1 = sempre disponibile.",
+        "eta_cat": "prospetto / prime / veterano.",
+    }
 
+
+def costruisci(src: Path) -> dict:
     payload = json.loads(src.read_text(encoding="utf-8"))
-    players = payload.get("players") or []
-    players = sorted(players, key=lambda p: (p.get("rank") or {}).get("TPI") or 9999)
-
+    metodo = payload.get("metodo")
+    if not metodo:
+        raise SystemExit(
+            f"{src.name} non ha il blocco 'metodo': rigeneralo con parte1_analisi.py.\n"
+            "Senza quel blocco questo script dovrebbe inventarsi la metodologia, "
+            "che e' esattamente il difetto che doveva chiudere."
+        )
+    players = sorted(
+        payload.get("players") or [],
+        key=lambda p: (p.get("rank") or {}).get("TPI") or 9999,
+    )
     dataset = {
         "stagione": "2025/26",
         "n_giornate": payload.get("n_giornate"),
         "n_giocatori_analizzati": payload.get("n_giocatori"),
         "top6": payload.get("top6_names"),
         "difese_forti": payload.get("forti_names"),
-        "metodologia": METHODOLOGY,
-        "glossario": GLOSSARY,
+        "metodologia": metodologia(metodo),
+        "glossario": glossario(metodo),
         "giocatori": [compact_player(p) for p in players[:N_PLAYERS]],
     }
+    # Le verifiche: se il file c'e' i numeri sono quelli dell'ultima esecuzione,
+    # se manca la voce non compare. Meglio muti che approssimativi.
+    if VALIDAZIONE.is_file():
+        dataset["validazione"] = json.loads(VALIDAZIONE.read_text(encoding="utf-8"))
+    return dataset
 
-    OUT_PATH.write_text(
-        json.dumps(dataset, ensure_ascii=False, separators=(",", ":")),
-        encoding="utf-8",
-    )
+
+def serializza(dataset: dict) -> str:
+    return json.dumps(dataset, ensure_ascii=False, separators=(",", ":"))
+
+
+def main() -> int:
+    argv = [a for a in sys.argv[1:] if a != "--check"]
+    check = "--check" in sys.argv
+    src = Path(argv[0]) if argv else BASE_DIR / "payload.json"
+    if not src.exists():
+        print(f"payload non trovato: {src}", file=sys.stderr)
+        return 1
+
+    testo = serializza(costruisci(src))
+
+    if check:
+        # Il controllo che questo file non resti indietro rispetto al payload:
+        # gira in CI e nel pre-commit. Il dataset era vecchio di otto giorni e
+        # nessuno se n'era accorto perche' niente lo confrontava con la fonte.
+        if not OUT_PATH.exists():
+            print(f"{OUT_PATH.name} non esiste: python build_ai_dataset.py", file=sys.stderr)
+            return 1
+        if OUT_PATH.read_text(encoding="utf-8") != testo:
+            print(
+                f"{OUT_PATH.name} non corrisponde a {src.name}.\n"
+                "Rigeneralo con:  python build_ai_dataset.py",
+                file=sys.stderr,
+            )
+            return 1
+        print(f"{OUT_PATH.name}: allineato a {src.name}")
+        return 0
+
+    OUT_PATH.write_text(testo, encoding="utf-8")
     kb = OUT_PATH.stat().st_size / 1024
-    print(f"{OUT_PATH.name}: {len(dataset['giocatori'])} giocatori, {kb:.0f} KB")
+    n = len(json.loads(testo)["giocatori"])
+    print(f"{OUT_PATH.name}: {n} giocatori, {kb:.0f} KB")
     return 0
 
 

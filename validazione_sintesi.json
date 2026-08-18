@@ -1,0 +1,46 @@
+{
+ "n_verifiche": 15,
+ "n_giocatori": 351,
+ "prima_meta_vs_seconda": {
+  "rho": 0.725,
+  "n": 571,
+  "ic": [
+   0.667,
+   0.774
+  ],
+  "cosa_misura": "output offensivo grezzo, non il TPI composito"
+ },
+ "decili": {
+  "monotonia_rho": 0.988,
+  "errore_calibrazione": 0.02
+ },
+ "convergenza": {
+  "prima_giornata": 20,
+  "rho_prima": 0.848,
+  "rho_ultima": 0.949
+ },
+ "a_livello_di_squadra": {
+  "r": 0.808,
+  "n": 20
+ },
+ "overlap_whoscored_pct": 30,
+ "sensibilita_pesi_rho_mediana": 0.998,
+ "ablation": {
+  "dimensione_piu_utile": "finishing",
+  "dimensione_meno_utile": "consistenza"
+ },
+ "contro_le_baseline": {
+  "livello": {
+   "battute": [],
+   "su": 3
+  },
+  "improvement": {
+   "battute": [
+    "minuti",
+    "valore_mercato"
+   ],
+   "su": 3
+  }
+ },
+ "avvertenza": "Il TPI e' descrittivo: ordina, non predice. Le verifiche pubblicate includono quelle che l'indice non supera."
+}

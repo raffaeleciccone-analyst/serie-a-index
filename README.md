@@ -29,21 +29,30 @@ reports every check exactly as it came out, including the one built to fail the 
 
 ---
 
-### Ask the model
+### Ask the model — *not live on the published site*
 
-Every page carries an AI assistant that answers questions about the rankings and the
-methodology, grounded in the project's own numbers. It won't invent data that isn't in
-the dataset.
+The repository ships an AI assistant that answers questions about the rankings and the
+methodology, grounded in the project's own numbers. **It is switched off on the site
+above**: it needs a Cloudflare Worker to hold the API key server-side, and no Worker is
+deployed, so `WORKER_URL` in `ai_chat.js` is still a placeholder and the widget stays
+hidden. Nothing to try on the live pages — this section describes code, not a feature
+you can use as a visitor.
 
 | File | Role |
 |---|---|
-| `ai_chat.js` | The widget. Self-contained, bilingual IT/EN, no API key in the page. |
-| `build_ai_dataset.py` | Reduces `payload.json` to the compact `ai_dataset.json` the assistant reads. |
-| `ai_dataset.json` | Top 100 players + methodology summary. Must be committed — the Worker fetches it over HTTPS. |
+| `ai_chat.js` | The widget. Self-contained, bilingual IT/EN, no API key in the page. Hides itself while `WORKER_URL` is unset. |
+| `build_ai_dataset.py` | Builds `ai_dataset.json` from `payload.json`. `--check` fails if the dataset is behind the payload. |
+| `ai_dataset.json` | Top 100 players, methodology and validation figures. Generated, never hand-edited — the Worker fetches it over HTTPS. |
+| `validazione_sintesi.json` | The headline numbers of the 15 checks, written by the validation run. |
 | `worker/` | Cloudflare Worker holding the API key server-side. See [`worker/README.md`](worker/README.md) for the one-time deploy. |
 
-After deploying the Worker, put its URL in the `WORKER_URL` constant at the top of
-`ai_chat.js`. Until then the widget stays hidden.
+Every fact the assistant is given comes from the engine: dimensions, weights, formulas
+and thresholds travel in the `metodo` block of `payload.json`, the validation figures in
+`validazione_sintesi.json`. A GitHub Action re-runs `build_ai_dataset.py --check` on
+every push, so the dataset cannot drift behind the numbers on the pages.
+
+To turn the assistant on: deploy the Worker, then put its URL in the `WORKER_URL`
+constant at the top of `ai_chat.js`. The widget appears on its own once that is set.
 
 ---
 

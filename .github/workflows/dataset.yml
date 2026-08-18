@@ -1,0 +1,22 @@
+# Il dataset che legge l'assistente AI si genera da payload.json. Committarlo
+# vecchio non rompe niente in modo visibile: l'assistente continua a rispondere,
+# solo con i numeri di prima. E' successo — il file e' rimasto indietro di otto
+# giorni con dentro una metodologia che il motore non usava piu'. Questo lavoro
+# lo fa una macchina, non la memoria.
+name: dataset allineato
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ai-dataset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ai_dataset.json corrisponde a payload.json
+        run: python build_ai_dataset.py --check
