@@ -36,6 +36,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2205.0,
       "valore_mercato": 85000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 174,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 73.5,
       "k_subst_mult": 1.02,
       "disponibilita_rel": 0.789,
@@ -657,6 +663,12 @@
       "ruolo_fine_quota": 0.793,
       "minuti": 2798.0,
       "valore_mercato": 40000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 193,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 84.8,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.868,
@@ -1327,6 +1339,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1499.0,
       "valore_mercato": 45000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 178,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 83.3,
       "k_subst_mult": 1.667,
       "disponibilita_rel": 0.9,
@@ -1877,6 +1895,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1933.0,
       "valore_mercato": 50000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 192,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 66.7,
       "k_subst_mult": 1.125,
       "disponibilita_rel": 0.763,
@@ -2505,6 +2529,12 @@
       "ruolo_fine_quota": 0.929,
       "minuti": 2709.0,
       "valore_mercato": 50000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 175,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 77.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.921,
@@ -3186,6 +3216,12 @@
       "ruolo_fine_quota": 0.456,
       "minuti": 1612.0,
       "valore_mercato": 40000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 177,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 53.7,
       "k_subst_mult": 1.396,
       "disponibilita_rel": 0.789,
@@ -3827,6 +3863,12 @@
       "ruolo_fine_quota": 0.731,
       "minuti": 1922.0,
       "valore_mercato": 6000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 188,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 58.2,
       "k_subst_mult": 1.288,
       "disponibilita_rel": 0.868,
@@ -4497,6 +4539,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1547.0,
       "valore_mercato": 3000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 177,
+        "piede": "entrambi",
+        "in_prestito": null
+      },
       "avg_min_partita": 51.6,
       "k_subst_mult": 1.454,
       "disponibilita_rel": 0.789,
@@ -5138,6 +5186,12 @@
       "ruolo_fine_quota": 0.465,
       "minuti": 2846.0,
       "valore_mercato": 20000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 182,
+        "piede": "entrambi",
+        "in_prestito": null
+      },
       "avg_min_partita": 79.1,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.947,
@@ -5832,6 +5886,12 @@
       "ruolo_fine_quota": 0.925,
       "minuti": 2559.0,
       "valore_mercato": 40000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 178,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 82.5,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.816,
@@ -6461,6 +6521,12 @@
       "ruolo_fine_quota": 0.493,
       "minuti": 2877.0,
       "valore_mercato": 75000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 187,
+        "piede": "entrambi",
+        "in_prestito": null
+      },
       "avg_min_partita": 79.9,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.947,
@@ -7150,6 +7216,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1781.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 185,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 54.0,
       "k_subst_mult": 1.39,
       "disponibilita_rel": 0.868,
@@ -7815,6 +7887,12 @@
       "ruolo_fine_quota": 0.341,
       "minuti": 2857.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 180,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 79.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.947,
@@ -8504,6 +8582,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2561.0,
       "valore_mercato": 50000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 175,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 75.3,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.895,
@@ -9177,6 +9261,12 @@
       "ruolo_fine_quota": 0.471,
       "minuti": 1176.0,
       "valore_mercato": 8000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 181,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 65.3,
       "k_subst_mult": 1.667,
       "disponibilita_rel": 0.474,
@@ -9722,6 +9812,12 @@
       "ruolo_fine_quota": 0.534,
       "minuti": 1874.0,
       "valore_mercato": 50000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 188,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 64.6,
       "k_subst_mult": 1.161,
       "disponibilita_rel": 0.763,
@@ -10350,6 +10446,12 @@
       "ruolo_fine_quota": 0.964,
       "minuti": 2546.0,
       "valore_mercato": 18000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 191,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 87.8,
       "k_subst_mult": 1.034,
       "disponibilita_rel": 0.763,
@@ -10983,6 +11085,12 @@
       "ruolo_fine_quota": 0.638,
       "minuti": 1360.0,
       "valore_mercato": 5000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 177,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 61.8,
       "k_subst_mult": 1.364,
       "disponibilita_rel": 0.579,
@@ -11540,6 +11648,12 @@
       "ruolo_fine_quota": 0.785,
       "minuti": 2819.0,
       "valore_mercato": 20000000.0,
+      "contratto": {
+        "scadenza": "2031-06-30",
+        "altezza_cm": 180,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 80.5,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.921,
@@ -12221,6 +12335,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2655.0,
       "valore_mercato": 19000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 177,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 69.9,
       "k_subst_mult": 1.073,
       "disponibilita_rel": 1.0,
@@ -12931,6 +13051,12 @@
       "ruolo_fine_quota": 0.816,
       "minuti": 2605.0,
       "valore_mercato": 3500000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 182,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 74.4,
       "k_subst_mult": 1.008,
       "disponibilita_rel": 0.921,
@@ -13617,6 +13743,12 @@
       "ruolo_fine_quota": 0.485,
       "minuti": 2167.0,
       "valore_mercato": 5000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 178,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 65.7,
       "k_subst_mult": 1.142,
       "disponibilita_rel": 0.868,
@@ -14282,6 +14414,12 @@
       "ruolo_fine_quota": 0.813,
       "minuti": 2905.0,
       "valore_mercato": 80000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 185,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 83.0,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.921,
@@ -14958,6 +15096,12 @@
       "ruolo_fine_quota": 0.729,
       "minuti": 1977.0,
       "valore_mercato": 3000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 177,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 61.8,
       "k_subst_mult": 1.214,
       "disponibilita_rel": 0.842,
@@ -15615,6 +15759,12 @@
       "ruolo_fine_quota": 0.559,
       "minuti": 1579.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 178,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 54.4,
       "k_subst_mult": 1.377,
       "disponibilita_rel": 0.763,
@@ -16253,6 +16403,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2279.0,
       "valore_mercato": 25000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 186,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 60.0,
       "k_subst_mult": 1.251,
       "disponibilita_rel": 1.0,
@@ -16963,6 +17119,12 @@
       "ruolo_fine_quota": 0.945,
       "minuti": 2450.0,
       "valore_mercato": 12000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 189,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 76.6,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.842,
@@ -17620,6 +17782,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1784.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 178,
+        "piede": "entrambi",
+        "in_prestito": null
+      },
       "avg_min_partita": 51.0,
       "k_subst_mult": 1.471,
       "disponibilita_rel": 0.921,
@@ -18296,6 +18464,12 @@
       "ruolo_fine_quota": 0.424,
       "minuti": 893.0,
       "valore_mercato": 5000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 186,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 68.7,
       "k_subst_mult": 2.308,
       "disponibilita_rel": 0.342,
@@ -18756,6 +18930,7 @@
       "ruolo_fine_quota": 0.582,
       "minuti": 2078.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 74.2,
       "k_subst_mult": 1.071,
       "disponibilita_rel": 0.737,
@@ -19336,6 +19511,12 @@
       "ruolo_fine_quota": 0.734,
       "minuti": 1971.0,
       "valore_mercato": 15000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 192,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 59.7,
       "k_subst_mult": 1.256,
       "disponibilita_rel": 0.868,
@@ -19996,6 +20177,12 @@
       "ruolo_fine_quota": 0.776,
       "minuti": 2206.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 192,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 71.2,
       "k_subst_mult": 1.054,
       "disponibilita_rel": 0.816,
@@ -20650,6 +20837,12 @@
       "ruolo_fine_quota": 0.932,
       "minuti": 1674.0,
       "valore_mercato": 16000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 178,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 76.1,
       "k_subst_mult": 1.364,
       "disponibilita_rel": 0.579,
@@ -21202,6 +21395,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2784.0,
       "valore_mercato": 60000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 191,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 84.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.868,
@@ -21867,6 +22066,12 @@
       "ruolo_fine_quota": 0.773,
       "minuti": 2765.0,
       "valore_mercato": 20000000.0,
+      "contratto": {
+        "scadenza": "2031-06-30",
+        "altezza_cm": 174,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 76.8,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.947,
@@ -22561,6 +22766,12 @@
       "ruolo_fine_quota": 0.538,
       "minuti": 2575.0,
       "valore_mercato": 25000000.0,
+      "contratto": {
+        "scadenza": "2031-06-30",
+        "altezza_cm": 189,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 80.5,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.842,
@@ -23223,6 +23434,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2048.0,
       "valore_mercato": 10000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 180,
+        "piede": "entrambi",
+        "in_prestito": null
+      },
       "avg_min_partita": 60.2,
       "k_subst_mult": 1.245,
       "disponibilita_rel": 0.895,
@@ -23896,6 +24113,12 @@
       "ruolo_fine_quota": 0.954,
       "minuti": 1995.0,
       "valore_mercato": 7000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 183,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 76.7,
       "k_subst_mult": 1.154,
       "disponibilita_rel": 0.684,
@@ -24500,6 +24723,12 @@
       "ruolo_fine_quota": 0.927,
       "minuti": 2283.0,
       "valore_mercato": 5000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 188,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 71.3,
       "k_subst_mult": 1.051,
       "disponibilita_rel": 0.842,
@@ -25152,6 +25381,7 @@
       "ruolo_fine_quota": 0.571,
       "minuti": 1677.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 59.9,
       "k_subst_mult": 1.252,
       "disponibilita_rel": 0.737,
@@ -25732,6 +25962,12 @@
       "ruolo_fine_quota": 0.455,
       "minuti": 2234.0,
       "valore_mercato": 10000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 188,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 72.1,
       "k_subst_mult": 1.041,
       "disponibilita_rel": 0.816,
@@ -26371,6 +26607,12 @@
       "ruolo_fine_quota": 0.681,
       "minuti": 2542.0,
       "valore_mercato": 15000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 174,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 79.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.842,
@@ -27008,6 +27250,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2106.0,
       "valore_mercato": 10000000.0,
+      "contratto": {
+        "scadenza": "2031-06-30",
+        "altezza_cm": 189,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 70.2,
       "k_subst_mult": 1.068,
       "disponibilita_rel": 0.789,
@@ -27634,6 +27882,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1841.0,
       "valore_mercato": 38000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 194,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 76.7,
       "k_subst_mult": 1.25,
       "disponibilita_rel": 0.632,
@@ -28232,6 +28486,7 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 972.0,
       "valore_mercato": 35000000.0,
+      "contratto": null,
       "avg_min_partita": 51.2,
       "k_subst_mult": 1.579,
       "disponibilita_rel": 0.5,
@@ -28770,6 +29025,12 @@
       "ruolo_fine_quota": 0.99,
       "minuti": 2576.0,
       "valore_mercato": 15000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 185,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 80.5,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.842,
@@ -29432,6 +29693,7 @@
       "ruolo_fine_quota": 0.851,
       "minuti": 1332.0,
       "valore_mercato": 25000000.0,
+      "contratto": null,
       "avg_min_partita": 66.6,
       "k_subst_mult": 1.5,
       "disponibilita_rel": 0.526,
@@ -29988,6 +30250,12 @@
       "ruolo_fine_quota": 0.903,
       "minuti": 2470.0,
       "valore_mercato": 9000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 183,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 72.6,
       "k_subst_mult": 1.032,
       "disponibilita_rel": 0.895,
@@ -30651,6 +30919,12 @@
       "ruolo_fine_quota": 0.524,
       "minuti": 1906.0,
       "valore_mercato": 3500000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 186,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 59.6,
       "k_subst_mult": 1.259,
       "disponibilita_rel": 0.842,
@@ -31303,6 +31577,7 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 941.0,
       "valore_mercato": 3000000.0,
+      "contratto": null,
       "avg_min_partita": 72.4,
       "k_subst_mult": 2.308,
       "disponibilita_rel": 0.342,
@@ -31803,6 +32078,12 @@
       "ruolo_fine_quota": 0.959,
       "minuti": 2273.0,
       "valore_mercato": 7000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 180,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 71.0,
       "k_subst_mult": 1.056,
       "disponibilita_rel": 0.842,
@@ -32465,6 +32746,12 @@
       "ruolo_fine_quota": 0.769,
       "minuti": 1935.0,
       "valore_mercato": 7000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 180,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 74.4,
       "k_subst_mult": 1.154,
       "disponibilita_rel": 0.684,
@@ -33079,6 +33366,7 @@
       "ruolo_fine_quota": 0.722,
       "minuti": 2279.0,
       "valore_mercato": 2500000.0,
+      "contratto": null,
       "avg_min_partita": 67.0,
       "k_subst_mult": 1.119,
       "disponibilita_rel": 0.895,
@@ -33747,6 +34035,12 @@
       "ruolo_fine_quota": 0.554,
       "minuti": 3158.0,
       "valore_mercato": 16000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 166,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 87.7,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.947,
@@ -34436,6 +34730,12 @@
       "ruolo_fine_quota": 0.83,
       "minuti": 2447.0,
       "valore_mercato": 22000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 193,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 78.9,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.816,
@@ -35085,6 +35385,12 @@
       "ruolo_fine_quota": 0.791,
       "minuti": 932.0,
       "valore_mercato": 23000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 176,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 58.2,
       "k_subst_mult": 1.875,
       "disponibilita_rel": 0.421,
@@ -35569,6 +35875,12 @@
       "ruolo_fine_quota": 0.642,
       "minuti": 2278.0,
       "valore_mercato": 7500000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 183,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 87.6,
       "k_subst_mult": 1.154,
       "disponibilita_rel": 0.684,
@@ -36148,6 +36460,7 @@
       "ruolo_fine_quota": 0.705,
       "minuti": 2207.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 66.9,
       "k_subst_mult": 1.121,
       "disponibilita_rel": 0.868,
@@ -36808,6 +37121,12 @@
       "ruolo_fine_quota": 0.76,
       "minuti": 2588.0,
       "valore_mercato": 16000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 178,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 78.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.868,
@@ -37468,6 +37787,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 3087.0,
       "valore_mercato": 15000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 190,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 85.8,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.947,
@@ -38157,6 +38482,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1361.0,
       "valore_mercato": 3800000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 191,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 54.4,
       "k_subst_mult": 1.378,
       "disponibilita_rel": 0.658,
@@ -38718,6 +39049,7 @@
       "ruolo_fine_quota": 0.968,
       "minuti": 1240.0,
       "valore_mercato": 1000000.0,
+      "contratto": null,
       "avg_min_partita": 65.3,
       "k_subst_mult": 1.579,
       "disponibilita_rel": 0.5,
@@ -39261,6 +39593,7 @@
       "ruolo_fine_quota": 0.637,
       "minuti": 3087.0,
       "valore_mercato": 35000000.0,
+      "contratto": null,
       "avg_min_partita": 83.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.974,
@@ -39963,6 +40296,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2042.0,
       "valore_mercato": 32000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 183,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 78.5,
       "k_subst_mult": 1.154,
       "disponibilita_rel": 0.684,
@@ -40537,6 +40876,7 @@
       "ruolo_fine_quota": 0.746,
       "minuti": 3281.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 88.7,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.974,
@@ -41239,6 +41579,7 @@
       "ruolo_fine_quota": 0.931,
       "minuti": 713.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 59.4,
       "k_subst_mult": 2.5,
       "disponibilita_rel": 0.316,
@@ -41696,6 +42037,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1763.0,
       "valore_mercato": 40000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 183,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 51.9,
       "k_subst_mult": 1.446,
       "disponibilita_rel": 0.895,
@@ -42369,6 +42716,12 @@
       "ruolo_fine_quota": 0.974,
       "minuti": 2795.0,
       "valore_mercato": 25000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 188,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 79.9,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.921,
@@ -43055,6 +43408,7 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2055.0,
       "valore_mercato": 7000000.0,
+      "contratto": null,
       "avg_min_partita": 73.4,
       "k_subst_mult": 1.071,
       "disponibilita_rel": 0.737,
@@ -43660,6 +44014,7 @@
       "ruolo_fine_quota": 0.931,
       "minuti": 1253.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 69.6,
       "k_subst_mult": 1.667,
       "disponibilita_rel": 0.474,
@@ -44190,6 +44545,12 @@
       "ruolo_fine_quota": 0.507,
       "minuti": 2124.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 166,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 68.5,
       "k_subst_mult": 1.095,
       "disponibilita_rel": 0.816,
@@ -44844,6 +45205,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 1318.0,
       "valore_mercato": 25000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 195,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 54.9,
       "k_subst_mult": 1.366,
       "disponibilita_rel": 0.632,
@@ -45417,6 +45784,12 @@
       "ruolo_fine_quota": 0.463,
       "minuti": 1917.0,
       "valore_mercato": 20000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 175,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 58.1,
       "k_subst_mult": 1.291,
       "disponibilita_rel": 0.868,
@@ -46082,6 +46455,12 @@
       "ruolo_fine_quota": 0.738,
       "minuti": 1180.0,
       "valore_mercato": 8500000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 181,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 49.2,
       "k_subst_mult": 1.525,
       "disponibilita_rel": 0.632,
@@ -46675,6 +47054,12 @@
       "ruolo_fine_quota": 0.341,
       "minuti": 1493.0,
       "valore_mercato": 13000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 174,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 49.8,
       "k_subst_mult": 1.507,
       "disponibilita_rel": 0.789,
@@ -47311,6 +47696,12 @@
       "ruolo_fine_quota": 0.399,
       "minuti": 1602.0,
       "valore_mercato": 2500000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 187,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 53.4,
       "k_subst_mult": 1.404,
       "disponibilita_rel": 0.789,
@@ -47932,6 +48323,7 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2465.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 88.0,
       "k_subst_mult": 1.071,
       "disponibilita_rel": 0.737,
@@ -48517,6 +48909,12 @@
       "ruolo_fine_quota": 0.605,
       "minuti": 2148.0,
       "valore_mercato": 3500000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 184,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 74.1,
       "k_subst_mult": 1.034,
       "disponibilita_rel": 0.763,
@@ -49145,6 +49543,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2631.0,
       "valore_mercato": 13000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 183,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 87.7,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.789,
@@ -49781,6 +50185,7 @@
       "ruolo_fine_quota": 0.559,
       "minuti": 803.0,
       "valore_mercato": null,
+      "contratto": null,
       "avg_min_partita": 66.9,
       "k_subst_mult": 2.5,
       "disponibilita_rel": 0.316,
@@ -50233,6 +50638,12 @@
       "ruolo_fine_quota": 0.939,
       "minuti": 1728.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 185,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 55.7,
       "k_subst_mult": 1.345,
       "disponibilita_rel": 0.816,
@@ -50872,6 +51283,12 @@
       "ruolo_fine_quota": 0.949,
       "minuti": 1570.0,
       "valore_mercato": 20000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 190,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 68.3,
       "k_subst_mult": 1.304,
       "disponibilita_rel": 0.605,
@@ -51437,6 +51854,7 @@
       "ruolo_fine_quota": 0.899,
       "minuti": 804.0,
       "valore_mercato": 15000000.0,
+      "contratto": null,
       "avg_min_partita": 29.8,
       "k_subst_mult": 2.5,
       "disponibilita_rel": 0.711,
@@ -52054,6 +52472,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2876.0,
       "valore_mercato": 40000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 194,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 84.6,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.895,
@@ -52732,6 +53156,12 @@
       "ruolo_fine_quota": 0.981,
       "minuti": 2269.0,
       "valore_mercato": 65000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 190,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 81.0,
       "k_subst_mult": 1.071,
       "disponibilita_rel": 0.737,
@@ -53332,6 +53762,12 @@
       "ruolo_fine_quota": 0.749,
       "minuti": 2308.0,
       "valore_mercato": 15000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 190,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 72.1,
       "k_subst_mult": 1.04,
       "disponibilita_rel": 0.842,
@@ -53984,6 +54420,12 @@
       "ruolo_fine_quota": 0.653,
       "minuti": 1135.0,
       "valore_mercato": 5000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 181,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 70.9,
       "k_subst_mult": 1.875,
       "disponibilita_rel": 0.889,
@@ -54518,6 +54960,12 @@
       "ruolo_fine_quota": 0.869,
       "minuti": 836.0,
       "valore_mercato": 28000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 177,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 59.7,
       "k_subst_mult": 2.143,
       "disponibilita_rel": 0.368,
@@ -55036,6 +55484,12 @@
       "ruolo_fine_quota": 0.615,
       "minuti": 1314.0,
       "valore_mercato": 4500000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 188,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 69.2,
       "k_subst_mult": 1.579,
       "disponibilita_rel": 0.5,
@@ -55544,6 +55998,12 @@
       "ruolo_fine_quota": 0.693,
       "minuti": 753.0,
       "valore_mercato": 1200000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 184,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 41.8,
       "k_subst_mult": 1.793,
       "disponibilita_rel": 0.474,
@@ -56054,6 +56514,7 @@
       "ruolo_fine_quota": 0.914,
       "minuti": 1764.0,
       "valore_mercato": 3000000.0,
+      "contratto": null,
       "avg_min_partita": 76.7,
       "k_subst_mult": 1.304,
       "disponibilita_rel": 0.605,
@@ -56629,6 +57090,12 @@
       "ruolo_fine_quota": 0.454,
       "minuti": 2429.0,
       "valore_mercato": 2500000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 179,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 78.4,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.816,
@@ -57278,6 +57745,12 @@
       "ruolo_fine_quota": 0.688,
       "minuti": 1263.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 180,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 50.5,
       "k_subst_mult": 1.485,
       "disponibilita_rel": 0.658,
@@ -57884,6 +58357,12 @@
       "ruolo_fine_quota": 0.648,
       "minuti": 2231.0,
       "valore_mercato": 23000000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 185,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 67.6,
       "k_subst_mult": 1.109,
       "disponibilita_rel": 0.868,
@@ -58554,6 +59033,12 @@
       "ruolo_fine_quota": 1.0,
       "minuti": 2744.0,
       "valore_mercato": 30000000.0,
+      "contratto": {
+        "scadenza": "2030-06-30",
+        "altezza_cm": 196,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 85.8,
       "k_subst_mult": 1.0,
       "disponibilita_rel": 0.842,
@@ -59201,6 +59686,12 @@
       "ruolo_fine_quota": 0.705,
       "minuti": 1910.0,
       "valore_mercato": 1800000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 186,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 56.2,
       "k_subst_mult": 1.335,
       "disponibilita_rel": 0.895,
@@ -59874,6 +60365,12 @@
       "ruolo_fine_quota": 0.983,
       "minuti": 1899.0,
       "valore_mercato": 5000000.0,
+      "contratto": {
+        "scadenza": "2027-06-30",
+        "altezza_cm": 175,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 57.5,
       "k_subst_mult": 1.303,
       "disponibilita_rel": 0.868,
@@ -60534,6 +61031,7 @@
       "ruolo_fine_quota": 0.625,
       "minuti": 2273.0,
       "valore_mercato": 2500000.0,
+      "contratto": null,
       "avg_min_partita": 73.3,
       "k_subst_mult": 1.023,
       "disponibilita_rel": 0.816,
@@ -61158,6 +61656,12 @@
       "ruolo_fine_quota": 0.616,
       "minuti": 1976.0,
       "valore_mercato": 1500000.0,
+      "contratto": {
+        "scadenza": "2028-06-30",
+        "altezza_cm": 178,
+        "piede": "sinistro",
+        "in_prestito": null
+      },
       "avg_min_partita": 68.1,
       "k_subst_mult": 1.101,
       "disponibilita_rel": 0.763,
@@ -61776,6 +62280,12 @@
       "ruolo_fine_quota": 0.519,
       "minuti": 2221.0,
       "valore_mercato": 15000000.0,
+      "contratto": {
+        "scadenza": "2029-06-30",
+        "altezza_cm": 181,
+        "piede": "destro",
+        "in_prestito": null
+      },
       "avg_min_partita": 82.3,
       "k_subst_mult": 1.111,
       "disponibilita_rel": 0.711,
@@ -67449,6 +67959,7 @@
         "nome_en": "Second striker"
       }
     },
+    "contratto_fonte": "Transfermarkt, rosa dettagliata, letta alla data indicata nel file. La scadenza e' un fatto di oggi: chi ha lasciato la Serie A non ce l'ha.",
     "valore_mercato_fonte": "Transfermarkt via heXI, agganciato per identificativo. Dato di contorno: non entra in nessun calcolo dell'indice.",
     "ruoli_specifici_nota": "Ricavati dalle posizioni Understat realmente giocate. Sono presentazione: gli z-score restano dentro ATT/CEN/DIF."
   }
