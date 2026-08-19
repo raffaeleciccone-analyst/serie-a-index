@@ -60,6 +60,11 @@ def compact_player(p: dict) -> dict:
         "nome": p.get("nome"),
         "squadra": p.get("squadra"),
         "ruolo": p.get("ruolo"),
+        # Il ruolo che fa davvero (quinto, mezzala, trequartista) e quanto del
+        # suo tempo lo ha passato li'. Serve all'assistente per rispondere a
+        # "chi puo' sostituire X", che con ATT/CEN/DIF non si puo' fare.
+        "ruolo_specifico": p.get("ruolo_fine"),
+        "ruolo_specifico_quota": r(p.get("ruolo_fine_quota"), 2),
         "rank": rank.get("TPI"),
         "tpi": r(tpi.get("totale")),
         "tpi_casa": r(tpi.get("casa")),
@@ -168,7 +173,13 @@ def glossario(metodo: dict) -> dict:
     dentro = z.get("dentro_il_ruolo", True)
     zero = ("0 = il giocatore medio del SUO RUOLO" if dentro
             else "0 = il giocatore medio della lega")
+    fini = metodo.get("ruoli_specifici") or {}
+    elenco = ", ".join(sorted(v.get("nome_it", k).lower() for k, v in fini.items() if k != "POR"))
     return {
+        "ruolo_specifico": (f"il ruolo che il giocatore fa davvero, dai minuti per posizione: "
+                            f"{elenco}. Non entra nel punteggio: gli z-score restano dentro "
+                            f"ATT/CEN/DIF." if elenco else "ruolo specifico"),
+        "ruolo_specifico_quota": "quota dei minuti passati in quel ruolo: 0.93 = quasi sempre li'.",
         "TPI": f"Total Performance Index, il punteggio complessivo. Piu' alto = meglio. Scala z-score: {zero}.",
         "z": f"z-score winsorizzato a +/-{z.get('clamp_sigma', 3):.0f}. {zero}, +1 = una deviazione standard sopra.",
         "z_pro": "modulatori del TPI Pro (eta, affidabilita fisica). Non sono dimensioni del TPI base.",
