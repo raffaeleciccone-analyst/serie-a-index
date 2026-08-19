@@ -17,11 +17,14 @@ it does not predict — and the checks say where it loses too.
 | [Validation](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/validazione.html) | What holds up and what does not, with confidence intervals |
 | [Method](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/guida_completa.html) | Every formula the engine actually runs |
 | [TPI Pro](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/dashboard_pro.html) | The index with the five scout modulators |
+| [Data (CSV)](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/serie_a_tpi_2025-26.csv) | All 351 qualified players, 49 columns, written by the engine on every run |
 
 **Seven dimensions** — output, buildup, centrality, team boost, consistency, finishing,
 recent form. **Five scout modulators** on top of them, in the Pro version: age, physical
 durability, cross-context stability, form direction, early momentum. **Five contexts** —
 overall, home, away, vs top six, vs the tightest defences.
+
+The ranking page also exports what you are looking at: filter the list, hit **CSV**, and you get those rows in that order. The link next to it is the full file above.
 
 Numbers are deliberately not repeated here: they live on the pages, which are generated
 from the data, so nothing in this file can go stale behind them. The validation page
