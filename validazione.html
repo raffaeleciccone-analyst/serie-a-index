@@ -49,7 +49,7 @@ a{color:inherit}
 .nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0;
   font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:.4px;
   text-transform:uppercase;white-space:nowrap;text-decoration:none;color:var(--lp)}
-.nav-brand small{font-family:var(--mono);font-size:9px;font-weight:400;
+.nav-brand small{font-family:var(--mono);font-size:var(--t-lab);font-weight:400;
   letter-spacing:.16em;color:var(--lt);padding-left:10px;
   border-left:1px solid var(--sep)}
 /* Sotto i 560px il marchio esce per fare posto alle cinque voci, e la barra
@@ -87,24 +87,31 @@ a{color:inherit}
    Prima le scritte cadevano su quattro rientri diversi — hero a filo
    pagina, capitoli a +84, frasi a +176, voci del metodo a +108 — e da
    fuori si legge come sciatteria, non come gerarchia. */
-:root{--marg:150px;--gutter:26px}
+/* La scala tipografica sotto i 15px era undici corpi diversi in sei pixel
+   (14.5, 14, 13.5, 12.5, 12, 11.5, 11, 10.5, 10, 9.5, 9): si legge come
+   incoerenza, non come gerarchia. Restano tre gradini, piu' il corpo:
+     16.5  prosa        15  testo secondario
+     13    didascalie e tabelle      11  etichette e sigle
+   Chi ha bisogno di un quarto gradino ha un problema di struttura, non di CSS. */
+:root{--marg:150px;--gutter:26px;
+  --t-corpo:16.5px;--t-sec:15px;--t-cap:13px;--t-lab:11px}
 .doc{max-width:1040px;margin:0 auto;padding:0 clamp(20px,5vw,40px) 80px}
 .riga{display:grid;grid-template-columns:var(--marg) minmax(0,1fr);gap:0 var(--gutter)}
-.prosa{max-width:36em;font-size:16.5px;line-height:1.75;color:var(--ls)}
+.prosa{max-width:36em;font-size:var(--t-corpo);line-height:1.75;color:var(--ls)}
 .prosa strong{color:var(--lp);font-weight:600}
 .prosa+.prosa{margin-top:14px}
 .prosa.chiusa{margin-top:30px;padding-top:22px;border-top:1px solid var(--sep2);
   font-size:17px;color:var(--lp)}
 
 .hero{padding:clamp(46px,9vw,96px) 0 clamp(30px,5vw,52px);align-items:start}
-.eyebrow{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--lt);
+.eyebrow{font-size:var(--t-lab);letter-spacing:.24em;text-transform:uppercase;color:var(--lt);
   margin-bottom:20px}
 h1{font-family:var(--disp);font-weight:500;text-transform:uppercase;
   font-size:clamp(38px,8.4vw,84px);line-height:.92;letter-spacing:-.012em;margin-bottom:24px}
 h1 em{font-style:normal;color:var(--orng)}
 .lede{max-width:31em;font-size:clamp(16.5px,2.1vw,19px);line-height:1.62;color:var(--ls)}
 .lede strong{color:var(--lp);font-weight:600}
-.lede.sec{margin-top:16px;font-size:15px;color:var(--lt);max-width:33em}
+.lede.sec{margin-top:16px;font-size:var(--t-sec);color:var(--lt);max-width:33em}
 
 /* Niente piu' righe verticali fra le cifre: il testo della colonna dopo le
    toccava, e con il ritorno a capo restava un bordo appeso a meta' riga. */
@@ -113,30 +120,34 @@ h1 em{font-style:normal;color:var(--orng)}
 .cifra{min-width:0}
 .cifra b{display:block;font-family:var(--mono);font-weight:500;font-size:clamp(26px,4vw,34px);
   color:var(--orng);letter-spacing:-.03em;line-height:1}
-.cifra span{display:block;margin-top:8px;font-size:11px;letter-spacing:.1em;
+.cifra span{display:block;margin-top:8px;font-size:var(--t-lab);letter-spacing:.1em;
   text-transform:uppercase;color:var(--lt);line-height:1.5}
 /* Le cifre sono il terzo figlio della griglia dell'eroe, ma finche' le colonne
    sono due restano dove stavano: in fondo alla colonna di lettura. */
 .hero .cifre{grid-column:2}
 
 .cap{padding:clamp(38px,6vw,64px) 0;border-top:1px solid var(--sep)}
-.cap-num{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--orng);
+.cap-num{font-family:var(--mono);font-size:var(--t-lab);letter-spacing:.16em;color:var(--orng);
   padding-top:9px}
 h2{font-family:var(--disp);font-weight:500;text-transform:uppercase;
   font-size:clamp(23px,3.4vw,34px);line-height:1.06;letter-spacing:.004em;margin-bottom:18px}
-h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt);
-  margin:38px 0 10px}
+/* h3 era 12px maiuscoletto, cioe' PIU' PICCOLO del corpo: non un livello, una
+   etichetta. Con un solo gradino di titolazione il capitolo con la tabella da
+   sedici righe pesava quanto l'argomento portante di quello prima. Adesso e' un
+   sotto-capitolo vero, e sta fra i 34 del capitolo e i 16.5 della prosa. */
+h3{font-size:24px;font-family:var(--disp);font-weight:600;letter-spacing:.002em;
+  line-height:1.16;color:var(--lp);text-transform:none;margin:34px 0 12px}
 
 .ev{padding:17px 0;border-top:1px solid var(--sep)}
 .ev:first-of-type{border-top:1px solid var(--sep2)}
 .ev-fig{font-family:var(--mono);font-weight:500;font-size:23px;color:var(--orng);
   letter-spacing:-.03em;line-height:1.1}
-.ev-lbl{display:block;margin-top:7px;font-family:var(--font);font-size:9.5px;
+.ev-lbl{display:block;margin-top:7px;font-family:var(--font);font-size:var(--t-lab);
   letter-spacing:.12em;text-transform:uppercase;color:var(--lt);line-height:1.5}
-.ev-txt{font-size:15px;line-height:1.68;color:var(--ls);padding-top:2px;max-width:36em}
+.ev-txt{font-size:var(--t-sec);line-height:1.68;color:var(--ls);padding-top:2px;max-width:36em}
 /* Nel capitolo delle conseguenze il margine porta un titolo, non una cifra:
    stesso impianto, font di testo perche' una parola in mono si legge peggio. */
-.ev-fig.ev-txtfig{font-family:var(--font);font-size:14.5px;font-weight:600;
+.ev-fig.ev-txtfig{font-family:var(--font);font-size:var(--t-sec);font-weight:600;
   color:var(--lp);line-height:1.45;padding-top:3px}
 .ev-txt strong{color:var(--lp);font-weight:600}
 .ev.muta .ev-fig{color:var(--ls)}
@@ -145,14 +156,14 @@ h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt);
    a destra, una riga sottile a separarli. */
 .nomi{list-style:none;margin:2px 0 0;max-width:36em}
 .nomi li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 18px;align-items:baseline;
-  padding:9px 0;border-bottom:1px solid var(--sep);font-size:14.5px;color:var(--ls)}
+  padding:9px 0;border-bottom:1px solid var(--sep);font-size:var(--t-sec);color:var(--ls)}
 .nomi li:last-child{border-bottom:0}
 .nomi li.hd{padding:0 0 6px;border-bottom:1px solid var(--sep2)}
-.nomi li.hd .pos{font-family:var(--font);font-size:9.5px;letter-spacing:.12em;
+.nomi li.hd .pos{font-family:var(--font);font-size:var(--t-lab);letter-spacing:.12em;
   text-transform:uppercase}
 .nomi b{font-weight:600;color:var(--lp)}
-.nomi small{margin-left:9px;font-size:11.5px;color:var(--lt)}
-.nomi .pos{font-family:var(--mono);font-size:12.5px;color:var(--lt);white-space:nowrap}
+.nomi small{margin-left:9px;font-size:var(--t-lab);color:var(--lt)}
+.nomi .pos{font-family:var(--mono);font-size:var(--t-cap);color:var(--lt);white-space:nowrap}
 .nomi+.didascalia{margin-top:12px}
 
 /* Il testo dentro un SVG con viewBox scala col disegno: le stesse etichette da
@@ -171,17 +182,21 @@ h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--lt);
   overflow:visible}
 .sv-ax{font-family:var(--mono);font-size:calc(9.5px * var(--sv-scala));fill:var(--lt)}
 .sv-val{font-family:var(--mono);font-size:calc(10px * var(--sv-scala));fill:var(--ls)}
-.sv-dim{font-family:var(--mono);font-size:calc(10.5px * var(--sv-scala));fill:var(--ls)}
-.didascalia{font-size:12.5px;color:var(--lt);line-height:1.6;max-width:36em;margin-top:6px}
+/* Il nome della dimensione ha una colonna di larghezza fissa: se crescesse
+   come le altre etichette, su telefono uscirebbe dal riquadro. Cresce fino a
+   meta' strada e li' si ferma. */
+.sv-dim{font-family:var(--mono);font-size:calc(10.5px * min(var(--sv-scala),1.5));
+  fill:var(--ls)}
+.didascalia{font-size:var(--t-cap);color:var(--lt);line-height:1.6;max-width:36em;margin-top:6px}
 
-table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
-th{text-align:left;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+table{width:100%;border-collapse:collapse;font-size:var(--t-cap);margin-top:6px}
+th{text-align:left;font-size:var(--t-lab);letter-spacing:.13em;text-transform:uppercase;
   color:var(--lt);font-weight:500;padding:0 14px 10px 0;border-bottom:1px solid var(--sep2)}
 td{padding:13px 14px 13px 0;border-bottom:1px solid var(--sep);color:var(--ls);
   vertical-align:top;line-height:1.55}
 tr:hover td{color:var(--lp)}
-.t-let{font-family:var(--mono);font-size:11px;color:var(--orng);width:26px;padding-top:15px}
-.t-mis{font-family:var(--mono);font-size:12px;color:var(--lp);white-space:nowrap}
+.t-let{font-family:var(--mono);font-size:var(--t-lab);color:var(--orng);width:26px;padding-top:15px}
+.t-mis{font-family:var(--mono);font-size:var(--t-cap);color:var(--lp);white-space:nowrap}
 
 /* Il marcatore sta nella colonna di margine, cosi' il titolo del blocco e il
    testo che si apre sotto partono dallo stesso bordo di tutto il resto. */
@@ -189,17 +204,17 @@ details{border-top:1px solid var(--sep);padding:15px 0}
 details[open]{padding-bottom:22px}
 /* Titolo nella colonna di margine e testo in quella di lettura, come le voci
    del capitolo precedente: erano l'unico blocco con un rientro suo. */
-summary{cursor:pointer;list-style:none;font-size:14.5px;font-weight:600;color:var(--lp);
+summary{cursor:pointer;list-style:none;font-size:var(--t-sec);font-weight:600;color:var(--lp);
   line-height:1.45}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"+ ";font-family:var(--mono);color:var(--orng);font-size:14px}
+summary::before{content:"+ ";font-family:var(--mono);color:var(--orng);font-size:var(--t-sec)}
 details[open] summary::before{content:"\2212 "}
 details.riga>summary{grid-column:1}
 details.riga>.prosa{grid-column:2;margin-top:0}
-details .prosa{font-size:14.5px}
+details .prosa{font-size:var(--t-sec)}
 
 footer{border-top:1px solid var(--sep);padding:30px 0 0;margin-top:20px;
-  font-size:12px;color:var(--lt)}
+  font-size:var(--t-cap);color:var(--lt)}
 footer>div{display:flex;flex-wrap:wrap;justify-content:center;text-align:center;
   gap:14px 26px}
 footer a{color:var(--ls);text-decoration:none;border-bottom:1px solid var(--lq)}
@@ -217,7 +232,7 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   .cifre{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 30px}
   details.riga>summary,details.riga>.prosa{grid-column:auto}
   details .prosa{margin-top:10px}
-  table{font-size:12.5px}
+  table{font-size:var(--t-cap)}
   .t-mis{white-space:normal}
   /* Qui la griglia e' a colonna unica: una seconda colonna non esiste. */
   .hero .cifre{grid-column:auto}
@@ -330,7 +345,7 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   <div class="ev-fig">0.725<span class="ev-lbl" data-it="Prima met&agrave; &rarr; seconda" data-en="First half &rarr; second">Prima met&agrave; &rarr; seconda</span></div>
   <div class="ev-txt" data-it="Chi rende nella prima met&agrave; di stagione rende anche nella seconda (571 giocatori, IC [+0.67, +0.77], placebo p = 0.002). Riguarda l&rsquo;output offensivo grezzo, che &egrave; l&rsquo;ingrediente principale dell&rsquo;indice: non &egrave; una prova sul composito." data-en="Players who deliver in the first half also deliver in the second (571 players, CI [+0.67, +0.77], placebo p = 0.002). It concerns raw attacking output, the index&rsquo;s main ingredient: it is not proof about the composite.">Chi rende nella prima met&agrave; di stagione rende anche nella seconda (571 giocatori, IC [+0.67, +0.77], placebo p = 0.002). Riguarda l&rsquo;output offensivo grezzo, che &egrave; l&rsquo;ingrediente principale dell&rsquo;indice: non &egrave; una prova sul composito.</div>
 </div></div>
-    <h3 data-it="Dal primo al decimo decile" data-en="From the first to the tenth decile">Dal primo al decimo decile</h3><svg class="graf" viewBox="0 0 640 210" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><line x1="74.0" y1="180.0" x2="626.0" y2="180.0" stroke="rgba(233,240,236,.06)" stroke-width="1"/><text x="66.0" y="183.0" text-anchor="end" class="sv-ax">0.04</text><line x1="74.0" y1="103.0" x2="626.0" y2="103.0" stroke="rgba(233,240,236,.06)" stroke-width="1"/><text x="66.0" y="106.0" text-anchor="end" class="sv-ax">0.29</text><line x1="74.0" y1="26.0" x2="626.0" y2="26.0" stroke="rgba(233,240,236,.06)" stroke-width="1"/><text x="66.0" y="29.0" text-anchor="end" class="sv-ax">0.54</text><text x="0" y="12" class="sv-ax">gol + assist attesi per 90&rsquo; (l&rsquo;asse non parte da zero)</text><line x1="74.0" y1="26.0" x2="74.0" y2="180.0" stroke="rgba(233,240,236,.14)" stroke-width="1"/><line x1="74.0" y1="165.1" x2="626.0" y2="40.9" stroke="rgba(233,240,236,.22)" stroke-width="1" stroke-dasharray="3 4"/><polyline points="74.0,165.1 135.3,163.0 196.7,145.9 258.0,146.2 319.3,143.7 380.7,124.5 442.0,117.8 503.3,105.6 564.7,95.2 626.0,40.9" fill="none" stroke="var(--orng)" stroke-width="1.6"/><circle cx="74.0" cy="165.1" r="3" fill="var(--orng)"/><circle cx="135.3" cy="163.0" r="3" fill="var(--orng)"/><circle cx="196.7" cy="145.9" r="3" fill="var(--orng)"/><circle cx="258.0" cy="146.2" r="3" fill="var(--orng)"/><circle cx="319.3" cy="143.7" r="3" fill="var(--orng)"/><circle cx="380.7" cy="124.5" r="3" fill="var(--orng)"/><circle cx="442.0" cy="117.8" r="3" fill="var(--orng)"/><circle cx="503.3" cy="105.6" r="3" fill="var(--orng)"/><circle cx="564.7" cy="95.2" r="3" fill="var(--orng)"/><circle cx="626.0" cy="40.9" r="3" fill="var(--orng)"/><circle cx="258.0" cy="146.2" r="6.5" fill="none" stroke="var(--orng)" stroke-width="1" stroke-dasharray="2 2" opacity=".75"/><text x="74" y="200" class="sv-ax">1&ordm; decile</text><text x="626" y="200" text-anchor="end" class="sv-ax">10&ordm; decile</text></svg><p class="didascalia" data-it="Rendimento medio realizzato dal primo all&rsquo;ultimo decile di TPI. La linea tratteggiata &egrave; la salita costante che avrebbe un indice calibrato: l&rsquo;ordine coincide dappertutto tranne fra il 3&ordm; e il 4&ordm; decile, dove scende; e il passo non coincide mai. Monotonia &rho; = +0.988." data-en="Mean realized output from the first to the last TPI decile. The dashed line is the steady rise a calibrated index would show: the order matches everywhere except between deciles 3 and 4, where it drops; and the spacing never matches. Monotonicity &rho; = +0.988.">Rendimento medio realizzato dal primo all&rsquo;ultimo decile di TPI. La linea tratteggiata &egrave; la salita costante che avrebbe un indice calibrato: l&rsquo;ordine coincide dappertutto tranne fra il 3&ordm; e il 4&ordm; decile, dove scende; e il passo non coincide mai. Monotonia &rho; = +0.988.</p>
+    <h3 data-it="Dal primo al decimo decile" data-en="From the first to the tenth decile">Dal primo al decimo decile</h3><svg class="graf" viewBox="0 0 640 210" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><line x1="74.0" y1="180.0" x2="626.0" y2="180.0" stroke="rgba(233,240,236,.06)" stroke-width="1"/><text x="66.0" y="183.0" text-anchor="end" class="sv-ax">0.04</text><line x1="74.0" y1="103.0" x2="626.0" y2="103.0" stroke="rgba(233,240,236,.06)" stroke-width="1"/><text x="66.0" y="106.0" text-anchor="end" class="sv-ax">0.29</text><line x1="74.0" y1="26.0" x2="626.0" y2="26.0" stroke="rgba(233,240,236,.06)" stroke-width="1"/><text x="66.0" y="29.0" text-anchor="end" class="sv-ax">0.54</text><text x="0" y="12" class="sv-ax" data-it="gol + assist attesi per 90&rsquo; (l&rsquo;asse non parte da zero)" data-en="expected goals + assists per 90&rsquo; (the axis does not start at zero)">gol + assist attesi per 90&rsquo; (l&rsquo;asse non parte da zero)</text><line x1="74.0" y1="26.0" x2="74.0" y2="180.0" stroke="rgba(233,240,236,.14)" stroke-width="1"/><line x1="74.0" y1="165.1" x2="626.0" y2="40.9" stroke="rgba(233,240,236,.22)" stroke-width="1" stroke-dasharray="3 4"/><polyline points="74.0,165.1 135.3,163.0 196.7,145.9 258.0,146.2 319.3,143.7 380.7,124.5 442.0,117.8 503.3,105.6 564.7,95.2 626.0,40.9" fill="none" stroke="var(--orng)" stroke-width="1.6"/><circle cx="74.0" cy="165.1" r="3" fill="var(--orng)"/><circle cx="135.3" cy="163.0" r="3" fill="var(--orng)"/><circle cx="196.7" cy="145.9" r="3" fill="var(--orng)"/><circle cx="258.0" cy="146.2" r="3" fill="var(--orng)"/><circle cx="319.3" cy="143.7" r="3" fill="var(--orng)"/><circle cx="380.7" cy="124.5" r="3" fill="var(--orng)"/><circle cx="442.0" cy="117.8" r="3" fill="var(--orng)"/><circle cx="503.3" cy="105.6" r="3" fill="var(--orng)"/><circle cx="564.7" cy="95.2" r="3" fill="var(--orng)"/><circle cx="626.0" cy="40.9" r="3" fill="var(--orng)"/><circle cx="258.0" cy="146.2" r="6.5" fill="none" stroke="var(--orng)" stroke-width="1" stroke-dasharray="2 2" opacity=".75"/><text x="74" y="200" class="sv-ax" data-it="1&ordm; decile" data-en="1st decile">1&ordm; decile</text><text x="626" y="200" text-anchor="end" class="sv-ax" data-it="10&ordm; decile" data-en="10th decile">10&ordm; decile</text></svg><p class="didascalia" data-it="Rendimento medio realizzato dal primo all&rsquo;ultimo decile di TPI. La linea tratteggiata &egrave; la salita costante che avrebbe un indice calibrato: l&rsquo;ordine coincide dappertutto tranne fra il 3&ordm; e il 4&ordm; decile, dove scende; e il passo non coincide mai. Monotonia &rho; = +0.988." data-en="Mean realized output from the first to the last TPI decile. The dashed line is the steady rise a calibrated index would show: the order matches everywhere except between deciles 3 and 4, where it drops; and the spacing never matches. Monotonicity &rho; = +0.988.">Rendimento medio realizzato dal primo all&rsquo;ultimo decile di TPI. La linea tratteggiata &egrave; la salita costante che avrebbe un indice calibrato: l&rsquo;ordine coincide dappertutto tranne fra il 3&ordm; e il 4&ordm; decile, dove scende; e il passo non coincide mai. Monotonia &rho; = +0.988.</p>
   </div>
 </section>
 <section class="cap riga">
@@ -358,7 +373,7 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   <div class="ev-fig">+0.128<span class="ev-lbl" data-it="Mediare due stagioni" data-en="Averaging two seasons">Mediare due stagioni</span></div>
   <div class="ev-txt" data-it="Un TPI mediato su due stagioni ordina meglio di quello di una sola (+0.39 &rarr; +0.52 su 66 giocatori), ma l&rsquo;intervallo [-0.002, +0.264] sfiora lo zero: non lo conto." data-en="A TPI averaged over two seasons ranks better than a single-season one (+0.39 &rarr; +0.52 over 66 players), but the interval [-0.002, +0.264] grazes zero: I do not count it.">Un TPI mediato su due stagioni ordina meglio di quello di una sola (+0.39 &rarr; +0.52 su 66 giocatori), ma l&rsquo;intervallo [-0.002, +0.264] sfiora lo zero: non lo conto.</div>
 </div></div>
-    <h3 data-it="Le sette dimensioni, una alla volta" data-en="The seven dimensions, one at a time">Le sette dimensioni, una alla volta</h3><svg class="graf" viewBox="0 0 640 219" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><text x="367" y="11" text-anchor="end" class="sv-ax">toglierla peggiora &#8592;</text><text x="383" y="11" class="sv-ax">&#8594; toglierla migliora</text><text x="106" y="37" text-anchor="end" class="sv-dim">finishing</text><rect x="166.0" y="27" width="209.0" height="14" rx="2" fill="var(--orng)"/><text x="160.0" y="39" text-anchor="end" class="sv-val">-0.075</text><text x="106" y="64" text-anchor="end" class="sv-dim">output_adj</text><rect x="306.0" y="54" width="69.0" height="14" rx="2" fill="var(--orng)"/><text x="300.0" y="66" text-anchor="end" class="sv-val">-0.025</text><text x="106" y="91" text-anchor="end" class="sv-dim">centralita</text><rect x="356.7" y="81" width="18.3" height="14" rx="2" fill="var(--orng)"/><text x="350.7" y="93" text-anchor="end" class="sv-val">-0.007</text><text x="106" y="118" text-anchor="end" class="sv-dim">buildup_adj</text><rect x="361.7" y="108" width="13.3" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="355.7" y="120" text-anchor="end" class="sv-val">-0.005</text><text x="106" y="145" text-anchor="end" class="sv-dim">form</text><rect x="370.6" y="135" width="4.4" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="364.6" y="147" text-anchor="end" class="sv-val">-0.002</text><text x="106" y="172" text-anchor="end" class="sv-dim">boost_ratio</text><rect x="372.2" y="162" width="2.8" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="366.2" y="174" text-anchor="end" class="sv-val">-0.001</text><text x="106" y="199" text-anchor="end" class="sv-dim">consistenza</text><rect x="375.0" y="189" width="10.0" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="391.0" y="201" text-anchor="start" class="sv-val">+0.004</text><line x1="118" y1="16" x2="118" y2="215" stroke="rgba(233,240,236,.18)"/><line x1="375.0" y1="16" x2="375.0" y2="215" stroke="rgba(233,240,236,.45)"/></svg><p class="didascalia" data-it="Peggioramento della previsione togliendo una dimensione alla volta: le barre ambra sono le dimensioni che servono." data-en="Loss in forecast accuracy when each dimension is removed: amber bars are the dimensions that matter.">Peggioramento della previsione togliendo una dimensione alla volta: le barre ambra sono le dimensioni che servono.</p>
+    <h3 data-it="Le sette dimensioni, una alla volta" data-en="The seven dimensions, one at a time">Le sette dimensioni, una alla volta</h3><svg class="graf" viewBox="0 0 640 219" role="img" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><text x="374" y="11" text-anchor="end" class="sv-ax" data-it="toglierla peggiora &#8592;" data-en="removing it hurts &#8592;">toglierla peggiora &#8592;</text><text x="390" y="11" class="sv-ax" data-it="&#8594; toglierla migliora" data-en="&#8594; removing it helps">&#8594; toglierla migliora</text><text x="120" y="37" text-anchor="end" class="sv-dim" data-it="Finishing" data-en="Finishing">Finishing</text><rect x="180.0" y="27" width="202.0" height="14" rx="2" fill="var(--orng)"/><text x="174.0" y="39" text-anchor="end" class="sv-val">-0.075</text><text x="120" y="64" text-anchor="end" class="sv-dim" data-it="Output" data-en="Output">Output</text><rect x="315.3" y="54" width="66.7" height="14" rx="2" fill="var(--orng)"/><text x="309.3" y="66" text-anchor="end" class="sv-val">-0.025</text><text x="120" y="91" text-anchor="end" class="sv-dim" data-it="Centralit&agrave;" data-en="Centrality">Centralit&agrave;</text><rect x="364.3" y="81" width="17.7" height="14" rx="2" fill="var(--orng)"/><text x="358.3" y="93" text-anchor="end" class="sv-val">-0.007</text><text x="120" y="118" text-anchor="end" class="sv-dim" data-it="Buildup" data-en="Buildup">Buildup</text><rect x="369.1" y="108" width="12.9" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="363.1" y="120" text-anchor="end" class="sv-val">-0.005</text><text x="120" y="145" text-anchor="end" class="sv-dim" data-it="Forma" data-en="Form">Forma</text><rect x="377.7" y="135" width="4.3" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="371.7" y="147" text-anchor="end" class="sv-val">-0.002</text><text x="120" y="172" text-anchor="end" class="sv-dim" data-it="Boost" data-en="Boost">Boost</text><rect x="379.3" y="162" width="2.7" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="373.3" y="174" text-anchor="end" class="sv-val">-0.001</text><text x="120" y="199" text-anchor="end" class="sv-dim" data-it="Consistenza" data-en="Consistency">Consistenza</text><rect x="382.0" y="189" width="9.6" height="14" rx="2" fill="rgba(233,240,236,.28)"/><text x="397.6" y="201" text-anchor="start" class="sv-val">+0.004</text><line x1="132" y1="16" x2="132" y2="215" stroke="rgba(233,240,236,.18)"/><line x1="382.0" y1="16" x2="382.0" y2="215" stroke="rgba(233,240,236,.45)"/></svg><p class="didascalia" data-it="Peggioramento della previsione togliendo una dimensione alla volta: le barre ambra sono le dimensioni che servono." data-en="Loss in forecast accuracy when each dimension is removed: amber bars are the dimensions that matter.">Peggioramento della previsione togliendo una dimensione alla volta: le barre ambra sono le dimensioni che servono.</p>
     <p class="prosa chiusa" data-it="In due righe: come previsione del rendimento assoluto l&rsquo;indice <strong>non serve</strong>, e l&rsquo;output grezzo per-90 fa meglio da solo. Come strumento per distinguere <strong>chi cresce da chi cala</strong> regge, ed &egrave; l&rsquo;unico uso che rivendico &mdash; lo stesso per cui l&rsquo;indice era stato scritto." data-en="In two lines: as a forecast of absolute output the index is <strong>of no use</strong>, and raw per-90 output does better on its own. As a way to tell <strong>who is rising from who is fading</strong> it holds, and that is the only use I claim &mdash; the one the index was written for.">In due righe: come previsione del rendimento assoluto l&rsquo;indice <strong>non serve</strong>, e l&rsquo;output grezzo per-90 fa meglio da solo. Come strumento per distinguere <strong>chi cresce da chi cala</strong> regge, ed &egrave; l&rsquo;unico uso che rivendico &mdash; lo stesso per cui l&rsquo;indice era stato scritto.</p>
   </div>
 </section>
