@@ -32,6 +32,8 @@
       "nome": "Lautaro Mart\u00ednez",
       "squadra": "Inter",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2205.0,
       "avg_min_partita": 73.5,
       "k_subst_mult": 1.02,
@@ -650,6 +652,8 @@
       "nome": "Scott McTominay",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.793,
       "minuti": 2798.0,
       "avg_min_partita": 84.8,
       "k_subst_mult": 1.0,
@@ -1317,6 +1321,8 @@
       "nome": "Donyell Malen",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1499.0,
       "avg_min_partita": 83.3,
       "k_subst_mult": 1.667,
@@ -1864,6 +1870,8 @@
       "nome": "Marcus Thuram",
       "squadra": "Inter",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1933.0,
       "avg_min_partita": 66.7,
       "k_subst_mult": 1.125,
@@ -2489,6 +2497,8 @@
       "nome": "Federico Dimarco",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.929,
       "minuti": 2709.0,
       "avg_min_partita": 77.4,
       "k_subst_mult": 1.0,
@@ -3167,6 +3177,8 @@
       "nome": "Christian Pulisic",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.456,
       "minuti": 1612.0,
       "avg_min_partita": 53.7,
       "k_subst_mult": 1.396,
@@ -3805,6 +3817,8 @@
       "nome": "Mario Pasalic",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.731,
       "minuti": 1922.0,
       "avg_min_partita": 58.2,
       "k_subst_mult": 1.288,
@@ -4472,6 +4486,8 @@
       "nome": "Henrikh Mkhitaryan",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1547.0,
       "avg_min_partita": 51.6,
       "k_subst_mult": 1.454,
@@ -5110,6 +5126,8 @@
       "nome": "Andrea Cambiaso",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.465,
       "minuti": 2846.0,
       "avg_min_partita": 79.1,
       "k_subst_mult": 1.0,
@@ -5801,6 +5819,8 @@
       "nome": "Wesley",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.925,
       "minuti": 2559.0,
       "avg_min_partita": 82.5,
       "k_subst_mult": 1.0,
@@ -6427,6 +6447,8 @@
       "nome": "Kenan Yildiz",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.493,
       "minuti": 2877.0,
       "avg_min_partita": 79.9,
       "k_subst_mult": 1.0,
@@ -7113,6 +7135,8 @@
       "nome": "Nikola Krstovic",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1781.0,
       "avg_min_partita": 54.0,
       "k_subst_mult": 1.39,
@@ -7775,6 +7799,8 @@
       "nome": "Weston McKennie",
       "squadra": "Juventus",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.341,
       "minuti": 2857.0,
       "avg_min_partita": 79.4,
       "k_subst_mult": 1.0,
@@ -8461,6 +8487,8 @@
       "nome": "Nicol\u00f2 Barella",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2561.0,
       "avg_min_partita": 75.3,
       "k_subst_mult": 1.0,
@@ -9131,6 +9159,8 @@
       "nome": "Kevin De Bruyne",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.471,
       "minuti": 1176.0,
       "avg_min_partita": 65.3,
       "k_subst_mult": 1.667,
@@ -9673,6 +9703,8 @@
       "nome": "Rafael Le\u00e3o",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.534,
       "minuti": 1874.0,
       "avg_min_partita": 64.6,
       "k_subst_mult": 1.161,
@@ -10298,6 +10330,8 @@
       "nome": "Adrien Rabiot",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.964,
       "minuti": 2546.0,
       "avg_min_partita": 87.8,
       "k_subst_mult": 1.034,
@@ -10928,6 +10962,8 @@
       "nome": "Paulo Dybala",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.638,
       "minuti": 1360.0,
       "avg_min_partita": 61.8,
       "k_subst_mult": 1.364,
@@ -11482,6 +11518,8 @@
       "nome": "Alexis Saelemaekers",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.785,
       "minuti": 2819.0,
       "avg_min_partita": 80.5,
       "k_subst_mult": 1.0,
@@ -12160,6 +12198,8 @@
       "nome": "Armand Lauriente",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2655.0,
       "avg_min_partita": 69.9,
       "k_subst_mult": 1.073,
@@ -12867,6 +12907,8 @@
       "nome": "Davide Zappacosta",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.816,
       "minuti": 2605.0,
       "avg_min_partita": 74.4,
       "k_subst_mult": 1.008,
@@ -13550,6 +13592,8 @@
       "nome": "Aar\u00f3n Mart\u00edn",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.485,
       "minuti": 2167.0,
       "avg_min_partita": 65.7,
       "k_subst_mult": 1.142,
@@ -14212,6 +14256,8 @@
       "nome": "Nico Paz",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.813,
       "minuti": 2905.0,
       "avg_min_partita": 83.0,
       "k_subst_mult": 1.0,
@@ -14885,6 +14931,8 @@
       "nome": "Jari Vandeputte",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.729,
       "minuti": 1977.0,
       "avg_min_partita": 61.8,
       "k_subst_mult": 1.214,
@@ -15539,6 +15587,8 @@
       "nome": "Martin Baturina",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.559,
       "minuti": 1579.0,
       "avg_min_partita": 54.4,
       "k_subst_mult": 1.377,
@@ -16174,6 +16224,8 @@
       "nome": "Tasos Douvikas",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2279.0,
       "avg_min_partita": 60.0,
       "k_subst_mult": 1.251,
@@ -16881,6 +16933,8 @@
       "nome": "Kristian Thorstvedt",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.945,
       "minuti": 2450.0,
       "avg_min_partita": 76.6,
       "k_subst_mult": 1.0,
@@ -17535,6 +17589,8 @@
       "nome": "Jonathan Christian David",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1784.0,
       "avg_min_partita": 51.0,
       "k_subst_mult": 1.471,
@@ -18208,6 +18264,8 @@
       "nome": "Medon Berisha",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.424,
       "minuti": 893.0,
       "avg_min_partita": 68.7,
       "k_subst_mult": 2.308,
@@ -18665,6 +18723,8 @@
       "nome": "Matteo Guendouzi",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
+      "ruolo_fine_quota": 0.582,
       "minuti": 2078.0,
       "avg_min_partita": 74.2,
       "k_subst_mult": 1.071,
@@ -19242,6 +19302,8 @@
       "nome": "Cesare Casadei",
       "squadra": "Torino",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.734,
       "minuti": 1971.0,
       "avg_min_partita": 59.7,
       "k_subst_mult": 1.256,
@@ -19899,6 +19961,8 @@
       "nome": "Charles De Ketelaere",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.776,
       "minuti": 2206.0,
       "avg_min_partita": 71.2,
       "k_subst_mult": 1.054,
@@ -20550,6 +20614,8 @@
       "nome": "Hakan Calhanoglu",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.932,
       "minuti": 1674.0,
       "avg_min_partita": 76.1,
       "k_subst_mult": 1.364,
@@ -21099,6 +21165,8 @@
       "nome": "Rasmus H\u00f8jlund",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2784.0,
       "avg_min_partita": 84.4,
       "k_subst_mult": 1.0,
@@ -21761,6 +21829,8 @@
       "nome": "Lucas Da Cunha",
       "squadra": "Como",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
+      "ruolo_fine_quota": 0.773,
       "minuti": 2765.0,
       "avg_min_partita": 76.8,
       "k_subst_mult": 1.0,
@@ -22452,6 +22522,8 @@
       "nome": "Arthur Atta",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.538,
       "minuti": 2575.0,
       "avg_min_partita": 80.5,
       "k_subst_mult": 1.0,
@@ -23111,6 +23183,8 @@
       "nome": "Piotr Zielinski",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2048.0,
       "avg_min_partita": 60.2,
       "k_subst_mult": 1.245,
@@ -23781,6 +23855,8 @@
       "nome": "Domenico Berardi",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.954,
       "minuti": 1995.0,
       "avg_min_partita": 76.7,
       "k_subst_mult": 1.154,
@@ -24382,6 +24458,8 @@
       "nome": "Idrissa Tour\u00e9",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.927,
       "minuti": 2283.0,
       "avg_min_partita": 71.3,
       "k_subst_mult": 1.051,
@@ -25031,6 +25109,8 @@
       "nome": "Lorenzo Venturino",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.571,
       "minuti": 1677.0,
       "avg_min_partita": 59.9,
       "k_subst_mult": 1.252,
@@ -25608,6 +25688,8 @@
       "nome": "Jurgen Ekkelenkamp",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.455,
       "minuti": 2234.0,
       "avg_min_partita": 72.1,
       "k_subst_mult": 1.041,
@@ -26244,6 +26326,8 @@
       "nome": "Adri\u00e1n Bernab\u00e9",
       "squadra": "Parma Calcio 1913",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.681,
       "minuti": 2542.0,
       "avg_min_partita": 79.4,
       "k_subst_mult": 1.0,
@@ -26878,6 +26962,8 @@
       "nome": "Keinan Davis",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2106.0,
       "avg_min_partita": 70.2,
       "k_subst_mult": 1.068,
@@ -27501,6 +27587,8 @@
       "nome": "Giorgio Scalvini",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1841.0,
       "avg_min_partita": 76.7,
       "k_subst_mult": 1.25,
@@ -28096,6 +28184,8 @@
       "nome": "Dusan Vlahovic",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 972.0,
       "avg_min_partita": 51.2,
       "k_subst_mult": 1.579,
@@ -28631,6 +28721,8 @@
       "nome": "Juan Miranda",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.99,
       "minuti": 2576.0,
       "avg_min_partita": 80.5,
       "k_subst_mult": 1.0,
@@ -29290,6 +29382,8 @@
       "nome": "Denzel Dumfries",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.851,
       "minuti": 1332.0,
       "avg_min_partita": 66.6,
       "k_subst_mult": 1.5,
@@ -29843,6 +29937,8 @@
       "nome": "Rolando Mandragora",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.903,
       "minuti": 2470.0,
       "avg_min_partita": 72.6,
       "k_subst_mult": 1.032,
@@ -30503,6 +30599,8 @@
       "nome": "Leonardo Spinazzola",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.524,
       "minuti": 1906.0,
       "avg_min_partita": 59.6,
       "k_subst_mult": 1.259,
@@ -31152,6 +31250,8 @@
       "nome": "Ulisses Garc\u00eda",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 1.0,
       "minuti": 941.0,
       "avg_min_partita": 72.4,
       "k_subst_mult": 2.308,
@@ -31649,6 +31749,8 @@
       "nome": "Giovanni Simeone",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 0.959,
       "minuti": 2273.0,
       "avg_min_partita": 71.0,
       "k_subst_mult": 1.056,
@@ -32308,6 +32410,8 @@
       "nome": "Rafik Belghali",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.769,
       "minuti": 1935.0,
       "avg_min_partita": 74.4,
       "k_subst_mult": 1.154,
@@ -32919,6 +33023,8 @@
       "nome": "Ruslan Malinovskiy",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.722,
       "minuti": 2279.0,
       "avg_min_partita": 67.0,
       "k_subst_mult": 1.119,
@@ -33584,6 +33690,8 @@
       "nome": "Dod\u00f4",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.554,
       "minuti": 3158.0,
       "avg_min_partita": 87.7,
       "k_subst_mult": 1.0,
@@ -34270,6 +34378,8 @@
       "nome": "Davide Bartesaghi",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.83,
       "minuti": 2447.0,
       "avg_min_partita": 78.9,
       "k_subst_mult": 1.0,
@@ -34916,6 +35026,8 @@
       "nome": "David Neres",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.791,
       "minuti": 932.0,
       "avg_min_partita": 58.2,
       "k_subst_mult": 1.875,
@@ -35397,6 +35509,8 @@
       "nome": "Giovanni Di Lorenzo",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.642,
       "minuti": 2278.0,
       "avg_min_partita": 87.6,
       "k_subst_mult": 1.154,
@@ -35973,6 +36087,8 @@
       "nome": "Mat\u00ecas Soul\u00e8 Malvano",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.705,
       "minuti": 2207.0,
       "avg_min_partita": 66.9,
       "k_subst_mult": 1.121,
@@ -36630,6 +36746,8 @@
       "nome": "Nicolo Fagioli",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.76,
       "minuti": 2588.0,
       "avg_min_partita": 78.4,
       "k_subst_mult": 1.0,
@@ -37287,6 +37405,8 @@
       "nome": "Gianluca Mancini",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 3087.0,
       "avg_min_partita": 85.8,
       "k_subst_mult": 1.0,
@@ -37973,6 +38093,8 @@
       "nome": "Nicol\u00f2 Casale",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1361.0,
       "avg_min_partita": 54.4,
       "k_subst_mult": 1.378,
@@ -38531,6 +38653,8 @@
       "nome": "Alberto Moreno",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.968,
       "minuti": 1240.0,
       "avg_min_partita": 65.3,
       "k_subst_mult": 1.579,
@@ -39071,6 +39195,8 @@
       "nome": "Marco Palestra",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.637,
       "minuti": 3087.0,
       "avg_min_partita": 83.4,
       "k_subst_mult": 1.0,
@@ -39770,6 +39896,8 @@
       "nome": "Moise Kean",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2042.0,
       "avg_min_partita": 78.5,
       "k_subst_mult": 1.154,
@@ -40341,6 +40469,8 @@
       "nome": "Pierre Kalulu Kyatengwa",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 0.746,
       "minuti": 3281.0,
       "avg_min_partita": 88.7,
       "k_subst_mult": 1.0,
@@ -41040,6 +41170,8 @@
       "nome": "Emil Holm",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.931,
       "minuti": 713.0,
       "avg_min_partita": 59.4,
       "k_subst_mult": 2.5,
@@ -41494,6 +41626,8 @@
       "nome": "Petar Sucic",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1763.0,
       "avg_min_partita": 51.9,
       "k_subst_mult": 1.446,
@@ -42164,6 +42298,8 @@
       "nome": "Isma\u00ebl Kon\u00e9",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.974,
       "minuti": 2795.0,
       "avg_min_partita": 79.9,
       "k_subst_mult": 1.0,
@@ -42847,6 +42983,8 @@
       "nome": "Gift Orban",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2055.0,
       "avg_min_partita": 73.4,
       "k_subst_mult": 1.071,
@@ -43449,6 +43587,8 @@
       "nome": "Franck Zambo",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.931,
       "minuti": 1253.0,
       "avg_min_partita": 69.6,
       "k_subst_mult": 1.667,
@@ -43976,6 +44116,8 @@
       "nome": "Francisco Concei\u00e7\u00e3o",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.507,
       "minuti": 2124.0,
       "avg_min_partita": 68.5,
       "k_subst_mult": 1.095,
@@ -44627,6 +44769,8 @@
       "nome": "Gianluca Scamacca",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 1.0,
       "minuti": 1318.0,
       "avg_min_partita": 54.9,
       "k_subst_mult": 1.366,
@@ -45197,6 +45341,8 @@
       "nome": "Nicola Zalewski",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.463,
       "minuti": 1917.0,
       "avg_min_partita": 58.1,
       "k_subst_mult": 1.291,
@@ -45859,6 +46005,8 @@
       "nome": "Devyne Rensch",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.738,
       "minuti": 1180.0,
       "avg_min_partita": 49.2,
       "k_subst_mult": 1.525,
@@ -46449,6 +46597,8 @@
       "nome": "Maxence Caqueret",
       "squadra": "Como",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
+      "ruolo_fine_quota": 0.341,
       "minuti": 1493.0,
       "avg_min_partita": 49.8,
       "k_subst_mult": 1.507,
@@ -47082,6 +47232,8 @@
       "nome": "Mergim Vojvoda",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
+      "ruolo_fine_quota": 0.399,
       "minuti": 1602.0,
       "avg_min_partita": 53.4,
       "k_subst_mult": 1.404,
@@ -47700,6 +47852,8 @@
       "nome": "Sebastiano Luperto",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2465.0,
       "avg_min_partita": 88.0,
       "k_subst_mult": 1.071,
@@ -48282,6 +48436,8 @@
       "nome": "Marcus Pedersen",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.605,
       "minuti": 2148.0,
       "avg_min_partita": 74.1,
       "k_subst_mult": 1.034,
@@ -48907,6 +49063,8 @@
       "nome": "Leo \u00d8stigard",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2631.0,
       "avg_min_partita": 87.7,
       "k_subst_mult": 1.0,
@@ -49540,6 +49698,8 @@
       "nome": "Ademola Lookman",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.559,
       "minuti": 803.0,
       "avg_min_partita": 66.9,
       "k_subst_mult": 2.5,
@@ -49989,6 +50149,8 @@
       "nome": "Jes\u00fas Rodriguez",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
+      "ruolo_fine_quota": 0.939,
       "minuti": 1728.0,
       "avg_min_partita": 55.7,
       "k_subst_mult": 1.345,
@@ -50625,6 +50787,8 @@
       "nome": "Lorenzo Bernasconi",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.949,
       "minuti": 1570.0,
       "avg_min_partita": 68.3,
       "k_subst_mult": 1.304,
@@ -51187,6 +51351,8 @@
       "nome": "Zachary Athekame",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.899,
       "minuti": 804.0,
       "avg_min_partita": 29.8,
       "k_subst_mult": 2.5,
@@ -51801,6 +51967,8 @@
       "nome": "Strahinja Pavlovic",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2876.0,
       "avg_min_partita": 84.6,
       "k_subst_mult": 1.0,
@@ -52476,6 +52644,8 @@
       "nome": "Alessandro Bastoni",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 0.981,
       "minuti": 2269.0,
       "avg_min_partita": 81.0,
       "k_subst_mult": 1.071,
@@ -53073,6 +53243,8 @@
       "nome": "Nicolo Zaniolo",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 0.749,
       "minuti": 2308.0,
       "avg_min_partita": 72.1,
       "k_subst_mult": 1.04,
@@ -53722,6 +53894,8 @@
       "nome": "Rafael Obrador",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.653,
       "minuti": 1135.0,
       "avg_min_partita": 70.9,
       "k_subst_mult": 1.875,
@@ -54253,6 +54427,8 @@
       "nome": "Alisson Santos",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
+      "ruolo_fine_quota": 0.869,
       "minuti": 836.0,
       "avg_min_partita": 59.7,
       "k_subst_mult": 2.143,
@@ -54768,6 +54944,8 @@
       "nome": "Alessandro Zanoli",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.615,
       "minuti": 1314.0,
       "avg_min_partita": 69.2,
       "k_subst_mult": 1.579,
@@ -55273,6 +55451,8 @@
       "nome": "Luca Mazzitelli",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.693,
       "minuti": 753.0,
       "avg_min_partita": 41.8,
       "k_subst_mult": 1.793,
@@ -55780,6 +55960,8 @@
       "nome": "Toma Basic",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.914,
       "minuti": 1764.0,
       "avg_min_partita": 76.7,
       "k_subst_mult": 1.304,
@@ -56352,6 +56534,8 @@
       "nome": "Martin Frese",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.454,
       "minuti": 2429.0,
       "avg_min_partita": 78.4,
       "k_subst_mult": 1.0,
@@ -56998,6 +57182,8 @@
       "nome": "Niccol\u00f2 Pisilli",
       "squadra": "Roma",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.688,
       "minuti": 1263.0,
       "avg_min_partita": 50.5,
       "k_subst_mult": 1.485,
@@ -57601,6 +57787,8 @@
       "nome": "Youssouf Fofana",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
+      "ruolo_fine_quota": 0.648,
       "minuti": 2231.0,
       "avg_min_partita": 67.6,
       "k_subst_mult": 1.109,
@@ -58268,6 +58456,8 @@
       "nome": "Jacobo Ram\u00f3n",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
+      "ruolo_fine_quota": 1.0,
       "minuti": 2744.0,
       "avg_min_partita": 85.8,
       "k_subst_mult": 1.0,
@@ -58912,6 +59102,8 @@
       "nome": "Mehdi Leris",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.705,
       "minuti": 1910.0,
       "avg_min_partita": 56.2,
       "k_subst_mult": 1.335,
@@ -59582,6 +59774,8 @@
       "nome": "Che Adams",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
+      "ruolo_fine_quota": 0.983,
       "minuti": 1899.0,
       "avg_min_partita": 57.5,
       "k_subst_mult": 1.303,
@@ -60239,6 +60433,8 @@
       "nome": "Valentino Lazaro",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.625,
       "minuti": 2273.0,
       "avg_min_partita": 73.3,
       "k_subst_mult": 1.023,
@@ -60860,6 +61056,8 @@
       "nome": "Domagoj Bradaric",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.616,
       "minuti": 1976.0,
       "avg_min_partita": 68.1,
       "k_subst_mult": 1.101,
@@ -61475,6 +61673,8 @@
       "nome": "Brooke Norton-Cuffy",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
+      "ruolo_fine_quota": 0.519,
       "minuti": 2221.0,
       "avg_min_partita": 82.3,
       "k_subst_mult": 1.111,
@@ -62061,6 +62261,7 @@
       "nome": "Alejandro Jim\u00e9nez",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 42,
       "is_analyzed": false
     },
@@ -62069,6 +62270,7 @@
       "nome": "Samuel Chukwueze",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 23,
       "is_analyzed": false
     },
@@ -62077,6 +62279,7 @@
       "nome": "David Odogu",
       "squadra": "AC Milan",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 3,
       "is_analyzed": false
     },
@@ -62085,6 +62288,7 @@
       "nome": "Cheveyo Mul",
       "squadra": "AC Milan",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 2,
       "is_analyzed": false
     },
@@ -62093,6 +62297,7 @@
       "nome": "Strahinja Pavlovic",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2876,
       "is_analyzed": true
     },
@@ -62101,6 +62306,7 @@
       "nome": "Fikayo Tomori",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2572,
       "is_analyzed": false
     },
@@ -62109,6 +62315,7 @@
       "nome": "Matteo Gabbia",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2531,
       "is_analyzed": false
     },
@@ -62117,6 +62324,7 @@
       "nome": "Koni de Winter",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1797,
       "is_analyzed": false
     },
@@ -62125,6 +62333,7 @@
       "nome": "Pervis Estupi\u00f1\u00e1n",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": null,
       "minuti": 1045,
       "is_analyzed": false
     },
@@ -62133,6 +62342,7 @@
       "nome": "Yunus Musah",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "ALA",
       "minuti": 96,
       "is_analyzed": false
     },
@@ -62141,6 +62351,7 @@
       "nome": "Luka Modric",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2827,
       "is_analyzed": false
     },
@@ -62149,6 +62360,7 @@
       "nome": "Alexis Saelemaekers",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2819,
       "is_analyzed": true
     },
@@ -62157,6 +62369,7 @@
       "nome": "Davide Bartesaghi",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2447,
       "is_analyzed": true
     },
@@ -62165,6 +62378,7 @@
       "nome": "Youssouf Fofana",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2231,
       "is_analyzed": true
     },
@@ -62173,6 +62387,7 @@
       "nome": "Samuele Ricci",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1273,
       "is_analyzed": false
     },
@@ -62181,6 +62396,7 @@
       "nome": "Ardon Jashari",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 703,
       "is_analyzed": false
     },
@@ -62189,6 +62405,7 @@
       "nome": "Adrien Rabiot",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2546,
       "is_analyzed": true
     },
@@ -62197,6 +62414,7 @@
       "nome": "Rafael Le\u00e3o",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1874,
       "is_analyzed": true
     },
@@ -62205,6 +62423,7 @@
       "nome": "Christian Pulisic",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1612,
       "is_analyzed": true
     },
@@ -62213,6 +62432,7 @@
       "nome": "Christopher Nkunku",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1343,
       "is_analyzed": false
     },
@@ -62221,6 +62441,7 @@
       "nome": "Ruben Loftus-Cheek",
       "squadra": "AC Milan",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1122,
       "is_analyzed": false
     },
@@ -62229,6 +62450,7 @@
       "nome": "Santiago Gim\u00e9nez",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 905,
       "is_analyzed": false
     },
@@ -62237,6 +62459,7 @@
       "nome": "Zachary Athekame",
       "squadra": "AC Milan",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 804,
       "is_analyzed": true
     },
@@ -62245,6 +62468,7 @@
       "nome": "Niclas F\u00fcllkrug",
       "squadra": "AC Milan",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 626,
       "is_analyzed": false
     },
@@ -62253,6 +62477,7 @@
       "nome": "Dominic Vavassori",
       "squadra": "Atalanta",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 9,
       "is_analyzed": false
     },
@@ -62261,6 +62486,7 @@
       "nome": "Mitchel Bakker",
       "squadra": "Atalanta",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 7,
       "is_analyzed": false
     },
@@ -62269,6 +62495,7 @@
       "nome": "Marten de Roon",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2720,
       "is_analyzed": false
     },
@@ -62277,6 +62504,7 @@
       "nome": "Berat Gjimshiti",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2522,
       "is_analyzed": false
     },
@@ -62285,6 +62513,7 @@
       "nome": "\u00c9derson",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2253,
       "is_analyzed": false
     },
@@ -62293,6 +62522,7 @@
       "nome": "Isak Hien",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1951,
       "is_analyzed": false
     },
@@ -62301,6 +62531,7 @@
       "nome": "Raoul Bellanova",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1374,
       "is_analyzed": false
     },
@@ -62309,6 +62540,7 @@
       "nome": "Honest Ahanor",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1368,
       "is_analyzed": false
     },
@@ -62317,6 +62549,7 @@
       "nome": "Sead Kolasinac",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1233,
       "is_analyzed": false
     },
@@ -62325,6 +62558,7 @@
       "nome": "Odilon Kossounou",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 981,
       "is_analyzed": false
     },
@@ -62333,6 +62567,7 @@
       "nome": "Davide Zappacosta",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2605,
       "is_analyzed": true
     },
@@ -62341,6 +62576,7 @@
       "nome": "Charles De Ketelaere",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2206,
       "is_analyzed": true
     },
@@ -62349,6 +62585,7 @@
       "nome": "Mario Pasalic",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1922,
       "is_analyzed": true
     },
@@ -62357,6 +62594,7 @@
       "nome": "Nicola Zalewski",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
       "minuti": 1917,
       "is_analyzed": true
     },
@@ -62365,6 +62603,7 @@
       "nome": "Lorenzo Bernasconi",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1570,
       "is_analyzed": true
     },
@@ -62373,6 +62612,7 @@
       "nome": "Daniel Maldini",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 342,
       "is_analyzed": false
     },
@@ -62381,6 +62621,7 @@
       "nome": "Giorgio Scalvini",
       "squadra": "Atalanta",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1841,
       "is_analyzed": true
     },
@@ -62389,6 +62630,7 @@
       "nome": "Nikola Krstovic",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1781,
       "is_analyzed": true
     },
@@ -62397,6 +62639,7 @@
       "nome": "Gianluca Scamacca",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1318,
       "is_analyzed": true
     },
@@ -62405,6 +62648,7 @@
       "nome": "Lazar Samardzic",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1005,
       "is_analyzed": false
     },
@@ -62413,6 +62657,7 @@
       "nome": "Kamaldeen Sulemana",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 993,
       "is_analyzed": false
     },
@@ -62421,6 +62666,7 @@
       "nome": "Ademola Lookman",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 803,
       "is_analyzed": true
     },
@@ -62429,6 +62675,7 @@
       "nome": "Giacomo Raspadori",
       "squadra": "Atalanta",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 784,
       "is_analyzed": false
     },
@@ -62437,6 +62684,7 @@
       "nome": "Marco Brescianini",
       "squadra": "Atalanta",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 163,
       "is_analyzed": false
     },
@@ -62445,6 +62693,7 @@
       "nome": "Eivind Helland",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 497,
       "is_analyzed": false
     },
@@ -62453,6 +62702,7 @@
       "nome": "Jhon Lucum\u00ed",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2282,
       "is_analyzed": false
     },
@@ -62461,6 +62711,7 @@
       "nome": "Remo Freuler",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 2236,
       "is_analyzed": false
     },
@@ -62469,6 +62720,7 @@
       "nome": "Torbj\u00f8rn Heggem",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2109,
       "is_analyzed": false
     },
@@ -62477,6 +62729,7 @@
       "nome": "Nikola Moro",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 1784,
       "is_analyzed": false
     },
@@ -62485,6 +62738,7 @@
       "nome": "Nadir Zortea",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "TERZINO",
       "minuti": 1776,
       "is_analyzed": false
     },
@@ -62493,6 +62747,7 @@
       "nome": "Lewis Ferguson",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 1576,
       "is_analyzed": false
     },
@@ -62501,6 +62756,7 @@
       "nome": "Tommaso Pobega",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 1446,
       "is_analyzed": false
     },
@@ -62509,6 +62765,7 @@
       "nome": "Nicol\u00f2 Casale",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1361,
       "is_analyzed": true
     },
@@ -62517,6 +62774,7 @@
       "nome": "Martin Vit\u00edk",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1320,
       "is_analyzed": false
     },
@@ -62525,6 +62783,7 @@
       "nome": "Jo\u00e3o M\u00e1rio",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 761,
       "is_analyzed": false
     },
@@ -62533,6 +62792,7 @@
       "nome": "Lorenzo De Silvestri",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 499,
       "is_analyzed": false
     },
@@ -62541,6 +62801,7 @@
       "nome": "Ciro Immobile",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 185,
       "is_analyzed": false
     },
@@ -62549,6 +62810,7 @@
       "nome": "Sulemana",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 82,
       "is_analyzed": false
     },
@@ -62557,6 +62819,7 @@
       "nome": "Juan Miranda",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2576,
       "is_analyzed": true
     },
@@ -62565,6 +62828,7 @@
       "nome": "Simon Sohm",
       "squadra": "Bologna",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 746,
       "is_analyzed": false
     },
@@ -62573,6 +62837,7 @@
       "nome": "Emil Holm",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 713,
       "is_analyzed": true
     },
@@ -62581,6 +62846,7 @@
       "nome": "Charalampos Lykogiannis",
       "squadra": "Bologna",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 627,
       "is_analyzed": false
     },
@@ -62589,6 +62855,7 @@
       "nome": "Benjam\u00edn Dom\u00ednguez",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 553,
       "is_analyzed": false
     },
@@ -62597,6 +62864,7 @@
       "nome": "Santiago Castro",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2381,
       "is_analyzed": false
     },
@@ -62605,6 +62873,7 @@
       "nome": "Riccardo Orsolini",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 2146,
       "is_analyzed": false
     },
@@ -62613,6 +62882,7 @@
       "nome": "Jonathan Rowe",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1612,
       "is_analyzed": false
     },
@@ -62621,6 +62891,7 @@
       "nome": "Nicol\u00f2 Cambiaghi",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1510,
       "is_analyzed": false
     },
@@ -62629,6 +62900,7 @@
       "nome": "Jens Odgaard",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1391,
       "is_analyzed": false
     },
@@ -62637,6 +62909,7 @@
       "nome": "Federico Bernardeschi",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1198,
       "is_analyzed": false
     },
@@ -62645,6 +62918,7 @@
       "nome": "Thijs Dallinga",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 785,
       "is_analyzed": false
     },
@@ -62653,6 +62927,7 @@
       "nome": "Giovanni Fabbian",
       "squadra": "Bologna",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 707,
       "is_analyzed": false
     },
@@ -62661,6 +62936,7 @@
       "nome": "Paul Mendy",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 326,
       "is_analyzed": false
     },
@@ -62669,6 +62945,7 @@
       "nome": "Yael Trepy",
       "squadra": "Cagliari",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 68,
       "is_analyzed": false
     },
@@ -62677,6 +62954,7 @@
       "nome": "Nicol\u00f2 Cavuoti",
       "squadra": "Cagliari",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 34,
       "is_analyzed": false
     },
@@ -62685,6 +62963,7 @@
       "nome": "Agust\u00edn Albarrac\u00edn",
       "squadra": "Cagliari",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 23,
       "is_analyzed": false
     },
@@ -62693,6 +62972,7 @@
       "nome": "Othni\u00ebl Raterink",
       "squadra": "Cagliari",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 4,
       "is_analyzed": false
     },
@@ -62701,6 +62981,7 @@
       "nome": "Joseph Liteta",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 277,
       "is_analyzed": false
     },
@@ -62709,6 +62990,7 @@
       "nome": "Marco Palestra",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 3087,
       "is_analyzed": true
     },
@@ -62717,6 +62999,7 @@
       "nome": "Ndary Adopo",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 3074,
       "is_analyzed": false
     },
@@ -62725,6 +63008,7 @@
       "nome": "Adam Obert",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2813,
       "is_analyzed": false
     },
@@ -62733,6 +63017,7 @@
       "nome": "Sebastiano Luperto",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2465,
       "is_analyzed": true
     },
@@ -62741,6 +63026,7 @@
       "nome": "Yerry Mina",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2162,
       "is_analyzed": false
     },
@@ -62749,6 +63035,7 @@
       "nome": "Michael Folorunsho",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2032,
       "is_analyzed": false
     },
@@ -62757,6 +63044,7 @@
       "nome": "Z\u00e9 Pedro",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1723,
       "is_analyzed": false
     },
@@ -62765,6 +63053,7 @@
       "nome": "Gabriele Zappa",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1583,
       "is_analyzed": false
     },
@@ -62773,6 +63062,7 @@
       "nome": "Alessandro Deiola",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1444,
       "is_analyzed": false
     },
@@ -62781,6 +63071,7 @@
       "nome": "Juan Rodr\u00edguez",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1327,
       "is_analyzed": false
     },
@@ -62789,6 +63080,7 @@
       "nome": "Matteo Prati",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1285,
       "is_analyzed": false
     },
@@ -62797,6 +63089,7 @@
       "nome": "Alberto Dossena",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 850,
       "is_analyzed": false
     },
@@ -62805,6 +63098,7 @@
       "nome": "Alessandro Di Pardo",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": null,
       "minuti": 50,
       "is_analyzed": false
     },
@@ -62813,6 +63107,7 @@
       "nome": "Sebastiano Esposito",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "SECONDA_PUNTA",
       "minuti": 2751,
       "is_analyzed": false
     },
@@ -62821,6 +63116,7 @@
       "nome": "Gianluca Gaetano",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1920,
       "is_analyzed": false
     },
@@ -62829,6 +63125,7 @@
       "nome": "Gennaro Borrelli",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1263,
       "is_analyzed": false
     },
@@ -62837,6 +63134,7 @@
       "nome": "Semih Kili\u00e7soy",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 973,
       "is_analyzed": false
     },
@@ -62845,6 +63143,7 @@
       "nome": "Luca Mazzitelli",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 753,
       "is_analyzed": true
     },
@@ -62853,6 +63152,7 @@
       "nome": "Riyad Idrissi",
       "squadra": "Cagliari",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 737,
       "is_analyzed": false
     },
@@ -62861,6 +63161,7 @@
       "nome": "Mattia Felici",
       "squadra": "Cagliari",
       "ruolo": "CEN",
+      "ruolo_fine": "ESTERNO_C",
       "minuti": 397,
       "is_analyzed": false
     },
@@ -62869,6 +63170,7 @@
       "nome": "Zito",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 304,
       "is_analyzed": false
     },
@@ -62877,6 +63179,7 @@
       "nome": "Andrea Belotti",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 212,
       "is_analyzed": false
     },
@@ -62885,6 +63188,7 @@
       "nome": "Leonardo Pavoletti",
       "squadra": "Cagliari",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 193,
       "is_analyzed": false
     },
@@ -62893,6 +63197,7 @@
       "nome": "Edoardo Goldaniga",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 12,
       "is_analyzed": false
     },
@@ -62901,6 +63206,7 @@
       "nome": "Andr\u00e9a Le Borgne",
       "squadra": "Como",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -62909,6 +63215,7 @@
       "nome": "Jacobo Ram\u00f3n",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2744,
       "is_analyzed": true
     },
@@ -62917,6 +63224,7 @@
       "nome": "\u00c1lex Valle",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2028,
       "is_analyzed": false
     },
@@ -62925,6 +63233,7 @@
       "nome": "Diego Carlos",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1946,
       "is_analyzed": false
     },
@@ -62933,6 +63242,7 @@
       "nome": "Ivan Smolcic",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1685,
       "is_analyzed": false
     },
@@ -62941,6 +63251,7 @@
       "nome": "Alberto Moreno",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1240,
       "is_analyzed": true
     },
@@ -62949,6 +63260,7 @@
       "nome": "Assane Diao",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1098,
       "is_analyzed": false
     },
@@ -62957,6 +63269,7 @@
       "nome": "Ignace Van der Brempt",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 915,
       "is_analyzed": false
     },
@@ -62965,6 +63278,7 @@
       "nome": "Nicolas K\u00fchn",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 643,
       "is_analyzed": false
     },
@@ -62973,6 +63287,7 @@
       "nome": "Sergi Roberto",
       "squadra": "Como",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 507,
       "is_analyzed": false
     },
@@ -62981,6 +63296,7 @@
       "nome": "Lucas Da Cunha",
       "squadra": "Como",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 2765,
       "is_analyzed": true
     },
@@ -62989,6 +63305,7 @@
       "nome": "M\u00e1ximo Perrone",
       "squadra": "Como",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 2758,
       "is_analyzed": false
     },
@@ -62997,6 +63314,7 @@
       "nome": "Jes\u00fas Rodriguez",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1728,
       "is_analyzed": true
     },
@@ -63005,6 +63323,7 @@
       "nome": "Mergim Vojvoda",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1602,
       "is_analyzed": true
     },
@@ -63013,6 +63332,7 @@
       "nome": "Maxence Caqueret",
       "squadra": "Como",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 1493,
       "is_analyzed": true
     },
@@ -63021,6 +63341,7 @@
       "nome": "Nico Paz",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2905,
       "is_analyzed": true
     },
@@ -63029,6 +63350,7 @@
       "nome": "Marc-Oliver Kempf",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2317,
       "is_analyzed": false
     },
@@ -63037,6 +63359,7 @@
       "nome": "Tasos Douvikas",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2279,
       "is_analyzed": true
     },
@@ -63045,6 +63368,7 @@
       "nome": "Martin Baturina",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1579,
       "is_analyzed": true
     },
@@ -63053,6 +63377,7 @@
       "nome": "\u00c1lvaro Morata",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 917,
       "is_analyzed": false
     },
@@ -63061,6 +63386,7 @@
       "nome": "Jayden Addai",
       "squadra": "Como",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 688,
       "is_analyzed": false
     },
@@ -63069,6 +63395,7 @@
       "nome": "Stefan Posch",
       "squadra": "Como",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 362,
       "is_analyzed": false
     },
@@ -63077,6 +63404,7 @@
       "nome": "Dachi Lordkipanidze",
       "squadra": "Cremonese",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 27,
       "is_analyzed": false
     },
@@ -63085,6 +63413,7 @@
       "nome": "Manuel De Luca",
       "squadra": "Cremonese",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 10,
       "is_analyzed": false
     },
@@ -63093,6 +63422,7 @@
       "nome": "Simone Lottici Tessadri",
       "squadra": "Cremonese",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -63101,6 +63431,7 @@
       "nome": "Filippo Terracciano",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3023,
       "is_analyzed": false
     },
@@ -63109,6 +63440,7 @@
       "nome": "Giuseppe Pezzella",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2599,
       "is_analyzed": false
     },
@@ -63117,6 +63449,7 @@
       "nome": "Federico Baschirotto",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2540,
       "is_analyzed": false
     },
@@ -63125,6 +63458,7 @@
       "nome": "Federico Ceccherini",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2275,
       "is_analyzed": false
     },
@@ -63133,6 +63467,7 @@
       "nome": "Matteo Bianchetti",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2222,
       "is_analyzed": false
     },
@@ -63141,6 +63476,7 @@
       "nome": "Warren Bondo",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1788,
       "is_analyzed": false
     },
@@ -63149,6 +63485,7 @@
       "nome": "Alberto Grassi",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1758,
       "is_analyzed": false
     },
@@ -63157,6 +63494,7 @@
       "nome": "Tommaso Barbieri",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1696,
       "is_analyzed": false
     },
@@ -63165,6 +63503,7 @@
       "nome": "Mart\u00edn Payero",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1469,
       "is_analyzed": false
     },
@@ -63173,6 +63512,7 @@
       "nome": "Romano Floriani",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "ESTERNO_C",
       "minuti": 1156,
       "is_analyzed": false
     },
@@ -63181,6 +63521,7 @@
       "nome": "Youssef Maleh",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1113,
       "is_analyzed": false
     },
@@ -63189,6 +63530,7 @@
       "nome": "Francesco Folino",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 690,
       "is_analyzed": false
     },
@@ -63197,6 +63539,7 @@
       "nome": "Michele Collocolo",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 353,
       "is_analyzed": false
     },
@@ -63205,6 +63548,7 @@
       "nome": "Jeremy Sarmiento",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": null,
       "minuti": 127,
       "is_analyzed": false
     },
@@ -63213,6 +63557,7 @@
       "nome": "Jari Vandeputte",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1977,
       "is_analyzed": true
     },
@@ -63221,6 +63566,7 @@
       "nome": "Alessio Zerbin",
       "squadra": "Cremonese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1643,
       "is_analyzed": false
     },
@@ -63229,6 +63575,7 @@
       "nome": "Milan Djuric",
       "squadra": "Cremonese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 369,
       "is_analyzed": false
     },
@@ -63237,6 +63584,7 @@
       "nome": "Mikayil Faye",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "ESTERNO_C",
       "minuti": 238,
       "is_analyzed": false
     },
@@ -63245,6 +63593,7 @@
       "nome": "Federico Bonazzoli",
       "squadra": "Cremonese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2571,
       "is_analyzed": false
     },
@@ -63253,6 +63602,7 @@
       "nome": "Jamie Vardy",
       "squadra": "Cremonese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2120,
       "is_analyzed": false
     },
@@ -63261,6 +63611,7 @@
       "nome": "Antonio Sanabria",
       "squadra": "Cremonese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 921,
       "is_analyzed": false
     },
@@ -63269,6 +63620,7 @@
       "nome": "Morten Thorsby",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 655,
       "is_analyzed": false
     },
@@ -63277,6 +63629,7 @@
       "nome": "Franco V\u00e1zquez",
       "squadra": "Cremonese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 485,
       "is_analyzed": false
     },
@@ -63285,6 +63638,7 @@
       "nome": "Dennis Johnsen",
       "squadra": "Cremonese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 390,
       "is_analyzed": false
     },
@@ -63293,6 +63647,7 @@
       "nome": "Faris Moumbagna",
       "squadra": "Cremonese",
       "ruolo": "ATT",
+      "ruolo_fine": null,
       "minuti": 72,
       "is_analyzed": false
     },
@@ -63301,6 +63656,7 @@
       "nome": "Lu\u00eds Balbo",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 207,
       "is_analyzed": false
     },
@@ -63309,6 +63665,7 @@
       "nome": "Riccardo Braschi",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 105,
       "is_analyzed": false
     },
@@ -63317,6 +63674,7 @@
       "nome": "Amir Richardson",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 35,
       "is_analyzed": false
     },
@@ -63325,6 +63683,7 @@
       "nome": "Abdelhamid Sabiri",
       "squadra": "Fiorentina",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 24,
       "is_analyzed": false
     },
@@ -63333,6 +63692,7 @@
       "nome": "Tariq Lamptey",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "ESTERNO_C",
       "minuti": 22,
       "is_analyzed": false
     },
@@ -63341,6 +63701,7 @@
       "nome": "Christian Kouam\u00e9",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "SECONDA_PUNTA",
       "minuti": 16,
       "is_analyzed": false
     },
@@ -63349,6 +63710,7 @@
       "nome": "Luca Lezzerini",
       "squadra": "Fiorentina",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 3,
       "is_analyzed": false
     },
@@ -63357,6 +63719,7 @@
       "nome": "Daniele Rugani",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 327,
       "is_analyzed": false
     },
@@ -63365,6 +63728,7 @@
       "nome": "Dod\u00f4",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 3158,
       "is_analyzed": true
     },
@@ -63373,6 +63737,7 @@
       "nome": "Marin Pongracic",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2923,
       "is_analyzed": false
     },
@@ -63381,6 +63746,7 @@
       "nome": "Luca Ranieri",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2489,
       "is_analyzed": false
     },
@@ -63389,6 +63755,7 @@
       "nome": "Robin Gosens",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1908,
       "is_analyzed": false
     },
@@ -63397,6 +63764,7 @@
       "nome": "Cher Ndour",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1875,
       "is_analyzed": false
     },
@@ -63405,6 +63773,7 @@
       "nome": "Pietro Comuzzo",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1697,
       "is_analyzed": false
     },
@@ -63413,6 +63782,7 @@
       "nome": "Fabiano Parisi",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1550,
       "is_analyzed": false
     },
@@ -63421,6 +63791,7 @@
       "nome": "Jack Harrison",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 983,
       "is_analyzed": false
     },
@@ -63429,6 +63800,7 @@
       "nome": "Pablo Mar\u00ed",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 810,
       "is_analyzed": false
     },
@@ -63437,6 +63809,7 @@
       "nome": "Jacopo Fazzini",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 562,
       "is_analyzed": false
     },
@@ -63445,6 +63818,7 @@
       "nome": "Niccol\u00f2 Fortini",
       "squadra": "Fiorentina",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 488,
       "is_analyzed": false
     },
@@ -63453,6 +63827,7 @@
       "nome": "Edin Dzeko",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 220,
       "is_analyzed": false
     },
@@ -63461,6 +63836,7 @@
       "nome": "Nicolo Fagioli",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2588,
       "is_analyzed": true
     },
@@ -63469,6 +63845,7 @@
       "nome": "Hans Nicolussi Caviglia",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 635,
       "is_analyzed": false
     },
@@ -63477,6 +63854,7 @@
       "nome": "Rolando Mandragora",
       "squadra": "Fiorentina",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2470,
       "is_analyzed": true
     },
@@ -63485,6 +63863,7 @@
       "nome": "Albert Gudmundsson",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2290,
       "is_analyzed": false
     },
@@ -63493,6 +63872,7 @@
       "nome": "Moise Kean",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2042,
       "is_analyzed": true
     },
@@ -63501,6 +63881,7 @@
       "nome": "Roberto Piccoli",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1653,
       "is_analyzed": false
     },
@@ -63509,6 +63890,7 @@
       "nome": "Manor Solomon",
       "squadra": "Fiorentina",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 872,
       "is_analyzed": false
     },
@@ -63517,6 +63899,7 @@
       "nome": "Nils Z\u00e4tterstr\u00f6m",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 181,
       "is_analyzed": false
     },
@@ -63525,6 +63908,7 @@
       "nome": "Wedtoin Ouedraogo",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 47,
       "is_analyzed": false
     },
@@ -63533,6 +63917,7 @@
       "nome": "Jean Onana",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 36,
       "is_analyzed": false
     },
@@ -63541,6 +63926,7 @@
       "nome": "Seydou Fini",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 30,
       "is_analyzed": false
     },
@@ -63549,6 +63935,7 @@
       "nome": "Jacopo Grossi",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 20,
       "is_analyzed": false
     },
@@ -63557,6 +63944,7 @@
       "nome": "Mamedi Doucour\u00e9",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 7,
       "is_analyzed": false
     },
@@ -63565,6 +63953,7 @@
       "nome": "Filippo Carbone",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 6,
       "is_analyzed": false
     },
@@ -63573,6 +63962,7 @@
       "nome": "Ga\u00ebl Lafont",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 6,
       "is_analyzed": false
     },
@@ -63581,6 +63971,7 @@
       "nome": "Joi Nuredini",
       "squadra": "Genoa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -63589,6 +63980,7 @@
       "nome": "Johan V\u00e1squez",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3219,
       "is_analyzed": false
     },
@@ -63597,6 +63989,7 @@
       "nome": "Morten Frendrup",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 3093,
       "is_analyzed": false
     },
@@ -63605,6 +63998,7 @@
       "nome": "Mikael Ellertsson",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2770,
       "is_analyzed": false
     },
@@ -63613,6 +64007,7 @@
       "nome": "Leo \u00d8stigard",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2631,
       "is_analyzed": true
     },
@@ -63621,6 +64016,7 @@
       "nome": "Alessandro Marcandalli",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2597,
       "is_analyzed": false
     },
@@ -63629,6 +64025,7 @@
       "nome": "Brooke Norton-Cuffy",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2221,
       "is_analyzed": true
     },
@@ -63637,6 +64034,7 @@
       "nome": "Patrizio Masini",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 1379,
       "is_analyzed": false
     },
@@ -63645,6 +64043,7 @@
       "nome": "Stefano Sabelli",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 930,
       "is_analyzed": false
     },
@@ -63653,6 +64052,7 @@
       "nome": "Sebastian Otoa",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 829,
       "is_analyzed": false
     },
@@ -63661,6 +64061,7 @@
       "nome": "Alex Amorim",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 554,
       "is_analyzed": false
     },
@@ -63669,6 +64070,7 @@
       "nome": "Tommaso Baldanzi",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 406,
       "is_analyzed": false
     },
@@ -63677,6 +64079,7 @@
       "nome": "Valent\u00edn Carboni",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 345,
       "is_analyzed": false
     },
@@ -63685,6 +64088,7 @@
       "nome": "Albert Gr\u00f8nb\u00e6k",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "ALA",
       "minuti": 96,
       "is_analyzed": false
     },
@@ -63693,6 +64097,7 @@
       "nome": "Aar\u00f3n Mart\u00edn",
       "squadra": "Genoa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2167,
       "is_analyzed": true
     },
@@ -63701,6 +64106,7 @@
       "nome": "Lorenzo Venturino",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "ALA",
       "minuti": 1677,
       "is_analyzed": true
     },
@@ -63709,6 +64115,7 @@
       "nome": "Lorenzo Colombo",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2373,
       "is_analyzed": false
     },
@@ -63717,6 +64124,7 @@
       "nome": "Ruslan Malinovskiy",
       "squadra": "Genoa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2279,
       "is_analyzed": true
     },
@@ -63725,6 +64133,7 @@
       "nome": "Vitinha",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2262,
       "is_analyzed": false
     },
@@ -63733,6 +64142,7 @@
       "nome": "Caleb Ekuban",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 944,
       "is_analyzed": false
     },
@@ -63741,6 +64151,7 @@
       "nome": "Jeff Ekhator",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 930,
       "is_analyzed": false
     },
@@ -63749,6 +64160,7 @@
       "nome": "Junior Messias",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 655,
       "is_analyzed": false
     },
@@ -63757,6 +64169,7 @@
       "nome": "Nicolae Stanciu",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 181,
       "is_analyzed": false
     },
@@ -63765,6 +64178,7 @@
       "nome": "Maxwel Cornet",
       "squadra": "Genoa",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 110,
       "is_analyzed": false
     },
@@ -63773,6 +64187,7 @@
       "nome": "Matteo Lavelli",
       "squadra": "Inter",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 72,
       "is_analyzed": false
     },
@@ -63781,6 +64196,7 @@
       "nome": "Mattia Mosconi",
       "squadra": "Inter",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 24,
       "is_analyzed": false
     },
@@ -63789,6 +64205,7 @@
       "nome": "Matteo Cocchi",
       "squadra": "Inter",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 14,
       "is_analyzed": false
     },
@@ -63797,6 +64214,7 @@
       "nome": "Raffaele Di Gennaro",
       "squadra": "Inter",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 8,
       "is_analyzed": false
     },
@@ -63805,6 +64223,7 @@
       "nome": "Luka Topalovic",
       "squadra": "Inter",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 7,
       "is_analyzed": false
     },
@@ -63813,6 +64232,7 @@
       "nome": "Manuel Akanji",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2814,
       "is_analyzed": false
     },
@@ -63821,6 +64241,7 @@
       "nome": "Alessandro Bastoni",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2269,
       "is_analyzed": true
     },
@@ -63829,6 +64250,7 @@
       "nome": "Yann Bisseck",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1924,
       "is_analyzed": false
     },
@@ -63837,6 +64259,7 @@
       "nome": "Carlos Augusto",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1745,
       "is_analyzed": false
     },
@@ -63845,6 +64268,7 @@
       "nome": "Luis Henrique",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1617,
       "is_analyzed": false
     },
@@ -63853,6 +64277,7 @@
       "nome": "Francesco Acerbi",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1380,
       "is_analyzed": false
     },
@@ -63861,6 +64286,7 @@
       "nome": "Stefan de Vrij",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 675,
       "is_analyzed": false
     },
@@ -63869,6 +64295,7 @@
       "nome": "Benjamin Pavard",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 90,
       "is_analyzed": false
     },
@@ -63877,6 +64304,7 @@
       "nome": "Nicol\u00f2 Barella",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2561,
       "is_analyzed": true
     },
@@ -63885,6 +64313,7 @@
       "nome": "Petar Sucic",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1763,
       "is_analyzed": true
     },
@@ -63893,6 +64322,7 @@
       "nome": "Denzel Dumfries",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1332,
       "is_analyzed": true
     },
@@ -63901,6 +64331,7 @@
       "nome": "Andy Diouf",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 462,
       "is_analyzed": false
     },
@@ -63909,6 +64340,7 @@
       "nome": "Federico Dimarco",
       "squadra": "Inter",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2709,
       "is_analyzed": true
     },
@@ -63917,6 +64349,7 @@
       "nome": "Lautaro Mart\u00ednez",
       "squadra": "Inter",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2205,
       "is_analyzed": true
     },
@@ -63925,6 +64358,7 @@
       "nome": "Piotr Zielinski",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2048,
       "is_analyzed": true
     },
@@ -63933,6 +64367,7 @@
       "nome": "Marcus Thuram",
       "squadra": "Inter",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1933,
       "is_analyzed": true
     },
@@ -63941,6 +64376,7 @@
       "nome": "Hakan Calhanoglu",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1674,
       "is_analyzed": true
     },
@@ -63949,6 +64385,7 @@
       "nome": "Henrikh Mkhitaryan",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1547,
       "is_analyzed": true
     },
@@ -63957,6 +64394,7 @@
       "nome": "Francesco Pio Esposito",
       "squadra": "Inter",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1535,
       "is_analyzed": false
     },
@@ -63965,6 +64403,7 @@
       "nome": "Ange-Yoan Bonny",
       "squadra": "Inter",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1112,
       "is_analyzed": false
     },
@@ -63973,6 +64412,7 @@
       "nome": "Davide Frattesi",
       "squadra": "Inter",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 523,
       "is_analyzed": false
     },
@@ -63981,6 +64421,7 @@
       "nome": "Arkadiusz Milik",
       "squadra": "Juventus",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 33,
       "is_analyzed": false
     },
@@ -63989,6 +64430,7 @@
       "nome": "Nicol\u00e1s Gonz\u00e1lez",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 14,
       "is_analyzed": false
     },
@@ -63997,6 +64439,7 @@
       "nome": "Manuel Locatelli",
       "squadra": "Juventus",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 3031,
       "is_analyzed": false
     },
@@ -64005,6 +64448,7 @@
       "nome": "Lloyd Kelly",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2997,
       "is_analyzed": false
     },
@@ -64013,6 +64457,7 @@
       "nome": "Kephren Thuram",
       "squadra": "Juventus",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2481,
       "is_analyzed": false
     },
@@ -64021,6 +64466,7 @@
       "nome": "Teun Koopmeiners",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1803,
       "is_analyzed": false
     },
@@ -64029,6 +64475,7 @@
       "nome": "Federico Gatti",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1081,
       "is_analyzed": false
     },
@@ -64037,6 +64484,7 @@
       "nome": "Pierre Kalulu Kyatengwa",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3281,
       "is_analyzed": true
     },
@@ -64045,6 +64493,7 @@
       "nome": "Andrea Cambiaso",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2846,
       "is_analyzed": true
     },
@@ -64053,6 +64502,7 @@
       "nome": "Bremer",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2187,
       "is_analyzed": false
     },
@@ -64061,6 +64511,7 @@
       "nome": "Fabio Miretti",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 585,
       "is_analyzed": false
     },
@@ -64069,6 +64520,7 @@
       "nome": "Edon Zhegrova",
       "squadra": "Juventus",
       "ruolo": "CEN",
+      "ruolo_fine": null,
       "minuti": 330,
       "is_analyzed": false
     },
@@ -64077,6 +64529,7 @@
       "nome": "Kenan Yildiz",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2877,
       "is_analyzed": true
     },
@@ -64085,6 +64538,7 @@
       "nome": "Weston McKennie",
       "squadra": "Juventus",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
       "minuti": 2857,
       "is_analyzed": true
     },
@@ -64093,6 +64547,7 @@
       "nome": "Francisco Concei\u00e7\u00e3o",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2124,
       "is_analyzed": true
     },
@@ -64101,6 +64556,7 @@
       "nome": "Jonathan Christian David",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1784,
       "is_analyzed": true
     },
@@ -64109,6 +64565,7 @@
       "nome": "Dusan Vlahovic",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 972,
       "is_analyzed": true
     },
@@ -64117,6 +64574,7 @@
       "nome": "Jeremie Boga",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 666,
       "is_analyzed": false
     },
@@ -64125,6 +64583,7 @@
       "nome": "Lo\u00efs Openda",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 631,
       "is_analyzed": false
     },
@@ -64133,6 +64592,7 @@
       "nome": "Filip Kostic",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 461,
       "is_analyzed": false
     },
@@ -64141,6 +64601,7 @@
       "nome": "Juan Cabal",
       "squadra": "Juventus",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 262,
       "is_analyzed": false
     },
@@ -64149,6 +64610,7 @@
       "nome": "Vasilije Adzic",
       "squadra": "Juventus",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 142,
       "is_analyzed": false
     },
@@ -64157,6 +64619,7 @@
       "nome": "Adrian Przyborek",
       "squadra": "Lazio",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 7,
       "is_analyzed": false
     },
@@ -64165,6 +64628,7 @@
       "nome": "Adam Marusic",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2794,
       "is_analyzed": false
     },
@@ -64173,6 +64637,7 @@
       "nome": "Alessio Romagnoli",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2670,
       "is_analyzed": false
     },
@@ -64181,6 +64646,7 @@
       "nome": "Mario Gila",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2498,
       "is_analyzed": false
     },
@@ -64189,6 +64655,7 @@
       "nome": "Mattia Zaccagni",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 2127,
       "is_analyzed": false
     },
@@ -64197,6 +64664,7 @@
       "nome": "Matteo Guendouzi",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 2078,
       "is_analyzed": true
     },
@@ -64205,6 +64673,7 @@
       "nome": "Toma Basic",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1764,
       "is_analyzed": true
     },
@@ -64213,6 +64682,7 @@
       "nome": "Oliver Provstgaard",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1515,
       "is_analyzed": false
     },
@@ -64221,6 +64691,7 @@
       "nome": "Luca Pellegrini",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1485,
       "is_analyzed": false
     },
@@ -64229,6 +64700,7 @@
       "nome": "Nuno Tavares",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1478,
       "is_analyzed": false
     },
@@ -64237,6 +64709,7 @@
       "nome": "Kenneth Taylor",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1418,
       "is_analyzed": false
     },
@@ -64245,6 +64718,7 @@
       "nome": "Fisayo Dele-Bashiru",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1159,
       "is_analyzed": false
     },
@@ -64253,6 +64727,7 @@
       "nome": "Manuel Lazzari",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 917,
       "is_analyzed": false
     },
@@ -64261,6 +64736,7 @@
       "nome": "Patric",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 657,
       "is_analyzed": false
     },
@@ -64269,6 +64745,7 @@
       "nome": "Petar Ratkov",
       "squadra": "Lazio",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 228,
       "is_analyzed": false
     },
@@ -64277,6 +64754,7 @@
       "nome": "Danilo Cataldi",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2007,
       "is_analyzed": false
     },
@@ -64285,6 +64763,7 @@
       "nome": "Reda Belahyane",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 601,
       "is_analyzed": false
     },
@@ -64293,6 +64772,7 @@
       "nome": "Mat\u00edas Vecino",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 592,
       "is_analyzed": false
     },
@@ -64301,6 +64781,7 @@
       "nome": "Nicolo Rovella",
       "squadra": "Lazio",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 510,
       "is_analyzed": false
     },
@@ -64309,6 +64790,7 @@
       "nome": "Matteo Cancellieri",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1740,
       "is_analyzed": false
     },
@@ -64317,6 +64799,7 @@
       "nome": "Gustav Isaksen",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1606,
       "is_analyzed": false
     },
@@ -64325,6 +64808,7 @@
       "nome": "Boulaye Dia",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1257,
       "is_analyzed": false
     },
@@ -64333,6 +64817,7 @@
       "nome": "Tijjani Noslin",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1113,
       "is_analyzed": false
     },
@@ -64341,6 +64826,7 @@
       "nome": "Pedro",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1075,
       "is_analyzed": false
     },
@@ -64349,6 +64835,7 @@
       "nome": "Valent\u00edn Castellanos",
       "squadra": "Lazio",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 697,
       "is_analyzed": false
     },
@@ -64357,6 +64844,7 @@
       "nome": "Gaby Jean",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 180,
       "is_analyzed": false
     },
@@ -64365,6 +64853,7 @@
       "nome": "Sadik Fofana",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 80,
       "is_analyzed": false
     },
@@ -64373,6 +64862,7 @@
       "nome": "Mat\u00edas P\u00e9rez",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 31,
       "is_analyzed": false
     },
@@ -64381,6 +64871,7 @@
       "nome": "Olaf Gorter",
       "squadra": "Lecce",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 27,
       "is_analyzed": false
     },
@@ -64389,6 +64880,7 @@
       "nome": "Balthazar Pierret",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 20,
       "is_analyzed": false
     },
@@ -64397,6 +64889,7 @@
       "nome": "Owen Kouassi",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 231,
       "is_analyzed": false
     },
@@ -64405,6 +64898,7 @@
       "nome": "Ylber Ramadani",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 3236,
       "is_analyzed": false
     },
@@ -64413,6 +64907,7 @@
       "nome": "Tiago Gabriel",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3223,
       "is_analyzed": false
     },
@@ -64421,6 +64916,7 @@
       "nome": "Antonino Gallo",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 3063,
       "is_analyzed": false
     },
@@ -64429,6 +64925,7 @@
       "nome": "Danilo Veiga",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 3026,
       "is_analyzed": false
     },
@@ -64437,6 +64934,7 @@
       "nome": "Lassana Coulibaly",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2708,
       "is_analyzed": false
     },
@@ -64445,6 +64943,7 @@
       "nome": "Santiago Pierotti",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 2661,
       "is_analyzed": false
     },
@@ -64453,6 +64952,7 @@
       "nome": "Kialonda Gaspar",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1827,
       "is_analyzed": false
     },
@@ -64461,6 +64961,7 @@
       "nome": "Jamil Siebert",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1701,
       "is_analyzed": false
     },
@@ -64469,6 +64970,7 @@
       "nome": "Tete Morente",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 859,
       "is_analyzed": false
     },
@@ -64477,6 +64979,7 @@
       "nome": "Oumar Ngom",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "MEDIANO",
       "minuti": 847,
       "is_analyzed": false
     },
@@ -64485,6 +64988,7 @@
       "nome": "Mohamed Kaba",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 614,
       "is_analyzed": false
     },
@@ -64493,6 +64997,7 @@
       "nome": "Corrie Ndaba",
       "squadra": "Lecce",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 533,
       "is_analyzed": false
     },
@@ -64501,6 +65006,7 @@
       "nome": "Th\u00f3rir Helgason",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 129,
       "is_analyzed": false
     },
@@ -64509,6 +65015,7 @@
       "nome": "Riccardo Sottil",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1078,
       "is_analyzed": false
     },
@@ -64517,6 +65024,7 @@
       "nome": "Alex Sala",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 148,
       "is_analyzed": false
     },
@@ -64525,6 +65033,7 @@
       "nome": "Lameck Banda",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1768,
       "is_analyzed": false
     },
@@ -64533,6 +65042,7 @@
       "nome": "Nikola Stulic",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1713,
       "is_analyzed": false
     },
@@ -64541,6 +65051,7 @@
       "nome": "Walid Cheddira",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1025,
       "is_analyzed": false
     },
@@ -64549,6 +65060,7 @@
       "nome": "Omri Gandelman",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 971,
       "is_analyzed": false
     },
@@ -64557,6 +65069,7 @@
       "nome": "Medon Berisha",
       "squadra": "Lecce",
       "ruolo": "CEN",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 893,
       "is_analyzed": true
     },
@@ -64565,6 +65078,7 @@
       "nome": "Francesco Camarda",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 671,
       "is_analyzed": false
     },
@@ -64573,6 +65087,7 @@
       "nome": "Konan N\u2019Dri",
       "squadra": "Lecce",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 474,
       "is_analyzed": false
     },
@@ -64581,6 +65096,7 @@
       "nome": "Romelu Lukaku",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 33,
       "is_analyzed": false
     },
@@ -64589,6 +65105,7 @@
       "nome": "Giuseppe Ambrosino",
       "squadra": "Napoli",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 31,
       "is_analyzed": false
     },
@@ -64597,6 +65114,7 @@
       "nome": "Nikita Contini",
       "squadra": "Napoli",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 8,
       "is_analyzed": false
     },
@@ -64605,6 +65123,7 @@
       "nome": "Alessandro Buongiorno",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2526,
       "is_analyzed": false
     },
@@ -64613,6 +65132,7 @@
       "nome": "Stanislav Lobotka",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2442,
       "is_analyzed": false
     },
@@ -64621,6 +65141,7 @@
       "nome": "Giovanni Di Lorenzo",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2278,
       "is_analyzed": true
     },
@@ -64629,6 +65150,7 @@
       "nome": "Amir Rrahmani",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1809,
       "is_analyzed": false
     },
@@ -64637,6 +65159,7 @@
       "nome": "Eljif Elmas",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1791,
       "is_analyzed": false
     },
@@ -64645,6 +65168,7 @@
       "nome": "Sam Beukema",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1675,
       "is_analyzed": false
     },
@@ -64653,6 +65177,7 @@
       "nome": "Juan Jesus",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1670,
       "is_analyzed": false
     },
@@ -64661,6 +65186,7 @@
       "nome": "Miguel Guti\u00e9rrez",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1478,
       "is_analyzed": false
     },
@@ -64669,6 +65195,7 @@
       "nome": "Math\u00edas Olivera",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1370,
       "is_analyzed": false
     },
@@ -64677,6 +65204,7 @@
       "nome": "Billy Gilmour",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 798,
       "is_analyzed": false
     },
@@ -64685,6 +65213,7 @@
       "nome": "Luca Marianucci",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 114,
       "is_analyzed": false
     },
@@ -64693,6 +65222,7 @@
       "nome": "Matteo Politano",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 2249,
       "is_analyzed": false
     },
@@ -64701,6 +65231,7 @@
       "nome": "Leonardo Spinazzola",
       "squadra": "Napoli",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1906,
       "is_analyzed": true
     },
@@ -64709,6 +65240,7 @@
       "nome": "Noa Lang",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 645,
       "is_analyzed": false
     },
@@ -64717,6 +65249,7 @@
       "nome": "Antonio Vergara",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 625,
       "is_analyzed": false
     },
@@ -64725,6 +65258,7 @@
       "nome": "Giovane",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 336,
       "is_analyzed": false
     },
@@ -64733,6 +65267,7 @@
       "nome": "Pasquale Mazzocchi",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
       "minuti": 288,
       "is_analyzed": false
     },
@@ -64741,6 +65276,7 @@
       "nome": "Scott McTominay",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2798,
       "is_analyzed": true
     },
@@ -64749,6 +65285,7 @@
       "nome": "Rasmus H\u00f8jlund",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2784,
       "is_analyzed": true
     },
@@ -64757,6 +65294,7 @@
       "nome": "Franck Zambo",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1253,
       "is_analyzed": true
     },
@@ -64765,6 +65303,7 @@
       "nome": "Kevin De Bruyne",
       "squadra": "Napoli",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1176,
       "is_analyzed": true
     },
@@ -64773,6 +65312,7 @@
       "nome": "David Neres",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 932,
       "is_analyzed": true
     },
@@ -64781,6 +65321,7 @@
       "nome": "Alisson Santos",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 836,
       "is_analyzed": true
     },
@@ -64789,6 +65330,7 @@
       "nome": "Lorenzo Lucca",
       "squadra": "Napoli",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 381,
       "is_analyzed": false
     },
@@ -64797,6 +65339,7 @@
       "nome": "Nesta Elphege",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 297,
       "is_analyzed": false
     },
@@ -64805,6 +65348,7 @@
       "nome": "Franco Ezequiel Carboni",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 106,
       "is_analyzed": false
     },
@@ -64813,6 +65357,7 @@
       "nome": "Daniel Mikolajewski",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 68,
       "is_analyzed": false
     },
@@ -64821,6 +65366,7 @@
       "nome": "Alessandro Cardinali",
       "squadra": "Parma Calcio 1913",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 42,
       "is_analyzed": false
     },
@@ -64829,6 +65375,7 @@
       "nome": "Tjas Begic",
       "squadra": "Parma Calcio 1913",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -64837,6 +65384,7 @@
       "nome": "Mandela Keita",
       "squadra": "Parma Calcio 1913",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 3016,
       "is_analyzed": false
     },
@@ -64845,6 +65393,7 @@
       "nome": "Enrico Del Prato",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2958,
       "is_analyzed": false
     },
@@ -64853,6 +65402,7 @@
       "nome": "Alessandro Circati",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2667,
       "is_analyzed": false
     },
@@ -64861,6 +65411,7 @@
       "nome": "Lautaro Valenti",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2255,
       "is_analyzed": false
     },
@@ -64869,6 +65420,7 @@
       "nome": "Sascha Britschgi",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2103,
       "is_analyzed": false
     },
@@ -64877,6 +65429,7 @@
       "nome": "Oliver S\u00f8rensen",
       "squadra": "Parma Calcio 1913",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1834,
       "is_analyzed": false
     },
@@ -64885,6 +65438,7 @@
       "nome": "Mariano Troilo",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1631,
       "is_analyzed": false
     },
@@ -64893,6 +65447,7 @@
       "nome": "Christian Ord\u00f3\u00f1ez",
       "squadra": "Parma Calcio 1913",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1076,
       "is_analyzed": false
     },
@@ -64901,6 +65456,7 @@
       "nome": "Gabriel Strefezza",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1026,
       "is_analyzed": false
     },
@@ -64909,6 +65465,7 @@
       "nome": "Nahuel Est\u00e9vez",
       "squadra": "Parma Calcio 1913",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1001,
       "is_analyzed": false
     },
@@ -64917,6 +65474,7 @@
       "nome": "Niakhate Ndiaye",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 786,
       "is_analyzed": false
     },
@@ -64925,6 +65483,7 @@
       "nome": "Jacob Ondrejka",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 768,
       "is_analyzed": false
     },
@@ -64933,6 +65492,7 @@
       "nome": "Mathias L\u00f8vik",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 480,
       "is_analyzed": false
     },
@@ -64941,6 +65501,7 @@
       "nome": "Benjam\u00edn Cremaschi",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "ESTERNO_C",
       "minuti": 122,
       "is_analyzed": false
     },
@@ -64949,6 +65510,7 @@
       "nome": "Hernani",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "MEZZALA",
       "minuti": 58,
       "is_analyzed": false
     },
@@ -64957,6 +65519,7 @@
       "nome": "Emanuele Valeri",
       "squadra": "Parma Calcio 1913",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2637,
       "is_analyzed": false
     },
@@ -64965,6 +65528,7 @@
       "nome": "Adri\u00e1n Bernab\u00e9",
       "squadra": "Parma Calcio 1913",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2542,
       "is_analyzed": true
     },
@@ -64973,6 +65537,7 @@
       "nome": "Pontus Almqvist",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 442,
       "is_analyzed": false
     },
@@ -64981,6 +65546,7 @@
       "nome": "Mateo Pellegrino",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 3012,
       "is_analyzed": false
     },
@@ -64989,6 +65555,7 @@
       "nome": "Patrick Cutrone",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 908,
       "is_analyzed": false
     },
@@ -64997,6 +65564,7 @@
       "nome": "Gaetano Oristanio",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 853,
       "is_analyzed": false
     },
@@ -65005,6 +65573,7 @@
       "nome": "Adrian Benedyczak",
       "squadra": "Parma Calcio 1913",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 476,
       "is_analyzed": false
     },
@@ -65013,6 +65582,7 @@
       "nome": "Calvin Stengs",
       "squadra": "Pisa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 36,
       "is_analyzed": false
     },
@@ -65021,6 +65591,7 @@
       "nome": "Louis Buffon",
       "squadra": "Pisa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 24,
       "is_analyzed": false
     },
@@ -65029,6 +65600,7 @@
       "nome": "Brando Bettazzi",
       "squadra": "Pisa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 12,
       "is_analyzed": false
     },
@@ -65037,6 +65609,7 @@
       "nome": "Tom\u00e1s Esteves",
       "squadra": "Pisa",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 11,
       "is_analyzed": false
     },
@@ -65045,6 +65618,7 @@
       "nome": "Simone Canestrelli",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3200,
       "is_analyzed": false
     },
@@ -65053,6 +65627,7 @@
       "nome": "Antonio Caracciolo",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3077,
       "is_analyzed": false
     },
@@ -65061,6 +65636,7 @@
       "nome": "Michel Aebischer",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2911,
       "is_analyzed": false
     },
@@ -65069,6 +65645,7 @@
       "nome": "Samuele Angori",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2619,
       "is_analyzed": false
     },
@@ -65077,6 +65654,7 @@
       "nome": "Idrissa Tour\u00e9",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2283,
       "is_analyzed": true
     },
@@ -65085,6 +65663,7 @@
       "nome": "Arturo Calabresi",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1536,
       "is_analyzed": false
     },
@@ -65093,6 +65672,7 @@
       "nome": "Ebenezer Akinsanmiro",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1441,
       "is_analyzed": false
     },
@@ -65101,6 +65681,7 @@
       "nome": "Marius Marin",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1307,
       "is_analyzed": false
     },
@@ -65109,6 +65690,7 @@
       "nome": "Malthe H\u00f8jholt",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 857,
       "is_analyzed": false
     },
@@ -65117,6 +65699,7 @@
       "nome": "Isak Vural",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 752,
       "is_analyzed": false
     },
@@ -65125,6 +65708,7 @@
       "nome": "Filip Stojilkovic",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 660,
       "is_analyzed": false
     },
@@ -65133,6 +65717,7 @@
       "nome": "Rosen Bozhinov",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 619,
       "is_analyzed": false
     },
@@ -65141,6 +65726,7 @@
       "nome": "Giovanni Bonfanti",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 501,
       "is_analyzed": false
     },
@@ -65149,6 +65735,7 @@
       "nome": "Ra\u00fal Albiol",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 494,
       "is_analyzed": false
     },
@@ -65157,6 +65744,7 @@
       "nome": "Francesco Coppola",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 454,
       "is_analyzed": false
     },
@@ -65165,6 +65753,7 @@
       "nome": "Mateus Lusuardi",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 202,
       "is_analyzed": false
     },
@@ -65173,6 +65762,7 @@
       "nome": "Mehdi Leris",
       "squadra": "Pisa",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1910,
       "is_analyzed": true
     },
@@ -65181,6 +65771,7 @@
       "nome": "Matteo Tramoni",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1630,
       "is_analyzed": false
     },
@@ -65189,6 +65780,7 @@
       "nome": "Stefano Moreo",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "SECONDA_PUNTA",
       "minuti": 2336,
       "is_analyzed": false
     },
@@ -65197,6 +65789,7 @@
       "nome": "Henrik Meister",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1494,
       "is_analyzed": false
     },
@@ -65205,6 +65798,7 @@
       "nome": "M'Bala Nzola",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1056,
       "is_analyzed": false
     },
@@ -65213,6 +65807,7 @@
       "nome": "Gabriele Piccinini",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 825,
       "is_analyzed": false
     },
@@ -65221,6 +65816,7 @@
       "nome": "Felipe Loyola",
       "squadra": "Pisa",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 541,
       "is_analyzed": false
     },
@@ -65229,6 +65825,7 @@
       "nome": "Juan Cuadrado",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "QUINTO",
       "minuti": 460,
       "is_analyzed": false
     },
@@ -65237,6 +65834,7 @@
       "nome": "Rafiu Durosinmi",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 428,
       "is_analyzed": false
     },
@@ -65245,6 +65843,7 @@
       "nome": "Lorran",
       "squadra": "Pisa",
       "ruolo": "ATT",
+      "ruolo_fine": null,
       "minuti": 95,
       "is_analyzed": false
     },
@@ -65253,6 +65852,7 @@
       "nome": "Antonio Arena",
       "squadra": "Roma",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 19,
       "is_analyzed": false
     },
@@ -65261,6 +65861,7 @@
       "nome": "Alessandro Romano",
       "squadra": "Roma",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 5,
       "is_analyzed": false
     },
@@ -65269,6 +65870,7 @@
       "nome": "Jan Zi\u00f3lkowski",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 500,
       "is_analyzed": false
     },
@@ -65277,6 +65879,7 @@
       "nome": "Bryan Cristante",
       "squadra": "Roma",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 3116,
       "is_analyzed": false
     },
@@ -65285,6 +65888,7 @@
       "nome": "Gianluca Mancini",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3087,
       "is_analyzed": true
     },
@@ -65293,6 +65897,7 @@
       "nome": "Evan Ndicka",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2971,
       "is_analyzed": false
     },
@@ -65301,6 +65906,7 @@
       "nome": "Mehmet Zeki \u00c7elik",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2747,
       "is_analyzed": false
     },
@@ -65309,6 +65915,7 @@
       "nome": "Kouadio Kone",
       "squadra": "Roma",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2468,
       "is_analyzed": false
     },
@@ -65317,6 +65924,7 @@
       "nome": "Mario Hermoso",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2106,
       "is_analyzed": false
     },
@@ -65325,6 +65933,7 @@
       "nome": "Devyne Rensch",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1180,
       "is_analyzed": true
     },
@@ -65333,6 +65942,7 @@
       "nome": "Daniele Ghilardi",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1070,
       "is_analyzed": false
     },
@@ -65341,6 +65951,7 @@
       "nome": "Neil El Aynaoui",
       "squadra": "Roma",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 958,
       "is_analyzed": false
     },
@@ -65349,6 +65960,7 @@
       "nome": "Konstantinos Tsimikas",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 617,
       "is_analyzed": false
     },
@@ -65357,6 +65969,7 @@
       "nome": "Angelino",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 427,
       "is_analyzed": false
     },
@@ -65365,6 +65978,7 @@
       "nome": "Leon Bailey",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 184,
       "is_analyzed": false
     },
@@ -65373,6 +65987,7 @@
       "nome": "Wesley",
       "squadra": "Roma",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2559,
       "is_analyzed": true
     },
@@ -65381,6 +65996,7 @@
       "nome": "Bryan Zaragoza",
       "squadra": "Roma",
       "ruolo": "CEN",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2046,
       "is_analyzed": false
     },
@@ -65389,6 +66005,7 @@
       "nome": "Niccol\u00f2 Pisilli",
       "squadra": "Roma",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1263,
       "is_analyzed": true
     },
@@ -65397,6 +66014,7 @@
       "nome": "Mat\u00ecas Soul\u00e8 Malvano",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 2207,
       "is_analyzed": true
     },
@@ -65405,6 +66023,7 @@
       "nome": "Lorenzo Pellegrini",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1508,
       "is_analyzed": false
     },
@@ -65413,6 +66032,7 @@
       "nome": "Donyell Malen",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1499,
       "is_analyzed": true
     },
@@ -65421,6 +66041,7 @@
       "nome": "Paulo Dybala",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 1360,
       "is_analyzed": true
     },
@@ -65429,6 +66050,7 @@
       "nome": "Evan Ferguson",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 777,
       "is_analyzed": false
     },
@@ -65437,6 +66059,7 @@
       "nome": "Stephan El Shaarawy",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 623,
       "is_analyzed": false
     },
@@ -65445,6 +66068,7 @@
       "nome": "Artem Dovbyk",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 364,
       "is_analyzed": false
     },
@@ -65453,6 +66077,7 @@
       "nome": "Robinio Vaz",
       "squadra": "Roma",
       "ruolo": "ATT",
+      "ruolo_fine": null,
       "minuti": 184,
       "is_analyzed": false
     },
@@ -65461,6 +66086,7 @@
       "nome": "Pedro Felipe",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 125,
       "is_analyzed": false
     },
@@ -65469,6 +66095,7 @@
       "nome": "Darryl Bakola",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "ESTERNO_C",
       "minuti": 116,
       "is_analyzed": false
     },
@@ -65477,6 +66104,7 @@
       "nome": "Tommaso Macchioni",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 90,
       "is_analyzed": false
     },
@@ -65485,6 +66113,7 @@
       "nome": "Laurs Skjellerup",
       "squadra": "Sassuolo",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 8,
       "is_analyzed": false
     },
@@ -65493,6 +66122,7 @@
       "nome": "Andrea Ghion",
       "squadra": "Sassuolo",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 7,
       "is_analyzed": false
     },
@@ -65501,6 +66131,7 @@
       "nome": "Gioele Zacchi",
       "squadra": "Sassuolo",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 5,
       "is_analyzed": false
     },
@@ -65509,6 +66140,7 @@
       "nome": "Christian Frangella",
       "squadra": "Sassuolo",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -65517,6 +66149,7 @@
       "nome": "Cas Odenthal",
       "squadra": "Sassuolo",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -65525,6 +66158,7 @@
       "nome": "Jay Idzes",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3065,
       "is_analyzed": false
     },
@@ -65533,6 +66167,7 @@
       "nome": "Sebastian Walukiewicz",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 2871,
       "is_analyzed": false
     },
@@ -65541,6 +66176,7 @@
       "nome": "Tarik Muharemovic",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2837,
       "is_analyzed": false
     },
@@ -65549,6 +66185,7 @@
       "nome": "Nemanja Matic",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2686,
       "is_analyzed": false
     },
@@ -65557,6 +66194,7 @@
       "nome": "Josh Doig",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1924,
       "is_analyzed": false
     },
@@ -65565,6 +66203,7 @@
       "nome": "Woyo Coulibaly",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 1023,
       "is_analyzed": false
     },
@@ -65573,6 +66212,7 @@
       "nome": "Luca Lipani",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1011,
       "is_analyzed": false
     },
@@ -65581,6 +66221,7 @@
       "nome": "Aster Vranckx",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 693,
       "is_analyzed": false
     },
@@ -65589,6 +66230,7 @@
       "nome": "Fali Cand\u00e9",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 509,
       "is_analyzed": false
     },
@@ -65597,6 +66239,7 @@
       "nome": "Filippo Romagna",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 319,
       "is_analyzed": false
     },
@@ -65605,6 +66248,7 @@
       "nome": "Daniel Boloca",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 137,
       "is_analyzed": false
     },
@@ -65613,6 +66257,7 @@
       "nome": "Nicholas Pierini",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": null,
       "minuti": 116,
       "is_analyzed": false
     },
@@ -65621,6 +66266,7 @@
       "nome": "Kristian Thorstvedt",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2450,
       "is_analyzed": true
     },
@@ -65629,6 +66275,7 @@
       "nome": "Cristian Volpato",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1060,
       "is_analyzed": false
     },
@@ -65637,6 +66284,7 @@
       "nome": "Alieu Fadera",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 959,
       "is_analyzed": false
     },
@@ -65645,6 +66293,7 @@
       "nome": "Ulisses Garc\u00eda",
       "squadra": "Sassuolo",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 941,
       "is_analyzed": true
     },
@@ -65653,6 +66302,7 @@
       "nome": "Isma\u00ebl Kon\u00e9",
       "squadra": "Sassuolo",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2795,
       "is_analyzed": true
     },
@@ -65661,6 +66311,7 @@
       "nome": "Armand Lauriente",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 2655,
       "is_analyzed": true
     },
@@ -65669,6 +66320,7 @@
       "nome": "Andrea Pinamonti",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2610,
       "is_analyzed": false
     },
@@ -65677,6 +66329,7 @@
       "nome": "Domenico Berardi",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "ALA",
       "minuti": 1995,
       "is_analyzed": true
     },
@@ -65685,6 +66338,7 @@
       "nome": "Luca Moro",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 450,
       "is_analyzed": false
     },
@@ -65693,6 +66347,7 @@
       "nome": "Edoardo Iannoni",
       "squadra": "Sassuolo",
       "ruolo": "ATT",
+      "ruolo_fine": "MEZZALA",
       "minuti": 230,
       "is_analyzed": false
     },
@@ -65701,6 +66356,7 @@
       "nome": "Ali Demb\u00e9l\u00e9",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 15,
       "is_analyzed": false
     },
@@ -65709,6 +66365,7 @@
       "nome": "Sa\u00fal Coco",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3093,
       "is_analyzed": false
     },
@@ -65717,6 +66374,7 @@
       "nome": "Valentino Lazaro",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2273,
       "is_analyzed": true
     },
@@ -65725,6 +66383,7 @@
       "nome": "Guillermo Marip\u00e1n",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2151,
       "is_analyzed": false
     },
@@ -65733,6 +66392,7 @@
       "nome": "Marcus Pedersen",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2148,
       "is_analyzed": true
     },
@@ -65741,6 +66401,7 @@
       "nome": "Ardian Ismajli",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1907,
       "is_analyzed": false
     },
@@ -65749,6 +66410,7 @@
       "nome": "Kristjan Asllani",
       "squadra": "Torino",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1145,
       "is_analyzed": false
     },
@@ -65757,6 +66419,7 @@
       "nome": "Enzo Ebosse",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1125,
       "is_analyzed": false
     },
@@ -65765,6 +66428,7 @@
       "nome": "Adrien Tameze",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1110,
       "is_analyzed": false
     },
@@ -65773,6 +66437,7 @@
       "nome": "Emirhan Ilkhan",
       "squadra": "Torino",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1028,
       "is_analyzed": false
     },
@@ -65781,6 +66446,7 @@
       "nome": "Zakaria Aboukhlal",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 500,
       "is_analyzed": false
     },
@@ -65789,6 +66455,7 @@
       "nome": "Cristiano Biraghi",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "TERZINO",
       "minuti": 497,
       "is_analyzed": false
     },
@@ -65797,6 +66464,7 @@
       "nome": "Sandro Kulenovic",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 284,
       "is_analyzed": false
     },
@@ -65805,6 +66473,7 @@
       "nome": "Faustino Anjorin",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "MEZZALA",
       "minuti": 258,
       "is_analyzed": false
     },
@@ -65813,6 +66482,7 @@
       "nome": "Gvidas Gineitis",
       "squadra": "Torino",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1778,
       "is_analyzed": false
     },
@@ -65821,6 +66491,7 @@
       "nome": "Rafael Obrador",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1135,
       "is_analyzed": true
     },
@@ -65829,6 +66500,7 @@
       "nome": "Ivan Ilic",
       "squadra": "Torino",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 414,
       "is_analyzed": false
     },
@@ -65837,6 +66509,7 @@
       "nome": "Niels Nkounkou",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 340,
       "is_analyzed": false
     },
@@ -65845,6 +66518,7 @@
       "nome": "Adam Masina",
       "squadra": "Torino",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 224,
       "is_analyzed": false
     },
@@ -65853,6 +66527,7 @@
       "nome": "Nikola Vlasic",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 3079,
       "is_analyzed": false
     },
@@ -65861,6 +66536,7 @@
       "nome": "Giovanni Simeone",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2273,
       "is_analyzed": true
     },
@@ -65869,6 +66545,7 @@
       "nome": "Cesare Casadei",
       "squadra": "Torino",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1971,
       "is_analyzed": true
     },
@@ -65877,6 +66554,7 @@
       "nome": "Che Adams",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1899,
       "is_analyzed": true
     },
@@ -65885,6 +66563,7 @@
       "nome": "Duv\u00e1n Zapata",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1088,
       "is_analyzed": false
     },
@@ -65893,6 +66572,7 @@
       "nome": "Cyril Ngonge",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 987,
       "is_analyzed": false
     },
@@ -65901,6 +66581,7 @@
       "nome": "Alieu Njie",
       "squadra": "Torino",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 266,
       "is_analyzed": false
     },
@@ -65909,6 +66590,7 @@
       "nome": "Juan Arizala",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 173,
       "is_analyzed": false
     },
@@ -65917,6 +66599,7 @@
       "nome": "Abdoulaye Camara",
       "squadra": "Udinese",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 9,
       "is_analyzed": false
     },
@@ -65925,6 +66608,7 @@
       "nome": "Oumar Solet",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2962,
       "is_analyzed": false
     },
@@ -65933,6 +66617,7 @@
       "nome": "Thomas Thiesson Kristensen",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2482,
       "is_analyzed": false
     },
@@ -65941,6 +66626,7 @@
       "nome": "Christian Kabasele",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 2273,
       "is_analyzed": false
     },
@@ -65949,6 +66635,7 @@
       "nome": "Jurgen Ekkelenkamp",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2234,
       "is_analyzed": true
     },
@@ -65957,6 +66644,7 @@
       "nome": "Hassane Kamara",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1883,
       "is_analyzed": false
     },
@@ -65965,6 +66653,7 @@
       "nome": "Kingsley Ehizibue",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1810,
       "is_analyzed": false
     },
@@ -65973,6 +66662,7 @@
       "nome": "Nicol\u00f2 Bertola",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1756,
       "is_analyzed": false
     },
@@ -65981,6 +66671,7 @@
       "nome": "Jakub Piotrowski",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1702,
       "is_analyzed": false
     },
@@ -65989,6 +66680,7 @@
       "nome": "Alessandro Zanoli",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1314,
       "is_analyzed": true
     },
@@ -65997,6 +66689,7 @@
       "nome": "Jordan Zemura",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1119,
       "is_analyzed": false
     },
@@ -66005,6 +66698,7 @@
       "nome": "Lennon Miller",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 985,
       "is_analyzed": false
     },
@@ -66013,6 +66707,7 @@
       "nome": "Oier Zarraga",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 427,
       "is_analyzed": false
     },
@@ -66021,6 +66716,7 @@
       "nome": "Saba Goglichidze",
       "squadra": "Udinese",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 418,
       "is_analyzed": false
     },
@@ -66029,6 +66725,7 @@
       "nome": "Idrissa Gueye",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 368,
       "is_analyzed": false
     },
@@ -66037,6 +66734,7 @@
       "nome": "Jesper Karlstr\u00f6m",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 3164,
       "is_analyzed": false
     },
@@ -66045,6 +66743,7 @@
       "nome": "Arthur Atta",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2575,
       "is_analyzed": true
     },
@@ -66053,6 +66752,7 @@
       "nome": "Sandi Lovric",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 139,
       "is_analyzed": false
     },
@@ -66061,6 +66761,7 @@
       "nome": "Rui Modesto",
       "squadra": "Udinese",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
       "minuti": 113,
       "is_analyzed": false
     },
@@ -66069,6 +66770,7 @@
       "nome": "Nicolo Zaniolo",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2308,
       "is_analyzed": true
     },
@@ -66077,6 +66779,7 @@
       "nome": "Keinan Davis",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2106,
       "is_analyzed": true
     },
@@ -66085,6 +66788,7 @@
       "nome": "Adam Buksa",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 886,
       "is_analyzed": false
     },
@@ -66093,6 +66797,7 @@
       "nome": "Vakoun Bayo",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 432,
       "is_analyzed": false
     },
@@ -66101,6 +66806,7 @@
       "nome": "Iker Bravo",
       "squadra": "Udinese",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 199,
       "is_analyzed": false
     },
@@ -66109,6 +66815,7 @@
       "nome": "Tom\u00e1s Suslov",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 441,
       "is_analyzed": false
     },
@@ -66117,6 +66824,7 @@
       "nome": "Ioan Vermesan",
       "squadra": "Verona",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 66,
       "is_analyzed": false
     },
@@ -66125,6 +66833,7 @@
       "nome": "Grigoris Kastanos",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "TREQUARTISTA",
       "minuti": 31,
       "is_analyzed": false
     },
@@ -66133,6 +66842,7 @@
       "nome": "Isaac",
       "squadra": "Verona",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 31,
       "is_analyzed": false
     },
@@ -66141,6 +66851,7 @@
       "nome": "Jes\u00fas Santiago",
       "squadra": "Verona",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 2,
       "is_analyzed": false
     },
@@ -66149,6 +66860,7 @@
       "nome": "Junior Ajayi",
       "squadra": "Verona",
       "ruolo": "",
+      "ruolo_fine": null,
       "minuti": 1,
       "is_analyzed": false
     },
@@ -66157,6 +66869,7 @@
       "nome": "Pol Lirola",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 310,
       "is_analyzed": false
     },
@@ -66165,6 +66878,7 @@
       "nome": "Victor Nelsson",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 3316,
       "is_analyzed": false
     },
@@ -66173,6 +66887,7 @@
       "nome": "Martin Frese",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 2429,
       "is_analyzed": true
     },
@@ -66181,6 +66896,7 @@
       "nome": "Antoine Bernede",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2349,
       "is_analyzed": false
     },
@@ -66189,6 +66905,7 @@
       "nome": "Roberto Gagliardini",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 2212,
       "is_analyzed": false
     },
@@ -66197,6 +66914,7 @@
       "nome": "Domagoj Bradaric",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1976,
       "is_analyzed": true
     },
@@ -66205,6 +66923,7 @@
       "nome": "Rafik Belghali",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 1935,
       "is_analyzed": true
     },
@@ -66213,6 +66932,7 @@
       "nome": "Jean-Daniel Akpa-Akpro",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1531,
       "is_analyzed": false
     },
@@ -66221,6 +66941,7 @@
       "nome": "Nicol\u00e1s Valentini",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1400,
       "is_analyzed": false
     },
@@ -66229,6 +66950,7 @@
       "nome": "Armel Bella Kotchap",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1347,
       "is_analyzed": false
     },
@@ -66237,6 +66959,7 @@
       "nome": "Andrias Edmundsson",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1322,
       "is_analyzed": false
     },
@@ -66245,6 +66968,7 @@
       "nome": "Unai N\u00fa\u00f1ez",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 1263,
       "is_analyzed": false
     },
@@ -66253,6 +66977,7 @@
       "nome": "Suat Serdar",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 1102,
       "is_analyzed": false
     },
@@ -66261,6 +66986,7 @@
       "nome": "Amin Sarr",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1046,
       "is_analyzed": false
     },
@@ -66269,6 +66995,7 @@
       "nome": "Cheikh Niasse",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 973,
       "is_analyzed": false
     },
@@ -66277,6 +67004,7 @@
       "nome": "Abdou Harroui",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 908,
       "is_analyzed": false
     },
@@ -66285,6 +67013,7 @@
       "nome": "Al Musrati",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "MEZZALA",
       "minuti": 832,
       "is_analyzed": false
     },
@@ -66293,6 +67022,7 @@
       "nome": "Daniel Oyegoke",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "QUINTO",
       "minuti": 804,
       "is_analyzed": false
     },
@@ -66301,6 +67031,7 @@
       "nome": "Tobias Slotsager",
       "squadra": "Verona",
       "ruolo": "DIF",
+      "ruolo_fine": "CENTRALE",
       "minuti": 435,
       "is_analyzed": false
     },
@@ -66309,6 +67040,7 @@
       "nome": "Daniel Mosquera",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 565,
       "is_analyzed": false
     },
@@ -66317,6 +67049,7 @@
       "nome": "Fallou Cham",
       "squadra": "Verona",
       "ruolo": "CEN",
+      "ruolo_fine": "QUINTO",
       "minuti": 225,
       "is_analyzed": false
     },
@@ -66325,6 +67058,7 @@
       "nome": "Gift Orban",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 2055,
       "is_analyzed": true
     },
@@ -66333,6 +67067,7 @@
       "nome": "Kieron Bowie",
       "squadra": "Verona",
       "ruolo": "ATT",
+      "ruolo_fine": "CENTRAVANTI",
       "minuti": 1211,
       "is_analyzed": false
     }
@@ -66567,6 +67302,53 @@
       "POR": 0.2
     },
     "ewma_alpha": 0.3,
-    "portieri": "esclusi dall'indice, che misura l'impatto offensivo"
+    "portieri": "esclusi dall'indice, che misura l'impatto offensivo",
+    "ruoli_specifici": {
+      "POR": {
+        "nome_it": "Portiere",
+        "nome_en": "Goalkeeper"
+      },
+      "CENTRALE": {
+        "nome_it": "Centrale",
+        "nome_en": "Centre-back"
+      },
+      "TERZINO": {
+        "nome_it": "Terzino",
+        "nome_en": "Full-back"
+      },
+      "QUINTO": {
+        "nome_it": "Quinto",
+        "nome_en": "Wing-back"
+      },
+      "MEDIANO": {
+        "nome_it": "Mediano",
+        "nome_en": "Holding midfielder"
+      },
+      "MEZZALA": {
+        "nome_it": "Mezzala",
+        "nome_en": "Central midfielder"
+      },
+      "ESTERNO_C": {
+        "nome_it": "Esterno di centrocampo",
+        "nome_en": "Wide midfielder"
+      },
+      "TREQUARTISTA": {
+        "nome_it": "Trequartista",
+        "nome_en": "Attacking midfielder"
+      },
+      "ALA": {
+        "nome_it": "Ala",
+        "nome_en": "Winger"
+      },
+      "CENTRAVANTI": {
+        "nome_it": "Centravanti",
+        "nome_en": "Centre-forward"
+      },
+      "SECONDA_PUNTA": {
+        "nome_it": "Seconda punta",
+        "nome_en": "Second striker"
+      }
+    },
+    "ruoli_specifici_nota": "Ricavati dalle posizioni Understat realmente giocate. Sono presentazione: gli z-score restano dentro ATT/CEN/DIF."
   }
 }
