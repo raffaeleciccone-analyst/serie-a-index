@@ -65,7 +65,10 @@
   --gl-shadow:0 8px 32px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.35),inset 0 1px 0 rgba(233,240,236,.12);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+/* La nav e' appiccicata in cima: senza questo margine ogni salto a un'ancora
+   (e il ripristino della posizione al ritorno da un profilo) lascia la prima
+   riga sotto la barra — su telefono spariva proprio il primo della classifica. */
+html{scroll-behavior:smooth;scroll-padding-top:68px}
 body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px;
   line-height:1.47;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   /* In una classifica le cifre devono incolonnarsi: senza questo, "1.79" e
@@ -229,6 +232,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
   /* Il fondo e' opaco: il blur non aveva piu' niente da sfocare. */
   background:var(--bg)}
 .ctrl-bar::-webkit-scrollbar{display:none}
+/* Quando resta roba a destra la coda sfuma: e' l'unico segno che la barra si
+   trascina, visto che la scrollbar e' nascosta. La classe la mette il JS, e la
+   toglie appena sei in fondo. */
+.ctrl-bar.scorre-ancora{
+  -webkit-mask-image:linear-gradient(to right,#000 calc(100% - 34px),transparent);
+  mask-image:linear-gradient(to right,#000 calc(100% - 34px),transparent)}
 .ctrl-div{width:1px;height:20px;background:rgba(233,240,236,.1);flex-shrink:0;margin:0 1px}
 
 /* Pill base — liquid glass */
@@ -549,8 +558,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
 .fpk-role-grp{font-size:10px;font-weight:700;color:var(--lt);text-transform:uppercase;
   letter-spacing:.7px;padding:10px 10px 4px}
 .fpk-empty{padding:24px;text-align:center;font-size:13px;color:var(--lt)}
+/* Il pannello era all'88% di opacita' senza niente che sfocasse dietro: sotto
+   "AC Milan" si leggeva "Lautaro Martinez" della classifica. Un menu deve
+   coprire quello che sta sotto. */
 .sq-fpk-box{position:fixed;z-index:700;width:250px;max-height:380px;overflow-y:auto;
-  border-radius:16px;padding:6px;display:none;background:rgba(18,18,20,.88);
+  border-radius:16px;padding:6px;display:none;background:#121214;
+  backdrop-filter:saturate(140%) blur(18px);
   border:1px solid var(--gl-border);border-top-color:var(--gl-edge);
   box-shadow:0 24px 64px rgba(0,0,0,.85), 0 4px 16px rgba(0,0,0,.5), inset 0 1px 0 rgba(233,240,236,.1);
   animation:sqIn .18s cubic-bezier(.4,0,.2,1);
@@ -580,6 +593,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
 /* Righe separate da un filetto invece che da card sovrapposte: dodici riquadri
    di vetro in colonna facevano rumore e nascondevano la gerarchia. */
 .lb-list{display:flex;flex-direction:column}
+/* La riga intera apre il profilo: su telefono i due bottoni scendevano su una
+   riga loro e ogni giocatore mangiava tre righe di schermo. */
+.lb-row{cursor:pointer}
+/* Le barre in cima non devono finire sotto la nav appiccicata quando la lista
+   viene portata a schermo da un filtro o da un link. */
+.lb-list,.lb-wrap,#meth-home{scroll-margin-top:72px}
 .lb-row{display:flex;align-items:center;gap:14px;padding:11px 12px;cursor:default;
   border-bottom:1px solid var(--sep);transition:background .15s}
 .lb-row:hover{background:var(--bg1)}
@@ -855,16 +874,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
   .lb-pct .pf-pbar{display:none}
   /* Su schermo stretto resta il solo numero: l'etichetta la porta il tooltip. */
   .lb-pct .pf-plab{display:none}
-  /* I due pulsanti scendono su una riga loro invece di comprimere il
-     nome a una manciata di pixel. */
-  .lb-row{flex-wrap:wrap}
-  .lb-info{min-width:0}
-  .lb-actions{flex-basis:100%;justify-content:flex-end;margin-top:5px}
-  .lb-actions{gap:4px}
-  .lb-btn{height:26px;padding:0 7px;font-size:10px}
-  /* "Confronto" → "+" su phone */
-  .lb-btn-cmp .cmp-full{display:none}
-  .lb-btn-cmp::before{content:"\2295"}
+  /* UNA riga per giocatore: nome a sinistra, punteggio a destra, il resto nel
+     profilo. Prima la riga andava a capo e i due bottoni scendevano sotto —
+     cinque righe di schermo a testa, 12542px di scorrimento per cento
+     giocatori e sette nomi visibili per schermata. Adesso la riga intera apre
+     il profilo (i bottoni ripetevano quel gesto e ne aggiungevano uno che sul
+     telefono nessuno usa), e ne entrano il doppio abbondante. */
+  .lb-row{flex-wrap:nowrap;min-height:46px;padding:7px 10px}
+  .lb-info{min-width:0;flex:1}
+  .lb-nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lb-actions{display:none}
 
   /* Hero player */
   .hero{padding:10px 12px;gap:8px}
@@ -1624,6 +1643,20 @@ function padRange(vals){
  const pad=Math.max(.3,(hi-lo)*.22);
  return [lo-pad,hi+pad];
 }
+/* La barra dei filtri scorre in orizzontale con la scrollbar nascosta: su
+  telefono si vedono 390px di 828, le pastiglie sono tagliate a meta' e niente
+  dice che si trascinano. La sfumatura in coda lo dice, e sparisce quando sei
+  arrivato in fondo — un'indicazione che mente e' peggio di nessuna. */
+function segnalaScorrimento(el){
+ if(!el) return;
+ const agg=()=>{
+  const altro = el.scrollWidth - el.clientWidth - el.scrollLeft > 4;
+  el.classList.toggle("scorre-ancora", altro);
+ };
+ agg();
+ el.addEventListener("scroll", agg, {passive:true});
+ window.addEventListener("resize", agg, {passive:true});
+}
 const CTX_L = {"totale": "Totale", "casa": "Casa", "trasferta": "Trasferta", "vs_top6": "vs Top 6", "vs_forti": "Difese Solide"};
 const SPIEG = {"output_adj": {"titolo": "Output Offensivo Adj / 90'", "formula": "(xG + xA) / min \u00d7 90 / SOS", "logica": "xG (expected goals) \u00e8 la probabilit\u00e0 che un tiro diventi goal, calcolata da Opta in base a posizione, angolo e tipo di tiro. xA (expected assists) \u00e8 la stessa logica applicata ai passaggi. Normalizziamo per 90 minuti per confrontare giocatori con minutaggi diversi. Poi dividiamo per il SOS (Strength of Schedule) \u2014 la difficolt\u00e0 media degli avversari: SOS < 1 = avversari forti, SOS > 1 = avversari deboli. Dividere per SOS abbassa l'output di chi ha giocato contro difese deboli e alza quello di chi ha affrontato difese solide.", "esempio": "Output grezzo 0.45/90 con SOS 0.92 (avversari forti) \u2192 output adj 0.49. Stesso output grezzo con SOS 1.20 (avversari deboli) \u2192 output adj 0.37. Il secondo giocatore sembra produttivo ma contro squadre pi\u00f9 deboli."}, "centralita": {"titolo": "Centralit\u00e0 Offensiva %", "formula": "(xG_ind + xA_ind + K\u00d7prior) / (xG_team + K) \u00d7 100", "logica": "Misura quanta parte della produzione offensiva della squadra passa per questo giocatore. Usa il Bayesian shrinkage: invece di fidarsi ciecamente dei dati osservati, mescola i dati reali con il prior (media ATT+CEN della lega). K \u00e8 il peso dato al prior \u2014 con K=12, un giocatore con poche partite viene tirato verso la media di lega. Con molte partite i dati reali prevalgono sul prior. Questo evita di sopravvalutare giocatori con 2-3 partite eccezionali.", "esempio": "Centralit\u00e0 22%: ogni 5 xG della squadra, 1.1 passano dalle sue giocate. Con K=12 e solo 3 partite: se il giocatore mostra 45% ma la media di lega \u00e8 20%, la stima bayesiana scende a circa 25% \u2014 pi\u00f9 affidabile con pochi dati."}, "boost_ratio": {"titolo": "Team Boost Ratio", "formula": "media_SOS_pond(xG_con) / media_SOS_pond(xG_senza)", "logica": "Confronta xG della squadra CON vs SENZA il giocatore. Media ponderata per SOS (1/SOS): le partite contro difese solide pesano di pi\u00f9, evitando distorsioni da calendario favorevole. Richiede almeno 3 partite senza il giocatore per essere calcolato.", "esempio": "Boost 1.28: la squadra crea il 28% di xG in pi\u00f9 quando \u00e8 titolare. N/D = meno di 3 partite senza di lui disponibili."}, "consistenza": {"titolo": "Consistenza", "formula": "1 \u2212 IQR / (mediana + \u03b5) dell'output xG+xA/90 per partita", "logica": "1 \u2212 CV trasforma il coefficiente di variazione: 1.0 = stesso livello ogni partita, 0.0 = totalmente imprevedibile. Richiede almeno 5 partite nel contesto.", "esempio": "Consistenza 0.78: variabilit\u00e0 settimanale = 22% della sua media. Sotto 0.5 = alto rischio prestazione."}, "TPI": {"titolo": "TPI \u2014 Top Player Impact Index", "formula": "Media pesata z-score: output 0.32 \u00b7 buildup 0.10 \u00b7 centralit\u00e0 0.18 \u00b7 boost 0.02 \u00b7 consistenza 0.07 \u00b7 finishing 0.20 \u00b7 forma 0.11 \u00d7 penalty disponibilit\u00e0 winter-aware", "logica": "COSA VUOL DIRE IL NUMERO\n0.00 \u00e8 il giocatore medio del suo ruolo. Sopra lo zero incide pi\u00f9 della media, sotto meno. +1.00 vuol dire stare nel 16% migliore del proprio ruolo, +2.00 nel 2.5%. Un difensore \u00e8 confrontato con i difensori, non con i centravanti: serve a non far sparire il terzino che spinge dietro chi fa gol di mestiere.\n\nDA COSA NASCE\nSette cose misurate separatamente e poi pesate: quanto produce, quanto partecipa alla manovra, quanta parte della produzione della squadra passa da lui, quanto la squadra rende con lui in campo, quanto \u00e8 regolare, quanto \u00e8 preciso sotto porta e come sta andando nelle ultime partite. Ogni prestazione \u00e8 pesata per la forza di chi c'era dall'altra parte, e chi ha giocato poco viene tirato verso la media: due partite buone non battono chi regge da trenta.\n\nIN DETTAGLIO TECNICO\nOgni dimensione viene standardizzata come z-score rispetto alla distribuzione di ruolo della lega (un difensore \u00e8 confrontato con i difensori, non con gli attaccanti). TPI = media PESATA dei 7 z-score; la qualit\u00e0 (output_adj) domina; finishing e forma recente pesano un terzo del totale cos\u00ec chi non incide da diverse giornate scende anche con buoni totali stagionali. \n\nROBUSTEZZA: 4 fix per evitare il bias 'pochi sample = stima rumorosa':\n\u2022 Shrinkage Bayes con K dinamico = max(75/avg_min, 30/partite) \u2014 chi  gioca poco per gara o ha poche partite regredisce di pi\u00f9 verso media-ruolo.\n\u2022 Confidence v2 a 4 fattori (minuti \u00d7 partite \u00d7 intensit\u00e0 \u00d7 dim) \u2014 usata  per il shrinkage finale verso media-ruolo.\n\u2022 Penalty disponibilit\u00e0 WINTER-AWARE: TPI \u00d7 clip(disponibilit\u00e0_rel, 0.85, 1.0)  dove disponibilit\u00e0 = partite_giocate/partite_disponibili. Per i winter  signing 'disponibili' = partite dalla finestra di arrivo.  Effetto: Malen (winter, 18/20=90%) intatto, De Bruyne (18/38=47%) penalty 0.91,  Berisha (13/38=34%) penalty 0.85 cap.\n\u2022 Re-normalizzazione pesi sulle dim effettivamente disponibili (se boost N/D).\n\nLo z-score misura quante deviazioni standard sopra/sotto la media-ruolo. 0 = media del ruolo, +1 = top 16%, +2 = top 2.5%.", "esempio": "TPI +1.72: 1.72 dev std sopra la media del ruolo \u2014 top 5% della lega. TPI 0.0 = media ruolo. TPI \u22121.0 = sotto il 16% del ruolo. Esempi reali post-fix: Lautaro (30/38) penalty 1.0 \u2192 TPI intatto. Donyell Malen (winter signing, 18/20=90% disp) \u2192 penalty 1.0 \u2192 TPI intatto al #2. De Bruyne (titolare, 18/38=47%) \u2192 penalty 0.91, scende dal #10 al #13. Berisha (titolare, 13/38=34%) \u2192 penalty 0.85, scende dal #27 al #35."}, "conv_ratio": {"titolo": "G/xG \u2014 Conversion Ratio", "formula": "Goal segnati / xG accumulati", "logica": "Misura l'efficienza realizzativa pura, indipendente dal TPI. Il TPI usa xG+xA (creazione di occasioni), non i goal effettivi: questa metrica \u00e8 ortogonale \u2014 un giocatore pu\u00f2 avere TPI alto (crea molto) e G/xG basso (non finalizza) o viceversa. G/xG > 1 pu\u00f2 indicare: abilit\u00e0 realizzativa sopra media, o fortuna temporanea (tiri che entrano dai pali). Nel lungo periodo G/xG tende a regredire verso 1.0. Richiede xG \u2265 0.5 per essere statisticamente significativo.", "esempio": "G/xG 1.35: segna il 35% in pi\u00f9 delle aspettative \u2014 ottimo finalizzatore o fase di forma eccezionale. G/xG 0.65: spreca molte occasioni \u2014 possibile regressione futura. G/xG 1.0: esattamente in linea con le aspettative xG."}};
 const TOP6  = ["AC Milan", "Como", "Inter", "Juventus", "Napoli", "Roma"];
@@ -2037,7 +2070,8 @@ function buildLeaderboard(){
   /* dispNm() → cognome (o "Iniz. Cognome" se duplicato) */
   const dn=dispNm(p);
   const extra = m.rowExtra ? m.rowExtra(p) : "";
-  return'<div class="lb-row'+(i<3?' lb-top':'')+'">'
+  return'<div class="lb-row'+(i<3?' lb-top':'')+'" onclick="pick('+p.id+')" '
+   +'role="button" tabindex="0" title="'+esc(T("dash_row_tip","Apri il profilo"))+'">'
    +'<span class="lb-rank">'+(i+1)+'</span>'
    +'<div class="lb-dot" style="background:'+rc+'"></div>'
    +'<div class="lb-info">'
@@ -2049,8 +2083,8 @@ function buildLeaderboard(){
    +'<div class="lb-bar-wrap"><div class="lb-bar-fill" style="width:'+barW+'%"></div></div>'
    +'<span class="lb-val">'+m.fmt(v)+'</span>'
    +'<div class="lb-actions">'
-    +'<button class="lb-btn lb-btn-prof" onclick="pick('+p.id+')">&#x2192; '+esc(T("dash_btn_profile","Profilo"))+'</button>'
-    +'<button class="lb-btn lb-btn-cmp" id="cmpbtn-'+p.id+'" onclick="showDiff('+p.id+')">'+esc(T("dash_btn_diff","Scarto"))+'</button>'
+    +'<button class="lb-btn lb-btn-prof" onclick="event.stopPropagation();pick('+p.id+')">&#x2192; '+esc(T("dash_btn_profile","Profilo"))+'</button>'
+    +'<button class="lb-btn lb-btn-cmp" id="cmpbtn-'+p.id+'" onclick="event.stopPropagation();showDiff('+p.id+')">'+esc(T("dash_btn_diff","Scarto"))+'</button>'
    +'</div></div>';
  }).join("")+'</div>';
 
@@ -2941,6 +2975,9 @@ window.addEventListener("orientationchange", () => {
   }
   drawHero();
   document.addEventListener("i18n:changed", drawHero);
+  /* La sfumatura in coda alla barra dei filtri, che dice che c'e' altro a
+     destra. Sta qui perche' e' l'ultimo script che gira a pagina montata. */
+  if (typeof segnalaScorrimento === "function") segnalaScorrimento(document.getElementById("ctrl-bar"));
 
   </script>
 <!-- ── Watermark ── -->
