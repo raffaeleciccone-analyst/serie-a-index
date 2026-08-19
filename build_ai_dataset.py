@@ -69,6 +69,9 @@ def compact_player(p: dict) -> dict:
         # a "rende piu' di quanto costa?", che e' la domanda che un direttore
         # sportivo fa davvero — ed e' anche la baseline del test Q.
         "valore_mercato_eur": p.get("valore_mercato"),
+        # Scadenza contratto: per un direttore sportivo e' la differenza fra
+        # "mi piace" e "posso prenderlo".
+        "contratto_scadenza": (p.get("contratto") or {}).get("scadenza"),
         "rank": rank.get("TPI"),
         "tpi": r(tpi.get("totale")),
         "tpi_casa": r(tpi.get("casa")),
@@ -184,6 +187,8 @@ def glossario(metodo: dict) -> dict:
                             f"{elenco}. Non entra nel punteggio: gli z-score restano dentro "
                             f"ATT/CEN/DIF." if elenco else "ruolo specifico"),
         "ruolo_specifico_quota": "quota dei minuti passati in quel ruolo: 0.93 = quasi sempre li'.",
+        "contratto_scadenza": ("data di scadenza del contratto (Transfermarkt), formato "
+                               "aaaa-mm-gg. NON entra nell'indice."),
         "valore_mercato_eur": ("valore di mercato Transfermarkt in euro. NON entra nell'indice: "
                                "la validazione lo usa come baseline da battere (test Q)."),
         "TPI": f"Total Performance Index, il punteggio complessivo. Piu' alto = meglio. Scala z-score: {zero}.",
