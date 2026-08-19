@@ -65,6 +65,10 @@ def compact_player(p: dict) -> dict:
         # "chi puo' sostituire X", che con ATT/CEN/DIF non si puo' fare.
         "ruolo_specifico": p.get("ruolo_fine"),
         "ruolo_specifico_quota": r(p.get("ruolo_fine_quota"), 2),
+        # Il consenso del mercato, in euro. Serve all'assistente per rispondere
+        # a "rende piu' di quanto costa?", che e' la domanda che un direttore
+        # sportivo fa davvero — ed e' anche la baseline del test Q.
+        "valore_mercato_eur": p.get("valore_mercato"),
         "rank": rank.get("TPI"),
         "tpi": r(tpi.get("totale")),
         "tpi_casa": r(tpi.get("casa")),
@@ -180,6 +184,8 @@ def glossario(metodo: dict) -> dict:
                             f"{elenco}. Non entra nel punteggio: gli z-score restano dentro "
                             f"ATT/CEN/DIF." if elenco else "ruolo specifico"),
         "ruolo_specifico_quota": "quota dei minuti passati in quel ruolo: 0.93 = quasi sempre li'.",
+        "valore_mercato_eur": ("valore di mercato Transfermarkt in euro. NON entra nell'indice: "
+                               "la validazione lo usa come baseline da battere (test Q)."),
         "TPI": f"Total Performance Index, il punteggio complessivo. Piu' alto = meglio. Scala z-score: {zero}.",
         "z": f"z-score winsorizzato a +/-{z.get('clamp_sigma', 3):.0f}. {zero}, +1 = una deviazione standard sopra.",
         "z_pro": "modulatori del TPI Pro (eta, affidabilita fisica). Non sono dimensioni del TPI base.",
