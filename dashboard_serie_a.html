@@ -257,6 +257,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:15px
   min-width:66px}
 /* Il link al file completo: non e' un controllo, e' una via d'uscita. Sta
    accanto al bottone dell'export e pesa meno di una pastiglia. */
+.lb-sub-link{color:var(--orng);text-decoration:none;border-bottom:1px solid rgba(255,176,32,.4);
+  margin-left:8px;font-size:12px}
+.lb-sub-link:hover{border-bottom-color:var(--orng)}
 .ctrl-link{font-size:11.5px;color:var(--lt);text-decoration:none;white-space:nowrap;
   border-bottom:1px solid rgba(233,240,236,.18);padding-bottom:1px;flex-shrink:0}
 .ctrl-link:hover{color:var(--orng);border-bottom-color:var(--orng)}
@@ -2208,7 +2211,18 @@ function buildLeaderboard(){
  document.getElementById("lb-help").onclick=()=>openM(m.help);
  const teamSub=ACTIVE_TEAMS.size>0?" — "+[...ACTIVE_TEAMS].join(", "):"";
  const roleSub=PR?" · "+T("dash_only","Solo")+" "+T(_ROLE_KEY[PR],PR):"";
- document.getElementById("lb-sub").textContent=teamSub+roleSub;
+ /* Con una squadra sola selezionata si offre la sua pagina: e' un indirizzo
+    che si puo' mandare a qualcuno, che la dashboard filtrata non e'. */
+ const _sub=document.getElementById("lb-sub");
+ if(ACTIVE_TEAMS.size===1){
+  const sq=[...ACTIVE_TEAMS][0];
+  const file="squadra-"+sq.toLowerCase().normalize("NFD").replace(/[^a-z0-9]+/gi,"-")
+    .replace(/^-+|-+$/g,"")+".html";
+  _sub.innerHTML=esc(teamSub+roleSub)+' <a class="lb-sub-link" href="'+file+'">'
+    +esc(T("dash_team_page","pagina della squadra"))+"</a>";
+ }else{
+  _sub.textContent=teamSub+roleSub;
+ }
 
  /* Nota metodologica sotto titolo per prospect */
  let noteEl = document.getElementById("lb-note");
