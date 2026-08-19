@@ -24,6 +24,8 @@ recent form. **Five scout modulators** on top of them, in the Pro version: age, 
 durability, cross-context stability, form direction, early momentum. **Five contexts** —
 overall, home, away, vs top six, vs the tightest defences.
 
+The ranking page publishes the top 100 by default and loads **all 351 qualified players** on request — the top-100 cut is not a neutral filter, it favours the teams that produce most, so the list was dense with Inter and Milan and nearly empty of Cremonese and Lecce. Players beyond the hundred come without the per-matchday series, and the page says so.
+
 The ranking page also exports what you are looking at: filter the list, hit **CSV**, and you get those rows in that order. The link next to it is the full file above.
 
 Numbers are deliberately not repeated here: they live on the pages, which are generated
