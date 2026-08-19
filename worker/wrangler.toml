@@ -9,7 +9,7 @@ ALLOWED_ORIGINS = "https://raffaeleciccone-analyst.github.io"
 
 # Il Worker scarica lui il dataset, cosi' il prompt e' identico a ogni richiesta
 # e il prompt caching funziona. Rigenera con build_ai_dataset.py e ripusha.
-DATASET_URL = "https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/ai_dataset.json"
+DATASET_URL = "https://raffaeleciccone-analyst.github.io/serie-a-index/ai_dataset.json"
 
 # Modello. Il lavoro qui e' leggere una tabella e citarne i numeri senza
 # inventarli: sonnet-5 lo fa bene a circa meta' del costo di opus-5, che resta
