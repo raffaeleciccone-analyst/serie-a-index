@@ -18,3 +18,6 @@ _*.html
 worker/node_modules/
 worker/.wrangler/
 worker/.dev.vars
+
+# Cartella di configurazione dello strumento di lavoro: locale, non del progetto.
+.claude/

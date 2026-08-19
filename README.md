@@ -2,7 +2,7 @@
 
 **A descriptive ranking model for Serie A 2025/26 players.**
 
-## → [Open the site](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/)
+## → [Open the site](https://raffaeleciccone-analyst.github.io/serie-a-index/)
 
 ---
 
@@ -12,12 +12,12 @@ it does not predict — and the checks say where it loses too.
 
 | Page | What it is |
 |---|---|
-| [Homepage](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/) | What the index is, who is on top right now |
-| [Ranking](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/dashboard_serie_a.html) | Every qualified player, five contexts, head-to-head |
-| [Validation](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/validazione.html) | What holds up and what does not, with confidence intervals |
-| [Method](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/guida_completa.html) | Every formula the engine actually runs |
-| [TPI Pro](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/dashboard_pro.html) | The index with the five scout modulators |
-| [Data (CSV)](https://raffaeleciccone-analyst.github.io/serie-a-scout-demo/serie_a_tpi_2025-26.csv) | All 351 qualified players, 49 columns, written by the engine on every run |
+| [Homepage](https://raffaeleciccone-analyst.github.io/serie-a-index/) | What the index is, who is on top right now |
+| [Ranking](https://raffaeleciccone-analyst.github.io/serie-a-index/dashboard_serie_a.html) | Every qualified player, five contexts, head-to-head |
+| [Validation](https://raffaeleciccone-analyst.github.io/serie-a-index/validazione.html) | What holds up and what does not, with confidence intervals |
+| [Method](https://raffaeleciccone-analyst.github.io/serie-a-index/guida_completa.html) | Every formula the engine actually runs |
+| [TPI Pro](https://raffaeleciccone-analyst.github.io/serie-a-index/dashboard_pro.html) | The index with the five scout modulators |
+| [Data (CSV)](https://raffaeleciccone-analyst.github.io/serie-a-index/serie_a_tpi_2025-26.csv) | All 351 qualified players, 49 columns, written by the engine on every run |
 
 **Seven dimensions** — output, buildup, centrality, team boost, consistency, finishing,
 recent form. **Five scout modulators** on top of them, in the Pro version: age, physical
