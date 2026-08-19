@@ -182,7 +182,11 @@ h3{font-size:24px;font-family:var(--disp);font-weight:600;letter-spacing:.002em;
   overflow:visible}
 .sv-ax{font-family:var(--mono);font-size:calc(9.5px * var(--sv-scala));fill:var(--lt)}
 .sv-val{font-family:var(--mono);font-size:calc(10px * var(--sv-scala));fill:var(--ls)}
-.sv-dim{font-family:var(--mono);font-size:calc(10.5px * var(--sv-scala));fill:var(--ls)}
+/* Il nome della dimensione ha una colonna di larghezza fissa: se crescesse
+   come le altre etichette, su telefono uscirebbe dal riquadro. Cresce fino a
+   meta' strada e li' si ferma. */
+.sv-dim{font-family:var(--mono);font-size:calc(10.5px * min(var(--sv-scala),1.5));
+  fill:var(--ls)}
 .didascalia{font-size:var(--t-cap);color:var(--lt);line-height:1.6;max-width:36em;margin-top:6px}
 
 table{width:100%;border-collapse:collapse;font-size:var(--t-cap);margin-top:6px}
@@ -423,22 +427,22 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   <span class="cl-v">+1.80</span>
 </a><a class="cl-row" href="dashboard_serie_a.html">
   <span class="cl-n">02</span>
-  <span class="cl-id"><b>Donyell Malen</b><small>Roma</small>
-    <em data-it="#1 consistenza &middot; #2 centralit&agrave;" data-en="#1 consistency &middot; #2 centrality">#1 consistenza &middot; #2 centralit&agrave;</em></span>
+  <span class="cl-id"><b>Scott McTominay</b><small>Napoli</small>
+    <em data-it="#14 consistenza &middot; #18 centralit&agrave;" data-en="#14 consistency &middot; #18 centrality">#14 consistenza &middot; #18 centralit&agrave;</em></span>
   <span class="cl-bar"><i style="width:76%"></i></span>
   <span class="cl-v">+1.37</span>
 </a><a class="cl-row" href="dashboard_serie_a.html">
   <span class="cl-n">03</span>
-  <span class="cl-id"><b>Scott McTominay</b><small>Napoli</small>
-    <em data-it="#14 consistenza &middot; #18 centralit&agrave;" data-en="#14 consistency &middot; #18 centrality">#14 consistenza &middot; #18 centralit&agrave;</em></span>
+  <span class="cl-id"><b>Donyell Malen</b><small>Roma</small>
+    <em data-it="#1 consistenza &middot; #2 centralit&agrave;" data-en="#1 consistency &middot; #2 centrality">#1 consistenza &middot; #2 centralit&agrave;</em></span>
   <span class="cl-bar"><i style="width:76%"></i></span>
   <span class="cl-v">+1.37</span>
 </a><a class="cl-row" href="dashboard_serie_a.html">
   <span class="cl-n">04</span>
   <span class="cl-id"><b>Marcus Thuram</b><small>Inter</small>
     <em data-it="#4 output &middot; #15 consistenza" data-en="#4 output &middot; #15 consistency">#4 output &middot; #15 consistenza</em></span>
-  <span class="cl-bar"><i style="width:71%"></i></span>
-  <span class="cl-v">+1.28</span>
+  <span class="cl-bar"><i style="width:70%"></i></span>
+  <span class="cl-v">+1.26</span>
 </a><a class="cl-row" href="dashboard_serie_a.html">
   <span class="cl-n">05</span>
   <span class="cl-id"><b>Federico Dimarco</b><small>Inter</small>
@@ -449,19 +453,19 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
   <span class="cl-n">06</span>
   <span class="cl-id"><b>Christian Pulisic</b><small>AC Milan</small>
     <em data-it="#6 output &middot; #12 centralit&agrave;" data-en="#6 output &middot; #12 centrality">#6 output &middot; #12 centralit&agrave;</em></span>
-  <span class="cl-bar"><i style="width:65%"></i></span>
-  <span class="cl-v">+1.17</span>
+  <span class="cl-bar"><i style="width:61%"></i></span>
+  <span class="cl-v">+1.10</span>
 </a><a class="cl-row" href="dashboard_serie_a.html">
   <span class="cl-n">07</span>
-  <span class="cl-id"><b>Henrikh Mkhitaryan</b><small>Inter</small>
-    <em data-it="#58 output &middot; #68 consistenza" data-en="#58 output &middot; #68 consistency">#58 output &middot; #68 consistenza</em></span>
-  <span class="cl-bar"><i style="width:59%"></i></span>
-  <span class="cl-v">+1.07</span>
-</a><a class="cl-row" href="dashboard_serie_a.html">
-  <span class="cl-n">08</span>
   <span class="cl-id"><b>Mario Pasalic</b><small>Atalanta</small>
     <em data-it="#85 centralit&agrave; &middot; #86 output" data-en="#85 centrality &middot; #86 output">#85 centralit&agrave; &middot; #86 output</em></span>
   <span class="cl-bar"><i style="width:58%"></i></span>
+  <span class="cl-v">+1.04</span>
+</a><a class="cl-row" href="dashboard_serie_a.html">
+  <span class="cl-n">08</span>
+  <span class="cl-id"><b>Henrikh Mkhitaryan</b><small>Inter</small>
+    <em data-it="#58 output &middot; #68 consistenza" data-en="#58 output &middot; #68 consistency">#58 output &middot; #68 consistenza</em></span>
+  <span class="cl-bar"><i style="width:57%"></i></span>
   <span class="cl-v">+1.04</span>
 </a></div>
     <a class="oltre" href="dashboard_serie_a.html" data-it="e altri 92 giocatori nella dashboard" data-en="and 92 more players in the dashboard">e altri 92 giocatori nella dashboard</a>
@@ -498,12 +502,12 @@ footer a:hover{color:var(--orng);border-color:var(--orng)}
     <p class="prosa" data-it="Un indice si giudica da quello che regge quando lo si mette alla prova, non da quanto suona bene. Le verifiche sono pubblicate per intero, comprese quelle costruite per bocciarlo." data-en="An index is judged by what survives testing, not by how good it sounds. The checks are published in full, including the ones built to fail it.">Un indice si giudica da quello che regge quando lo si mette alla prova, non da quanto suona bene. Le verifiche sono pubblicate per intero, comprese quelle costruite per bocciarlo.</p>
     <div class="ev-g"><div class="ev riga">
   <div class="ev-fig">&rho; 0.988<span class="ev-lbl" data-it="L&rsquo;ordine tiene quasi ovunque" data-en="The order holds almost everywhere">L&rsquo;ordine tiene quasi ovunque</span></div>
-  <div class="ev-txt" data-it="Diviso in dieci gruppi, l&rsquo;indice li dispone quasi nell&rsquo;ordine del rendimento realizzato in campo: l&rsquo;ordine si inverte fra 3&ordm;&ndash;4&ordm;." data-en="Split into ten groups, the index lines them up almost in the order of output actually produced on the pitch: the order reverses between deciles 3&ndash;4.">Diviso in dieci gruppi, l&rsquo;indice li dispone quasi nell&rsquo;ordine del rendimento realizzato in campo: l&rsquo;ordine si inverte fra 3&ordm;&ndash;4&ordm;.</div>
+  <div class="ev-txt" data-it="Diviso in dieci gruppi, l&rsquo;indice li dispone quasi nell&rsquo;ordine del rendimento realizzato in campo: l&rsquo;ordine si inverte fra 4&ordm;&ndash;5&ordm;." data-en="Split into ten groups, the index lines them up almost in the order of output actually produced on the pitch: the order reverses between deciles 4&ndash;5.">Diviso in dieci gruppi, l&rsquo;indice li dispone quasi nell&rsquo;ordine del rendimento realizzato in campo: l&rsquo;ordine si inverte fra 4&ordm;&ndash;5&ordm;.</div>
 </div><div class="ev riga">
-  <div class="ev-fig">&rho; 0.848<span class="ev-lbl" data-it="Gi&agrave; alla giornata 20" data-en="Already by matchday 20">Gi&agrave; alla giornata 20</span></div>
+  <div class="ev-fig">&rho; 0.847<span class="ev-lbl" data-it="Gi&agrave; alla giornata 20" data-en="Already by matchday 20">Gi&agrave; alla giornata 20</span></div>
   <div class="ev-txt" data-it="A met&agrave; stagione la graduatoria &egrave; gi&agrave; quasi quella di fine anno: non serve aspettare maggio per usarla." data-en="Halfway through the season the ranking is already close to the final one: you do not have to wait for May to use it.">A met&agrave; stagione la graduatoria &egrave; gi&agrave; quasi quella di fine anno: non serve aspettare maggio per usarla.</div>
 </div><div class="ev riga">
-  <div class="ev-fig">-0.0217<span class="ev-lbl" data-it="E dove perde" data-en="And where it loses">E dove perde</span></div>
+  <div class="ev-fig">-0.0219<span class="ev-lbl" data-it="E dove perde" data-en="And where it loses">E dove perde</span></div>
   <div class="ev-txt" data-it="Sul rendimento <em>futuro</em>, contro l&rsquo;output grezzo per-90, il TPI <strong>non vince</strong> (1537 confronti fuori campione). Sta scritto nella pagina delle verifiche, con l&rsquo;intervallo di confidenza accanto." data-en="On <em>future</em> output, against raw per-90 output, the TPI <strong>does not win</strong> (1537 out-of-sample comparisons). It is written on the validation page, with the confidence interval next to it.">Sul rendimento <em>futuro</em>, contro l&rsquo;output grezzo per-90, il TPI <strong>non vince</strong> (1537 confronti fuori campione). Sta scritto nella pagina delle verifiche, con l&rsquo;intervallo di confidenza accanto.</div>
 </div></div>
     <a class="oltre" href="validazione.html" data-it="Tutte le verifiche, come sono uscite" data-en="Every check, exactly as it came out">Tutte le verifiche, come sono uscite</a>

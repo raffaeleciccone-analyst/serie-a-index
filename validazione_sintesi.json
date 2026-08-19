@@ -16,11 +16,11 @@
  },
  "convergenza": {
   "prima_giornata": 20,
-  "rho_prima": 0.848,
-  "rho_ultima": 0.949
+  "rho_prima": 0.847,
+  "rho_ultima": 0.948
  },
  "a_livello_di_squadra": {
-  "r": 0.808,
+  "r": 0.805,
   "n": 20
  },
  "overlap_whoscored_pct": 30,
