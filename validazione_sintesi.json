@@ -15,8 +15,8 @@
   "errore_calibrazione": 0.02
  },
  "convergenza": {
-  "prima_giornata": 20,
-  "rho_prima": 0.847,
+  "prima_giornata": 3,
+  "rho_prima": 0.321,
   "rho_ultima": 0.948
  },
  "a_livello_di_squadra": {
