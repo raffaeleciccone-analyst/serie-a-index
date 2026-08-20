@@ -1484,8 +1484,8 @@ window.onerror=function(m,s,l){
     &#8595; <span data-i18n="dash_csv_view">CSV</span>
    </button>
    <a class="ctrl-link" href="serie_a_tpi_2025-26.csv" download
-     data-i18n-title="dash_csv_all_tip" title="Il file completo generato dal motore: 351 giocatori, 49 colonne">
-    <span data-i18n="dash_csv_all">tutti i 351</span>
+     data-i18n-title="dash_csv_all_tip" title="Il file completo generato dal motore: 354 giocatori, 49 colonne">
+    <span data-i18n="dash_csv_all">tutti i 354</span>
    </a>
   </div>
   <div class="ctrl-riga ctrl-filtra" id="ctrl-filtra">
@@ -1813,7 +1813,7 @@ let SOLO_SCADENZA=false; /* filtro "contratto entro dodici mesi" */
    L'aggregato non e' "una stagione in piu'": e' la stessa misura su due anni,
    quindi piu' minuti e stime piu' stabili, ma non e' la classifica di nessuna
    delle due. La nota sotto il titolo lo dice ogni volta che e' selezionato. */
-const STAGIONI = [{"file": "payload_lista.json", "et_it": "2025/26", "et_en": "2025/26", "nota_it": "La stagione pubblicata: 38 giornate, quella su cui girano le verifiche.", "nota_en": "The published season: 38 matchdays, the one every check runs on.", "n": 354}, {"file": "payload_lista_2024-25.json", "et_it": "2024/25", "et_en": "2024/25", "nota_it": "La stagione precedente, completa.", "nota_en": "The previous season, complete.", "n": 356}, {"file": "payload_lista_tutte-le-stagioni.json", "et_it": "Due stagioni", "et_en": "Two seasons", "nota_it": "2024/25 e 2025/26 insieme: piu' minuti per giocatore, quindi stime piu' stabili. Non e' la classifica di nessuna delle due.", "nota_en": "2024/25 and 2025/26 together: more minutes per player, so steadier estimates. It is not either season's ranking.", "n": 493}];
+const STAGIONI = [{"file": "payload_lista.json", "et_it": "2025/26", "et_en": "2025/26", "n": 354, "nota_it": "La stagione pubblicata: e' quella su cui girano le verifiche.", "nota_en": "The published season: the one every check runs on."}, {"file": "payload_lista_2024-25.json", "et_it": "2024/25", "et_en": "2024/25", "n": 356, "nota_it": "Stagione conclusa, completa.", "nota_en": "A completed season, in full."}, {"file": "payload_lista_tutte-le-stagioni.json", "n": 493, "et_it": "2 stagioni", "et_en": "2 seasons", "nota_it": "2025/26 e 2024/25 insieme: piu' minuti per giocatore, quindi stime piu' stabili. Non e' la classifica di nessuna di esse.", "nota_en": "2025/26 and 2024/25 together: more minutes per player, so steadier estimates. It is not any one season's ranking."}];
 const DATA_INIZIALE = DATA;
 let STAGIONE = 0;              /* indice in STAGIONI; 0 = quella pubblicata */
 const CACHE_STAGIONI = {};
