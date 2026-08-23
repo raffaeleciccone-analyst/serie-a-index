@@ -10,6 +10,12 @@ The TPI ranks qualified Serie A players by attacking impact: xG and xA adjusted 
 opponent difficulty, seven dimensions, one ranking. It is **descriptive** — it ranks,
 it does not predict — and the checks say where it loses too.
 
+Where it loses, precisely: against three elementary predictors, the TPI beats none of the
+three on the **level** of future output. On the question it was built for — *who will improve
+on himself* — it beats two of the three, with the confidence interval entirely above zero.
+Both results are on the [validation page](https://raffaeleciccone-analyst.github.io/serie-a-index/validazione.html)
+in full, because an index that has never lost is only an index that has never been tested.
+
 | Page | What it is |
 |---|---|
 | [Homepage](https://raffaeleciccone-analyst.github.io/serie-a-index/) | What the index is, who is on top right now |
