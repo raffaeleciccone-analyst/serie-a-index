@@ -662,13 +662,23 @@
 
   /* ── STATE & API ────────────────────────────────────────── */
   const SUPPORTED = ["it", "en"];
-  const DEFAULT_LANG = "it";
+
+  /* La lingua di partenza la dichiara la pagina, in <html lang>, e il motore
+     la scrive dal config: una per campionato. Prima era "it" fissa qui dentro
+     e il ripiego guardava la lingua del browser, per cui il sito sulla Premier
+     League si apriva in italiano davanti a chiunque avesse il browser in
+     italiano — cioe' davanti a me, e a chiunque a cui lo mostro da qui.
+     Ora vince quello che il lettore ha scelto, e in mancanza la lingua del
+     sito: sulla Serie A l'italiano, sulla Premier l'inglese. Il selettore
+     resta dov'e', quindi la scelta e' sempre a un clic. */
+  const BASE = (document.documentElement.getAttribute("lang") || "it").slice(0, 2);
+  const DEFAULT_LANG = SUPPORTED.includes(BASE) ? BASE : "it";
 
   function detectLang() {
-    const stored = localStorage.getItem("lang");
+    let stored = null;
+    try { stored = localStorage.getItem("lang"); } catch (e) { /* storage negato */ }
     if (stored && SUPPORTED.includes(stored)) return stored;
-    const nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
-    return nav.startsWith("it") ? "it" : "en";
+    return DEFAULT_LANG;
   }
 
   let currentLang = detectLang();
@@ -718,6 +728,13 @@
     root.querySelectorAll("[data-it][data-en]").forEach(el => {
       const html = el.getAttribute(currentLang === "en" ? "data-en" : "data-it");
       if (html != null) el.innerHTML = html;
+    });
+    /* Stessa cosa per il tooltip: serve dove il testo del title porta un
+       numero calcolato dal motore. Con la sola chiave a dizionario quel numero
+       era una costante scritta a mano, e restava indietro. */
+    root.querySelectorAll("[data-title-it][data-title-en]").forEach(el => {
+      const v = el.getAttribute(currentLang === "en" ? "data-title-en" : "data-title-it");
+      if (v != null) el.setAttribute("title", v);
     });
     /* highlight switcher active button */
     document.querySelectorAll(".i18n-switch [data-set-lang]").forEach(b => {

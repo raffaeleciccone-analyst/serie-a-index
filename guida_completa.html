@@ -7,6 +7,24 @@
 <title>Metodo &mdash; Serie A Scout Index</title>
 <meta name="description" data-it="Come &egrave; costruito il TPI: le sette dimensioni, i pesi, lo shrinkage e i modulatori scout, con le formule che il codice esegue davvero." data-en="How the TPI is built: the seven dimensions, the weights, the shrinkage and the scout modulators, with the formulas the code actually runs.">
 <link rel="stylesheet" href="stile.css">
+<style>
+/* Le formule: monospazio, staccate dal testo che le spiega. */
+/* Le formule vanno a capo invece di scorrere: con nowrap ogni riquadro si
+   portava dietro una barra di scorrimento e le formule lunghe si vedevano a
+   meta'. Il monospazio resta, l'interlinea larga tiene leggibile il ritorno. */
+.form{display:block;font-family:var(--mono);font-size:13px;line-height:1.75;
+  color:var(--lp);background:rgba(233,240,236,.04);
+  border-left:2px solid rgba(255,176,32,.5);padding:9px 12px;
+  border-radius:0 4px 4px 0;overflow-wrap:anywhere;
+  /* La formula chiude il blocco invece di aprirlo: l'aria le serve sopra. */
+  margin:11px 0 0}
+.form-big{margin-top:26px;font-size:14.5px}
+.oltre{display:inline-block;margin-top:22px;font-size:13.5px;color:var(--ls);
+  text-decoration:none;border-bottom:1px solid var(--lq);padding-bottom:2px}
+.oltre:hover{color:var(--orng);border-color:var(--orng)}
+.oltre::after{content:" \2192"}
+@media(max-width:900px){.form{white-space:normal}}
+</style>
 </head>
 <body>
 <nav class="nav">

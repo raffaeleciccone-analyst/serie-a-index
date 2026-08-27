@@ -1349,8 +1349,8 @@ window.onerror=function(m,s,l){
    <a class="nav-link" href="index.html" data-it="Homepage" data-en="Homepage">Homepage</a>
    <a class="nav-link on" href="#" aria-current="page" onclick="showHome();return false" data-i18n-title="nav_back_ranking" title="Torna alla classifica" data-it="Classifica" data-en="Ranking">Classifica</a>
    <a class="nav-link" href="validazione.html" data-it="Validazione" data-en="Validation">Validazione</a>
-   <a class="nav-link" href="guida_completa.html" data-it="Metodo" data-en="Method">Metodo</a><a class="nav-link" href="caso-mercato.html" data-it="Caso di mercato" data-en="Market case">Caso di mercato</a>
-   <a class="nav-link pro" href="dashboard_pro.html" title="TPI Pro — indice age-aware con i cinque modulatori scout" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</a>
+   <a class="nav-link" href="guida_completa.html" data-it="Metodo" data-en="Method">Metodo</a>
+<a class="nav-link" href="caso-mercato.html" data-it="Caso di mercato" data-en="Market case">Caso di mercato</a><a class="nav-link pro" href="dashboard_pro.html" data-it="TPI Pro" data-en="TPI Pro">TPI Pro</a>
   </div>
  </div>
 </nav>
@@ -1429,7 +1429,7 @@ window.onerror=function(m,s,l){
      <span class="sep">+</span>
      <span>z(ctx)</span>
      <span class="sep">+</span>
-     <span>z(forma)</span>
+     <span data-it="z(forma)" data-en="z(form)">z(forma)</span>
      <span class="sep">+</span>
      <span style="color:var(--orng)">z(EMI)</span>
      <span class="sep">&mdash;</span>
@@ -1483,9 +1483,17 @@ window.onerror=function(m,s,l){
      title="Scarica in CSV la lista che stai vedendo, con i filtri applicati">
     &#8595; <span data-i18n="dash_csv_view">CSV</span>
    </button>
+   <!-- Il conteggio lo scrive il motore (354), non il dizionario: le
+        chiavi dash_csv_all / dash_csv_all_tip avevano dentro "351" scritto a
+        mano, in tutte e due le lingue. Il template metteva il numero giusto e
+        i18n.js glielo riscriveva sopra sbagliato un istante dopo — 351 sul
+        Serie A che ne ha 354, 351 sulla Premier che ne ha 343, sopra un link
+        che scarica un file con un numero di righe diverso da quello scritto. -->
    <a class="ctrl-link" href="serie_a_tpi_2025-26.csv" download
-     data-i18n-title="dash_csv_all_tip" title="Il file completo generato dal motore: 354 giocatori, 49 colonne">
-    <span data-i18n="dash_csv_all">tutti i 354</span>
+     data-title-it="Il file completo generato dal motore: 354 giocatori, 49 colonne"
+     data-title-en="The full file the engine writes: 354 players, 49 columns"
+     title="Il file completo generato dal motore: 354 giocatori, 49 colonne">
+    <span data-it="tutti i 354" data-en="all 354">tutti i 354</span>
    </a>
   </div>
   <div class="ctrl-riga ctrl-filtra" id="ctrl-filtra">
@@ -1546,7 +1554,7 @@ window.onerror=function(m,s,l){
  <!-- Leaderboard -->
  <div class="lb-wrap">
   <div class="lb-hdr">
-   <span class="lb-ttl" id="lb-ttl">TPI Totale</span>
+   <span class="lb-ttl" id="lb-ttl" data-i18n="dash_m_tpi">TPI Totale</span>
    <span class="help" id="lb-help" onclick="openM('TPI')" style="margin-left:4px">?</span>
    <span class="lb-sub" id="lb-sub"></span>
   </div>
@@ -1698,10 +1706,22 @@ function valoreScritto(p){
  if(v >= 1e6) return (v/1e6 >= 10 ? Math.round(v/1e6) : (v/1e6).toFixed(1).replace(".0","")) + "M";
  return Math.round(v/1e3) + "k";
 }
+/* La lingua viva della pagina: quella che il lettore ha scelto adesso, non
+   quella con cui la pagina e' stata scritta. Tutto cio' che si traduce da JS
+   deve chiedere qui, e nessun altro deve tenersene una copia propria. */
+function inglese(){
+ if(window.SerieAi18n && window.SerieAi18n.getLang)
+  return window.SerieAi18n.getLang() === "en";
+ return (document.documentElement.lang || "it").slice(0,2) === "en";
+}
 function ruoloFine(p){
  const k = p && p.ruolo_fine;
  if(!k || !RF[k]) return "";
- return (typeof EN !== "undefined" && EN) ? RF[k].nome_en : RF[k].nome_it;
+ /* Leggeva `EN`, che qui non esiste: `EN` e' una const dichiarata DENTRO
+    drawHero(), quindi il controllo `typeof EN !== "undefined"` era sempre
+    falso e il ruolo specifico usciva in italiano anche a pagina inglese —
+    "Trequartista" e "Seconda punta" in mezzo a una tabella tradotta. */
+ return inglese() ? RF[k].nome_en : RF[k].nome_it;
 }
 function ruoloScritto(p){
  const fine = ruoloFine(p);
@@ -1833,6 +1853,8 @@ async function cambiaStagione(i){
  const s = STAGIONI[i];
  if(!s) return;
  const box = document.getElementById("stagioni-pill");
+ const _err = document.getElementById("stag-errore");
+ if(_err) _err.style.display = "none";
  try{
   if(i === 0){
    DATA = DATA_INIZIALE;
@@ -1869,7 +1891,29 @@ async function cambiaStagione(i){
   buildTeamStrip();
   buildLeaderboard();
  }catch(e){
-  box.title = T("dash_stag_errore","Non sono riuscito a caricare quella stagione: ") + e.message;
+  /* Prima l'errore finiva in `box.title`, cioe' in un tooltip: chi premeva il
+     pulsante e non vedeva succedere niente non aveva modo di sapere perche'.
+     Il caso piu' comune non e' nemmeno un guasto — e' la pagina aperta con un
+     doppio clic dal disco, dove il browser vieta fetch() verso i file
+     accanto. Va scritto a schermo, e va detto cosa fare. */
+  const daFile = location.protocol === "file:";
+  const msg = daFile
+   ? T("dash_stag_file", "Aperta dal disco, questa pagina non puo' caricare gli "
+       + "altri file: e' il browser che lo vieta. Serve un server — dentro la "
+       + "cartella, `python -m http.server 8000`, poi localhost:8000.")
+   : T("dash_stag_errore", "Non sono riuscito a caricare quella stagione: ") + e.message;
+  box.title = msg;
+  let av = document.getElementById("stag-errore");
+  if(!av){
+   av = document.createElement("div");
+   av.id = "stag-errore";
+   av.setAttribute("role", "status");
+   av.style.cssText = "font-size:12px;color:var(--orng);padding:6px 0 10px;"
+     + "line-height:1.55;max-width:52em";
+   box.parentElement.after(av);
+  }
+  av.textContent = msg;
+  av.style.display = "block";
  }finally{
   box.classList.remove("in-carico");
  }
@@ -1893,10 +1937,10 @@ function notaStagione(){
  el.style.display = "block";
 }
 
-function EN_ATTIVO(){
- return !!(window.SerieAi18n && window.SerieAi18n.getLang
-           && window.SerieAi18n.getLang() === "en");
-}
+/* Resta come nome storico, ma la risposta la da' `inglese()`: tre copie dello
+   stesso controllo sparse nel file erano tre occasioni di scriverne una
+   sbagliata, ed e' esattamente quello che era successo in `ruoloFine`. */
+function EN_ATTIVO(){ return inglese(); }
 
 function filtroScadenza(btn){
  SOLO_SCADENZA=!SOLO_SCADENZA;
@@ -1994,9 +2038,7 @@ async function immagineConfronto(){
  x.fillStyle = SPENTO; x.font = "500 15px " + mono;
  /* La lingua la sa i18n: EN qui dentro non esiste, e l'errore saltava fuori
     solo cliccando il bottone. */
- const inglese = !!(window.SerieAi18n && window.SerieAi18n.getLang
-   && window.SerieAi18n.getLang() === "en");
- x.fillText("SERIE A SCOUT INDEX  ·  " + (inglese ? "SEASON" : "STAGIONE") + " 25/26", 60, 58);
+ x.fillText("SERIE A SCOUT INDEX  ·  " + (inglese() ? "SEASON" : "STAGIONE") + " 25/26", 60, 58);
  x.strokeStyle = FILO; x.lineWidth = 1;
  x.beginPath(); x.moveTo(60, 80); x.lineTo(W - 60, 80); x.stroke();
 
@@ -3098,7 +3140,7 @@ function autoSynth(p,ctx){
  /* r.TPI e' il RANK, non un punteggio: "top X%" si conta dall'alto. La
     formula di pctCell (99.7 per il primo) e' il percentile della colonna ed
     e' giusta li'; riusata qui stampava "top 100% della lega" sul migliore
-    della Serie A. */
+    della lega. */
  if(tpi!=null){const pct=r.TPI&&r.n_total?Math.max(1,Math.round(r.TPI/r.n_total*100)):null;
   if(tpi>=1.5)out+=dn+" d'élite: TPI "+tpi.toFixed(2)+" (top "+(pct||"?")+"% della lega). ";
   else if(tpi>=0.5)out+=dn+": impatto offensivo positivo, TPI "+tpi.toFixed(2)+". ";
@@ -3487,7 +3529,7 @@ window.addEventListener("orientationchange", () => {
     const box=document.getElementById("hero-curve");
     if(!box||typeof DATA==="undefined") return;
     const HERO_N_TOT=354;
-    const EN=(document.documentElement.lang||"it").slice(0,2)==="en";
+    const EN=inglese();
     const W=760,H=176,PAD=20,A=-3.2,B=3.2,X=v=>(v-A)/(B-A)*W,pdf=x=>Math.exp(-x*x/2);
     /* Serve anche il NOME, non solo il valore: trattini anonimi nella coda
        non dicono niente a chi guarda. */
@@ -3562,6 +3604,16 @@ window.addEventListener("orientationchange", () => {
   document.addEventListener("i18n:changed", function(){
     if (typeof montaStagioni === "function") { montaStagioni(); notaStagione(); }
   });
+  /* "Sopra le attese" confronta la stagione con la base su piu' annate, che sta
+     in payload_lista_tutte-le-stagioni.json. Quel file non esiste per tutte le
+     leghe: sulla Premier il pill c'era lo stesso, e chi lo premeva leggeva
+     "Nessun dato disponibile per questo filtro" — un messaggio che dava la
+     colpa al filtro mentre il problema era il confronto assente. Se la base non
+     c'e', la misura non si offre. */
+  if (typeof fileBaseStorica === "function" && !fileBaseStorica()) {
+    var _att = document.querySelector('.mpill[data-m="attese"]');
+    if (_att) _att.remove();
+  }
 
   </script>
 <!-- ── Watermark ── -->
