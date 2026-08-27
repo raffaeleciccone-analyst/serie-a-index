@@ -23,14 +23,14 @@ in full, because an index that has never lost is only an index that has never be
 | [Validation](https://raffaeleciccone-analyst.github.io/serie-a-index/validazione.html) | What holds up and what does not, with confidence intervals |
 | [Method](https://raffaeleciccone-analyst.github.io/serie-a-index/guida_completa.html) | Every formula the engine actually runs |
 | [TPI Pro](https://raffaeleciccone-analyst.github.io/serie-a-index/dashboard_pro.html) | The index with the five scout modulators |
-| [Data (CSV)](https://raffaeleciccone-analyst.github.io/serie-a-index/serie_a_tpi_2025-26.csv) | All 351 qualified players, 49 columns, written by the engine on every run |
+| [Data (CSV)](https://raffaeleciccone-analyst.github.io/serie-a-index/serie_a_tpi_2025-26.csv) | Every qualified player, every column the engine writes, refreshed on every run |
 
 **Seven dimensions** — output, buildup, centrality, team boost, consistency, finishing,
 recent form. **Five scout modulators** on top of them, in the Pro version: age, physical
 durability, cross-context stability, form direction, early momentum. **Five contexts** —
 overall, home, away, vs top six, vs the tightest defences.
 
-The ranking page publishes the top 100 by default and loads **all 351 qualified players** on request — the top-100 cut is not a neutral filter, it favours the teams that produce most, so the list was dense with Inter and Milan and nearly empty of Cremonese and Lecce. Players beyond the hundred come without the per-matchday series, and the page says so.
+The ranking page publishes the top 100 by default and loads **every qualified player** on request — the top-100 cut is not a neutral filter, it favours the teams that produce most, so the list was dense with Inter and Milan and nearly empty of Cremonese and Lecce. Players beyond the hundred come without the per-matchday series, and the page says so.
 
 The ranking page also exports what you are looking at: filter the list, hit **CSV**, and you get those rows in that order. The link next to it is the full file above.
 
