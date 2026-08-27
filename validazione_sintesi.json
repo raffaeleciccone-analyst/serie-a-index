@@ -1,26 +1,26 @@
 {
  "n_verifiche": 15,
- "n_giocatori": 354,
+ "n_giocatori": 356,
  "prima_meta_vs_seconda": {
-  "rho": 0.75,
-  "n": 539,
+  "rho": 0.762,
+  "n": 537,
   "ic": [
-   0.7,
-   0.799
+   0.713,
+   0.801
   ],
   "cosa_misura": "output offensivo grezzo, non il TPI composito"
  },
  "decili": {
   "monotonia_rho": 0.976,
-  "errore_calibrazione": 0.022
+  "errore_calibrazione": 0.02
  },
  "convergenza": {
   "prima_giornata": 3,
-  "rho_prima": 0.301,
-  "rho_ultima": 0.946
+  "rho_prima": 0.287,
+  "rho_ultima": 0.968
  },
  "a_livello_di_squadra": {
-  "r": 0.713,
+  "r": 0.737,
   "n": 20
  },
  "overlap_whoscored_pct": 30,
