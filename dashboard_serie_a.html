@@ -1483,12 +1483,12 @@ window.onerror=function(m,s,l){
      title="Scarica in CSV la lista che stai vedendo, con i filtri applicati">
     &#8595; <span data-i18n="dash_csv_view">CSV</span>
    </button>
-   <!-- Il conteggio lo scrive il motore (356), non il dizionario: le
-        chiavi dash_csv_all / dash_csv_all_tip avevano dentro "351" scritto a
-        mano, in tutte e due le lingue. Il template metteva il numero giusto e
-        i18n.js glielo riscriveva sopra sbagliato un istante dopo — 351 sul
-        Serie A che ne ha 354, 351 sulla Premier che ne ha 343, sopra un link
-        che scarica un file con un numero di righe diverso da quello scritto. -->
+   <!-- Il conteggio lo scrive il motore, non il dizionario. Le chiavi
+        dash_csv_all e dash_csv_all_tip avevano un numero scritto a mano, in
+        tutte e due le lingue: il template metteva quello giusto e i18n.js
+        glielo riscriveva sopra sbagliato un istante dopo, sotto un link che
+        scarica un file con un numero di righe diverso da quello dichiarato.
+        Qui non ci sono numeri fissi apposta: cambiano a ogni giro. -->
    <a class="ctrl-link" href="serie_a_tpi_2025-26.csv" download
      data-title-it="Il file completo generato dal motore: 356 giocatori, 49 colonne"
      data-title-en="The full file the engine writes: 356 players, 49 columns"
@@ -1948,16 +1948,21 @@ function filtroScadenza(btn){
  buildLeaderboard();
 }
 
-/* Scarica quello che vedi. Il CSV completo dei 351 qualificati sta accanto alle
-   pagine (serie_a_tpi_2025-26.csv, generato dal motore a ogni giro); questo
+/* Scarica quello che vedi. Il CSV completo dei 356 qualificati sta
+   accanto alle pagine (serie_a_tpi_2025-26.csv, generato dal motore a ogni giro); questo
    invece e' la vista corrente, con i filtri applicati e nell'ordine scelto —
    e' quello che serve a chi ha appena ristretto la lista a otto nomi. */
 /* I cento pubblicati non sono un campione neutro: il TPI premia chi produce in
-  squadre che producono, quindi la lista e' fitta di Inter, Milan e Atalanta e
-  quasi vuota di Cremonese, Lecce e Parma. Chi lavora sul mercato compra
-  soprattutto la' — "fitto dove io non compro e vuoto dove compro". Il resto dei
-  qualificati sta in un file a parte, senza le serie per giornata, e si scarica
-  solo se lo si chiede: mezzo megabyte non si impone a chi apre la pagina. */
+  squadre che producono, quindi la lista e' fitta delle squadre di testa e quasi
+  vuota di quelle di coda. Chi lavora sul mercato compra soprattutto la' —
+  "fitto dove io non compro e vuoto dove compro". Il resto dei qualificati sta
+  in un file a parte, senza le serie per giornata, e si scarica solo se lo si
+  chiede: mezzo megabyte non si impone a chi apre la pagina.
+
+  I nomi delle squadre stavano scritti qui ("Inter, Milan e Atalanta", "
+  Cremonese, Lecce e Parma"): il commento parlava di Serie A anche dentro la
+  pagina della Premier, insieme a un conteggio fermo a 351 e al nome del CSV
+  italiano. Non si vedono a schermo, si vedono aprendo il sorgente. */
 let TUTTI_CARICATI=false, TUTTI_IN_CORSO=false;
 async function caricaTuttiIQualificati(){
  const btn=document.getElementById("tutti-btn"), lbl=document.getElementById("tutti-lbl");
