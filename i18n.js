@@ -674,9 +674,22 @@
   const BASE = (document.documentElement.getAttribute("lang") || "it").slice(0, 2);
   const DEFAULT_LANG = SUPPORTED.includes(BASE) ? BASE : "it";
 
+  /* La preferenza si ricorda PER SITO, non per dominio.
+     GitHub Pages serve tutti i progetti sotto lo stesso indirizzo
+     (raffaeleciccone-analyst.github.io/<progetto>/), quindi l'archivio locale
+     e' uno solo per tutti: con la chiave "lang" nuda, chi aveva letto la Serie
+     A in italiano si trovava il sito sulla Premier League in italiano al primo
+     accesso, e la lingua di partenza dichiarata dalla pagina non aveva mai
+     occasione di valere. E' successo davvero, la prima volta che il sito e'
+     andato online.
+     La chiave porta il nome del progetto, cosi' ogni sito parte dalla propria
+     lingua e ricorda la propria scelta. */
+  const SITO = location.pathname.split("/").filter(Boolean)[0] || "_root";
+  const CHIAVE = "lang:" + SITO;
+
   function detectLang() {
     let stored = null;
-    try { stored = localStorage.getItem("lang"); } catch (e) { /* storage negato */ }
+    try { stored = localStorage.getItem(CHIAVE); } catch (e) { /* storage negato */ }
     if (stored && SUPPORTED.includes(stored)) return stored;
     return DEFAULT_LANG;
   }
@@ -692,7 +705,7 @@
   function setLang(lang) {
     if (!SUPPORTED.includes(lang)) return;
     currentLang = lang;
-    try { localStorage.setItem("lang", lang); } catch (e) {}
+    try { localStorage.setItem(CHIAVE, lang); } catch (e) {}
     document.documentElement.lang = lang;
     applyI18n(document);
     document.dispatchEvent(new CustomEvent("i18n:changed", { detail: { lang } }));
