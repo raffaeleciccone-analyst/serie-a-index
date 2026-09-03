@@ -1,6 +1,6 @@
 # Serie A Scout Index
 
-**A descriptive ranking model for Serie A 2025/26 players.**
+**A descriptive ranking model for Serie A players.**
 
 ## → [Open the site](https://raffaeleciccone-analyst.github.io/serie-a-index/)
 
@@ -67,4 +67,4 @@ constant at the top of `ai_chat.js`. The widget appears on its own once that is 
 
 ---
 
-*Raffaele Ciccone · Season 2025/26*
+*Raffaele Ciccone · data analyst*
