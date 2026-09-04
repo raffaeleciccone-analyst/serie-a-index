@@ -418,7 +418,7 @@ footer a:hover{color:var(--lp)}
 <!-- APP -->
 <div id="app" class="app">
   <nav class="nav">
-    <a class="nav-brand" href="index.html">Serie A Scout <small>25/26</small></a>
+    <a class="nav-brand" href="index.html">Serie A Scout <small data-st-it="{curBreve}"></small></a>
     <a class="nav-mark" href="index.html" aria-label="Serie A Scout Index" title="Serie A Scout Index"><svg viewBox="0 0 32 32" width="19" height="19" aria-hidden="true" focusable="false"><rect x="6" y="19" width="5" height="7" fill="currentColor"/><rect x="13.5" y="13" width="5" height="13" fill="currentColor"/><rect x="21" y="6" width="5" height="20" fill="currentColor"/></svg></a>
     <div class="nav-sections">
       <a class="nav-link" onclick="scrollTo2('#insights')" data-it="Insights" data-en="Insights">Insights</a>
@@ -439,7 +439,7 @@ footer a:hover{color:var(--lp)}
   </nav>
 
   <div class="hero">
-    <div class="hero-eyebrow" data-it="Serie A Scout Index &middot; Stagione 2025/26" data-en="Serie A Scout Index &middot; 2025/26 season">Serie A Scout Index &middot; Stagione 2025/26</div>
+    <div class="hero-eyebrow" data-st-it="Serie A Scout Index · Stagione {curSlash}" data-st-en="Serie A Scout Index · {curSlash} season">Serie A Scout Index</div>
     <div class="hero-ttl">TPI <em>Pro</em></div>
     <div class="hero-sub" data-it="Il TPI classico misura il rendimento in campo. Il <strong>TPI Pro</strong> aggiunge cinque modulatori che guardano al giocatore invece che alla sola prestazione: <strong>AII</strong> (dove sta nella curva dell&rsquo;et&agrave;), <strong>PRI</strong> (quanto regge fisicamente), la stabilit&agrave; fra i cinque contesti, la direzione della forma ed <strong>EMI</strong> (chi rende sopra l&rsquo;aspettativa per la sua et&agrave;). Serve a distinguere chi &egrave; forte adesso da chi lo sar&agrave;." data-en="The classic TPI measures on-pitch performance. <strong>TPI Pro</strong> adds five modulators that look at the player rather than the performance alone: <strong>AII</strong> (where they sit on the age curve), <strong>PRI</strong> (how well they hold up physically), stability across the five contexts, the direction of their form and <strong>EMI</strong> (who produces above expectation for their age). It tells apart who is good now from who will be.">Il TPI classico misura il rendimento in campo. Il
       <strong>TPI Pro</strong> aggiunge cinque modulatori che guardano al giocatore invece
@@ -532,7 +532,7 @@ footer a:hover{color:var(--lp)}
     <!-- MULTI-SEASON -->
     <section class="section" id="multiseason">
       <div class="section-hdr">
-        <div class="section-ttl" data-it="Persistence 24-25 + 25-26" data-en="Persistence 24-25 + 25-26">Persistence 24-25 + 25-26</div>
+        <div class="section-ttl" data-st-it="Persistence {precT} + {curT}" data-st-en="Persistence {precT} + {curT}">Persistence</div>
         <div class="section-note" data-it="Solo giocatori comuni a entrambe le stagioni" data-en="Only players present in both seasons">Solo giocatori comuni a entrambe le stagioni</div>
       </div>
       <div class="card">
@@ -540,8 +540,8 @@ footer a:hover{color:var(--lp)}
         <div class="tbl-wrap">
           <table class="tbl" id="persistence-tbl">
             <thead><tr>
-              <th>#</th><th data-it="Giocatore" data-en="Player">Giocatore</th><th data-it="Squadra (25-26)" data-en="Team (25-26)">Squadra (25-26)</th><th>R</th>
-              <th class="num">TPI 24-25</th><th class="num">TPI 25-26</th>
+              <th>#</th><th data-it="Giocatore" data-en="Player">Giocatore</th><th data-st-it="Squadra ({curT})" data-st-en="Team ({curT})">Squadra</th><th>R</th>
+              <th class="num" data-st-it="TPI {precT}" data-st-en="TPI {precT}">TPI</th><th class="num" data-st-it="TPI {curT}" data-st-en="TPI {curT}">TPI</th>
               <th class="num" data-it="Media" data-en="Mean">Media</th><th class="num" data-it="Δ stagioni" data-en="Δ seasons">Δ stagioni</th>
             </tr></thead>
             <tbody></tbody>
@@ -554,7 +554,7 @@ footer a:hover{color:var(--lp)}
     <section class="section" id="movers">
       <div class="section-hdr">
         <div class="section-ttl" data-it="Cross-season movers" data-en="Cross-season movers">Cross-season movers</div>
-        <div class="section-note" data-it="Confronto rank TPI 24-25 → 25-26" data-en="TPI rank comparison 24-25 → 25-26">Confronto rank TPI 24-25 → 25-26</div>
+        <div class="section-note" data-st-it="Confronto rank TPI {precT} → {curT}" data-st-en="TPI rank comparison {precT} → {curT}">Confronto rank TPI</div>
       </div>
       <div class="movers-grid">
         <div class="movers-card">
@@ -571,7 +571,7 @@ footer a:hover{color:var(--lp)}
   </div>
 
   <footer>
-    <span data-it="Serie A Scout — TPI Pro · Stagione 2025-26 + backfill 2024-25 ·" data-en="Serie A Scout — TPI Pro · 2025-26 season + 2024-25 backfill ·">Serie A Scout — TPI Pro · Stagione 2025-26 + backfill 2024-25 ·</span>
+    <span data-st-it="Serie A Scout — TPI Pro · Stagione {cur}" data-st-en="Serie A Scout — TPI Pro · {cur} season">Serie A Scout — TPI Pro</span><span id="pro-backfill" hidden data-st-it=" + backfill {prec}" data-st-en=" + {prec} backfill"></span><span> · </span>
     <a href="dashboard_serie_a.html" style="color:var(--ls)" data-it="Dashboard pubblica" data-en="Public dashboard">Dashboard pubblica</a>
   </footer>
 </div>
@@ -616,8 +616,8 @@ const PRO_STR={
   k_inf:"Infortuni stagione", k_out:"Giorni out", k_gol90:"Gol / 90",
   ctx_totale:"Totale", ctx_casa:"Casa", ctx_trasferta:"Trasferta",
   ctx_top6:"vs Top6", ctx_forti:"vs Forti",
-  p_comuni:"Comuni 24-25 + 25-26", p_mig:"Migliorati", p_reg:"Regrediti", p_delta:"Δ medio",
-  p_nodata:"payload_2024-25.json non disponibile",
+  p_comuni:"Comuni {precT} + {curT}", p_mig:"Migliorati", p_reg:"Regrediti", p_delta:"Δ medio",
+  p_nodata:"{filePrec} non disponibile",
   mv_up:"Top risers", mv_down:"Top fallers",
   m_qual:"qualificati", m_incl:"in classifica Pro", m_prosp:"prospetti",
   m_prime:"prime", m_vet:"veterani", m_pen:"con penalty disponibilità",
@@ -657,8 +657,8 @@ const PRO_STR={
   k_inf:"Injuries this season", k_out:"Days out", k_gol90:"Goals / 90",
   ctx_totale:"Total", ctx_casa:"Home", ctx_trasferta:"Away",
   ctx_top6:"vs Top6", ctx_forti:"vs Strong",
-  p_comuni:"Common 24-25 + 25-26", p_mig:"Improved", p_reg:"Declined", p_delta:"Mean Δ",
-  p_nodata:"payload_2024-25.json not available",
+  p_comuni:"Common {precT} + {curT}", p_mig:"Improved", p_reg:"Declined", p_delta:"Mean Δ",
+  p_nodata:"{filePrec} not available",
   mv_up:"Top risers", mv_down:"Top fallers",
   m_qual:"qualified", m_incl:"in the Pro ranking", m_prosp:"prospects",
   m_prime:"prime", m_vet:"veterans", m_pen:"with availability penalty",
@@ -669,7 +669,7 @@ const PRO_STR={
 };
 function TT(k){
   const l=(window.SerieAi18n&&SerieAi18n.getLang&&SerieAi18n.getLang()==="en")?"en":"it";
-  return (PRO_STR[l]&&PRO_STR[l][k])||PRO_STR.it[k]||k;
+  return riempiStagioni((PRO_STR[l]&&PRO_STR[l][k])||PRO_STR.it[k]||k);
 }
 
 let CUR = null, PREV = null;
@@ -678,6 +678,57 @@ let FILTER_R = "ALL", FILTER_C = "ALL";
 function scrollTo2(sel){const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
 
 async function loadJSON(url){try{const r=await fetch(url);if(!r.ok)return null;return await r.json();}catch(e){return null;}}
+
+/* Le stagioni le dichiara il payload, non questa pagina.
+
+   Erano tredici stringhe fisse — "25/26" nella barra, "24-25" nelle colonne,
+   e soprattutto il nome del file da scaricare — che ad agosto andavano
+   cambiate a mano una per una. Al cambio 2026-27 e' successo quello che
+   doveva: la pagina era rimasta l'unica a dire 25/26 mentre serviva i dati
+   della stagione nuova, e li confrontava con la 2024-25 saltando un anno
+   intero, senza che niente avvisasse.
+
+   E' la stessa regola del selettore della dashboard: la stagione pubblicata
+   la dichiara il payload, la precedente si ricava da quella, e il file si
+   carica se c'e'. Ad agosto qui non c'e' piu' niente da cambiare. */
+let ST_CUR = "", ST_PREC = "", FILE_PREC = "";
+
+function stagionePrecedente(s){
+  const m = /^(\d{4})-(\d{2})$/.exec(String(s || ""));
+  return m ? (Number(m[1]) - 1) + "-" + m[1].slice(2) : "";
+}
+function etichettaStagione(s, forma){
+  if(!/^\d{4}-\d{2}$/.test(s || "")) return "";
+  if(forma === "slash") return s.slice(0, 4) + "/" + s.slice(5);
+  if(forma === "breve") return s.slice(2, 4) + "/" + s.slice(5);
+  if(forma === "corta") return s.slice(2, 4) + "-" + s.slice(5);
+  return s;
+}
+function riempiStagioni(testo){
+  const v = {
+    "{cur}": ST_CUR, "{prec}": ST_PREC,
+    "{curSlash}": etichettaStagione(ST_CUR, "slash"),
+    "{curBreve}": etichettaStagione(ST_CUR, "breve"),
+    "{curT}": etichettaStagione(ST_CUR, "corta"),
+    "{precT}": etichettaStagione(ST_PREC, "corta"),
+    "{filePrec}": FILE_PREC || "il payload della stagione precedente"
+  };
+  return String(testo).replace(/\{\w+\}/g, k => k in v ? v[k] : k);
+}
+/* Riempie i segnaposto e lascia in `data-it`/`data-en` il testo gia' fatto:
+   al cambio lingua ci pensa i18n.js come per ogni altra scritta della pagina. */
+function applicaStagioni(){
+  const en = !!(window.SerieAi18n && SerieAi18n.getLang && SerieAi18n.getLang() === "en");
+  document.querySelectorAll("[data-st-it]").forEach(el => {
+    const it = riempiStagioni(el.dataset.stIt);
+    const inglese = riempiStagioni(el.dataset.stEn || el.dataset.stIt);
+    el.setAttribute("data-it", it);
+    el.setAttribute("data-en", inglese);
+    el.textContent = en ? inglese : it;
+  });
+  const bf = document.getElementById("pro-backfill");
+  if(bf) bf.hidden = !PREV;
+}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function nm(s){if(!s)return"";return s.toString().normalize("NFKD").replace(/[̀-ͯ]/g,"").toLowerCase().trim().replace(/\s+/g," ");}
 function fmt(v,d=2){if(v==null||isNaN(v))return"—";const n=Number(v);return (n>=0?"+":"")+n.toFixed(d);}
@@ -1041,14 +1092,21 @@ function renderMeta(cur,prev){
     <span><strong>${byCat.prime}</strong> ${TT("m_prime")}</span>
     <span><strong>${byCat.veterano}</strong> ${TT("m_vet")}</span>
     <span><strong>${wPos}</strong> ${TT("m_pen")}</span>
-    ${prev?`<span><strong>${TT("m_2s")}</strong> (24-25 + 25-26)</span>`:""}
+    ${prev?`<span><strong>${TT("m_2s")}</strong> (${etichettaStagione(ST_PREC,"corta")} + ${etichettaStagione(ST_CUR,"corta")})</span>`:""}
   `;
 }
 
 // ===== Bootstrap =====
 async function loadDashboard(){
   CUR=await loadJSON("payload.json");
-  PREV=await loadJSON("payload_2024-25.json");
+  ST_CUR=(CUR&&CUR.stagione)||"";
+  ST_PREC=stagionePrecedente(ST_CUR);
+  FILE_PREC=ST_PREC?("payload_"+ST_PREC+".json"):"";
+  /* Se l'archivio della stagione precedente non e' pubblicato, `loadJSON`
+     torna null e le due sezioni cross-season lo dicono: meglio una sezione
+     che dichiara cosa manca di un confronto con l'anno sbagliato. */
+  PREV=FILE_PREC?await loadJSON(FILE_PREC):null;
+  applicaStagioni();
   if(!CUR){document.querySelector(".container").innerHTML="<p style='color:var(--red);padding:20px'>"+TT('err')+"</p>";return;}
   renderMeta(CUR,PREV);
   renderInsights(CUR.players);
@@ -1075,6 +1133,7 @@ loadDashboard();
    generato qui e' gia' stampato: va ricostruito, altrimenti resta nella
    lingua in cui e' stato reso. Si conservano i filtri e il limite di righe. */
 document.addEventListener("i18n:changed",function(){
+  applicaStagioni();
   if(!CUR)return;
   renderMeta(CUR,PREV);
   renderInsights(CUR.players);
