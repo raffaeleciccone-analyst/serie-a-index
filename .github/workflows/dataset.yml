@@ -19,4 +19,4 @@ jobs:
         with:
           python-version: '3.12'
       - name: ai_dataset.json corrisponde a payload.json
-        run: python build_ai_dataset.py --check
+        run: python controlla_ai_dataset.py
