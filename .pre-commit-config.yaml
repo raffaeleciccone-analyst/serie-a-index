@@ -22,7 +22,7 @@ repos:
     hooks:
       - id: ai-dataset-allineato
         name: ai_dataset.json allineato a payload.json
-        entry: python build_ai_dataset.py --check
+        entry: python controlla_ai_dataset.py
         language: system
         pass_filenames: false
-        files: '^(payload\.json|ai_dataset\.json|build_ai_dataset\.py|validazione_sintesi\.json)$'
+        files: '^(payload\.json|ai_dataset\.json|controlla_ai_dataset\.py|validazione_sintesi\.json)$'
