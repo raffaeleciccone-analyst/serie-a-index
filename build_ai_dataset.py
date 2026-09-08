@@ -217,8 +217,20 @@ def costruisci(src: Path) -> dict:
         payload.get("players") or [],
         key=lambda p: (p.get("rank") or {}).get("TPI") or 9999,
     )
+    # La stagione la dichiara il payload, come ogni altro campo qui dentro.
+    # Era l'unica costante scritta a mano rimasta in un file il cui scopo e'
+    # non averne: l'8/9/2026, col sito passato alla 2026-27, il dataset diceva
+    # ancora "2025/26" accanto a "n_giornate: 3" — cioe' l'etichetta di un anno
+    # e i numeri di un altro, dentro il system prompt di un assistente che
+    # risponde con sicurezza.
+    stagione_payload = payload.get("stagione")
+    if not stagione_payload:
+        raise SystemExit(
+            f"{src.name} non dichiara la stagione: senza, questo script "
+            "dovrebbe scriverla a mano, che e' il difetto da chiudere."
+        )
     dataset = {
-        "stagione": "2025/26",
+        "stagione": str(stagione_payload).replace("-", "/"),
         "n_giornate": payload.get("n_giornate"),
         "n_giocatori_analizzati": payload.get("n_giocatori"),
         "top6": payload.get("top6_names"),
