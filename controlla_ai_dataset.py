@@ -31,7 +31,7 @@ import sys
 from pathlib import Path
 
 QUI = Path(__file__).resolve().parent
-MOTORE = QUI.parent / "serie-a-index-engine" / "build_ai_dataset.py"
+MOTORE = QUI.parent / "football-index-engine" / "build_ai_dataset.py"
 QUANTI = 100          # i giocatori che il dataset porta, i primi per rank TPI
 
 
