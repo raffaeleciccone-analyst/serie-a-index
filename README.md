@@ -47,9 +47,13 @@ correction stays one correction.
 
 The seven weights are a declared choice, not a fit to either league's data, so they are applied
 identically in both; what changes is the data, the site's starting language, and two of the
-fifteen checks, which lean on Italian-only sources and therefore run only here. Two pages are
-Italian-only for the same reason — TPI Pro and the market case have no twin in England, so they
-are left out of that site's menu instead of being published as dead links.
+fifteen checks, which lean on Italian-only sources and therefore run only here.
+
+Two pages exist only here, for two unrelated reasons. The market case is **written, not
+generated**: its numbers come from the same payload as the ranking, but the argument is about
+one market in particular. TPI Pro is **plumbing**: its durability modulator reads an injury
+table that only the Italian side of the pipeline fills. Neither is published as an empty page
+elsewhere — they are left out of that site's menu instead of shipping dead links.
 
 ---
 
