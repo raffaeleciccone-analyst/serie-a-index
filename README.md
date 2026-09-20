@@ -38,6 +38,19 @@ Numbers are deliberately not repeated here: they live on the pages, which are ge
 from the data, so nothing in this file can go stale behind them. The validation page
 reports every check exactly as it came out, including the one built to fail the index.
 
+### One engine, two leagues
+
+One engine generates this site and the
+[Premier League Index](https://raffaeleciccone-analyst.github.io/premier-league-index/): the
+league is a parameter, like the season. No fork, no second copy to keep in step — one
+correction stays one correction.
+
+The seven weights are a declared choice, not a fit to either league's data, so they are applied
+identically in both; what changes is the data, the site's starting language, and two of the
+fifteen checks, which lean on Italian-only sources and therefore run only here. Two pages are
+Italian-only for the same reason — TPI Pro and the market case have no twin in England, so they
+are left out of that site's menu instead of being published as dead links.
+
 ---
 
 ### Ask the model — *not live on the published site*
