@@ -64,10 +64,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--lp);font-size:14px
 
 /* ── NAV — la stessa delle altre quattro pagine ─────────────────────────
    Le regole qui sotto sono quelle di pagina_stile.CSS e assets/dashboard.css.
-   Cambiano due cose rispetto a prima: il marchio, che diceva "Serie A Scout /
-   TPI Pro" mentre la classifica diceva "Serie A 25/26 / Scout Index" e le
-   pagine editoriali "TPI / Serie A 25/26" — tre nomi per lo stesso sito; e la
-   fila di destra, che aveva tre voci su cinque e nessuna diceva dove sei.
+   Cambiano due cose rispetto a prima: il marchio, che qui diceva "<sito> /
+   TPI Pro" mentre la classifica diceva "<lega> <stagione> / Scout Index" e le
+   pagine editoriali "TPI / <lega> <stagione>" — tre nomi per lo stesso sito; e
+   la fila di destra, che aveva tre voci su cinque e nessuna diceva dove sei.
+   I nomi veri li mette `pagina_pro.py` da `config`: scriverne uno qui dentro
+   vorrebbe dire nominare un campionato sulla pagina di un altro.
    Le ancore alle sezioni restano a sinistra: quelle sono di questa pagina.
 
    Lo switcher lingua non si ridipinge piu' qui: il colore giusto ce l'ha gia'
