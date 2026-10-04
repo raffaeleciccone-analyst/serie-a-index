@@ -57,7 +57,7 @@ elsewhere — they are left out of that site's menu instead of shipping dead lin
 
 ## What I decided
 
-The idea is mine, where playing football meets match analysis: an index that tells who is improving. Publishing all fifteen checks, including the ones the index fails, was my call. I found the duplicates and the orphan rows by exploring the dataset and the results. The code was written by AI: I steered it and checked the results.
+The idea is mine, where playing football meets match analysis: an index that tells who is improving. Publishing all fifteen checks, including the ones the index fails, was my call. I found the duplicates and the orphan rows by exploring the dataset and the results.
 
 ---
 
